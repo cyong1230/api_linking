@@ -18,7 +18,7 @@ def get_url(request):
 		try:
 			record = Record.objects.get(name=value)
 		except Record.DoesNotExist:
-			break
+			continue
 		else:
 			result[key] = {}
 			result[key]['name'] = value

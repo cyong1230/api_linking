@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LinkAPI
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  API linking for S-NER project
 // @author       Chee Yong
 // @include     http://stackoverflow.com/*
@@ -56,12 +56,14 @@ function identifyAPI() {
 
 function UpdateTooltip(response) {
     json=JSON.parse(response.responseText);
-    console.log(json);
+    //console.log(json);
     NumLink=Object.keys(json).length;
     
     for (var i = 0; i < NumLink; i++) {
-        contentStr = '<div>Reference: <a class="url_link" target="_blank" href="' + json[i].url + '">' + json[i].url + '</a></div>';
-        LinkMap[json[i].name] = contentStr;
+        if(json[i]){
+            contentStr = '<div>Reference: <a class="url_link" target="_blank" href="' + json[i].url + '">' + json[i].url + '</a></div>';
+            LinkMap[json[i].name] = contentStr;
+        }
     }
 }
 
