@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LinkAPI
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  API linking for S-NER project
 // @author       Chee Yong
 // @include     http://stackoverflow.com/*
@@ -74,7 +74,8 @@ $(document).ready(function(){
     identifyAPI();
     GM_xmlhttpRequest({
         method: "POST",
-        url: "http://127.0.0.1:8000/geturl/",
+        //url: "http://127.0.0.1:8000/geturl/",
+        url: "http://128.199.217.19/geturl/",
         data: JSON.stringify(toBackEndData),
         headers: {
             "Content-Type": "application/json; charset=utf-8"
