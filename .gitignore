@@ -44,5 +44,4 @@ Temporary Items
 
 # Python Binaries
 *.pyc
-django_back/django_back/*.pyc
-django_back/link_api/*.pyc
+pandas/tutorial

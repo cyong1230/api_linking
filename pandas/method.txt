@@ -455,7 +455,6 @@ DataFrame.duplicated
 DataFrame.equals
 DataFrame.filter
 DataFrame.first
-DataFrame.head
 DataFrame.idxmax
 DataFrame.idxmin
 DataFrame.last
@@ -467,7 +466,6 @@ DataFrame.reset_index
 DataFrame.sample
 DataFrame.select
 DataFrame.set_index
-DataFrame.tail
 DataFrame.take
 DataFrame.truncate
 DataFrame.dropna
