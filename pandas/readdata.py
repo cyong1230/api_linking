@@ -11,6 +11,13 @@ import codecs
 codecs.register_error('replace_against_space', lambda e: (u' ',e.start + 1))
 #print unicode('ABC\x97ab\x99c上午', 'utf-8', errors='replace_against_space')
 
+mycompile = lambda pat:  re.compile(pat,  re.UNICODE)
+WS_RE = mycompile(r'  +')
+
+def squeeze_whitespace(s):
+  new_string = WS_RE.sub(" ",s)
+  return new_string.strip()
+
 def file_len(fname):
     with open(fname) as f:
         for i, l in enumerate(f):
@@ -20,10 +27,10 @@ def file_len(fname):
 
 def my_encoder(my_string):
    for i in my_string:
-      try :
+      try:
          yield unicode(i, 'utf-8')
       except UnicodeDecodeError:
-         yield ' ' # or another whitespaces 
+         yield ' ' # or another whitespaces
 
 def strip_backtick(istring):
     return re.sub(r'(`(?=\S)|(?<=\S)`)', '', istring)  # this is hacky. Deheng
@@ -64,12 +71,21 @@ class MLStripper(HTMLParser):
 
 def strip_tags(html):
     s = MLStripper()
-    html = re.sub(r'&#xA;&#xA;<pre>.*?</pre>', '@codeSnippetRemoved', html)
-    html = re.sub(r'(`(?=\S)|(?<=\S)`)', '', html)
+    html = re.sub(r'<code>', '`', html)
+    html = re.sub(r'</code>', '`', html)
+    html = re.sub(r'<pre>.*?</pre>', '@CODE@', html)
+    #html = re.sub(r'(`(?=\S)|(?<=\S)`)', '', html)
     html = re.sub(r'(&#xA;&#xA;)+','\n', html)
     s.feed(html)
     return s.get_data()
 
+def html2txt(content):
+	pro = ''.join( my_encoder( strip_tags(content) ) )
+	pro = re.sub(r'^ +', '', pro)
+	pro = re.sub(r'\n +', '\n', pro)
+	pro = re.sub(r'[\n]+', '\n',pro)
+	pro = squeeze_whitespace(pro)
+	return pro
 
 class DataReader:
 	def __init__(self):
@@ -89,7 +105,7 @@ class DataReader:
 
 			self.cur.execute("SELECT Body FROM posts where Id=%s" %(qid))
 			qbody = self.cur.fetchall()[0][0]
-			f.write('Q:\n' + qbody + '\n')
+			f.write('Q:\n' + html2txt(qbody) + '\n')
 			
 			self.cur.execute("SELECT Id FROM posts where ParentId=%s" %(qid))
 			aids = self.cur.fetchall()
@@ -98,24 +114,16 @@ class DataReader:
 				aid = row[0]
 				self.cur.execute("SELECT Body FROM posts where Id=%s" %(aid))
 				abody = self.cur.fetchall()[0][0]
-				f.write('A' + str(cnt) + ':\n' + abody + '\n')
+				f.write('A' + str(cnt) + ':\n' + html2txt(abody) + '\n')
 				cnt += 1
 
 			f.close()
-			
-			# f = open('./sodata/' + str(qid) + '.txt', 'w')
-
-			# for row in all:
-			# 	content = ''.join( my_encoder( strip_tags(row[0]) ) )
-			# 	content = re.sub(r'^ +', '', content)
-			# 	content = re.sub(r'\n +', '\n', content)
-			# 	content = re.sub(r'[\n]+', '\n',content)
-
-			# 	f.write(content +'\n')
-			# f.close()
 		except:
 			pass
 
 if __name__ ==  '__main__':
 	dr = DataReader()
-	dr.read(11346283)
+	#qids = [5486226, 5515021, 5558607,5955695,6467832,7577546,7776679,7813132,7837722,8273092]
+	qids = [14262433,11346283,10715965,8991709,12555323,12065885,13148429,7837722,13413590,15891038]
+	for qid in qids:
+		dr.read(qid)
