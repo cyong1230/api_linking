@@ -73,7 +73,7 @@ def strip_tags(html):
     s = MLStripper()
     html = re.sub(r'<code>', '`', html)
     html = re.sub(r'</code>', '`', html)
-    html = re.sub(r'<pre>.*?</pre>', '@CODE@', html)
+    html = re.sub(r'<pre>.*?</pre>', '@CODE', html)
     #html = re.sub(r'(`(?=\S)|(?<=\S)`)', '', html)
     html = re.sub(r'(&#xA;&#xA;)+','\n', html)
     s.feed(html)
