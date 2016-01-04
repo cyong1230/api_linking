@@ -103,10 +103,9 @@ def attach_labels(labels, lines):
 # NERsuite tokenization: any alnum sequence is preserved as a single
 # token, while any non-alnum character is separated into a
 # single-character token. TODO: non-ASCII alnum.
-#TOKENIZATION_REGEX = re.compile(r'''([0-9a-zA-Z]+|[^0-9a-zA-Z])''')
-#TOKENIZATION_REGEX = re.compile(r'''(\s|[\.,\(\)\?\!"]|\S.*?\(\))''')
-TOKENIZATION_REGEX = re.compile(r'''(\s)''')
 
+#TOKENIZATION_REGEX = re.compile(r'''(\s)''')
+TOKENIZATION_REGEX = re.compile(r'([0-9a-zA-Z]+|[^0-9a-zA-Z])')
 NEWLINE_TERM_REGEX = re.compile(r'(.*?\n)')
 
 
@@ -131,7 +130,7 @@ def text_to_conll(f):
     for s in sentences:
         nonspace_token_seen = False
 
-        fake_tokens = [t for t in TOKENIZATION_REGEX.split(s) if t]
+        """fake_tokens = [t for t in TOKENIZATION_REGEX.split(s) if t]
         tokens = []
         quote_count = 0
 
@@ -159,7 +158,8 @@ def text_to_conll(f):
 
         tokens2 = [t for t in s.split('\s') if t]
         #print tokens2
-
+        """
+        tokens = [t for t in TOKENIZATION_REGEX.split(s) if t]
         for t in tokens:
             if not t.isspace():
                 lines.append(['O', offset, offset+len(t), t])
