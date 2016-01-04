@@ -10,12 +10,14 @@ I then do the following:
 Is that the most efficient way? Given the focus on speed in pandas, I would assume there must be some special function to iterate through the values in a manner that one also retrieves the index (possibly through a generator to be memory efficient)? `df.iteritems` unfortunately only iterates column by column.
 
 A1:
-Pandas is based on NumPy arrays.The key to speed with NumPy arrays is to perform your operations on the whole array at once, never row-by-row or item-by-item. 
+Pandas is based on NumPy arrays.
+The key to speed with NumPy arrays is to perform your operations on the whole array at once, never row-by-row or item-by-item. 
 For example, if `close` is a 1-d array, and you want the day-over-day percent change, 
 @CODE
 This computes the entire array of percent changes as one statement, instead of 
 @CODE
-So try to avoid the Python loop `for i, row in enumerate(...)` entirely, andthink about how to perform your calculations with operations on the entire array (or dataframe) as a whole, rather than row-by-row.
+So try to avoid the Python loop `for i, row in enumerate(...)` entirely, and
+think about how to perform your calculations with operations on the entire array (or dataframe) as a whole, rather than row-by-row.
 
 A2:
 You can loop through the rows by transposing and then calling iteritems: 

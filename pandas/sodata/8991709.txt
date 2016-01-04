@@ -19,12 +19,27 @@ Are pandas merges faster than `data.table` for regular integer columns? That sho
 Also, `data.table` has time series merge in mind. Two aspects to that: i) multi column ordered keys such as (id,datetime) ii) fast prevailing join (`roll=TRUE`) a.k.a. last observation carried forward. 
 I'll need some time to confirm as it's the first I've seen of the comparison to `data.table` as presented. 
 UPDATE from data.table v1.8.0 released July 2012 
-Internal function sortedmatch() removed and replaced with chmatch() when matching i levels to x levels for columns of type 'factor'. This preliminary step was causing a (known) significant slowdown when the number of levels of a factor column was large (e.g. >10,000). Exacerbated in tests of joining four such columns, as demonstrated by Wes McKinney (author of Python package Pandas). Matching 1 million strings of which of which 600,000 are unique is now reduced from 16s to 0.5s, for example. 
+Internal function sortedmatch() removed and replaced with chmatch()
+when matching i levels to x levels for columns of type 'factor'. This
+preliminary step was causing a (known) significant slowdown when the number
+of levels of a factor column was large (e.g. >10,000). Exacerbated in
+tests of joining four such columns, as demonstrated by Wes McKinney
+(author of Python package Pandas). Matching 1 million strings of which
+of which 600,000 are unique is now reduced from 16s to 0.5s, for example. 
 also in that release was : 
-character columns are now allowed in keys and are preferred tofactor. data.table() and setkey() no longer coerce character tofactor. Factors are still supported. Implements FR#1493, FR#1224and (partially) FR#951. New functions chmatch() and %chin%, faster versions of match()and %in% for character vectors. R's internal string cache isutilised (no hash table is built). They are about 4 times fasterthan match() on the example in ?chmatch. 
+character columns are now allowed in keys and are preferred to
+factor. data.table() and setkey() no longer coerce character to
+factor. Factors are still supported. Implements FR#1493, FR#1224
+and (partially) FR#951. 
+New functions chmatch() and %chin%, faster versions of match()
+and %in% for character vectors. R's internal string cache is
+utilised (no hash table is built). They are about 4 times faster
+than match() on the example in ?chmatch. 
 As of Sep 2013 data.table is v1.8.10 on CRAN and we're working on v1.9.0. NEWS is updated live. 
 But as I wrote originally, above : 
-`data.table` has time series merge in mind. Two aspects to that: i) multi column ordered keys such as (id,datetime) ii) fast prevailing join (`roll=TRUE`) a.k.a. last observation carried forward. 
+`data.table` has time series merge in mind. Two aspects to that: i)
+multi column ordered keys such as (id,datetime) ii) fast prevailing
+join (`roll=TRUE`) a.k.a. last observation carried forward. 
 So the Pandas equi join of two character columns is probably still faster than data.table. Since it sounds like it hashes the combined two columns. data.table doesn't hash the key because it has prevailing ordered joins in mind. A "key" in data.table is literally just the sort order (similar to a clustered index in SQL; i.e., that's how the data is ordered in RAM). On the list is to add secondary keys, for example. 
 In summary, the glaring speed difference highlighted by this particular two-character-column test with over 10,000 unique strings shouldn't be as bad now, since the known problem has been fixed.
 
@@ -34,6 +49,8 @@ Headline message for users: don't choose between these packages based on speed o
 Looking at the implementation of both, they should generally come out similar in speed, and tests I've run now generally do. (As explained above the big difference found in an early benchmark was a bug). For certain tasks one or other can come out a tad faster, but never by much. 
 The reason for this, is the heavy lifting part is "factoring" the join keys, and both packages seem to have found the same solution to this problem , to use something very similar to a Counting Sort . Matthew (data.table) generally calls this a Radix Sort (since it is incorrectly named such in R) and Wes (pandas) is using a klib hash table to achieve a similar end. Thus the only real difference in approach that I can see is 
 To hash or not
-Pandas gives everything to klib to hash, and relies on klib being smart (which it is), but this must still cause at least one opcode! data.table will just use the object itself if it can, e.g. integer, and uses Rs internal hash tables for strings. Other data-types things get a bit less optimal. An advantage to this is you often get things in "natural" order. Build the index in advance or not (although it appears pandas does some caching here for future calls?) 
+Pandas gives everything to klib to hash, and relies on klib being smart (which it is), but this must still cause at least one opcode! 
+data.table will just use the object itself if it can, e.g. integer, and uses Rs internal hash tables for strings. Other data-types things get a bit less optimal. An advantage to this is you often get things in "natural" order. 
+Build the index in advance or not (although it appears pandas does some caching here for future calls?) 
 And these two effect can mess with benchmarks quite badly. Leave out the `set.index` part of the `data.table` and `data.table` looks good. Use keys that are "ugly" in their raw form and pandas can look better. I've not found the pattern but I'm sure non-unique key values will also cause differences. So you can see, in the wild you are likely to be unsure where on the spectrum you will actually be. For example, you may have a situation where the join favours pandas slightly, but later on you need to have the table sorted by that key column, and the "unhashed" approach of data.table can make that sort faster (since it will already be in order). 
 I haven't gone through every line in the source of both packages, so I can't be certain I haven't missed anything.

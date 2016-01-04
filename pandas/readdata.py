@@ -75,7 +75,7 @@ def strip_tags(html):
     html = re.sub(r'</code>', '`', html)
     html = re.sub(r'<pre>.*?</pre>', '@CODE', html)
     #html = re.sub(r'(`(?=\S)|(?<=\S)`)', '', html)
-    html = re.sub(r'(&#xA;&#xA;)+','\n', html)
+    html = re.sub(r'(&#xA;)+','\n', html)
     s.feed(html)
     return s.get_data()
 

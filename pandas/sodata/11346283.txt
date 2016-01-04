@@ -29,7 +29,8 @@ OR
 
 A5:
 @CODE
-This way you can manually edit the `new_names` as you wish.Works great when you need to rename only a few columns to correct mispellings, accents, remove special characters etc.
+This way you can manually edit the `new_names` as you wish.
+Works great when you need to rename only a few columns to correct mispellings, accents, remove special characters etc.
 
 A6:
 As documented in http://pandas.pydata.org/pandas-docs/stable/text.html : 

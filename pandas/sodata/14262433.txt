@@ -6,24 +6,44 @@ I have tried to puzzle out an answer to this question for many months while lear
 One day I hope to replace my use of SAS with python and pandas, but I currently lack an out-of-core workflow for large datasets. I'm not talking about "big data" that requires a distributed network, but rather files too large to fit in memory but small enough to fit on a hard-drive. 
 My first thought is to use `HDFStore` to hold large datasets on disk and pull only the pieces I need into dataframes for analysis. Others have mentioned MongoDB as an easier to use alternative. My question is this: 
 What are some best-practice workflows for accomplishing the following: 
-Loading flat files into a permanent, on-disk database structure Querying that database to retrieve data to feed into a pandas data structure Updating the database after manipulating pieces in pandas 
+Loading flat files into a permanent, on-disk database structure 
+Querying that database to retrieve data to feed into a pandas data structure 
+Updating the database after manipulating pieces in pandas 
 Real-world examples would be much appreciated, especially from anyone who uses pandas on "large data". 
 Edit -- an example of how I would like this to work: 
-Iteratively import a large flat-file and store it in a permanent, on-disk database structure. These files are typically too large to fit in memory. In order to use Pandas, I would like to read subsets of this data (usually just a few columns at a time) that can fit in memory. I would create new columns by performing various operations on the selected columns. I would then have to append these new columns into the database structure. 
+Iteratively import a large flat-file and store it in a permanent, on-disk database structure. These files are typically too large to fit in memory. 
+In order to use Pandas, I would like to read subsets of this data (usually just a few columns at a time) that can fit in memory. 
+I would create new columns by performing various operations on the selected columns. 
+I would then have to append these new columns into the database structure. 
 I am trying to find a best-practice way of performing these steps. Reading links about pandas and pytables it seems that appending a new column could be a problem. 
 Edit -- Responding to Jeff's questions specifically: 
-I am building consumer credit risk models. The kinds of data include phone, SSN and address characteristics; property values; derogatory information like criminal records, bankruptcies, etc... The datasets I use every day have nearly 1,000 to 2,000 fields on average of mixed data types: continuous, nominal and ordinal variables of both numeric and character data. I rarely append rows, but I do perform many operations that create new columns. Typical operations involve combining several columns using conditional logic into a new, compound column. For example, `if var1 2 then newvar = 'A' elif var2 = 4 then newvar = 'B'`. The result of these operations is a new column for every record in my dataset. Finally, I would like to append these new columns into the on-disk data structure. I would repeat step 2, exploring the data with crosstabs and descriptive statistics trying to find interesting, intuitive relationships to model. A typical project file is usually about 1GB. Files are organized into such a manner where a row consists of a record of consumer data. Each row has the same number of columns for every record. This will always be the case. It's pretty rare that I would subset by rows when creating a new column. However, it's pretty common for me to subset on rows when creating reports or generating descriptive statistics. For example, I might want to create a simple frequency for a specific line of business, say Retail credit cards. To do this, I would select only those records where the line of business = retail in addition to whichever columns I want to report on. When creating new columns, however, I would pull all rows of data and only the columns I need for the operations. The modeling process requires that I analyze every column, look for interesting relationships with some outcome variable, and create new compound columns that describe those relationships. The columns that I explore are usually done in small sets. For example, I will focus on a set of say 20 columns just dealing with property values and observe how they relate to defaulting on a loan. Once those are explored and new columns are created, I then move on to another group of columns, say college education, and repeat the process. What I'm doing is creating candidate variables that explain the relationship between my data and some outcome. At the very end of this process, I apply some learning techniques that create an equation out of those compound columns. 
+I am building consumer credit risk models. The kinds of data include phone, SSN and address characteristics; property values; derogatory information like criminal records, bankruptcies, etc... The datasets I use every day have nearly 1,000 to 2,000 fields on average of mixed data types: continuous, nominal and ordinal variables of both numeric and character data. I rarely append rows, but I do perform many operations that create new columns. 
+Typical operations involve combining several columns using conditional logic into a new, compound column. For example, `if var1 2 then newvar = 'A' elif var2 = 4 then newvar = 'B'`. The result of these operations is a new column for every record in my dataset. 
+Finally, I would like to append these new columns into the on-disk data structure. I would repeat step 2, exploring the data with crosstabs and descriptive statistics trying to find interesting, intuitive relationships to model. 
+A typical project file is usually about 1GB. Files are organized into such a manner where a row consists of a record of consumer data. Each row has the same number of columns for every record. This will always be the case. 
+It's pretty rare that I would subset by rows when creating a new column. However, it's pretty common for me to subset on rows when creating reports or generating descriptive statistics. For example, I might want to create a simple frequency for a specific line of business, say Retail credit cards. To do this, I would select only those records where the line of business = retail in addition to whichever columns I want to report on. When creating new columns, however, I would pull all rows of data and only the columns I need for the operations. 
+The modeling process requires that I analyze every column, look for interesting relationships with some outcome variable, and create new compound columns that describe those relationships. The columns that I explore are usually done in small sets. For example, I will focus on a set of say 20 columns just dealing with property values and observe how they relate to defaulting on a loan. Once those are explored and new columns are created, I then move on to another group of columns, say college education, and repeat the process. What I'm doing is creating candidate variables that explain the relationship between my data and some outcome. At the very end of this process, I apply some learning techniques that create an equation out of those compound columns. 
 It is rare that I would ever add rows to the dataset. I will nearly always be creating new columns (variables or features in statistics/machine learning parlance).
 
 A1:
-I routinely use tens of gigabytes of data in just this fashione.g. I have tables on disk that I read via queries, create data and append back. 
+I routinely use tens of gigabytes of data in just this fashion
+e.g. I have tables on disk that I read via queries, create data and append back. 
 It's worth reading the docs and late in this thread for several suggestions for how to store your data. 
-Details which will affect how you store your data, like: Give as much detail as you can; and I can help you develop a structure. 
-Size of data, # of rows, columns, types of columns; are you appendingrows, or just columns? What will typical operations look like. E.g. do a query on columns to select a bunch of rows and specific columns, then do an operation (in-memory), create new columns, save these. (Giving a toy example could enable us to offer more specific recommendations.) After that processing, then what do you do? Is step 2 ad hoc, or repeatable? Input flat files: how many, rough total size in Gb. How are these organized e.g. by records? Does each one contains different fields, or do they have some records per file with all of the fields in each file? Do you ever select subsets of rows (records) based on criteria (e.g. select the rows with field A > 5)? and then do something, or do you just select fields A, B, C with all of the records (and then do something)? Do you 'work on' all of your columns (in groups), or are there a good proportion that you may only use for reports (e.g. you want to keep the data around, but don't need to pull in that column explicity until final results time)? 
+Details which will affect how you store your data, like: 
+Give as much detail as you can; and I can help you develop a structure. 
+Size of data, # of rows, columns, types of columns; are you appending
+rows, or just columns? 
+What will typical operations look like. E.g. do a query on columns to select a bunch of rows and specific columns, then do an operation (in-memory), create new columns, save these. 
+(Giving a toy example could enable us to offer more specific recommendations.) 
+After that processing, then what do you do? Is step 2 ad hoc, or repeatable? 
+Input flat files: how many, rough total size in Gb. How are these organized e.g. by records? Does each one contains different fields, or do they have some records per file with all of the fields in each file? 
+Do you ever select subsets of rows (records) based on criteria (e.g. select the rows with field A > 5)? and then do something, or do you just select fields A, B, C with all of the records (and then do something)? 
+Do you 'work on' all of your columns (in groups), or are there a good proportion that you may only use for reports (e.g. you want to keep the data around, but don't need to pull in that column explicity until final results time)? 
 Solution 
 Ensure you have sure you have pandas at least `0.10.1` installed. 
 Read iterating files chunk-by-chunk and multiple table queries . 
-Since pytables is optimized to operate on row-wise (which is what you query on), we will create a table for each group of fields. This way it's easy to select a small group of fields (which will work with a big table, but it's more efficient to do it this way... I think I may be able to fix this limitation in the future... this is more intuitive anyhow): (The following is pseudocode.) 
+Since pytables is optimized to operate on row-wise (which is what you query on), we will create a table for each group of fields. This way it's easy to select a small group of fields (which will work with a big table, but it's more efficient to do it this way... I think I may be able to fix this limitation in the future... this is more intuitive anyhow): 
+(The following is pseudocode.) 
 @CODE
 Reading in the files and creating the storage (essentially doing what `append_to_multiple` does): 
 @CODE
@@ -36,7 +56,9 @@ About data_columns, you don't actually need to define ANY data_columns; they all
 @CODE
 They may be most interesting to you in the final report generation stage (essentially a data column is segregated from other columns, which might impact efficiency somewhat if you define a lot). 
 You also might want to: 
-create a function which takes a list of fields, looks up the groups in the groups_map, then selects these and concatenates the results so you get the resulting frame (this is essentially what select_as_multiple does). This way the structure would be pretty transparent to you. indexes on certain data columns (makes row-subsetting much faster). enable compression. 
+create a function which takes a list of fields, looks up the groups in the groups_map, then selects these and concatenates the results so you get the resulting frame (this is essentially what select_as_multiple does). This way the structure would be pretty transparent to you. 
+indexes on certain data columns (makes row-subsetting much faster). 
+enable compression. 
 Let me know when you have questions!
 
 A2:

@@ -17,7 +17,9 @@ Note my original (very old) suggestion was to use `map` (which is much slower):
 A2:
 Use the original df1 indexes to create the series: 
 @CODE
-Edit 2015 Some reported to get the `SettingWithCopyWarning` with this code. However the code still runs perfect with the newer version. 
+Edit 2015 
+Some reported to get the `SettingWithCopyWarning` with this code. 
+However the code still runs perfect with the newer version. 
 @CODE
 The `SettingWithCopyWarning` aims to inform of a possibly invalid assignment on a copy of the Dataframe. It doesn't necessarily say you did it wrong (it can trigger false positives) but from 0.13.0 it let you know there are more adequate methods for the same purpose. Then, if you get the warning, just follow its advise: Try using .loc[row_index,col_indexer] = value instead 
 @CODE
