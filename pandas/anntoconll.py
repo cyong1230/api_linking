@@ -13,7 +13,6 @@ from os import path
 from subprocess import Popen, PIPE
 from cStringIO import StringIO
 
-# assume script in brat tools/ directory, extend path to find sentencesplit.py
 sys.path.append(os.path.join(os.path.dirname(__file__), 'mylib'))
 from sentencesplit import sentencebreaks_to_newlines
 
@@ -103,8 +102,8 @@ def attach_labels(labels, lines):
 # token, while any non-alnum character is separated into a
 # single-character token. TODO: non-ASCII alnum.
 
-#TOKENIZATION_REGEX = re.compile(r'''(\s)''')
-TOKENIZATION_REGEX = re.compile(r'([0-9a-zA-Z]+|[^0-9a-zA-Z])')
+TOKENIZATION_REGEX = re.compile(r'''(\s)''')
+#TOKENIZATION_REGEX = re.compile(r'([0-9a-zA-Z]+|[^0-9a-zA-Z])')
 NEWLINE_TERM_REGEX = re.compile(r'(.*?\n)')
 
 
