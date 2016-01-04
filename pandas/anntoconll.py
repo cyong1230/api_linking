@@ -14,8 +14,7 @@ from subprocess import Popen, PIPE
 from cStringIO import StringIO
 
 # assume script in brat tools/ directory, extend path to find sentencesplit.py
-sys.path.append(os.path.join(os.path.dirname(__file__), '../server/src'))
-sys.path.append('.')
+sys.path.append(os.path.join(os.path.dirname(__file__), 'mylib'))
 from sentencesplit import sentencebreaks_to_newlines
 
 options = None
