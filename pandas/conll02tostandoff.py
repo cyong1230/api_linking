@@ -11,7 +11,8 @@ import re
 import os
 import codecs
 
-INPUT_ENCODING = "Latin-1"
+#INPUT_ENCODING = "Latin-1"
+INPUT_ENCODING = "UTF-8"
 OUTPUT_ENCODING = "UTF-8"
 
 output_directory = None
@@ -24,14 +25,14 @@ def space(t1, t2, quote_count = None):
     # consecutive tokens, returns a heuristic estimate of whether a
     # space character should be placed between them.
 
-    if re.match(r'^[\(]$', t1):
-        return False
-    if re.match(r'^[.,\)\?\!]$', t2):
-        return False
-    if quote(t1) and quote_count is not None and quote_count % 2 == 1:
-        return False
-    if quote(t2) and quote_count is not None and quote_count % 2 == 1:
-        return False
+    # if re.match(r'^[\(]$', t1):
+    #     return False
+    # if re.match(r'^[.,\)\?\!]$', t2):
+    #     return False
+    # if quote(t1) and quote_count is not None and quote_count % 2 == 1:
+    #     return False
+    # if quote(t2) and quote_count is not None and quote_count % 2 == 1:
+    #     return False
     return True
 
 def tagstr(start, end, ttype, idnum, text):
@@ -120,23 +121,25 @@ def process(fn):
                     sentences.append(current)
                 current = []
                 continue
-            elif (re.match(r'^===*\s+O\s*$', l) or
-                  re.match(r'^-DOCSTART-', l)):
-                # special character sequence separating documents
-                if len(sentences) > 0:
-                    output(fn, docnum, sentences)
-                sentences = []
-                docnum += 1
-                continue
+            # elif (re.match(r'^===*\s+O\s*$', l) or
+            #       re.match(r'^-DOCSTART-', l)):
+            #     # special character sequence separating documents
+            #     if len(sentences) > 0:
+            #         output(fn, docnum, sentences)
+            #     sentences = []
+            #     print "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+            #     docnum += 1
+            #     continue
 
-            if (ln + 2 < len(lines) and
-                re.match(r'^\s*$', lines[ln+1]) and
-                re.match(r'^-+\s+O\s*$', lines[ln+2])):
-                # heuristic match for likely doc before current line
-                if len(sentences) > 0:
-                    output(fn, docnum, sentences)
-                sentences = []
-                docnum += 1
+            # if (ln + 2 < len(lines) and
+            #     re.match(r'^\s*$', lines[ln+1]) and
+            #     re.match(r'^-+\s+O\s*$', lines[ln+2])):
+            #     # heuristic match for likely doc before current line
+            #     if len(sentences) > 0:
+            #         output(fn, docnum, sentences)
+            #     sentences = []
+            #     docnum += 1
+            #     print "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
                 # go on to process current normally
 
             # Assume it's a normal line. The format for spanish is

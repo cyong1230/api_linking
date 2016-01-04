@@ -105,7 +105,7 @@ class DataReader:
 
 			self.cur.execute("SELECT Body FROM posts where Id=%s" %(qid))
 			qbody = self.cur.fetchall()[0][0]
-			f.write('Q:\n' + html2txt(qbody) + '\n')
+			f.write('\nQ:\n' + html2txt(qbody) + '\n')
 			
 			self.cur.execute("SELECT Id FROM posts where ParentId=%s" %(qid))
 			aids = self.cur.fetchall()
@@ -114,7 +114,7 @@ class DataReader:
 				aid = row[0]
 				self.cur.execute("SELECT Body FROM posts where Id=%s" %(aid))
 				abody = self.cur.fetchall()[0][0]
-				f.write('A' + str(cnt) + ':\n' + html2txt(abody) + '\n')
+				f.write('\nA' + str(cnt) + ':\n' + html2txt(abody) + '\n')
 				cnt += 1
 
 			f.close()

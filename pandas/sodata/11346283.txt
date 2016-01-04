@@ -1,5 +1,6 @@
 Title:
 Renaming columns in pandas
+
 Q:
 I have a data table using pandas and column labels that I need to edit to replace the original column labels. 
 I'd like to change the column names in a data table `A` where the original column names are: 
@@ -7,23 +8,29 @@ I'd like to change the column names in a data table `A` where the original colum
 to 
 @CODE
 I have the edited column names stored it in a list, but I don't know how to replace the column names.
+
 A1:
 Just assign it to the `.columns` attribute: 
 @CODE
+
 A2:
 @CODE
 http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.rename.html
+
 A3:
 The `rename` method can take a function, for example: 
 @CODE
+
 A4:
 Since you only want to remove the $ sign in all column names, you could just do: 
 @CODE
 OR 
 @CODE
+
 A5:
 @CODE
 This way you can manually edit the `new_names` as you wish.Works great when you need to rename only a few columns to correct mispellings, accents, remove special characters etc.
+
 A6:
 As documented in http://pandas.pydata.org/pandas-docs/stable/text.html : 
 @CODE
