@@ -1,7 +1,7 @@
 Title	O
 :	O
 
-add	O
+add	B-API
 one	O
 row	O
 in	O
@@ -28,16 +28,18 @@ need	O
 to	O
 create	O
 an	O
-empty	O
+empty	B-API
 DataFrame	B-API
 then	O
-add	O
+add	B-API
 rows	O
 ,	O
 one	O
 by	O
 one	O
-.What	O
+.	O
+
+What	O
 is	O
 the	O
 best	O
@@ -51,7 +53,7 @@ I	O
 successfully	O
 created	O
 an	O
-empty	O
+empty	B-API
 DataFrame	B-API
 with	O
 :	O
@@ -61,7 +63,7 @@ with	O
 Then	O
 I	O
 can	O
-add	O
+add	B-API
 a	O
 new	O
 row	O
@@ -93,7 +95,7 @@ value	O
 How	O
 can	O
 I	O
-add	O
+add	B-API
 a	O
 new	O
 row	O
@@ -131,7 +133,7 @@ examples	O
 see	O
 Merge	O
 ,	O
-join	O
+join	B-API
 ,	O
 and	O
 concatenate	O
@@ -159,7 +161,7 @@ corresponds	O
 to	O
 a	O
 input	O
-data	O
+data	B-API
 row	O
 .	O
 
@@ -187,7 +189,7 @@ complete	O
 then	O
 create	O
 a	O
-data	O
+data	B-API
 frame	O
 .	O
 
@@ -204,23 +206,23 @@ has	O
 a	O
 similar	O
 problem	O
-where	O
+where	B-API
 if	O
 I	O
 created	O
 a	O
-data	O
+data	B-API
 frame	O
 for	O
 each	O
 row	O
 and	O
-append	O
+append	B-API
 it	O
 to	O
 the	O
 main	O
-data	O
+data	B-API
 frame	O
 it	O
 took	O
@@ -242,7 +244,7 @@ I	O
 was	O
 successful	O
 within	O
-seconds	O
+seconds	B-API
 .	O
 
 @CODE	O
@@ -256,7 +258,7 @@ appending	O
 see	O
 How	O
 to	O
-add	O
+add	B-API
 an	O
 extra	O
 row	O
@@ -274,20 +276,20 @@ Add	O
 rows	O
 through	O
 `	O
-loc	O
+loc	B-API
 `	O
 on	O
 non	O
 existing	O
 index	O
-data	O
+data	B-API
 .	O
 
 A4	O
 :	O
 
 Example	O
-at	O
+at	B-API
 @Nasser	O
 '	O
 s	O
@@ -322,7 +324,7 @@ index	O
 (	O
 taking	O
 the	O
-data	O
+data	B-API
 example	O
 from	O
 a	O
@@ -346,13 +348,13 @@ comments	O
 -	O
 with	O
 a	O
-size	O
+size	B-API
 of	O
 6000	O
 ,	O
 the	O
 speed	O
-difference	O
+difference	B-API
 becomes	O
 even	O
 larger	O
@@ -360,7 +362,7 @@ larger	O
 
 Increasing	O
 the	O
-size	O
+size	B-API
 of	O
 the	O
 array	O
@@ -376,9 +378,10 @@ rows	O
 500	O
 )	O
 makes	O
+
 the	O
 speed	O
-difference	O
+difference	B-API
 more	O
 striking	O
 :	O

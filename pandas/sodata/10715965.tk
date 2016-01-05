@@ -2,7 +2,8 @@ Title :
 add one row in a pandas.DataFrame
 
 Q :
-I understand that pandas is designed to load fully populated DataFrame but I need to create an empty DataFrame then add rows , one by one .What is the best way to do this ?
+I understand that pandas is designed to load fully populated DataFrame but I need to create an empty DataFrame then add rows , one by one .
+What is the best way to do this ?
 I successfully created an empty DataFrame with :
 @CODE
 Then I can add a new row and fill a field with :
@@ -32,7 +33,8 @@ If you know the number of entries ex ante , you should preallocate the space by 
 Speed comparison
 @CODE
 And - as from the comments - with a size of 6000 , the speed difference becomes even larger :
-Increasing the size of the array ( 12 ) and the number of rows ( 500 ) makes the speed difference more striking : 313ms vs 2.29s
+Increasing the size of the array ( 12 ) and the number of rows ( 500 ) makes
+the speed difference more striking : 313ms vs 2.29s
 
 A6 :
 @CODE

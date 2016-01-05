@@ -27,6 +27,8 @@ API_pattern = re.compile(
 # TOKENIZATION_REGEX = re.compile(API)
 NEWLINE_TERM_REGEX = re.compile(r'(.*?\n)')
 
+api_list = []
+
 def text_to_conll(f):
     """Convert plain text into CoNLL format."""
     sentences = []
@@ -44,11 +46,12 @@ def text_to_conll(f):
                 #if API_pattern.match(t) is not None:
                 #    lines.append([t, 'B-API'])
                 if t.endswith("()"):
-                    print t
+                    #print t
                     t_nobracket = t[:-2]
                     if t_nobracket in api_list:
                         lines.append([t, 'B-API'])
                 elif t in api_list: 
+                    #print t
                     lines.append([t, 'B-API'])
                 else:
                     lines.append([t, 'O'])
@@ -62,7 +65,6 @@ def text_to_conll(f):
 
 def build_list():
     f = open('./apidoc/all.txt', 'r')
-    api_list = []
     for line in f: 
         api = line.strip()
         api_list.append(api)
