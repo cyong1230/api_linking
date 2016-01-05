@@ -1,0 +1,231 @@
+Title	O
+:	O
+
+How	O
+to	O
+drop	B-API
+rows	O
+of	O
+Pandas	O
+dataframe	O
+whose	O
+value	O
+of	O
+certain	O
+column	O
+is	O
+NaN	O
+
+Q	O
+:	O
+
+I	O
+have	O
+a	O
+df	O
+:	O
+
+@CODE	O
+
+Then	O
+I	O
+just	O
+want	O
+the	O
+records	O
+whose	O
+EPS	O
+is	O
+not	O
+NaN	O
+,	O
+that	O
+is	O
+,	O
+df.drop	O
+(	O
+....	O
+)	O
+will	O
+return	O
+the	O
+dataframe	O
+as	O
+below	O
+:	O
+
+@CODE	O
+
+How	O
+to	O
+do	O
+that	O
+?	O
+
+A1	O
+:	O
+
+Don't	O
+`	O
+drop	B-API
+`	O
+.	O
+
+Just	O
+take	B-API
+rows	O
+where	B-API
+`	O
+EPS	O
+`	O
+is	O
+finite	O
+:	O
+
+@CODE	O
+
+A2	O
+:	O
+
+This	O
+question	O
+is	O
+already	O
+resolved	O
+,	O
+but	O
+...	O
+
+...	O
+also	O
+consider	O
+the	O
+solution	O
+suggested	O
+by	O
+Wouter	O
+in	O
+his	O
+original	O
+comment	O
+.	O
+
+The	O
+ability	O
+to	O
+handle	O
+missing	O
+data	B-API
+,	O
+including	O
+`	O
+dropna()	B-API
+`	O
+,	O
+is	O
+built	O
+into	O
+pandas	O
+explicitly	O
+.	O
+
+Aside	O
+from	O
+potentially	O
+improved	O
+performance	O
+over	O
+doing	O
+it	O
+manually	O
+,	O
+these	O
+functions	O
+also	O
+come	O
+with	O
+a	O
+variety	O
+of	O
+options	O
+which	O
+may	O
+be	O
+useful	O
+.	O
+
+@CODE	O
+
+There	O
+are	O
+also	O
+other	O
+options	O
+(	O
+See	O
+docs	O
+at	B-API
+http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.dropna.html	O
+)	O
+,	O
+including	O
+dropping	O
+columns	O
+instead	O
+of	O
+rows	O
+.	O
+
+Pretty	O
+handy	O
+!	O
+
+A3	O
+:	O
+
+I	O
+know	O
+this	O
+has	O
+already	O
+been	O
+answered	O
+,	O
+but	O
+just	O
+for	O
+the	O
+sake	O
+of	O
+a	O
+purely	O
+pandas	O
+solution	O
+to	O
+this	O
+specific	O
+question	O
+as	O
+opposed	O
+to	O
+the	O
+general	O
+description	O
+from	O
+Aman	O
+(	O
+which	O
+was	O
+wonderful	O
+)	O
+and	O
+in	O
+case	O
+anyone	O
+else	O
+happens	O
+upon	O
+this	O
+:	O
+
+@CODE	O

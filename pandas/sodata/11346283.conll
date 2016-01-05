@@ -1,0 +1,210 @@
+Title	O
+:	O
+
+Renaming	O
+columns	O
+in	O
+pandas	O
+
+Q	O
+:	O
+
+I	O
+have	O
+a	O
+data	B-API
+table	O
+using	O
+pandas	O
+and	O
+column	O
+labels	O
+that	O
+I	O
+need	O
+to	O
+edit	O
+to	O
+replace	B-API
+the	O
+original	O
+column	O
+labels	O
+.	O
+
+I'd	O
+like	O
+to	O
+change	O
+the	O
+column	O
+names	B-API
+in	O
+a	O
+data	B-API
+table	O
+`	O
+A	O
+`	O
+where	B-API
+the	O
+original	O
+column	O
+names	B-API
+are	O
+:	O
+
+@CODE	O
+
+to	O
+
+@CODE	O
+
+I	O
+have	O
+the	O
+edited	O
+column	O
+names	B-API
+stored	O
+it	O
+in	O
+a	O
+list	O
+,	O
+but	O
+I	O
+don't	O
+know	O
+how	O
+to	O
+replace	B-API
+the	O
+column	O
+names	B-API
+.	O
+
+A1	O
+:	O
+
+Just	O
+assign	B-API
+it	O
+to	O
+the	O
+`	O
+.columns	O
+`	O
+attribute	O
+:	O
+
+@CODE	O
+
+A2	O
+:	O
+
+@CODE	O
+
+http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.rename.html	O
+
+A3	O
+:	O
+
+The	O
+`	O
+rename	B-API
+`	O
+method	O
+can	O
+take	B-API
+a	O
+function	O
+,	O
+for	O
+example	O
+:	O
+
+@CODE	O
+
+A4	O
+:	O
+
+Since	O
+you	O
+only	O
+want	O
+to	O
+remove	O
+the	O
+$	O
+sign	O
+in	O
+all	B-API
+column	O
+names	B-API
+,	O
+you	O
+could	O
+just	O
+do	O
+:	O
+
+@CODE	O
+
+OR	O
+
+@CODE	O
+
+A5	O
+:	O
+
+@CODE	O
+
+This	O
+way	O
+you	O
+can	O
+manually	O
+edit	O
+the	O
+`	O
+new_names	O
+`	O
+as	O
+you	O
+wish	O
+.	O
+
+Works	O
+great	O
+when	O
+you	O
+need	O
+to	O
+rename	B-API
+only	O
+a	O
+few	O
+columns	O
+to	O
+correct	O
+mispellings	O
+,	O
+accents	O
+,	O
+remove	O
+special	O
+characters	O
+etc	O
+.	O
+
+A6	O
+:	O
+
+As	O
+documented	O
+in	O
+http://pandas.pydata.org/pandas-docs/stable/text.html	O
+:	O
+
+@CODE	O
