@@ -7,6 +7,7 @@ from os.path import basename
 from cStringIO import StringIO
 
 sys.path.append(os.path.join(os.path.dirname(__file__), 'mylib'))
+sys.path.append('.')
 from sentencesplit import sentencebreaks_to_newlines
 from mytokenizer import mytokenizer
 
@@ -40,7 +41,14 @@ def text_to_conll(f):
         for t in tokens:
             if not t.isspace():
                 # pre label rules designed by Deheng
-                if API_pattern.match(t) is not None:
+                #if API_pattern.match(t) is not None:
+                #    lines.append([t, 'B-API'])
+                if t.endswith("()"):
+                    print t
+                    t_nobracket = t[:-2]
+                    if t_nobracket in api_list:
+                        lines.append([t, 'B-API'])
+                elif t in api_list: 
                     lines.append([t, 'B-API'])
                 else:
                     lines.append([t, 'O'])
@@ -52,7 +60,17 @@ def text_to_conll(f):
     lines = [[l[0], l[1]] if l else l for l in lines]
     return StringIO('\n'.join(('\t'.join(l) for l in lines)))
 
+def build_list():
+    f = open('./apidoc/all.txt', 'r')
+    api_list = []
+    for line in f: 
+        api = line.strip()
+        api_list.append(api)
+    return api_list
+
 def main(arg1, arg2):
+    api_list = build_list()
+
     if arg1.endswith('.txt'):
         filebase = '.'.join(arg1.split('.')[:-1]) if '.' in arg1 else arg1
     tokenfile = str(filebase) + '.tk'
