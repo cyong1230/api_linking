@@ -10,9 +10,9 @@ def regex_or(*items):
     r = '(' + r + ')'
     return r
 def pos_lookahead(r):
-  return '(?=' + r + ')'
+    return '(?=' + r + ')'
 def optional(r):
-  return '(%s)?' % r
+    return '(%s)?' % r
 
 def urlmatch(word):
     PunctChars = r'''['“".?!,(/:;]'''
@@ -26,9 +26,9 @@ def urlmatch(word):
     UrlEnd = regex_or( r'\.\.+', r'[<>]', r'\s', '$') # / added by Deheng
 
     Url = (r'\b' +
-        regex_or(UrlStart1, UrlStart2) +
-        UrlBody +
-        pos_lookahead( optional(UrlExtraCrapBeforeEnd) + UrlEnd))
+            regex_or(UrlStart1, UrlStart2) +
+            UrlBody +
+            pos_lookahead( optional(UrlExtraCrapBeforeEnd) + UrlEnd))
 
     Url_RE = re.compile("(%s)" % Url, re.U|re.I)
 
@@ -135,14 +135,14 @@ def GetOrthographicFeatures(word):
 
     # 2 API patterns
     if re.match(r'^[a-zA-Z\.\_][a-zA-Z\.\_]+$', word):
-	features += '1\t'
+        features += '1\t'
     else:
-	features += '0\t'
+        features += '0\t'
 
     if re.match(r'^(?:[a-zA-Z_][a-zA-Z_]+\.)+[a-zA-Z_][a-zA-Z_]+$', word):
-	features += '1\t'
+        features += '1\t'
     else:
-	features += '0\t'
+        features += '0\t'
 
     return features
 
@@ -200,278 +200,39 @@ def GetWordClusterFeatures(word, dict):
     #print features
     return features
 
-def GetGazetteerFeatures(word, AndroidClass, AndroidAPI, platforms, frams, stans, PLs, orgs, jQueryUIAPIs, htmlAPI, javaClass, javaPackage, javaMethod, JavaScriptAPI, CsharpClass, CsharpMethod, pythonModule, pythonMethod, phpAPI, jqueryAPI):
+#def GetGazetteerFeatures(word, AndroidClass, AndroidAPI, platforms, frams, stans, PLs, orgs, jQueryUIAPIs, htmlAPI, javaClass, javaPackage, javaMethod, JavaScriptAPI, CsharpClass, CsharpMethod, pythonModule, pythonMethod, phpAPI, jqueryAPI):
+def GetGazetteerFeatures():
     features = ''
-
-    if word.lower() in AndroidClass:
-        features += 'isAndroidClass\t'
-    else:
-        features += 'notAndroidClass\t'
-
-    if word.lower() in AndroidAPI:
-        features += 'isAndroidAPI\t'
-    else:
-        features += 'notAndroidAPI\t'
-
-    if word.lower() in platforms:
-        features += 'isPlat\t'
-    else:
-        features += 'notPlat\t'
-
-    if word.lower() in frams:
-        features += 'isFram\t'
-    else:
-        features += 'notFram\t'
-
-    if word.lower() in stans:
-        features += 'isStan\t'
-    else:
-        features += 'notStan\t'
-
-    if word.lower() in PLs:
-        features += 'isPL\t'
-    else:
-        features += 'notPL\t'
-
-    if word.lower() in orgs:
-        features += 'isOrg\t'
-    else:
-        features += 'notOrg\t'
-
-    if word.lower() in jQueryUIAPIs:
-        features += 'isJQueryUI\t'
-    else:
-        features += 'notJQueryUI\t'
-
-    if word in htmlAPI:
-        features += 'isHTMLAPI\t'
-    else:
-        features += 'notHTMLAPI\t'
-
-    if word in javaClass:
-        features += 'isJavaClass\t'
-    else:
-        features += 'notJavaClass\t'
-
-    if word in javaPackage:
-        features += 'isJavaPackage\t'
-    else:
-        features += 'notJavaPackage\t'
-
-    if word in javaMethod:
-        features += 'isJavaMethod\t'
-    else:
-        features += 'notJavaMethod\t'
-
-    if word in JavaScriptAPI:
-        features += 'isJSAPI\t'
-    else:
-        features += 'notJSAPI\t'
-
-    if word in CsharpClass:
-        features += 'isCsharpClass\t'
-    else:
-        features += 'notCsharpClass\t'
-
-    if word in CsharpMethod:
-        features += 'isCsharpMethod\t'
-    else:
-        features += 'notCsharpMethod\t'
-
-    if word in pythonModule:
-        features += 'isPythonModule\t'
-    else:
-        features += 'notPythonModule\t'
-
-    if word in pythonMethod:
-        features += 'isPythonMethod\t'
-    else:
-        features += 'notPythonMethod\t'
-
-    if word in phpAPI:
-        features += 'isPHPAPI\t'
-    else:
-        features += 'notPHPAPI\t'
-
-    if word in jqueryAPI:
-        features += 'isJQAPI\t'
-    else:
-        features += 'notJQAPI\t'
+    features += 'isAndroidClass\t'
+    features += 'isAndroidAPI\t'
+    features += 'isPlat\t'
+    features += 'isFram\t'
+    features += 'isStan\t'
+    features += 'isPL\t'
+    features += 'isOrg\t'
+    features += 'isJQueryUI\t'
+    features += 'isHTMLAPI\t'
+    features += 'isJavaClass\t'
+    features += 'isJavaPackage\t'
+    features += 'isJavaMethod\t'
+    features += 'isJSAPI\t'
+    features += 'isCsharpClass\t'
+    features += 'isCsharpMethod\t'
+    features += 'isPythonModule\t'
+    features += 'isPythonMethod\t'
+    features += 'isPHPAPI\t'
+    features += 'isJQAPI\t'
 
     return features
 
 
 if __name__=='__main__':
     # read in annotated conll file
-
     f = open('paths', 'r')  # open word cluster file
     word_cluster_dict = {}
     for line in f:
         word_cluster_dict[line.split()[1]] = line.split()[0]
     f.close()
-
-    AndroidClass = []
-    f = open('../gazetteers/AndroidClassesPackages.txt', 'r')
-    for line in f:
-        line = line.strip()
-        if line:
-            AndroidClass.append(str(line).lower())
-    f.close()
-
-    AndroidAPI = []
-    f = open('../gazetteers/AndroidMethods.txt', 'r')
-    for line in f:
-        line = line.strip()
-        if line:
-            AndroidAPI.append(str(line).lower())
-    f.close()
-
-    f = open('../gazetteers/PlatformList.txt', 'r')
-    platforms = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            platforms.append(str(line).lower())
-    f.close()
-
-    f = open('../gazetteers/ToolLibraryFrameworkList.txt', 'r')
-    frams = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            frams.append(str(line).lower())
-    f.close()
-
-    f = open('../gazetteers/SoftwareStandardList.txt', 'r')
-    stans = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            stans.append(str(line).lower())
-    f.close()
-
-    f = open('../gazetteers/ProgrammingLanguageList.txt', 'r')
-    pls = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            pls.append(str(line).lower())
-    f.close()
-
-    f = open('../gazetteers/SoftwareOrgs.txt', 'r')
-    orgs = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            orgs.append(str(line).lower())
-    f.close()
-
-    f = open('../gazetteers/JQueryUIAPIs.txt', 'r')
-    jQueryUIAPIs = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            jQueryUIAPIs.append(str(line).lower())
-    f.close()
-
-    f = open('../gazetteers/HTML/HTMLDOMAPI-noLexical.txt', 'r')
-    htmlAPI = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            htmlAPI.append(line)
-    f.close()
-
-    f = open('../gazetteers/Java8/Java8Classes.txt', 'r')
-    javaClass = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            javaClass.append(line)
-    f.close()
-
-    f = open('../gazetteers/Java8/Java8Packages.txt', 'r')
-    javaPackage = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            javaPackage.append(line)
-    f.close()
-
-    f = open('../gazetteers/Java8/Java8Methods.txt', 'r')
-    javaMethod = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            javaMethod.append(line)
-    f.close()
-
-    f = open('../gazetteers/Java8/Java8Packages.txt', 'r')
-    javaPackage = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            javaPackage.append(line)
-    f.close()
-
-    f = open('../gazetteers/JavaScript/JavaScriptAPIs.txt', 'r')
-    JavaScriptAPI = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            JavaScriptAPI.append(line)
-    f.close()
-
-    f = open('../gazetteers/C#_.NET/class-nodup.txt', 'r')
-    CsharpClass = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            CsharpClass.append(line)
-    f.close()
-
-    f = open('../gazetteers/C#_.NET/method-nodup.txt', 'r')
-    CsharpMethod = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            CsharpMethod.append(line)
-    f.close()
-
-    f = open('../gazetteers/Python/PythonModules.txt', 'r')
-    pythonModule = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            pythonModule.append(line)
-    f.close()
-    
-    f = open('../gazetteers/Python/PythonMethods.txt', 'r')
-    pythonMethod = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            pythonMethod.append(line)
-    f.close()
-
-    f = open('../gazetteers/PHP/PHPAPIs.txt', 'r')
-    phpAPI = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            phpAPI.append(line)
-    f.close()
-    
-    f = open('../gazetteers/JQuery/JQueryAPIs.txt', 'r')
-    jqueryAPI = []
-    for line in f:
-        line = line.rstrip()
-        if line:
-            jqueryAPI.append(line)
-    f.close()
-
-#htmlAPI, javaClass, javaPackage, javaMethod, JavaScriptAPI, CsharpClass, CsharpMethod, pythonModule, pythonMethod, phpAPI, jqueryAPI)
-
     fin = open(sys.argv[1], 'r')
     fout = open(sys.argv[2], 'w')
 
@@ -480,11 +241,8 @@ if __name__=='__main__':
         if line:
             (word, label) = line.split('\t')
             OrthographicFeatures = GetOrthographicFeatures(word)
-
             ClusterFeatures = GetWordClusterFeatures(word, word_cluster_dict)
-
-            GazFeatures = GetGazetteerFeatures(word, AndroidClass, AndroidAPI, platforms, frams, stans, pls, orgs, jQueryUIAPIs, htmlAPI, javaClass, javaPackage, javaMethod, JavaScriptAPI, CsharpClass, CsharpMethod, pythonModule, pythonMethod, phpAPI, jqueryAPI)
-
+            GazFeatures = GetGazetteerFeatures()
             allfeatures = word + '\t' + OrthographicFeatures + ClusterFeatures + GazFeatures + label
             fout.write(allfeatures + '\n')
         else:

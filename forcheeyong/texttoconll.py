@@ -71,7 +71,8 @@ def build_list():
     return api_list
 
 def main(arg1, arg2):
-    api_list = build_list()
+    #api_list = build_list()
+    api_list = []
 
     if arg1.endswith('.txt'):
         filebase = '.'.join(arg1.split('.')[:-1]) if '.' in arg1 else arg1
