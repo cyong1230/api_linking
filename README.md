@@ -22,7 +22,7 @@ To use `DigitalOcean server`, you can directly jump to last step (Step 7)
 4. Create tables in MySQL
   * Create a database called `link_api` (default collation)
   * Change directory to `django_back`
-    * `cd api_linking\django_back\django_back`
+    * `cd api_linking\django_back`
   * Run following commands:
     * `python manage.py makemigrations`
     * `python manage.py migrate`
