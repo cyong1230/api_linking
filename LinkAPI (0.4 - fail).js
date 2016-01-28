@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LinkAPI
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @description  API linking for S-NER project
 // @author       Chee Yong
 // @include     http://stackoverflow.com/*
@@ -24,9 +24,27 @@ function identifyAPI() {
     //regex
     var myRe = /[A-Z]([A-Z0-9]*[a-z][a-z0-9]*[A-Z]|[a-z0-9]*[A-Z][A-Z0-9]*[a-z])[A-Za-z0-9]*/g; //complete CamelCase regex   
     //var myRe = /([A-Z][a-z0-9]+){2,}/; //simple CamelCase regex
-
+    
+    var fullText = ''
     var texts = document.evaluate(xpath, document.body, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
     var k = 0;
+    for (n = 0; n < texts.snapshotLength; n++) {
+        fullText = fullText.concat(' ').concat(textNode = texts.snapshotItem(n).textContent);  
+    }
+    
+    GM_xmlhttpRequest({
+        method: "POST",
+        //url: "http://127.0.0.1:8000/geturl/", //localhost
+        url: "http://128.199.217.19/extract_entity/",
+        data: fullText,
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
+        },
+        onload: function(response) {
+            alert(response.responseText);
+        }
+    });
+       
     for (n = 0; n < texts.snapshotLength; n++) {
         var textNode = texts.snapshotItem(n);
         //var str = textNode.textContent.replace(/(^[,.#$\s]+)|([,.#$\s]+$)/, '');  //remove leading and trailing symbols&whitespaces 
@@ -36,7 +54,6 @@ function identifyAPI() {
             var frag = document.createDocumentFragment();
             var temp = textNode.nodeValue.split(myArr[0]);
 
-            var textArr = [];
             frag.appendChild(document.createTextNode(temp[0]));
             for (m = 1; m <= myArr.length; m++) {
                 toBackEndData[k] = myArr[m-1];
@@ -75,11 +92,11 @@ $(document).ready(function(){
     var newjqueryCSS = GM_getResourceText("jqueryCSS");
     GM_addStyle(newjqueryCSS);
 
-    identifyAPI();
+    console.log(identifyAPI());
     GM_xmlhttpRequest({
         method: "POST",
-        url: "http://127.0.0.1:8000/geturl/", //localhost
-        //url: "http://128.199.217.19/geturl/",
+        //url: "http://127.0.0.1:8000/geturl/", //localhost
+        url: "http://128.199.217.19/geturl/",
         data: JSON.stringify(toBackEndData),
         headers: {
             "Content-Type": "application/json; charset=utf-8"
