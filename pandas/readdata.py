@@ -96,9 +96,8 @@ class DataReader:
 		self.cur = self.db.cursor() 
 
 	def read(self, qid):
+        f = open('./sodata/' + str(qid) + '.txt', 'w')
 		try:
-			f = open('./sodata/' + str(qid) + '.txt', 'w')
-
 			self.cur.execute("SELECT Title FROM posts where Id=%s" % (qid))
 			title = self.cur.fetchall()[0][0]
 			f.write('Title:\n' + title + '\n')
@@ -116,10 +115,10 @@ class DataReader:
 				abody = self.cur.fetchall()[0][0]
 				f.write('\nA' + str(cnt) + ':\n' + html2txt(abody) + '\n')
 				cnt += 1
-
-			f.close()
 		except:
 			pass
+            
+        f.close()
 
 if __name__ ==  '__main__':
 	dr = DataReader()
