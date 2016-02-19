@@ -64,7 +64,7 @@ def text_to_conll(f):
     return StringIO('\n'.join(('\t'.join(l) for l in lines)))
 
 def build_list():
-    f = open('./apidoc/all.txt', 'r')
+    f = open('./apidoc/all-remove.txt', 'r')
     for line in f: 
         api = line.strip()
         api_list.append(api)

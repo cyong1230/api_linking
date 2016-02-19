@@ -1,0 +1,395 @@
+Title	O
+:	O
+
+add	B-API
+one	O
+row	O
+in	O
+a	O
+pandas.DataFrame	B-API
+
+Q	O
+:	O
+
+I	O
+understand	O
+that	O
+pandas	O
+is	O
+designed	O
+to	O
+load	O
+fully	O
+populated	O
+DataFrame	B-API
+but	O
+I	O
+need	O
+to	O
+create	O
+an	O
+empty	B-API
+DataFrame	B-API
+then	O
+add	B-API
+rows	O
+,	O
+one	O
+by	O
+one	O
+.	O
+
+What	O
+is	O
+the	O
+best	O
+way	O
+to	O
+do	O
+this	O
+?	O
+
+I	O
+successfully	O
+created	O
+an	O
+empty	B-API
+DataFrame	B-API
+with	O
+:	O
+
+@CODE	O
+
+Then	O
+I	O
+can	O
+add	B-API
+a	O
+new	O
+row	O
+and	O
+fill	O
+a	O
+field	O
+with	O
+:	O
+
+@CODE	O
+
+It	O
+works	O
+but	O
+seems	O
+very	O
+odd	O
+:-/	O
+(	O
+it	O
+fails	O
+for	O
+adding	O
+string	O
+value	O
+)	O
+
+How	O
+can	O
+I	O
+add	B-API
+a	O
+new	O
+row	O
+to	O
+my	O
+DataFrame	B-API
+(	O
+with	O
+different	O
+columns	O
+type	O
+)	O
+?	O
+
+A1	O
+:	O
+
+You	O
+could	O
+use	O
+`	O
+pandas.concat()	B-API
+`	O
+or	O
+`	O
+DataFrame.append()	B-API
+`	O
+.	O
+
+For	O
+details	O
+and	O
+examples	O
+,	O
+see	O
+Merge	O
+,	O
+join	B-API
+,	O
+and	O
+concatenate	O
+.	O
+
+A2	O
+:	O
+
+You	O
+could	O
+create	O
+a	O
+list	O
+of	O
+dictionary	O
+.	O
+
+Where	O
+each	O
+dictionary	O
+in	O
+the	O
+list	O
+corresponds	O
+to	O
+a	O
+input	O
+data	B-API
+row	O
+.	O
+
+These	O
+rows	O
+are	O
+then	O
+added	O
+to	O
+the	O
+main	O
+list	O
+in	O
+a	O
+for	O
+loop	O
+.	O
+
+Once	O
+the	O
+list	O
+is	O
+complete	O
+,	O
+then	O
+create	O
+a	O
+data	B-API
+frame	O
+.	O
+
+This	O
+is	O
+a	O
+much	O
+faster	O
+approach	O
+.	O
+
+I	O
+has	O
+a	O
+similar	O
+problem	O
+where	B-API
+if	O
+I	O
+created	O
+a	O
+data	B-API
+frame	O
+for	O
+each	O
+row	O
+and	O
+append	B-API
+it	O
+to	O
+the	O
+main	O
+data	B-API
+frame	O
+it	O
+took	O
+30	O
+mins	O
+.	O
+
+On	O
+the	O
+other	O
+hand	O
+,	O
+if	O
+used	O
+below	O
+methodology	O
+,	O
+I	O
+was	O
+successful	O
+within	O
+seconds	B-API
+.	O
+
+@CODE	O
+
+A3	O
+:	O
+
+For	O
+efficient	O
+appending	O
+see	O
+How	O
+to	O
+add	B-API
+an	O
+extra	O
+row	O
+to	O
+a	O
+pandas	O
+dataframe	O
+and	O
+Setting	O
+With	O
+Enlargement	O
+.	O
+
+Add	O
+rows	O
+through	O
+`	O
+loc	B-API
+`	O
+on	O
+non	O
+existing	O
+index	O
+data	B-API
+.	O
+
+A4	O
+:	O
+
+Example	O
+at	B-API
+@Nasser	O
+'	O
+s	O
+answer	O
+:	O
+
+@CODE	O
+
+A5	O
+:	O
+
+If	O
+you	O
+know	O
+the	O
+number	O
+of	O
+entries	O
+ex	O
+ante	O
+,	O
+you	O
+should	O
+preallocate	O
+the	O
+space	O
+by	O
+also	O
+providing	O
+the	O
+index	O
+(	O
+taking	O
+the	O
+data	B-API
+example	O
+from	O
+a	O
+different	O
+answer	O
+):	O
+
+@CODE	O
+
+Speed	O
+comparison	O
+
+@CODE	O
+
+And	O
+-	O
+as	O
+from	O
+the	O
+comments	O
+-	O
+with	O
+a	O
+size	B-API
+of	O
+6000	O
+,	O
+the	O
+speed	O
+difference	B-API
+becomes	O
+even	O
+larger	O
+:	O
+
+Increasing	O
+the	O
+size	B-API
+of	O
+the	O
+array	O
+(	O
+12	O
+)	O
+and	O
+the	O
+number	O
+of	O
+rows	O
+(	O
+500	O
+)	O
+makes	O
+
+the	O
+speed	O
+difference	B-API
+more	O
+striking	O
+:	O
+313ms	O
+vs	O
+2.29s	O
+
+A6	O
+:	O
+
+@CODE	O

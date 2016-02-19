@@ -1,0 +1,40 @@
+Title :
+Pandas : change data type of columns
+
+Q :
+I want to convert a table , represented as a list of lists , into a Pandas DataFrame . As an extremely simplified example :
+@CODE
+What is the best way to convert the columns to the appropriate types , in this case columns 2 and 3 into floats ? Is there a way to specify the types while converting to DataFrame ? Or is it better to create the DataFrame first and then loop through the columns to change the type for each column ? Ideally I would like to do this in a dynamic way because there can be hundreds of columns and I don't want to specify exactly which columns are of which type . All I can guarantee is that each columns contains values of the same type .
+
+A1 :
+How about this ?
+` a = [[ ' a ' , ' 1.2 ' , ' 4.2 ' ] , [ ' b ' , ' 70 ' , ' 0.03 ' ] , [ ' x ' , ' 5 ' , ' 0 ' ]]
+df = pd.DataFrame ( a , columns=['one ' , ' two ' , ' three ' ] )
+df
+Out[16 ]:
+one two three
+0 a 1.2 4.2
+1 b 70 0.03
+2 x 5 0
+df.dtypes
+Out[17 ]:
+one object
+two object
+three object
+df[['two ' , ' three ' ]] = df[['two ' , ' three ' ]] .astype ( float )
+df.dtypes
+Out[19 ]:
+one object
+two float64
+three float64
+`
+
+A2 :
+As mentioned in the comments above , ` convert_objects ` can be used to coerce the ` object ` columns in a DataFrame to a more suitable datatype .
+For example , to convert columns with object type to suitable numeric datatypes , use :
+@CODE
+The advantage of this method is that it can be applied to whole DataFrame in one go : there's no need to select columns individually and use ` astype ` . If a column can't be converted to a non-object datatype , it is just left alone .
+For example , the method will to coerce the columns of a DataFrame which hold numerical strings to appropriate numeric datatypes :
+@CODE
+Here it chooses the most suitable numeric type for the values . Column ` a ` could not be converted to a numeric ( or date ) type and so is left untouched . Column ` b ` contains only integers and so is converted to ` int64 ` type . Because it contains floating point number strings , the values in column ` c ` are cast to the ` float64 ` datatype .
+This method returns a copy of the DataFrame .

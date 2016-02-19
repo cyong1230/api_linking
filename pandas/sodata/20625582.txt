@@ -1,0 +1,25 @@
+How to deal with this Pandas warning?
+I just upgrade Pandas from 0.11 to 0.13.0rc1 . And the application pop out many warning, one of them like this: 
+@CODE
+I want to know what exactly it means ? Do I need to change something ? I How to suspend the warning if I insist to use `quote_df['TVol'] = quote_df['TVol']/TVOL_SCALE` 
+More Inf. 
+@CODE
+Error msg: 
+@CODE
+From what I gather, `SettingWithCopyWarning` was created to flag potentially confusing "chained" assignments, such as the following, which don't always work as expected, particularly when the first selection returns a copy . [see GH5390 and GH5597 for background discussion.] 
+@CODE
+The warning offers a suggestion to rewrite as follows: 
+@CODE
+However, this doesn't fit your usage, which is equivalent to: 
+@CODE
+While it's clear that you don't care about writes making it back to the original frame (since you overwrote the reference to it), unfortunately this pattern can not be differentiated from the first chained assignment example, hence the (false positive) warning. The potential for false positives is addressed in the docs on indexing , if you'd like to read further. You can safely disable this new warning with the following assignment. 
+@CODE
+In general the point of the `SettingWithCopyWarning` is to show users (and esp new users) that they may be operating on a copy and not the original as they think. There are False positives (IOW you know what you are doing, so it ok ). One possibility is simply to turn off the (by default warn ) warning as @Garrett suggest. 
+Here is a nother, per option. 
+@CODE
+You can set the `is_copy` flag to `False`, which will effectively turn off the check, *for that object`` 
+@CODE
+If you explicity copy then you know what you are doing , so no further warning will happen. 
+@CODE
+The code the OP is showing above, while legitimate, and probably something I do as well, is technically a case for this warning, and not a False positive. Another way to not have the warning would be to do the selection operation via `reindex`, e.g. 
+@CODE
