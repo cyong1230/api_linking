@@ -105,6 +105,12 @@ class DataReader:
             #f.write('\nQ:\n' + html2txt(qbody) + '\n')
             f.write(html2txt(qbody) + '\n')
 
+            # question comments
+            self.cur.execute("SELECT Text FROM comments where PostId=%s" % (qid))
+            qcomm = self.cur.fetchall()
+            for qrow in qcomm: 
+                f.write(qrow[0] + '\n')
+
             self.cur.execute("SELECT Id FROM posts where ParentId=%s" %(qid))
             aids = self.cur.fetchall()
             cnt = 1
@@ -114,6 +120,12 @@ class DataReader:
                 abody = self.cur.fetchall()[0][0]
                 #f.write('\nA' + str(cnt) + ':\n' + html2txt(abody) + '\n')
                 f.write(html2txt(abody) + '\n')
+                # SO comments
+                self.cur.execute("SELECT Text FROM comments where PostId=%s" % (aid))
+                acomm = self.cur.fetchall()
+                for arow in acomm: 
+                    f.write(arow[0] + '\n')
+
                 cnt += 1
         except:
             pass
