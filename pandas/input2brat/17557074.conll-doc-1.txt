@@ -48,11 +48,11 @@ Let's say your csv looks like this :
 This example is of course no problem to read into memory , but it's just an example .
 If pandas were to read the above csv file without any dtype option , the age would be stored as strings in memory until pandas has read enough lines of the csv file to make a qualified guess .
 I think the default in pandas is to read 1,000,000 rows before guessing the dtype .
-By specifying `dtype={'age ' : int} ` as an option to the ` ` will let pandas know that age should be interpretted as a number .
+By specifying `dtype={'age ' : int} ` as an option to the ` .read_csv() ` will let pandas know that age should be interpretted as a number .
 This saves you lots of memory .
 However , if your csv file would be corrupted , like this :
 @CODE
-Then specifying `dtype={'age ' : int} ` will break the ` ` command , because it cannot cast `" 40+ "` to int .
+Then specifying `dtype={'age ' : int} ` will break the ` .read_csv() ` command , because it cannot cast `" 40+ "` to int .
 So sanitize your data carefully !
 Here you can see how the memory usage of a pandas dataframe is a lot higher when floats are kept as strings :
 @CODE

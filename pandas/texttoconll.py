@@ -50,7 +50,7 @@ def text_to_conll(f):
                     t_nobracket = t[:-2]
                     if t_nobracket in api_list:
                         lines.append([t, 'B-API'])
-                    else
+                    else:
                         lines.append([t, 'O'])
                 elif t in api_list:
                     #print t

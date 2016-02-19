@@ -290,11 +290,7 @@ factorized	O
 versions	O
 of	O
 the	O
-<<<<<<< Updated upstream
 join	O
-=======
-join	B-API
->>>>>>> Stashed changes
 keys	O
 ,	O
 the	O
@@ -382,6 +378,7 @@ large	O
 
 Does	O
 `	O
+Rprof()	O
 `	O
 reveal	O
 most	O
@@ -460,6 +457,7 @@ already	O
 reported	O
 by	O
 `	O
+test.data.table()	O
 `	O
 but	O
 that	O
@@ -528,11 +526,7 @@ i	O
 )	O
 multi	O
 column	O
-<<<<<<< Updated upstream
 ordered	O
-=======
-ordered	B-API
->>>>>>> Stashed changes
 keys	O
 such	O
 as	O
@@ -590,10 +584,12 @@ July	O
 
 Internal	O
 function	O
+sortedmatch()	O
 removed	O
 and	O
 replaced	O
 with	O
+chmatch()	O
 
 when	O
 matching	O
@@ -712,7 +708,9 @@ to	O
 
 factor	O
 .	O
+data.table()	O
 and	O
+setkey()	O
 no	O
 longer	O
 coerce	O
@@ -745,12 +743,14 @@ FR	O
 
 New	O
 functions	O
+chmatch()	O
 and	O
 %chin%	O
 ,	O
 faster	O
 versions	O
 of	O
+match()	O
 
 and	O
 %in%	O
@@ -783,6 +783,7 @@ times	O
 faster	O
 
 than	O
+match()	O
 on	O
 the	O
 example	O
@@ -844,11 +845,7 @@ i	O
 
 multi	O
 column	O
-<<<<<<< Updated upstream
 ordered	O
-=======
-ordered	B-API
->>>>>>> Stashed changes
 keys	O
 such	O
 as	O
@@ -927,11 +924,7 @@ is	O
 literally	O
 just	O
 the	O
-<<<<<<< Updated upstream
 sort	O
-=======
-sort	B-API
->>>>>>> Stashed changes
 order	O
 (	O
 similar	O
@@ -1167,11 +1160,7 @@ is	O
 factoring	O
 "	O
 the	O
-<<<<<<< Updated upstream
 join	O
-=======
-join	B-API
->>>>>>> Stashed changes
 keys	O
 ,	O
 and	O
@@ -1240,11 +1229,7 @@ end	O
 Thus	O
 the	O
 only	O
-<<<<<<< Updated upstream
 real	O
-=======
-real	B-API
->>>>>>> Stashed changes
 difference	O
 in	O
 approach	O

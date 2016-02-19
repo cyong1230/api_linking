@@ -563,6 +563,7 @@ can	O
 also	O
 use	O
 `	O
+.to_pydatetime()	O
 `	O
 .	O
 
@@ -661,6 +662,7 @@ numpy.datetime64('2015	O
 
 dt_a1	O
 =	O
+dt_a.tolist()	O
 #	O
 yields	O
 a	O
@@ -700,6 +702,7 @@ atetime.datetime	O
 (	O
 *list	O
 (	O
+dt_a1.timetuple()	O
 [:	O
 6	O
 ]	O

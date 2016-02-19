@@ -713,6 +713,7 @@ method	O
 :	O
 `	O
 df[	O
+df.col3.isnull()	O
 ]	O
 `	O
 

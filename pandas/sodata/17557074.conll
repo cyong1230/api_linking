@@ -1048,6 +1048,7 @@ option	O
 to	O
 the	O
 `	O
+.read_csv()	O
 `	O
 will	O
 let	O
@@ -1098,6 +1099,7 @@ will	O
 break	O
 the	O
 `	O
+.read_csv()	O
 `	O
 command	O
 ,	O

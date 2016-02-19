@@ -39,7 +39,7 @@ However , the easiest way I've found to create a scatter plot with legend is to 
 @CODE
 Update
 From what I can tell , matplotlib simply skips points with NA x / y coordinates or NA style settings ( e.g. , color / size ) .
-To find points skipped due to NA , try the ` isnull ` method : ` df[ ] `
+To find points skipped due to NA , try the ` isnull ` method : ` df[ df.col3.isnull() ] `
 To split a list of points into many types , take a look at numpy ` select ` , which is a vectorized if-then-else implementation and accepts an optional default value .
 For example :
 @CODE

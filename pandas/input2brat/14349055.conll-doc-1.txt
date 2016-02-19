@@ -78,7 +78,7 @@ Setting spines in matplotlibrc explains why it is not possible to simply edit Ma
 For scatter plots ,
 R style data-axis buffer in matplotlib and In matplotlib , how do you draw R-style axis ticks that point outward from the axes ?
 show some defaults that can be changed to give a more R-ish look .
-Building off some of the other answers , the following function does a decent job of mimicking R's histogram style , assuming you've called ` ` on your ` Axes ` instance with `facecolor='none '` .
+Building off some of the other answers , the following function does a decent job of mimicking R's histogram style , assuming you've called ` hist() ` on your ` Axes ` instance with `facecolor='none '` .
 @CODE
 matplotlib > = 1.4 suports styles ( and ggplot-style is build in ):
 @CODE

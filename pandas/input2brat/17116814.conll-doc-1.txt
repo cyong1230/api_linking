@@ -19,9 +19,9 @@ So , since the question mentioned " a large csv file " , let me suggest to try i
 ... and this :
 @CODE
 The second simply refrains from allocating 100 000 Series , and this is enough to make it around 10 times faster .
-But the third solution , which somewhat ironically wastes a lot of calls to ( it is called once per column per row , so three times more than for the others two solutions ) , is around 40 times faster than the first , because it even avoids to instance the 100 000 lists .
+But the third solution , which somewhat ironically wastes a lot of calls to str.split() ( it is called once per column per row , so three times more than for the others two solutions ) , is around 40 times faster than the first , because it even avoids to instance the 100 000 lists .
 And yes , it is certainly a little ugly ...
-EDIT : this answer suggests how to use " " and to avoid the need for a lambda .
+EDIT : this answer suggests how to use " to_list() " and to avoid the need for a lambda .
 The result is something like
 @CODE
 which is even more efficient than the third solution , and certainly much more elegant .

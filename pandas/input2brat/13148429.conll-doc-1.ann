@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 T1	API 27 36	DataFrame
 T2	API 70 79	DataFrame
 T3	API 86 88	df
@@ -7,17 +6,3 @@ T5	API 531 540	dataframe
 T6	API 1404 1416	reindex_axis
 T7	API 1472 1474	df
 T8	API 1912 1921	dataframe
-=======
-T1	API 35 44	DataFrame
-T2	API 82 91	DataFrame
-T3	API 183 187	mean
-T4	API 220 225	first
-T5	API 508 513	first
-T6	API 944 949	first
-T7	API 1010 1015	first
-T8	API 1446 1458	reindex_axis
-T9	API 1714 1718	mean
-T10	API 1911 1917	assign
-T11	API 1929 1934	names
-T12	API 2017 2021	mean
->>>>>>> Stashed changes

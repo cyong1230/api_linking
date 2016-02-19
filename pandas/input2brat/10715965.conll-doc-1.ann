@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 T1	API 17 33	pandas.DataFrame
 T2	API 95 104	DataFrame
 T3	API 135 144	DataFrame
@@ -7,15 +6,3 @@ T5	API 417 426	DataFrame
 T6	API 477 492	pandas.concat()
 T7	API 500 518	DataFrame.append()
 T8	API 1118 1127	dataframe
-=======
-T1	API 25 41	pandas.DataFrame
-T2	API 107 116	DataFrame
-T3	API 147 156	DataFrame
-T4	API 252 261	DataFrame
-T5	API 429 438	DataFrame
-T6	API 494 509	pandas.concat()
-T7	API 517 535	DataFrame.append()
-T8	API 579 583	join
-T9	API 937 943	append
-T10	API 1205 1208	loc
->>>>>>> Stashed changes

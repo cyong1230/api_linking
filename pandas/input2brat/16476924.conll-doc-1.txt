@@ -17,6 +17,6 @@ or
 But I do not understand what the ` row ` object is and how I can work with it .
 iterrows is a generator which yield both index and row
 @CODE
-You can also use ` ` to iterate over rows and access multiple columns for a function .
+You can also use ` df.apply() ` to iterate over rows and access multiple columns for a function .
 docs : DataFrame.apply()
 @CODE

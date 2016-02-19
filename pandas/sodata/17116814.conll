@@ -342,6 +342,7 @@ lot	O
 of	O
 calls	O
 to	O
+str.split()	O
 (	O
 it	O
 is	O
@@ -405,6 +406,7 @@ how	O
 to	O
 use	O
 "	O
+to_list()	O
 "	O
 and	O
 to	O

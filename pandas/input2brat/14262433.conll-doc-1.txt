@@ -97,7 +97,7 @@ pd.dateframe -> pymongo Note : I use the ` chunksize ` in ` read_csv ` to keep i
 @CODE
 querying : gt = greater than ...
 @CODE
-` ` returns an iterator so I commonly use ` ichunked ` to chop into smaller iterators .
+` .find() ` returns an iterator so I commonly use ` ichunked ` to chop into smaller iterators .
 How about a join since I normally get 10 data sources to paste together :
 @CODE
 then ( in my case sometimes I have to agg on ` aJoinDF ` first before its " mergeable " . )

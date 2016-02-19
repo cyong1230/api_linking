@@ -5,7 +5,7 @@ It works , but is there a more efficient way ?
 From the Django perspective ( I'm not familiar with ` pandas `) this is fine .
 My only concern is that if you have a very large number of records , you may run into memory problems .
 If this were the case , something along the lines of this memory efficient queryset iterator would be necessary .
-( The snippet as written might require some rewriting to allow for your smart use of ` `) .
+( The snippet as written might require some rewriting to allow for your smart use of ` .values() `) .
 @CODE
 The above is how I do the same thing .
 The most useful addition is specifying which fields you are interested in .

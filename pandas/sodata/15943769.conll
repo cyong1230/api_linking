@@ -127,6 +127,7 @@ df.index	O
 and	O
 `	O
 df[0]	O
+.count()	O
 `	O
 are	O
 not	O
@@ -163,6 +164,7 @@ earlier	O
 .	O
 
 `	O
+__len__()	O
 `	O
 is	O
 currently	O

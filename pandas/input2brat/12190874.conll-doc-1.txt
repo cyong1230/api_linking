@@ -12,7 +12,7 @@ Another approach could be :
 @CODE
 Newer version ( from 0.16.1 on ) supports this directly :
 http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.sample.html
-I have found that ` ` new in NumPy 1.7.0 works quite well for this .
+I have found that ` np.random.choice() ` new in NumPy 1.7.0 works quite well for this .
 For example you can pass the index values from a DataFrame and and the integer 10 to select 10 random uniformly sampled rows .
 @CODE
 If you're using pandas.read_csv you can directly sample when loading the data , by using the skiprows parameter .

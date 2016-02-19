@@ -28,19 +28,21 @@ ax.xaxis.set_minor_formatter ( matplotlib.dates.DateFormatter ( ' %d\n%a '))
 ax.xaxis.grid ( True , which= " minor ")
 ax.xaxis.grid ( False , which= " major ")
 ax.xaxis.set_major_formatter ( matplotlib.dates.DateFormatter ( ' \n\n\n%b%Y '))
+plt.show()
 # set the major xticks and labels through pandas
 ax2 = plt.figure ( figsize =( 7 , 4 ) , dpi=300 ) .add_subplot ( 111 )
 xticks = pandas.date_range ( start =d Start , end =d End , freq='W -Tue ')
 print " xticks : " , xticks
 testSeries.plot ( ax=ax2 , style= ' -v ' , label='second line ' ,
-xticks= )
+xticks= xticks.to_pydatetime() )
 ax2.set_xticklabels ( [ x.strftime ( ' %a\n%d\n%h\n%Y ') for x in xticks ]);
 # set the text of the first few minor ticks created by pandas.plot
 # ax2.set_xticklabels(['a','b','c','d','e ' ] , minor=True )
 # remove the minor xtick labels set by pandas.plot
 ax2.set_xticklabels ( [] , minor=True )
 # turn the minor ticks created by pandas.plot off
-#
+# plt.minorticks_off()
+plt.show()
 print testSeries['6/4/2011':'6 / 7 / 2011 ' ]
 `
 and it's output :

@@ -1,10 +1,4 @@
-<<<<<<< Updated upstream
 T1	API 27 36	dataframe
 T2	API 83 85	df
 T3	API 189 198	dataframe
 T4	API 467 475	dropna()
-=======
-T1	API 15 19	drop
-T2	API 258 262	drop
-T3	API 489 497	dropna()
->>>>>>> Stashed changes

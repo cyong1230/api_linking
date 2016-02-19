@@ -48,7 +48,7 @@ Also , ` pandas.to_datetime ` can be used ( this is off of the dev version , hav
 @CODE
 You can just use the pd.Timestamp constructor .
 The following diagram may be useful for this and related questions .
-If you want to convert an entire pandas series of datetimes to regular python datetimes , you can also use ` ` .
+If you want to convert an entire pandas series of datetimes to regular python datetimes , you can also use ` .to_pydatetime() ` .
 @CODE
 It also supports timezones :
 @CODE
@@ -57,9 +57,9 @@ here's what i have done , though i admit that i am concerned that at least part 
 starting with a numpy.datetime64 dt_a :
 dt_a
 numpy.datetime64('2015 - 04-24T23 : 11:26 .270000 -0700 ')
-dt_a1 = # yields a datetime object in UTC , but without tzinfo
+dt_a1 = dt_a.tolist() # yields a datetime object in UTC , but without tzinfo
 dt_a1
 datetime.datetime ( 2015 , 4 , 25 , 6 , 11 , 26 , 270000 )
 @CODE
-dt_a2 =d atetime.datetime ( *list ( [: 6 ] ) + [ dt_a1.microsecond ] , tzinfo=pytz.timezone('UTC '))
+dt_a2 =d atetime.datetime ( *list ( dt_a1.timetuple() [: 6 ] ) + [ dt_a1.microsecond ] , tzinfo=pytz.timezone('UTC '))
 ... and of course , that can be compressed into one line as needed .

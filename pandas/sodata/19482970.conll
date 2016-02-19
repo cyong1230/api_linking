@@ -195,6 +195,7 @@ built-in	O
 version	O
 using	O
 `	O
+dataframe.columns.values.tolist()	O
 `	O
 is	O
 the	O

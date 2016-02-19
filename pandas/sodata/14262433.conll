@@ -1729,6 +1729,7 @@ than	O
 @CODE	O
 
 `	O
+.find()	O
 `	O
 returns	O
 an	O
@@ -2075,11 +2076,7 @@ basic	O
 workflow	O
 is	O
 to	O
-<<<<<<< Updated upstream
 first	O
-=======
-first	B-API
->>>>>>> Stashed changes
 get	O
 a	O
 CSV	O
@@ -2122,11 +2119,7 @@ each	O
 row	O
 to	O
 a	O
-<<<<<<< Updated upstream
 real	O
-=======
-real	B-API
->>>>>>> Stashed changes
 data	O
 type	O
 ,	O

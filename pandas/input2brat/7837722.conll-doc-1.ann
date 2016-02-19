@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 T1	API 47 57	dataframes
 T2	API 137 147	dataframes
 T3	API 1123 1132	dataframe
@@ -9,14 +8,3 @@ T7	API 2058 2064	Series
 T8	API 2144 2154	itertuples
 T9	API 2245 2251	iterkv
 T10	API 2551 2558	groupby
-=======
-T1	API 445 451	values
-T2	API 1257 1266	iteritems
-T3	API 1532 1537	first
-T4	API 1858 1870	itertuples()
-T5	API 2004 2012	iterrows
-T6	API 2090 2096	Series
-T7	API 2176 2186	itertuples
-T8	API 2277 2283	iterkv
-T9	API 2593 2600	groupby
->>>>>>> Stashed changes

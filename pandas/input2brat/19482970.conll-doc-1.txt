@@ -19,7 +19,7 @@ For those who hate typing this is probably the shortest method :
 @CODE
 @CODE
 pandas docs : Iteration over dataframes return column labels
-Did some quick tests , and perhaps unsurprisingly the built-in version using ` ` is the fastest :
+Did some quick tests , and perhaps unsurprisingly the built-in version using ` dataframe.columns.values.tolist() ` is the fastest :
 @CODE
 ( I still really like the ` list ( dataframe )` though , so thanks EdChum ! )
 Its gets even simpler ( by pandas 0.16.0 ) :

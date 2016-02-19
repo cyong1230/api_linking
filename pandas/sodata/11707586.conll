@@ -187,6 +187,8 @@ can	O
 use	O
 `	O
 print	O
+df.describe()	O
+.to_string()	O
 `	O
 to	O
 force	O
@@ -411,6 +413,8 @@ you	O
 do	O
 `	O
 print	O
+df.describe()	O
+.to_string()	O
 `	O
 does	O
 it	O
@@ -428,6 +432,7 @@ is	O
 determined	O
 by	O
 `	O
+pandas.util.terminal.get_terminal_size()	O
 `	O
 ,	O
 this	O

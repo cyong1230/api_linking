@@ -12,17 +12,17 @@ In this case ( database joins ) pandas ' DataFrame contains no pre-computed info
 If I had stored the factorized versions of the join keys , the join would be significantly faster - as factorizing is the biggest bottleneck for this algorithm .
 I should also add that the internal design of pandas ' DataFrame is much more amenable to these kinds of operations than R's data.frame ( which is just a list of arrays internally ) .
 It looks like Wes may have discovered a known issue in ` data.table ` when the number of unique strings ( levels ) is large : 10,000 .
-Does ` ` reveal most of the time spent in the call ` sortedmatch ( levels ( i[[lc]] ) , levels ( x[[rc]] )` ?
+Does ` Rprof() ` reveal most of the time spent in the call ` sortedmatch ( levels ( i[[lc]] ) , levels ( x[[rc]] )` ?
 This isn't really the join itself ( the algorithm ) , but a preliminary step .
 Recent efforts have gone into allowing character columns in keys , which should resolve that issue by integrating more closely with R's own global string hash table .
-Some benchmark results are already reported by ` ` but that code isn't hooked up yet to replace the levels to levels match .
+Some benchmark results are already reported by ` test.data.table() ` but that code isn't hooked up yet to replace the levels to levels match .
 Are pandas merges faster than ` data.table ` for regular integer columns ?
 That should be a way to isolate the algorithm itself vs factor issues .
 Also , ` data.table ` has time series merge in mind .
 Two aspects to that : i ) multi column ordered keys such as ( id , datetime ) ii ) fast prevailing join ( ` roll=TRUE `) a.k.a. last observation carried forward .
 I'll need some time to confirm as it's the first I've seen of the comparison to ` data.table ` as presented .
 UPDATE from data.table v1.8.0 released July 2012
-Internal function removed and replaced with
+Internal function sortedmatch() removed and replaced with chmatch()
 when matching i levels to x levels for columns of type ' factor ' .
 This
 preliminary step was causing a ( known ) significant slowdown when the number
@@ -34,17 +34,17 @@ Matching 1 million strings of which
 of which 600,000 are unique is now reduced from 16s to 0.5s , for example .
 also in that release was :
 character columns are now allowed in keys and are preferred to
-factor . and no longer coerce character to
+factor . data.table() and setkey() no longer coerce character to
 factor .
 Factors are still supported .
 Implements FR #1493 , FR #1224
 and ( partially ) FR #951 .
-New functions and %chin% , faster versions of
+New functions chmatch() and %chin% , faster versions of match()
 and %in% for character vectors .
 R's internal string cache is
 utilised ( no hash table is built ) .
 They are about 4 times faster
-than on the example in ?
+than match() on the example in ?
 chmatch .
 As of Sep 2013 data.table is v1.8.10 on CRAN and we're working on v1.9.0 .
 NEWS is updated live .

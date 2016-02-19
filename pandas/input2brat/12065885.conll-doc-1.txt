@@ -10,7 +10,7 @@ Use the ` isin ` method .
 `rpt[rpt['STK_ID ' ] .isin ( stk_list ) ] ` .
 you can also use ranges by using :
 @CODE
-` ` is ideal if you have a list of exact matches , but if you have a list of partial matches or substrings to look for , you can filter using the ` str.contains ` method and regular expressions .
+` isin() ` is ideal if you have a list of exact matches , but if you have a list of partial matches or substrings to look for , you can filter using the ` str.contains ` method and regular expressions .
 For example , if we want to return a DataFrame where all of the stock IDs which begin with `'600 '` and then are followed by any three digits :
 @CODE
 Suppose now we have a list of strings which we want the values in `'STK_ID '` to end with , e.g .
