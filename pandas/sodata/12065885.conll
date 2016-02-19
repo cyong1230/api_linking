@@ -1,9 +1,6 @@
-Title	O
-:	O
-
 How	O
 to	O
-filter	B-API
+filter	O
 the	O
 DataFrame	B-API
 rows	O
@@ -18,9 +15,6 @@ within	O
 in	O
 "	O
 ?	O
-
-Q	O
-:	O
 
 I	O
 have	O
@@ -38,7 +32,7 @@ pandas	O
 
 I	O
 can	O
-filter	B-API
+filter	O
 the	O
 rows	O
 whose	O
@@ -62,8 +56,8 @@ and	O
 I	O
 want	O
 to	O
-get	B-API
-all	B-API
+get	O
+all	O
 the	O
 rows	O
 of	O
@@ -104,13 +98,10 @@ the	O
 target	O
 ?	O
 
-A1	O
-:	O
-
 Use	O
 the	O
 `	O
-isin	B-API
+isin	O
 `	O
 method	O
 .	O
@@ -126,9 +117,6 @@ stk_list	O
 `	O
 .	O
 
-A2	O
-:	O
-
 you	O
 can	O
 also	O
@@ -140,11 +128,7 @@ using	O
 
 @CODE	O
 
-A3	O
-:	O
-
 `	O
-isin()	B-API
 `	O
 is	O
 ideal	O
@@ -174,7 +158,7 @@ for	O
 ,	O
 you	O
 can	O
-filter	B-API
+filter	O
 using	O
 the	O
 `	O
@@ -196,8 +180,8 @@ to	O
 return	O
 a	O
 DataFrame	B-API
-where	B-API
-all	B-API
+where	O
+all	O
 of	O
 the	O
 stock	O
@@ -212,7 +196,7 @@ then	O
 are	O
 followed	O
 by	O
-any	B-API
+any	O
 three	O
 digits	O
 :	O
@@ -231,7 +215,7 @@ which	O
 we	O
 want	O
 the	O
-values	B-API
+values	O
 in	O
 `'STK_ID	O
 '`	O
@@ -246,7 +230,7 @@ e.g	O
 
 We	O
 can	O
-join	B-API
+join	O
 these	O
 strings	O
 with	O
@@ -268,7 +252,7 @@ to	O
 str.contains	O
 `	O
 to	O
-filter	B-API
+filter	O
 the	O
 DataFrame	B-API
 :	O
@@ -331,14 +315,11 @@ so	O
 on	O
 .	O
 
-A4	O
-:	O
-
 You	O
 can	O
 also	O
 directly	O
-query	B-API
+query	O
 your	O
 DataFrame	B-API
 for	O

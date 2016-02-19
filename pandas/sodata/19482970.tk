@@ -1,0 +1,26 @@
+python : get list from pandas dataframe column headers
+I want to get a list of the column headers from a pandas dataframe . The dataframe will come from user input so I won't know how many columns there will be or what they will be called . For example , if I'm given a dataframe like this :
+my_dataframe =
+@CODE
+I would want to get a list like this :
+header_list =
+@CODE
+That's available as ` my_dataframe.columns ` .
+You can get the values as a list by doing :
+@CODE
+@CODE
+There is a built in method which is the most performant :
+@CODE
+` .columns ` returns an ` Index ` , ` .columns .values ` returns an ` array ` and this has a helper function to return a ` list ` .
+EDIT
+For those who hate typing this is probably the shortest method :
+@CODE
+@CODE
+pandas docs : Iteration over dataframes return column labels
+Did some quick tests , and perhaps unsurprisingly the built-in version using ` dataframe.columns.values.tolist() ` is the fastest :
+@CODE
+( I still really like the ` list ( dataframe )` though , so thanks EdChum ! )
+Its gets even simpler ( by pandas 0.16.0 ) :
+@CODE
+will give you the column names in a nice list .
+@CODE

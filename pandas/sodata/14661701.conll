@@ -1,0 +1,76 @@
+How	O
+to	O
+drop	O
+a	O
+list	O
+of	O
+rows	O
+from	O
+Pandas	O
+dataframe	B-API
+?	O
+
+I	O
+have	O
+a	O
+dataframe	B-API
+df	B-API
+:	O
+
+@CODE	O
+
+Then	O
+I	O
+want	O
+to	O
+drop	O
+rows	O
+with	O
+certain	O
+sequence	O
+numbers	O
+which	O
+indicated	O
+in	O
+a	O
+list	O
+,	O
+suppose	O
+here	O
+is	O
+`	O
+[1	O
+,	O
+2	O
+,	O
+4]	O
+,	O
+`	O
+then	O
+left	O
+:	O
+
+@CODE	O
+
+How	O
+or	O
+what	O
+function	O
+can	O
+do	O
+that	O
+?	O
+
+Use	O
+DataFrame.drop	B-API
+and	O
+pass	O
+it	O
+a	O
+Series	B-API
+of	O
+index	O
+labels	O
+:	O
+
+@CODE	O

@@ -1,0 +1,78 @@
+python	O
+:	O
+rename	O
+single	O
+column	O
+header	O
+in	O
+pandas	O
+dataframe	B-API
+
+I've	O
+got	O
+a	O
+dataframe	B-API
+called	O
+data	O
+.	O
+
+How	O
+would	O
+I	O
+rename	O
+the	O
+only	O
+one	O
+column	O
+header	O
+?	O
+
+For	O
+example	O
+'	O
+gdp	O
+'	O
+to	O
+'	O
+log	O
+(	O
+gdp	O
+)'	O
+?	O
+
+@CODE	O
+
+@CODE	O
+
+The	O
+`	O
+rename	O
+`	O
+show	O
+that	O
+it	O
+accepts	O
+a	O
+dict	O
+as	O
+a	O
+param	O
+for	O
+`	O
+columns	O
+`	O
+so	O
+you	O
+just	O
+pass	O
+a	O
+dict	O
+with	O
+a	O
+single	O
+entry	O
+.	O
+
+Also	O
+see	O
+related	O

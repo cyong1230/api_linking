@@ -1,0 +1,26 @@
+How can I replace all the NaN values with Zero's in a column of a pandas dataframe
+I have a dataframe as below
+@CODE
+when I try to .apply a function to the Amount column I get the following error .
+@CODE
+I have tried applying a function using .isnan from the Math Module
+I have tried the pandas .replace attribute
+I tried the .sparse data attribute from pandas 0.9
+I have also tried if NaN == NaN statement in a function .
+I have also looked at this article How do I replace NA values with zeros in R ? whilst looking at some other articles .
+All the methods I have tried have not worked or do not recognise NaN .
+Any Hints or solutions would be appreciated .
+I believe ` DataFrame.fillna() ` will do this for you .
+Link to Docs for a dataframe and for a Series .
+Example :
+@CODE
+To fill the NaNs in only one column , select just that column . in this case I'm using inplace=True to actually change the contents of df .
+@CODE
+I just wanted to provide a bit of an update / special case since it looks like people still come here . If you're using a multi-index or otherwise using an index-slicer the inplace=True option may not be enough to update the slice you've chosen . For example in a 2x2 level multi-index this will not change any values ( as of pandas 0.15 ):
+` idx = pd.IndexSlice
+df.loc [idx [: , mask_1] , idx[mask_2 , :]] .fillna ( value=0 , inplace=True )`
+The " problem " is that the chaining breaks the fillna ability to update the original dataframe . I put " problem " in quotes because there are good reasons for the design decisions that led to not interpreting through these chains in certain situations . Also , this is a complex example ( though I really ran into it ) , but the same may apply to fewer levels of indexes depending on how you slice .
+The solution is DataFrame.update :
+` df.update ( df.loc [idx [: , mask_1] , idx[[mask_2] , :]] .fillna ( value=0 ))`
+It's one line , reads reasonably well ( sort of ) and eliminates any unnecessary messing with intermediate variables or loops while allowing you to apply fillna to any multi-level slice you like !
+If anybody can find places this doesn't work please post in the comments , I've been messing with it and looking at the source and it seems to solve at least my multi-index slice problems .

@@ -1,0 +1,22 @@
+in Ipython notebook , Pandas is not displying the graph I try to plot .
+I am trying to plot some data using pandas in Ipython Notebook , and while it gives me the object , it doesn't actually plot the graph itself .
+So it looks like this :
+@CODE
+The graph should follow after that , but it simply doesn't appear .
+I have imported matplotlib , so that's not the problem .
+Is there any other module I need to import ?
+With your ` import matplotlib.pyplot as plt ` just add
+@CODE
+and it will show all stored plots .
+Ok , It seems the answer is to start ipython notebook with -- pylab=inline .
+so ipython notebook -- pylab=inline
+This has it do what I saw earlier and what I wanted it to do .
+Sorry about the vague original question .
+Note that -- pylab is deprecated and has been removed from newer builds of IPython , so the accepted answer will no longer work .
+The recommended way to enable inline plotting in the IPython Notebook is now to run :
+@CODE
+See this post from the ipython-dev mailing list for more details .
+start ipython with ` ipython notebook -- pylab inline ` , then graph will show inline .
+simple after importing the matplotlib you have execute one magic if you have started the ipython as like this
+@CODE
+run this command everything will be shown perfectly

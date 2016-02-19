@@ -1,0 +1,39 @@
+Python pandas , widen output display ?
+Is there a way to widen the display of output in either interactive or script-execution mode ?
+Specifically , I am using the describe() function on a Pandas dataframe . When the dataframe is 5 columns ( labels ) wide , I get the descriptive statistics that I want . However , if the dataframe has any more columns , the statistics are suppressed and something like this is returned :
+@CODE
+The " 8 " value is given whether there are 6 or 7 columns . What does the " 8 " refer to ?
+I have already tried dragging the IDLE window larger , as well as increasing the " Configure IDLE " width options , to no avail .
+My purpose in using Pandas and describe() is to avoid using a second program like STATA to do basic data manipulation and investigation .
+Thanks .
+Python / IDLE 2.7.3
+Pandas 0.8.1
+Notepad++ 6.1.4 ( UNICODE )
+Windows Vista SP2
+You can use ` print df.describe() .to_string() ` to force it to show the whole table . ( You can use ` to_string() ` like this for any DataFrame . The result of ` describe ` is just a DataFrame itself . )
+The 8 is the number of rows in the DataFrame holding the " description " ( because ` describe ` computes 8 statistics , min , max , mean , etc . ) .
+You can adjust pandas print options with ` set_printoptions ` .
+@CODE
+However this will not work in all cases as pandas detects your console width and it will only use ` to_string ` if the output fits in the console ( see the docstring of ` set_printoptions `) .
+In this case you can explicitly call ` to_string ` as answered by BrenBarn .
+Update
+With version 0.10 the way wide dataframes are printed changed :
+@CODE
+Further more the API for setting pandas options changed :
+@CODE
+As @bmu mentioned , pandas auto detects ( by default ) the size of the display area , a summary view will be used when an object repr does not fit on the display . You mentioned resizing the IDLE window , to no effect . If you do ` print df.describe() .to_string() ` does it fit on the IDLE window ?
+The terminal size is determined by ` pandas.util.terminal.get_terminal_size() ` , this returns a tuple containing the ` ( width , height )` of the display . Does the output match the size of your IDLE window ? There might be an issue ( there was one before when running a terminal in emacs ) .
+Note that it is possible to bypass the autodetect , ` pandas.set_printoptions ( max_rows=200 , max_columns=10 )` will never switch to summary view if number of rows , columns does not exceed the given limits .
+Update : Pandas 0.11.0 onwards
+` pandas.set_printoptions ( ... )` is depracted . Instead , use ` pandas.set_option ` . Like :
+@CODE
+Here is the help :
+@CODE
+Try this :
+@CODE
+From the documentation :
+display.expand_frame_repr : boolean
+Whether to print out the full DataFrame repr for wide DataFrames across multiple lines , max_columns is still respected , but the output will wrap-around across multiple pages if it s width exceeds display.width . [ default : True ] [ currently : True ]
+See : http://pandas.pydata.org/pandas-docs/stable/generated/pandas.set_option.html
+You can set the output display to match your current terminal width :
+@CODE

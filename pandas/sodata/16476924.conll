@@ -1,0 +1,184 @@
+How	O
+to	O
+iterate	O
+over	O
+rows	O
+in	O
+a	O
+DataFrame	B-API
+?	O
+
+I	O
+have	O
+a	O
+DataFrames	O
+from	O
+pandas	O
+:	O
+
+@CODE	O
+
+Output	O
+:	O
+
+@CODE	O
+
+Now	O
+I	O
+want	O
+to	O
+iterate	O
+over	O
+the	O
+rows	O
+of	O
+the	O
+above	O
+frame	O
+.	O
+
+For	O
+every	O
+row	O
+I	O
+want	O
+to	O
+be	O
+able	O
+to	O
+access	O
+its	O
+elements	O
+(	O
+values	O
+in	O
+cells	O
+)	O
+by	O
+the	O
+name	O
+of	O
+the	O
+columns	O
+.	O
+
+So	O
+,	O
+for	O
+example	O
+,	O
+I	O
+would	O
+like	O
+to	O
+have	O
+something	O
+like	O
+that	O
+:	O
+
+@CODE	O
+
+Is	O
+it	O
+possible	O
+to	O
+do	O
+that	O
+in	O
+pandas	O
+?	O
+
+I	O
+found	O
+similar	O
+question	O
+.	O
+
+But	O
+it	O
+does	O
+not	O
+give	O
+me	O
+the	O
+answer	O
+I	O
+need	O
+.	O
+
+For	O
+example	O
+,	O
+it	O
+is	O
+suggested	O
+there	O
+to	O
+use	O
+:	O
+
+@CODE	O
+
+or	O
+
+@CODE	O
+
+But	O
+I	O
+do	O
+not	O
+understand	O
+what	O
+the	O
+`	O
+row	O
+`	O
+object	O
+is	O
+and	O
+how	O
+I	O
+can	O
+work	O
+with	O
+it	O
+.	O
+
+iterrows	B-API
+is	O
+a	O
+generator	O
+which	O
+yield	O
+both	O
+index	O
+and	O
+row	O
+
+@CODE	O
+
+You	O
+can	O
+also	O
+use	O
+`	O
+`	O
+to	O
+iterate	O
+over	O
+rows	O
+and	O
+access	O
+multiple	O
+columns	O
+for	O
+a	O
+function	O
+.	O
+
+docs	O
+:	O
+DataFrame.apply()	B-API
+
+@CODE	O

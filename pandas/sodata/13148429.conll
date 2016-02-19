@@ -1,18 +1,12 @@
-Title	O
-:	O
-
 How	O
 to	O
 change	O
 the	O
-order	B-API
+order	O
 of	O
 DataFrame	B-API
 columns	O
 ?	O
-
-Q	O
-:	O
 
 I	O
 have	O
@@ -23,14 +17,14 @@ DataFrame	B-API
 `	O
 (	O
 `	O
-df	O
+df	B-API
 `)	O
 :	O
 
 @CODE	O
 
 I	O
-add	B-API
+add	O
 more	O
 column(s)	O
 by	O
@@ -46,7 +40,7 @@ move	O
 the	O
 column	O
 `	O
-mean	B-API
+mean	O
 `	O
 to	O
 the	O
@@ -56,20 +50,17 @@ i.e.	O
 set	O
 it	O
 as	O
-first	B-API
+first	O
 column	O
 leaving	O
 the	O
-order	B-API
+order	O
 of	O
 the	O
 other	O
 columns	O
 untouched	O
 ?	O
-
-A1	O
-:	O
 
 One	O
 easy	O
@@ -79,7 +70,7 @@ be	O
 to	O
 reassign	O
 the	O
-dataframe	O
+dataframe	B-API
 with	O
 a	O
 list	O
@@ -107,7 +98,7 @@ Rearrange	O
 cols	O
 `	O
 in	O
-any	B-API
+any	O
 way	O
 you	O
 want	O
@@ -119,11 +110,11 @@ how	O
 I	O
 moved	O
 the	O
-last	B-API
+last	O
 element	O
 to	O
 the	O
-first	B-API
+first	O
 position	O
 :	O
 
@@ -132,15 +123,12 @@ position	O
 Then	O
 reorder	O
 the	O
-dataframe	O
+dataframe	B-API
 like	O
 this	O
 :	O
 
 @CODE	O
-
-A2	O
-:	O
 
 How	O
 about	O
@@ -149,9 +137,6 @@ about	O
 @CODE	O
 
 http://pandas.pydata.org/pandas-docs/stable/dsintro.html#column-selection-addition-deletion	O
-
-A3	O
-:	O
 
 This	O
 question	O
@@ -162,9 +147,6 @@ before	O
 :	O
 
 @CODE	O
-
-A4	O
-:	O
 
 You	O
 could	O
@@ -179,7 +161,7 @@ this	O
 
 You	O
 can	O
-get	B-API
+get	O
 the	O
 list	O
 of	O
@@ -210,11 +192,8 @@ dropping	O
 it	O
 into	O
 the	O
-first	B-API
+first	O
 function	O
-
-A5	O
-:	O
 
 @CODE	O
 
@@ -225,19 +204,19 @@ two	O
 arguments	O
 ,	O
 the	O
-first	B-API
+first	O
 is	O
 the	O
 dataset	O
 ,	O
 the	O
-second	B-API
+second	O
 are	O
 the	O
 columns	O
 in	O
 the	O
-data	B-API
+data	O
 set	O
 that	O
 you	O
@@ -256,7 +235,7 @@ case	O
 I	O
 have	O
 a	O
-data	B-API
+data	O
 set	O
 called	O
 Frame	O
@@ -285,7 +264,7 @@ to	O
 the	O
 front	O
 then	O
-all	B-API
+all	O
 I	O
 have	O
 to	O
@@ -313,9 +292,6 @@ do	O
 
 @CODE	O
 
-A6	O
-:	O
-
 I	O
 ran	O
 into	O
@@ -328,7 +304,7 @@ and	O
 just	O
 wanted	O
 to	O
-add	B-API
+add	O
 what	O
 I	O
 settled	O
@@ -345,7 +321,7 @@ method	O
 for	O
 changing	O
 column	O
-order	B-API
+order	O
 .	O
 
 This	O
@@ -353,7 +329,7 @@ worked	O
 :	O
 
 `	O
-df	O
+df	B-API
 =	O
 df.reindex_axis(['mean	O
 '	O
@@ -368,9 +344,6 @@ df.columns	O
 ,	O
 axis=1	O
 )`	O
-
-A7	O
-:	O
 
 I	O
 believe	O
@@ -400,14 +373,14 @@ the	O
 location	O
 of	O
 `	O
-mean	B-API
+mean	O
 `	O
 ,	O
 but	O
 only	O
 have	O
 its	O
-name	B-API
+name	O
 ,	O
 you	O
 cannot	O
@@ -440,33 +413,27 @@ with	O
 
 @CODE	O
 
-A8	O
-:	O
-
 Simply	O
 do	O
 ,	O
 
 @CODE	O
 
-A9	O
-:	O
-
 Just	O
-assign	B-API
+assign	O
 the	O
 column	O
-names	B-API
+names	O
 in	O
 the	O
-order	B-API
+order	O
 you	O
 want	O
 them	O
 ,	O
 to	O
 `	O
-dataframe	O
+dataframe	B-API
 .columns	O
 `	O
 like	O
@@ -478,7 +445,7 @@ below	O
 Now	O
 ,	O
 '	O
-mean	B-API
+mean	O
 '	O
 column	O
 comes	O

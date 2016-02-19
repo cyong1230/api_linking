@@ -1,17 +1,11 @@
-Title	O
-:	O
-
 "	O
 Large	O
-data	B-API
+data	O
 "	O
 work	O
 flows	O
 using	O
 pandas	O
-
-Q	O
-:	O
 
 I	O
 have	O
@@ -66,11 +60,11 @@ reasons	O
 .	O
 
 One	O
-day	B-API
+day	O
 I	O
 hope	O
 to	O
-replace	B-API
+replace	O
 my	O
 use	O
 of	O
@@ -98,7 +92,7 @@ talking	O
 about	O
 "	O
 big	O
-data	B-API
+data	O
 "	O
 that	O
 requires	O
@@ -126,7 +120,7 @@ hard-drive	O
 .	O
 
 My	O
-first	B-API
+first	O
 thought	O
 is	O
 to	O
@@ -148,7 +142,7 @@ pieces	O
 I	O
 need	O
 into	O
-dataframes	O
+dataframes	B-API
 for	O
 analysis	O
 .	O
@@ -198,13 +192,13 @@ that	O
 database	O
 to	O
 retrieve	O
-data	B-API
+data	O
 to	O
 feed	O
 into	O
 a	O
 pandas	O
-data	B-API
+data	O
 structure	O
 
 Updating	O
@@ -232,7 +226,7 @@ pandas	O
 on	O
 "	O
 large	O
-data	B-API
+data	O
 "	O
 .	O
 
@@ -280,7 +274,7 @@ memory	O
 .	O
 
 In	O
-order	B-API
+order	O
 to	O
 use	O
 Pandas	O
@@ -293,16 +287,16 @@ read	O
 subsets	O
 of	O
 this	O
-data	B-API
+data	O
 (	O
 usually	O
 just	O
 a	O
 few	O
 columns	O
-at	B-API
+at	O
 a	O
-time	B-API
+time	O
 )	O
 that	O
 can	O
@@ -331,7 +325,7 @@ would	O
 then	O
 have	O
 to	O
-append	B-API
+append	O
 these	O
 new	O
 columns	O
@@ -395,7 +389,7 @@ models	O
 The	O
 kinds	O
 of	O
-data	B-API
+data	O
 include	O
 phone	O
 ,	O
@@ -405,7 +399,7 @@ address	O
 characteristics	O
 ;	O
 property	O
-values	B-API
+values	O
 ;	O
 derogatory	O
 information	O
@@ -423,7 +417,7 @@ datasets	O
 I	O
 use	O
 every	O
-day	B-API
+day	O
 have	O
 nearly	O
 1,000	O
@@ -434,7 +428,7 @@ on	O
 average	O
 of	O
 mixed	O
-data	B-API
+data	O
 types	O
 :	O
 continuous	O
@@ -448,12 +442,12 @@ both	O
 numeric	O
 and	O
 character	O
-data	B-API
+data	O
 .	O
 
 I	O
 rarely	O
-append	B-API
+append	O
 rows	O
 ,	O
 but	O
@@ -481,7 +475,7 @@ into	O
 a	O
 new	O
 ,	O
-compound	B-API
+compound	O
 column	O
 .	O
 
@@ -533,26 +527,26 @@ I	O
 would	O
 like	O
 to	O
-append	B-API
+append	O
 these	O
 new	O
 columns	O
 into	O
 the	O
 on-disk	O
-data	B-API
+data	O
 structure	O
 .	O
 
 I	O
 would	O
-repeat	B-API
+repeat	O
 step	O
 2	O
 ,	O
 exploring	O
 the	O
-data	B-API
+data	O
 with	O
 crosstabs	O
 and	O
@@ -586,7 +580,7 @@ into	O
 such	O
 a	O
 manner	O
-where	B-API
+where	O
 a	O
 row	O
 consists	O
@@ -595,7 +589,7 @@ a	O
 record	O
 of	O
 consumer	O
-data	B-API
+data	O
 .	O
 
 Each	O
@@ -685,11 +679,11 @@ this	O
 ,	O
 I	O
 would	O
-select	B-API
+select	O
 only	O
 those	O
 records	O
-where	B-API
+where	O
 the	O
 line	O
 of	O
@@ -718,10 +712,10 @@ however	O
 I	O
 would	O
 pull	O
-all	B-API
+all	O
 rows	O
 of	O
-data	B-API
+data	O
 and	O
 only	O
 the	O
@@ -755,7 +749,7 @@ variable	O
 and	O
 create	O
 new	O
-compound	B-API
+compound	O
 columns	O
 that	O
 describe	B-API
@@ -793,7 +787,7 @@ just	O
 dealing	O
 with	O
 property	O
-values	B-API
+values	O
 and	O
 observe	O
 how	O
@@ -831,7 +825,7 @@ college	O
 education	O
 ,	O
 and	O
-repeat	B-API
+repeat	O
 the	O
 process	O
 .	O
@@ -847,9 +841,9 @@ that	O
 explain	O
 the	O
 relationship	O
-between	B-API
+between	O
 my	O
-data	B-API
+data	O
 and	O
 some	O
 outcome	O
@@ -864,7 +858,7 @@ this	O
 process	O
 ,	O
 I	O
-apply	B-API
+apply	O
 some	O
 learning	O
 techniques	O
@@ -875,7 +869,7 @@ equation	O
 out	O
 of	O
 those	O
-compound	B-API
+compound	O
 columns	O
 .	O
 
@@ -886,7 +880,7 @@ that	O
 I	O
 would	O
 ever	O
-add	B-API
+add	O
 rows	O
 to	O
 the	O
@@ -914,9 +908,6 @@ parlance	O
 )	O
 .	O
 
-A1	O
-:	O
-
 I	O
 routinely	O
 use	O
@@ -924,7 +915,7 @@ tens	O
 of	O
 gigabytes	O
 of	O
-data	B-API
+data	O
 in	O
 just	O
 this	O
@@ -943,9 +934,9 @@ via	O
 queries	O
 ,	O
 create	O
-data	B-API
+data	O
 and	O
-append	B-API
+append	O
 back	O
 .	O
 
@@ -967,7 +958,7 @@ how	O
 to	O
 store	O
 your	O
-data	B-API
+data	O
 .	O
 
 Details	O
@@ -978,7 +969,7 @@ how	O
 you	O
 store	O
 your	O
-data	B-API
+data	O
 ,	O
 like	O
 :	O
@@ -1003,7 +994,7 @@ structure	O
 
 Size	O
 of	O
-data	B-API
+data	O
 ,	O
 #	O
 of	O
@@ -1038,11 +1029,11 @@ E.g.	O
 
 do	O
 a	O
-query	B-API
+query	O
 on	O
 columns	O
 to	O
-select	B-API
+select	O
 a	O
 bunch	O
 of	O
@@ -1113,7 +1104,7 @@ many	O
 ,	O
 rough	O
 total	O
-size	B-API
+size	O
 in	O
 Gb	O
 .	O
@@ -1143,7 +1134,7 @@ records	O
 per	O
 file	O
 with	O
-all	B-API
+all	O
 of	O
 the	O
 fields	O
@@ -1155,7 +1146,7 @@ file	O
 Do	O
 you	O
 ever	O
-select	B-API
+select	O
 subsets	O
 of	O
 rows	O
@@ -1167,7 +1158,7 @@ on	O
 criteria	O
 (	O
 e.g.	O
-select	B-API
+select	O
 the	O
 rows	O
 with	O
@@ -1186,7 +1177,7 @@ or	O
 do	O
 you	O
 just	O
-select	B-API
+select	O
 fields	O
 A	O
 ,	O
@@ -1194,7 +1185,7 @@ B	O
 ,	O
 C	O
 with	O
-all	B-API
+all	O
 of	O
 the	O
 records	O
@@ -1212,7 +1203,7 @@ you	O
 work	O
 on	O
 '	O
-all	B-API
+all	O
 of	O
 your	O
 columns	O
@@ -1241,7 +1232,7 @@ want	O
 to	O
 keep	O
 the	O
-data	B-API
+data	O
 around	O
 ,	O
 but	O
@@ -1256,7 +1247,7 @@ explicity	O
 until	O
 final	O
 results	O
-time	B-API
+time	O
 )	O
 ?	O
 
@@ -1269,7 +1260,7 @@ sure	O
 you	O
 have	O
 pandas	O
-at	B-API
+at	O
 least	O
 `	O
 0.10.1	O
@@ -1300,7 +1291,7 @@ which	O
 is	O
 what	O
 you	O
-query	B-API
+query	O
 on	O
 )	O
 ,	O
@@ -1321,7 +1312,7 @@ way	O
 it's	O
 easy	O
 to	O
-select	B-API
+select	O
 a	O
 small	O
 group	O
@@ -1400,7 +1391,7 @@ does	O
 Now	O
 you	O
 have	O
-all	B-API
+all	O
 of	O
 the	O
 tables	O
@@ -1425,7 +1416,7 @@ would	O
 prob	O
 have	O
 to	O
-add	B-API
+add	O
 the	O
 filename	O
 to	O
@@ -1444,7 +1435,7 @@ This	O
 is	O
 how	O
 you	O
-get	B-API
+get	O
 columns	O
 and	O
 create	O
@@ -1511,7 +1502,7 @@ stage	O
 (	O
 essentially	O
 a	O
-data	B-API
+data	O
 column	O
 is	O
 segregated	O
@@ -1566,7 +1557,7 @@ the	O
 results	O
 so	O
 you	O
-get	B-API
+get	O
 the	O
 resulting	O
 frame	O
@@ -1595,7 +1586,7 @@ you	O
 indexes	O
 on	O
 certain	O
-data	B-API
+data	O
 columns	O
 (	O
 makes	O
@@ -1617,9 +1608,6 @@ you	O
 have	O
 questions	O
 !	O
-
-A2	O
-:	O
 
 This	O
 is	O
@@ -1732,7 +1720,7 @@ larger	O
 
 querying	O
 :	O
-gt	B-API
+gt	O
 =	O
 greater	O
 than	O
@@ -1762,13 +1750,13 @@ iterators	O
 How	O
 about	O
 a	O
-join	B-API
+join	O
 since	O
 I	O
 normally	O
-get	B-API
+get	O
 10	O
-data	B-API
+data	O
 sources	O
 to	O
 paste	O
@@ -1791,7 +1779,7 @@ on	O
 `	O
 aJoinDF	O
 `	O
-first	B-API
+first	O
 before	O
 its	O
 "	O
@@ -1809,14 +1797,14 @@ then	O
 write	O
 the	O
 new	O
-info	B-API
+info	O
 to	O
 your	O
 main	O
 collection	O
 via	O
 the	O
-update	B-API
+update	O
 method	O
 below	O
 .	O
@@ -1852,7 +1840,7 @@ document	O
 and	O
 you	O
 just	O
-add	B-API
+add	O
 the	O
 field	O
 code	O
@@ -1863,7 +1851,7 @@ a	O
 `	O
 dict	O
 `	O
-lookup	B-API
+lookup	O
 as	O
 you	O
 create	O
@@ -1905,7 +1893,7 @@ your	O
 3	O
 to	O
 memory	O
-max	B-API
+max	O
 key	O
 indicators	O
 and	O
@@ -1914,7 +1902,7 @@ pivots	O
 /	O
 agg	O
 /	O
-data	B-API
+data	O
 exploration	O
 .	O
 
@@ -1932,9 +1920,9 @@ numbers	O
 big	O
 text	O
 /	O
-categories	B-API
+categories	O
 /	O
-codes	B-API
+codes	O
 /	O
 floats	O
 /	O
@@ -1962,7 +1950,7 @@ See	O
 here	O
 for	O
 more	O
-info	B-API
+info	O
 about	O
 the	O
 aggregate	O
@@ -1999,7 +1987,7 @@ relations	O
 and	O
 I	O
 can	O
-add	B-API
+add	O
 items	O
 to	O
 a	O
@@ -2025,13 +2013,10 @@ MongoDB	O
 helps	O
 me	O
 just	O
-get	B-API
+get	O
 to	O
 work	O
 :)	O
-
-A3	O
-:	O
 
 I	O
 spotted	O
@@ -2090,8 +2075,8 @@ basic	O
 workflow	O
 is	O
 to	O
-first	B-API
-get	B-API
+first	O
+get	O
 a	O
 CSV	O
 file	O
@@ -2133,8 +2118,8 @@ each	O
 row	O
 to	O
 a	O
-real	B-API
-data	B-API
+real	O
+data	O
 type	O
 ,	O
 and	O
@@ -2157,7 +2142,7 @@ but	O
 it	O
 doesn't	O
 use	O
-any	B-API
+any	O
 memory	O
 ,	O
 since	O
@@ -2170,7 +2155,7 @@ row-by-row	O
 Then	O
 I	O
 "	O
-transpose	B-API
+transpose	O
 "	O
 the	O
 row-oriented	O
@@ -2185,7 +2170,7 @@ file	O
 
 The	O
 table	O
-transpose	B-API
+transpose	O
 looks	O
 like	O
 :	O
@@ -2242,7 +2227,7 @@ operation	O
 reads	O
 the	O
 whole	O
-data	B-API
+data	O
 set	O
 .	O
 
@@ -2271,7 +2256,7 @@ magic	O
 Edit	O
 :	O
 The	O
-real	B-API
+real	O
 advantage	O
 of	O
 this	O
@@ -2290,7 +2275,7 @@ can	O
 then	O
 load	O
 the	O
-data	B-API
+data	O
 into	O
 R	O
 using	O
@@ -2304,14 +2289,14 @@ tables	O
 
 Or	O
 ,	O
-at	B-API
+at	O
 least	O
 ,	O
 I've	O
 been	O
 unable	O
 to	O
-get	B-API
+get	O
 it	O
 to	O
 load	O
@@ -2319,21 +2304,18 @@ heterogeneous	O
 tables	O
 .	O
 
-A4	O
-:	O
-
 If	O
 your	O
 datasets	O
 are	O
-between	B-API
+between	O
 1	O
 and	O
 20GB	O
 ,	O
 you	O
 should	O
-get	B-API
+get	O
 a	O
 workstation	O
 with	O
@@ -2378,9 +2360,6 @@ RAM	O
 isn't	O
 reasonable	O
 .	O
-
-A5	O
-:	O
 
 I	O
 think	O
@@ -2436,14 +2415,14 @@ In	O
 case	O
 of	O
 30	O
-days	B-API
+days	O
 worth	O
 of	O
 trading	O
-data	B-API
+data	O
 of	O
 ~30GB	O
-size	B-API
+size	O
 ,	O
 I	O
 break	O
@@ -2452,10 +2431,10 @@ into	O
 a	O
 file	O
 per	O
-day	B-API
+day	O
 of	O
 ~1GB	O
-size	B-API
+size	O
 .	O
 
 I	O
@@ -2467,7 +2446,7 @@ separately	O
 and	O
 aggregate	O
 results	O
-at	B-API
+at	O
 the	O
 end	O
 
@@ -2535,7 +2514,7 @@ This	O
 approach	O
 doesn't	O
 cover	O
-all	B-API
+all	O
 scenarios	O
 ,	O
 but	O
@@ -2548,9 +2527,6 @@ lot	O
 of	O
 them	O
 
-A6	O
-:	O
-
 Consider	O
 Ruffus	O
 if	O
@@ -2562,7 +2538,7 @@ path	O
 of	O
 creating	O
 a	O
-data	B-API
+data	O
 pipeline	O
 which	O
 is	O
@@ -2573,9 +2549,6 @@ multiple	O
 smaller	O
 files	O
 .	O
-
-A7	O
-:	O
 
 I	O
 know	O
@@ -2676,9 +2649,6 @@ of	O
 NumPy	O
 .	O
 
-A8	O
-:	O
-
 One	O
 more	O
 variation	O
@@ -2697,7 +2667,7 @@ done	O
 as	O
 a	O
 db	O
-query	B-API
+query	O
 (	O
 sql	O
 ,	O
@@ -2727,7 +2697,7 @@ is	O
 optimized	O
 for	O
 large	O
-data	B-API
+data	O
 ,	O
 and	O
 uses	O
@@ -2764,7 +2734,7 @@ for	O
 working	O
 with	O
 large	O
-data	B-API
+data	O
 ,	O
 while	O
 still	O
@@ -2805,7 +2775,7 @@ core	O
 And	O
 although	O
 the	O
-query	B-API
+query	O
 language	O
 and	O
 pandas	O

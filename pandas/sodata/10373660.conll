@@ -1,0 +1,153 @@
+Converting	O
+a	O
+Pandas	O
+GroupBy	O
+object	O
+to	O
+DataFrame	B-API
+
+I'm	O
+starting	O
+with	O
+input	O
+data	O
+like	O
+this	O
+
+@CODE	O
+
+Which	O
+when	O
+printed	O
+appears	O
+as	O
+this	O
+:	O
+
+@CODE	O
+
+Grouping	O
+is	O
+simple	O
+enough	O
+:	O
+
+@CODE	O
+
+and	O
+printing	O
+yields	O
+a	O
+GroupBy	O
+object	O
+:	O
+
+@CODE	O
+
+But	O
+what	O
+I	O
+want	O
+eventually	O
+is	O
+another	O
+DataFrame	B-API
+object	O
+that	O
+contains	O
+all	O
+the	O
+rows	O
+in	O
+the	O
+GroupBy	O
+object	O
+.	O
+
+In	O
+other	O
+words	O
+I	O
+want	O
+to	O
+get	O
+the	O
+following	O
+result	O
+:	O
+
+@CODE	O
+
+I	O
+can't	O
+quite	O
+see	O
+how	O
+to	O
+accomplish	O
+this	O
+in	O
+the	O
+pandas	O
+documentation	O
+.	O
+
+Any	O
+hints	O
+would	O
+be	O
+welcome	O
+.	O
+
+`	O
+g1	O
+`	O
+here	O
+is	O
+a	O
+DataFrame	B-API
+.	O
+
+It	O
+has	O
+a	O
+hierarchical	O
+index	O
+,	O
+though	O
+:	O
+
+@CODE	O
+
+Perhaps	O
+you	O
+want	O
+something	O
+like	O
+this	O
+?	O
+
+@CODE	O
+
+Or	O
+something	O
+like	O
+:	O
+
+@CODE	O
+
+generally	O
+you	O
+can	O
+do	O
+something	O
+like	O
+this	O
+:	O
+
+@CODE	O
+
+Or	O
+:	O
+
+@CODE	O

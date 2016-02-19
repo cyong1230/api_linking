@@ -1,0 +1,8 @@
+T1	API 44 53	DataFrame
+T2	API 263 272	DataFrame
+T3	API 761 774	DatetimeIndex
+T4	API 1033 1040	groupby
+T5	API 1164 1179	drop_duplicates
+T6	API 1490 1505	drop_duplicates
+T7	API 1579 1588	dataframe
+T8	API 1737 1746	dataframe

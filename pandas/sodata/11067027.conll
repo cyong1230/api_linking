@@ -1,0 +1,300 @@
+Python	O
+Pandas	O
+-	O
+Re-ordering	O
+columns	O
+in	O
+a	O
+dataframe	B-API
+based	O
+on	O
+column	O
+name	O
+
+I	O
+have	O
+a	O
+dataframe	B-API
+with	O
+over	O
+200	O
+columns(don't	O
+ask	O
+why	O
+)	O
+.	O
+
+The	O
+issue	O
+is	O
+as	O
+they	O
+were	O
+generated	O
+the	O
+order	O
+is	O
+
+[	O
+'	O
+Q1.3','Q6.1','Q1.2','Q1	O
+.1	O
+'	O
+,......	O
+]	O
+
+I	O
+need	O
+to	O
+re-order	O
+the	O
+columns	O
+as	O
+follows	O
+:	O
+
+[	O
+'	O
+Q1.1','Q1.2','Q1.3',.....'Q6	O
+.1	O
+'	O
+,......	O
+]	O
+
+Is	O
+there	O
+someway	O
+for	O
+me	O
+to	O
+do	O
+this	O
+within	O
+python	O
+?	O
+
+Thanks	O
+!	O
+
+@CODE	O
+
+This	O
+assumes	O
+that	O
+sorting	O
+the	O
+column	O
+names	O
+will	O
+give	O
+the	O
+order	O
+you	O
+want	O
+.	O
+
+If	O
+your	O
+column	O
+names	O
+won't	O
+sort	O
+lexicographically	O
+(	O
+e.g.	O
+,	O
+if	O
+you	O
+want	O
+column	O
+Q10.3	O
+to	O
+appear	O
+after	O
+Q9.1	O
+)	O
+,	O
+you'll	O
+need	O
+to	O
+sort	O
+differently	O
+,	O
+but	O
+that	O
+has	O
+nothing	O
+to	O
+do	O
+with	O
+pandas	O
+.	O
+
+The	O
+`	O
+sort	O
+`	O
+method	O
+and	O
+`	O
+sorted	O
+`	O
+function	O
+allow	O
+you	O
+to	O
+provide	O
+a	O
+custom	O
+function	O
+to	O
+extract	O
+the	O
+key	O
+used	O
+for	O
+comparison	O
+:	O
+
+@CODE	O
+
+You	O
+can	O
+also	O
+do	O
+more	O
+succinctly	O
+:	O
+
+`	O
+df.sort_index	O
+(	O
+axis=1	O
+)`	O
+
+Tweet's	O
+answer	O
+can	O
+be	O
+passed	O
+to	O
+BrenBarn's	O
+answer	O
+above	O
+with	O
+
+@CODE	O
+
+So	O
+for	O
+your	O
+example	O
+,	O
+say	O
+:	O
+
+@CODE	O
+
+You	O
+get	O
+:	O
+
+@CODE	O
+
+Then	O
+do	O
+:	O
+
+@CODE	O
+
+resulting	O
+in	O
+:	O
+
+@CODE	O
+
+You	O
+can	O
+just	O
+do	O
+:	O
+
+@CODE	O
+
+Don't	O
+forget	O
+to	O
+add	O
+"	O
+inplace=True	O
+"	O
+to	O
+Wes	O
+'	O
+answer	O
+or	O
+set	O
+the	O
+result	O
+to	O
+a	O
+new	O
+DataFrame	B-API
+.	O
+
+@CODE	O
+
+The	O
+quickest	O
+method	O
+is	O
+:	O
+
+@CODE	O
+
+Be	O
+aware	O
+that	O
+this	O
+creates	O
+a	O
+new	O
+instance	O
+.	O
+
+Therefore	O
+you	O
+need	O
+to	O
+store	O
+the	O
+result	O
+in	O
+a	O
+new	O
+variable	O
+:	O
+
+@CODE	O
+
+@CODE	O
+
+where	O
+by	O
+is	O
+the	O
+name	O
+of	O
+the	O
+column	O
+,	O
+if	O
+you	O
+want	O
+to	O
+sort	O
+the	O
+dataset	O
+based	O
+on	O
+column	O

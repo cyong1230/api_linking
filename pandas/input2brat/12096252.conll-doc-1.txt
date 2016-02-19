@@ -1,0 +1,13 @@
+use a list of values to select rows from a pandas dataframe
+Possible Duplicate :
+how to filter the dataframe rows of pandas by within / in ?
+Lets say I have the following pandas dataframe :
+@CODE
+I can subset based on a specific value :
+@CODE
+But how can I subset based on a list of values ?
+- something like this :
+@CODE
+This is indeed a duplicate of how to filter the dataframe rows of pandas by " within " / " in " ?
+, translating the response to your example gives :
+@CODE

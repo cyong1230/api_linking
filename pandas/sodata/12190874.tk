@@ -1,0 +1,17 @@
+Pandas : Sampling a DataFrame
+I'm trying to read a fairly large CSV file with Pandas and split it up into two random chunks , one of which being 10% of the data and the other being 90% .
+Here's my current attempt :
+@CODE
+For some reason , ` sklearn ` throws this error when I try to use one of these resulting DataFrame objects inside of a SVM classifier :
+@CODE
+I think I'm doing it wrong . Is there a better way to do this ?
+What version of pandas are you using ? For me your code works fine ( i ` m on git master ) .
+Another approach could be :
+@CODE
+Newer version ( from 0.16.1 on ) supports this directly :
+http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.sample.html
+I have found that ` np.random.choice() ` new in NumPy 1.7.0 works quite well for this .
+For example you can pass the index values from a DataFrame and and the integer 10 to select 10 random uniformly sampled rows .
+@CODE
+If you're using pandas.read_csv you can directly sample when loading the data , by using the skiprows parameter . Here is a short article I've written on this - https://nikolaygrozev.wordpress.com/2015/06/16/fast-and-simple-sampling-in-pandas-when-loading-data-from-files
+Pandas 0.16.1 have a sample method for that .

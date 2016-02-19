@@ -1,18 +1,12 @@
-Title	O
-:	O
-
 Renaming	O
 columns	O
 in	O
 pandas	O
 
-Q	O
-:	O
-
 I	O
 have	O
 a	O
-data	B-API
+data	O
 table	O
 using	O
 pandas	O
@@ -25,7 +19,7 @@ need	O
 to	O
 edit	O
 to	O
-replace	B-API
+replace	O
 the	O
 original	O
 column	O
@@ -38,19 +32,19 @@ to	O
 change	O
 the	O
 column	O
-names	B-API
+names	O
 in	O
 a	O
-data	B-API
+data	O
 table	O
 `	O
 A	O
 `	O
-where	B-API
+where	O
 the	O
 original	O
 column	O
-names	B-API
+names	O
 are	O
 :	O
 
@@ -65,7 +59,7 @@ have	O
 the	O
 edited	O
 column	O
-names	B-API
+names	O
 stored	O
 it	O
 in	O
@@ -78,17 +72,14 @@ don't	O
 know	O
 how	O
 to	O
-replace	B-API
+replace	O
 the	O
 column	O
-names	B-API
+names	O
 .	O
 
-A1	O
-:	O
-
 Just	O
-assign	B-API
+assign	O
 it	O
 to	O
 the	O
@@ -100,23 +91,17 @@ attribute	O
 
 @CODE	O
 
-A2	O
-:	O
-
 @CODE	O
 
 http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.rename.html	O
 
-A3	O
-:	O
-
 The	O
 `	O
-rename	B-API
+rename	O
 `	O
 method	O
 can	O
-take	B-API
+take	O
 a	O
 function	O
 ,	O
@@ -125,9 +110,6 @@ example	O
 :	O
 
 @CODE	O
-
-A4	O
-:	O
 
 Since	O
 you	O
@@ -139,9 +121,9 @@ the	O
 $	O
 sign	O
 in	O
-all	B-API
+all	O
 column	O
-names	B-API
+names	O
 ,	O
 you	O
 could	O
@@ -154,9 +136,6 @@ do	O
 OR	O
 
 @CODE	O
-
-A5	O
-:	O
 
 @CODE	O
 
@@ -181,7 +160,7 @@ when	O
 you	O
 need	O
 to	O
-rename	B-API
+rename	O
 only	O
 a	O
 few	O
@@ -197,9 +176,6 @@ special	O
 characters	O
 etc	O
 .	O
-
-A6	O
-:	O
 
 As	O
 documented	O

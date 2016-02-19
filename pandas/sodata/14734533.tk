@@ -1,0 +1,35 @@
+How to access pandas groupby dataframe by key
+How do I access the corresponding groupby dataframe in a groupby object by the key ? With the following groupby :
+@CODE
+I can iterate through it to get the keys and groups :
+@CODE
+I would like to be able to do something like
+@CODE
+But when I do that ( well , actually I have to do `gb[('foo ' , ) ] `) , I get this weird ` pandas.core.groupby.DataFrameGroupBy ` thing which doesn't seem to have any methods that correspond to the DataFrame I want .
+The best I can think of is
+@CODE
+but this is kind of nasty , considering how nice pandas usually is at these things .
+What's the built-in way of doing this ?
+You can use the ` get_group ` method :
+@CODE
+Wes McKinney ( pandas ' author ) in Python for Data Analysis provides the following recipe :
+@CODE
+which returns a dictionary whose keys are your group labels and whose values are DataFrames , i.e .
+@CODE
+will yield what you are looking for :
+@CODE
+Rather than
+@CODE
+I prefer using ` gb.groups `
+@CODE
+Because in this way you can choose multiple columns as well . for example :
+@CODE
+I was looking for a way to sample a few members of the GroupBy obj - had to address the posted question to get this done .
+create groupby object
+@CODE
+pick N dataframes and grab their indicies
+@CODE
+grab the groups
+@CODE
+optionally - turn it all back into a single dataframe object
+@CODE

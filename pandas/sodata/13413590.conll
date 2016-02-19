@@ -1,13 +1,10 @@
-Title	O
-:	O
-
 How	O
 to	O
-drop	B-API
+drop	O
 rows	O
 of	O
 Pandas	O
-dataframe	O
+dataframe	B-API
 whose	O
 value	O
 of	O
@@ -16,13 +13,10 @@ column	O
 is	O
 NaN	O
 
-Q	O
-:	O
-
 I	O
 have	O
 a	O
-df	O
+df	B-API
 :	O
 
 @CODE	O
@@ -49,7 +43,7 @@ df.drop	O
 will	O
 return	O
 the	O
-dataframe	O
+dataframe	B-API
 as	O
 below	O
 :	O
@@ -62,19 +56,16 @@ do	O
 that	O
 ?	O
 
-A1	O
-:	O
-
 Don't	O
 `	O
-drop	B-API
+drop	O
 `	O
 .	O
 
 Just	O
-take	B-API
+take	O
 rows	O
-where	B-API
+where	O
 `	O
 EPS	O
 `	O
@@ -83,9 +74,6 @@ finite	O
 :	O
 
 @CODE	O
-
-A2	O
-:	O
 
 This	O
 question	O
@@ -115,7 +103,7 @@ ability	O
 to	O
 handle	O
 missing	O
-data	B-API
+data	O
 ,	O
 including	O
 `	O
@@ -164,7 +152,7 @@ options	O
 (	O
 See	O
 docs	O
-at	B-API
+at	O
 http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.dropna.html	O
 )	O
 ,	O
@@ -179,9 +167,6 @@ rows	O
 Pretty	O
 handy	O
 !	O
-
-A3	O
-:	O
 
 I	O
 know	O

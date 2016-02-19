@@ -1,0 +1,39 @@
+How to apply a function to two columns of Pandas dataframe
+Suppose I have a ` df ` which has columns of `'ID ' , ' col_1 ' , ' col_2 '` .
+And I define a function :
+` f = lambda x , y : my_function_expression ` .
+Now I want to apply the ` f ` to `df`'s two columns `'col_1 ' , ' col_2 '` to element-wise calculate a new column `'col_3 '` , somewhat like :
+@CODE
+How to do ?
+** Add detail sample as below ***
+@CODE
+Here's an example using ` apply ` on the dataframe , which I am calling with ` axis = 1 ` .
+Note the difference is that instead of trying to pass two values to the function ` f ` , rewrite the function to accept a pandas Series object , and then index the Series to get the values needed .
+@CODE
+Depending on your use case , it is sometimes helpful to create a pandas ` group ` object , and then use ` apply ` on the group .
+The way you have written f it needs two inputs .
+If you look at the error message it says you are not providing two inputs to f , just one .
+The error message is correct .
+The mismatch is because df[['col1','col2 ' ]] returns a single dataframe with two columns , not two separate columns .
+You need to change your f so that it takes a single input , keep the above data frame as input , then break it up into x , y inside the function body .
+Then do whatever you need and return a single value .
+You need this function signature because the syntax is .apply ( f )
+So f needs to take the single thing = dataframe and not two things which is what your current f expects .
+Since you haven't provided the body of f I can't help in anymore detail - but this should provide the way out without fundamentally changing your code or using some other methods rather than apply
+The method you are looking for is Series.combine .
+However , it seems some care has to be taken around datatypes .
+In your example , you would ( as I did when testing the answer ) naively call
+@CODE
+However , this throws the error :
+@CODE
+My best guess is that it seems to expect the result to be of the same type as the series calling the method ( df.col_1 here ) .
+However , the following works :
+@CODE
+A interesting question !
+my answer as below :
+@CODE
+Output :
+@CODE
+I changed the column name to ID , J1 , J2 , J3 to ensure ID J1 J2 J3 , so the column display in right sequence .
+One more brief version :
+@CODE

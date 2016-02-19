@@ -1,6 +1,3 @@
-Title	O
-:	O
-
 What	O
 is	O
 the	O
@@ -10,13 +7,10 @@ way	O
 to	O
 loop	O
 through	O
-dataframes	O
+dataframes	B-API
 with	O
 pandas	O
 ?	O
-
-Q	O
-:	O
 
 I	O
 want	O
@@ -28,9 +22,9 @@ complex	O
 operations	O
 on	O
 financial	O
-data	B-API
+data	O
 in	O
-dataframes	O
+dataframes	B-API
 in	O
 a	O
 sequential	O
@@ -93,7 +87,7 @@ to	O
 iterate	O
 through	O
 the	O
-values	B-API
+values	O
 in	O
 a	O
 manner	O
@@ -126,9 +120,6 @@ by	O
 column	O
 .	O
 
-A1	O
-:	O
-
 Pandas	O
 is	O
 based	O
@@ -153,7 +144,7 @@ on	O
 the	O
 whole	O
 array	O
-at	B-API
+at	O
 once	O
 ,	O
 never	O
@@ -238,7 +229,7 @@ entire	O
 array	O
 (	O
 or	O
-dataframe	O
+dataframe	B-API
 )	O
 as	O
 a	O
@@ -248,9 +239,6 @@ rather	O
 than	O
 row-by-row	O
 .	O
-
-A2	O
-:	O
 
 You	O
 can	O
@@ -280,7 +268,7 @@ case	O
 .	O
 
 To	O
-get	B-API
+get	O
 the	O
 best	O
 possible	O
@@ -319,7 +307,7 @@ algorithm	O
 in	O
 pure	O
 Python	O
-first	B-API
+first	O
 ,	O
 make	O
 sure	O
@@ -348,7 +336,7 @@ with	O
 minimal	O
 work	O
 to	O
-get	B-API
+get	O
 something	O
 that's	O
 about	O
@@ -360,9 +348,6 @@ C	O
 /	O
 C++	O
 .	O
-
-A3	O
-:	O
 
 The	O
 newest	O
@@ -413,9 +398,6 @@ the	O
 fastest	O
 code	O
 .	O
-
-A4	O
-:	O
 
 I	O
 checked	O
@@ -493,9 +475,6 @@ series	O
 tuples	O
 .	O
 
-A5	O
-:	O
-
 Just	O
 as	O
 a	O
@@ -507,7 +486,7 @@ can	O
 also	O
 do	O
 an	O
-apply	B-API
+apply	O
 if	O
 you	O
 have	O
@@ -516,7 +495,7 @@ complex	O
 function	O
 that	O
 you	O
-apply	B-API
+apply	O
 to	O
 a	O
 single	O
@@ -527,15 +506,12 @@ http://pandas.pydata.org/pandas-docs/dev/generated/pandas.DataFrame.apply.html	O
 
 @CODE	O
 
-A6	O
-:	O
-
 Another	O
 suggestion	O
 would	O
 be	O
 to	O
-combine	B-API
+combine	O
 groupby	B-API
 with	O
 vectorized	O

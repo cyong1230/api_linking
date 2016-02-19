@@ -1,6 +1,3 @@
-Title	O
-:	O
-
 Adding	O
 new	O
 column	O
@@ -10,9 +7,6 @@ DataFrame	B-API
 in	O
 python	O
 pandas	O
-
-Q	O
-:	O
 
 I	O
 have	O
@@ -40,7 +34,7 @@ I	O
 would	O
 like	O
 to	O
-add	B-API
+add	O
 new	O
 column	O
 '	O
@@ -49,7 +43,7 @@ e	O
 to	O
 the	O
 existing	O
-df	O
+df	B-API
 and	O
 do	O
 not	O
@@ -57,7 +51,7 @@ change	O
 anything	O
 in	O
 the	O
-df	O
+df	B-API
 .	O
 
 (	O
@@ -70,7 +64,7 @@ same	O
 length	O
 as	O
 a	O
-dataframe	O
+dataframe	B-API
 .	O
 )	O
 I	O
@@ -79,15 +73,15 @@ different	O
 version	O
 of	O
 `	O
-join	B-API
+join	O
 `	O
 ,	O
 `	O
-append	B-API
+append	O
 `	O
 ,	O
 `	O
-merge	B-API
+merge	O
 `	O
 but	O
 do	O
@@ -99,7 +93,7 @@ I	O
 want	O
 ,	O
 error	O
-at	B-API
+at	O
 the	O
 most	O
 .	O
@@ -107,7 +101,7 @@ most	O
 The	O
 series	O
 and	O
-df	O
+df	B-API
 is	O
 already	O
 given	O
@@ -137,9 +131,6 @@ figure	O
 it	O
 out	O
 
-A1	O
-:	O
-
 Doing	O
 this	O
 directly	O
@@ -166,7 +157,7 @@ was	O
 to	O
 use	O
 `	O
-map	B-API
+map	O
 `	O
 (	O
 which	O
@@ -176,9 +167,6 @@ slower	O
 ):	O
 
 @CODE	O
-
-A2	O
-:	O
 
 Use	O
 the	O
@@ -199,7 +187,7 @@ Edit	O
 Some	O
 reported	O
 to	O
-get	B-API
+get	O
 the	O
 `	O
 SettingWithCopyWarning	O
@@ -237,7 +225,7 @@ invalid	O
 assignment	O
 on	O
 a	O
-copy	B-API
+copy	O
 of	O
 the	O
 Dataframe	O
@@ -280,7 +268,7 @@ Then	O
 ,	O
 if	O
 you	O
-get	B-API
+get	O
 the	O
 warning	O
 ,	O
@@ -317,9 +305,6 @@ in	O
 panda	O
 docs	O
 
-A3	O
-:	O
-
 This	O
 is	O
 the	O
@@ -337,9 +322,6 @@ column	O
 =	O
 e	O
 `	O
-
-A4	O
-:	O
 
 One	O
 thing	O
@@ -362,7 +344,7 @@ effectively	O
 be	O
 a	O
 left	O
-join	B-API
+join	O
 on	O
 the	O
 df1.index	O
@@ -376,7 +358,7 @@ to	O
 have	O
 an	O
 outer	O
-join	B-API
+join	O
 effect	O
 ,	O
 my	O
@@ -387,16 +369,16 @@ is	O
 to	O
 create	O
 a	O
-dataframe	O
+dataframe	B-API
 with	O
 index	O
-values	B-API
+values	O
 covering	O
 the	O
 universe	O
 of	O
 your	O
-data	B-API
+data	O
 ,	O
 and	O
 then	O
@@ -410,9 +392,6 @@ E.g	O
 .	O
 
 @CODE	O
-
-A5	O
-:	O
 
 I	O
 got	O
@@ -462,10 +441,10 @@ This	O
 worked	O
 fine	O
 to	O
-insert	B-API
+insert	O
 the	O
 column	O
-at	B-API
+at	O
 the	O
 end	O
 .	O
@@ -511,9 +490,6 @@ the	O
 index	O
 .	O
 
-A6	O
-:	O
-
 Before	O
 assigning	O
 a	O
@@ -524,12 +500,12 @@ if	O
 you	O
 have	O
 indexed	O
-data	B-API
+data	O
 ,	O
 you	O
 need	O
 to	O
-sort	B-API
+sort	O
 the	O
 index	O
 .	O

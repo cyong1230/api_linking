@@ -1,16 +1,10 @@
-Title	O
-:	O
-
 Pandas	O
 :	O
 change	O
-data	B-API
+data	O
 type	O
 of	O
 columns	O
-
-Q	O
-:	O
 
 I	O
 want	O
@@ -88,7 +82,7 @@ to	O
 create	O
 the	O
 DataFrame	B-API
-first	B-API
+first	O
 and	O
 then	O
 loop	O
@@ -146,15 +140,12 @@ that	O
 each	O
 columns	O
 contains	O
-values	B-API
+values	O
 of	O
 the	O
 same	O
 type	O
 .	O
-
-A1	O
-:	O
 
 How	O
 about	O
@@ -206,7 +197,7 @@ x	O
 '	O
 ]]	O
 
-df	O
+df	B-API
 =	O
 pd.DataFrame	O
 (	O
@@ -225,7 +216,7 @@ three	O
 ]	O
 )	O
 
-df	O
+df	B-API
 
 Out[16	O
 ]:	O
@@ -299,9 +290,6 @@ float64	O
 
 `	O
 
-A2	O
-:	O
-
 As	O
 mentioned	O
 in	O
@@ -373,7 +361,7 @@ there's	O
 no	O
 need	O
 to	O
-select	B-API
+select	O
 columns	O
 individually	O
 and	O
@@ -436,7 +424,7 @@ numeric	O
 type	O
 for	O
 the	O
-values	B-API
+values	O
 .	O
 
 Column	O
@@ -452,7 +440,7 @@ a	O
 numeric	O
 (	O
 or	O
-date	B-API
+date	O
 )	O
 type	O
 and	O
@@ -489,7 +477,7 @@ number	O
 strings	O
 ,	O
 the	O
-values	B-API
+values	O
 in	O
 column	O
 `	O
@@ -509,7 +497,7 @@ This	O
 method	O
 returns	O
 a	O
-copy	B-API
+copy	O
 of	O
 the	O
 DataFrame	B-API

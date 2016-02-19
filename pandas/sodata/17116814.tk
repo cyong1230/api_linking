@@ -1,0 +1,23 @@
+pandas : How do I split text in a column into multiple rows ?
+I'm working with a large csv file and the next to last column has a string of text that I want to split by a specific delimiter . I was wondering if there is a simple way to do this using pandas or python ?
+@CODE
+I want to split by the space ( ' ') and then the colon ( ' : ') in the ' Seatblocks ' column , but each cell would result in a different number of columns . I have a function to rearrange the columns so the Seatblocks column is at the end of the sheet , but I'm not sure what to do from there . I can do it in excel with the built in ' text-to-columns ' function and a quick macro , but my dataset has too many records for excel to handle .
+Ultimately , I want to take records such John Lennon's and create multiple lines , with the info from each set of seats on a separate line .
+This splits the Seatblocks by space and gives each its own row .
+@CODE
+Or , to give each colon-separated string in its own column :
+@CODE
+This is a little ugly , but maybe someone will chime in with a prettier solution .
+Differently from Dan , I consider his answer quite elegant ... but unfortunately it is also very very inefficient . So , since the question mentioned " a large csv file " , let me suggest to try in a shell Dan's solution :
+@CODE
+... compared to this alternative :
+@CODE
+... and this :
+@CODE
+The second simply refrains from allocating 100 000 Series , and this is enough to make it around 10 times faster . But the third solution , which somewhat ironically wastes a lot of calls to str.split() ( it is called once per column per row , so three times more than for the others two solutions ) , is around 40 times faster than the first , because it even avoids to instance the 100 000 lists . And yes , it is certainly a little ugly ...
+EDIT : this answer suggests how to use " to_list() " and to avoid the need for a lambda . The result is something like
+@CODE
+which is even more efficient than the third solution , and certainly much more elegant .
+EDIT : the even simpler
+@CODE
+works too , and is almost as efficient .

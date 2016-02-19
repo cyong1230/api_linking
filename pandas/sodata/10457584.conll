@@ -1,0 +1,72 @@
+Redefining	O
+the	O
+Index	O
+in	O
+a	O
+Pandas	O
+DataFrame	B-API
+object	O
+
+I	O
+am	O
+trying	O
+to	O
+re-index	O
+a	O
+pandas	O
+DataFrame	B-API
+object	O
+,	O
+like	O
+so	O
+,	O
+
+@CODE	O
+
+I	O
+am	O
+going	O
+about	O
+this	O
+as	O
+shown	O
+below	O
+and	O
+am	O
+getting	O
+the	O
+wrong	O
+answer	O
+.	O
+
+Any	O
+clues	O
+on	O
+how	O
+to	O
+do	O
+this	O
+?	O
+
+@CODE	O
+
+Any	O
+idea	O
+why	O
+this	O
+is	O
+happening	O
+?	O
+
+Why	O
+don't	O
+you	O
+simply	O
+use	O
+`	O
+set_index	B-API
+`	O
+method	O
+?	O
+
+@CODE	O

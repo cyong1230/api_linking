@@ -1,15 +1,9 @@
-Title	O
-:	O
-
-add	B-API
+add	O
 one	O
 row	O
 in	O
 a	O
 pandas.DataFrame	B-API
-
-Q	O
-:	O
 
 I	O
 understand	O
@@ -28,10 +22,10 @@ need	O
 to	O
 create	O
 an	O
-empty	B-API
+empty	O
 DataFrame	B-API
 then	O
-add	B-API
+add	O
 rows	O
 ,	O
 one	O
@@ -53,7 +47,7 @@ I	O
 successfully	O
 created	O
 an	O
-empty	B-API
+empty	O
 DataFrame	B-API
 with	O
 :	O
@@ -63,7 +57,7 @@ with	O
 Then	O
 I	O
 can	O
-add	B-API
+add	O
 a	O
 new	O
 row	O
@@ -95,7 +89,7 @@ value	O
 How	O
 can	O
 I	O
-add	B-API
+add	O
 a	O
 new	O
 row	O
@@ -109,9 +103,6 @@ columns	O
 type	O
 )	O
 ?	O
-
-A1	O
-:	O
 
 You	O
 could	O
@@ -133,14 +124,11 @@ examples	O
 see	O
 Merge	O
 ,	O
-join	B-API
+join	O
 ,	O
 and	O
 concatenate	O
 .	O
-
-A2	O
-:	O
 
 You	O
 could	O
@@ -161,7 +149,7 @@ corresponds	O
 to	O
 a	O
 input	O
-data	B-API
+data	O
 row	O
 .	O
 
@@ -189,7 +177,7 @@ complete	O
 then	O
 create	O
 a	O
-data	B-API
+data	O
 frame	O
 .	O
 
@@ -206,23 +194,23 @@ has	O
 a	O
 similar	O
 problem	O
-where	B-API
+where	O
 if	O
 I	O
 created	O
 a	O
-data	B-API
+data	O
 frame	O
 for	O
 each	O
 row	O
 and	O
-append	B-API
+append	O
 it	O
 to	O
 the	O
 main	O
-data	B-API
+data	O
 frame	O
 it	O
 took	O
@@ -244,13 +232,10 @@ I	O
 was	O
 successful	O
 within	O
-seconds	B-API
+seconds	O
 .	O
 
 @CODE	O
-
-A3	O
-:	O
 
 For	O
 efficient	O
@@ -258,14 +243,14 @@ appending	O
 see	O
 How	O
 to	O
-add	B-API
+add	O
 an	O
 extra	O
 row	O
 to	O
 a	O
 pandas	O
-dataframe	O
+dataframe	B-API
 and	O
 Setting	O
 With	O
@@ -276,20 +261,17 @@ Add	O
 rows	O
 through	O
 `	O
-loc	B-API
+loc	O
 `	O
 on	O
 non	O
 existing	O
 index	O
-data	B-API
+data	O
 .	O
 
-A4	O
-:	O
-
 Example	O
-at	B-API
+at	O
 @Nasser	O
 '	O
 s	O
@@ -297,9 +279,6 @@ answer	O
 :	O
 
 @CODE	O
-
-A5	O
-:	O
 
 If	O
 you	O
@@ -324,7 +303,7 @@ index	O
 (	O
 taking	O
 the	O
-data	B-API
+data	O
 example	O
 from	O
 a	O
@@ -348,13 +327,13 @@ comments	O
 -	O
 with	O
 a	O
-size	B-API
+size	O
 of	O
 6000	O
 ,	O
 the	O
 speed	O
-difference	B-API
+difference	O
 becomes	O
 even	O
 larger	O
@@ -362,7 +341,7 @@ larger	O
 
 Increasing	O
 the	O
-size	B-API
+size	O
 of	O
 the	O
 array	O
@@ -381,15 +360,12 @@ makes	O
 
 the	O
 speed	O
-difference	B-API
+difference	O
 more	O
 striking	O
 :	O
 313ms	O
 vs	O
 2.29s	O
-
-A6	O
-:	O
 
 @CODE	O

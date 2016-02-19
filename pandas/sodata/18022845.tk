@@ -1,0 +1,14 @@
+Pandas index column title or name
+Does anyone know how to get the index column name in pandas ? Here's an example dataframe of what I'm talking about :
+@CODE
+What I'm trying to do is get / set the index title . The only way I can figure out how to set the title is by adding a column in the dataframe , giving that column a name , then setting the index to be that column and deleting the added column . By default the index title becomes that columns title but after I delete it I have no way of getting that title again . Here's a working example :
+@CODE
+Anyone know how to do this ? I was unable to find anything about this online . Thanks !
+You can just get / set the index via its ` name ` property
+@CODE
+` df.index.name ` should do the trick .
+Python has a ` dir ` function that let's you query object attributes . ` dir ( df.index )` was helpful here .
+If you do not want to create a new row but simply put it in the empty cell then use :
+@CODE
+Otherwise use :
+@CODE
