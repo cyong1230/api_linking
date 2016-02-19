@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 T1	API 112 121	DataFrame
 T2	API 337 346	DataFrame
 T3	API 379 388	DataFrame
@@ -9,3 +10,18 @@ T8	API 1433 1442	DataFrame
 T9	API 1512 1518	astype
 T10	API 1662 1671	DataFrame
 T11	API 2127 2136	DataFrame
+=======
+T1	API 124 133	DataFrame
+T2	API 349 358	DataFrame
+T3	API 391 400	DataFrame
+T4	API 401 406	first
+T5	API 688 694	values
+T6	API 1189 1204	convert_objects
+T7	API 1257 1266	DataFrame
+T8	API 1455 1464	DataFrame
+T9	API 1534 1540	astype
+T10	API 1684 1693	DataFrame
+T11	API 1819 1825	values
+T12	API 2053 2059	values
+T13	API 2149 2158	DataFrame
+>>>>>>> Stashed changes

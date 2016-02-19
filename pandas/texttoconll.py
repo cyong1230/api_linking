@@ -50,7 +50,9 @@ def text_to_conll(f):
                     t_nobracket = t[:-2]
                     if t_nobracket in api_list:
                         lines.append([t, 'B-API'])
-                elif t in api_list: 
+                    else
+                        lines.append([t, 'O'])
+                elif t in api_list:
                     #print t
                     lines.append([t, 'B-API'])
                 else:
@@ -65,7 +67,7 @@ def text_to_conll(f):
 
 def build_list():
     f = open('./apidoc/all-remove.txt', 'r')
-    for line in f: 
+    for line in f:
         api = line.strip()
         api_list.append(api)
     return api_list

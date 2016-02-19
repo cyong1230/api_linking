@@ -290,7 +290,11 @@ factorized	O
 versions	O
 of	O
 the	O
+<<<<<<< Updated upstream
 join	O
+=======
+join	B-API
+>>>>>>> Stashed changes
 keys	O
 ,	O
 the	O
@@ -524,7 +528,11 @@ i	O
 )	O
 multi	O
 column	O
+<<<<<<< Updated upstream
 ordered	O
+=======
+ordered	B-API
+>>>>>>> Stashed changes
 keys	O
 such	O
 as	O
@@ -836,7 +844,11 @@ i	O
 
 multi	O
 column	O
+<<<<<<< Updated upstream
 ordered	O
+=======
+ordered	B-API
+>>>>>>> Stashed changes
 keys	O
 such	O
 as	O
@@ -915,7 +927,11 @@ is	O
 literally	O
 just	O
 the	O
+<<<<<<< Updated upstream
 sort	O
+=======
+sort	B-API
+>>>>>>> Stashed changes
 order	O
 (	O
 similar	O
@@ -1151,7 +1167,11 @@ is	O
 factoring	O
 "	O
 the	O
+<<<<<<< Updated upstream
 join	O
+=======
+join	B-API
+>>>>>>> Stashed changes
 keys	O
 ,	O
 and	O
@@ -1220,7 +1240,11 @@ end	O
 Thus	O
 the	O
 only	O
+<<<<<<< Updated upstream
 real	O
+=======
+real	B-API
+>>>>>>> Stashed changes
 difference	O
 in	O
 approach	O

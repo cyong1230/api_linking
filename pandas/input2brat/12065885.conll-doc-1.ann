@@ -1,5 +1,22 @@
+<<<<<<< Updated upstream
 T1	API 18 27	DataFrame
 T2	API 77 86	DataFrame
 T3	API 783 792	DataFrame
 T4	API 1118 1127	DataFrame
 T5	API 1405 1414	DataFrame
+=======
+T1	API 15 21	filter
+T2	API 26 35	DataFrame
+T3	API 89 98	DataFrame
+T4	API 138 144	filter
+T5	API 464 468	isin
+T6	API 579 585	isin()
+T7	API 713 719	filter
+T8	API 817 826	DataFrame
+T9	API 986 992	values
+T10	API 1041 1045	join
+T11	API 1141 1147	filter
+T12	API 1152 1161	DataFrame
+T13	API 1433 1438	query
+T14	API 1444 1453	DataFrame
+>>>>>>> Stashed changes
