@@ -23,7 +23,7 @@ def file_len(fname):
         for i, l in enumerate(f):
             pass
     f.close()
-    return i 
+    return i
 
 def my_encoder(my_string):
     for i in my_string:
@@ -40,7 +40,7 @@ class MLStripper(HTMLParser):
         self.reset()
         self.fed = []
         self.entityref = re.compile('&[a-zA-Z][-.a-zA-Z0-9]*[^a-zA-Z0-9]')
-    
+
     def handle_data(self, d):
         self.fed.append(d)
 
@@ -49,7 +49,7 @@ class MLStripper(HTMLParser):
 
     def handle_endtag(self, tag):
         self.fed.append(' ')
-   
+
     def handle_entityref(self, name):
         if entitydefs.get(name) is None:
             m = self.entityref.match(self.rawdata.splitlines()[self.lineno-1][self.offset:])
@@ -60,20 +60,20 @@ class MLStripper(HTMLParser):
                 if entity[-1] != ';':
                     entity = entity[:-1]
                 self.fed.append(entity)
-            else: 
+            else:
                 self.fed.append('')
         else:
             self.fed.append(' ')
 
     def get_data(self):
         self.close()
-        return ''.join(self.fed) 
+        return ''.join(self.fed)
 
 def strip_tags(html):
     s = MLStripper()
     html = re.sub(r'<code>', '`', html)
     html = re.sub(r'</code>', '`', html)
-    html = re.sub(r'<pre>.*?</pre>', '@CODE', html)
+    html = re.sub(r'&#xA;&#xA;<pre>.*?</pre>', '@CODE', html)
     #html = re.sub(r'(`(?=\S)|(?<=\S)`)', '', html)
     html = re.sub(r'(&#xA;)+','\n', html)
     s.feed(html)
