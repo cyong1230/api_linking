@@ -1,22 +1,21 @@
 Renaming columns in pandas
 I have a data table using pandas and column labels that I need to edit to replace the original column labels. 
-I'd like to change the column names in a data table `A` where the original column names are: 
-@CODE
-to 
-@CODE
+I'd like to change the column names in a data table `A` where the original column names are: @CODE
+to @CODE
 I have the edited column names stored it in a list, but I don't know how to replace the column names.
-Just assign it to the `.columns` attribute: 
-@CODE
-@CODE
+Just assign it to the `.columns` attribute: @CODE
+`df = df.rename(columns={'$a': 'a', '$b': 'b'})
+# OR
+df.rename(columns={'$a': 'a', '$b': 'b'}, inplace=True)
+` 
 http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.rename.html
-The `rename` method can take a function, for example: 
-@CODE
-Since you only want to remove the $ sign in all column names, you could just do: 
-@CODE
-OR 
-@CODE
-@CODE
+The `rename` method can take a function, for example: @CODE
+Since you only want to remove the $ sign in all column names, you could just do: @CODE
+OR @CODE
+`old_names = ['$a', '$b', '$c', '$d', '$e'] 
+new_names = ['a', 'b', 'c', 'd', 'e']
+df.rename(columns=dict(zip(old_names, new_names)), inplace=True)
+` 
 This way you can manually edit the `new_names` as you wish.
 Works great when you need to rename only a few columns to correct mispellings, accents, remove special characters etc.
-As documented in http://pandas.pydata.org/pandas-docs/stable/text.html : 
-@CODE
+As documented in http://pandas.pydata.org/pandas-docs/stable/text.html : @CODE

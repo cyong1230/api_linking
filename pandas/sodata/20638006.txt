@@ -1,8 +1,5 @@
 Convert list of dictionaries to Dataframe
-I have a list of dictionaries like this: 
-@CODE
-and I want to turn this into a pandas dataframe like this: 
-@CODE
+I have a list of dictionaries like this: @CODE
+and I want to turn this into a pandas dataframe like this: @CODE
 Order of the columns does not matter. Ultimately, the goal is to write this to a text file and this seems like the best solution I could find. How can I turn the list of dictionaries into a panda data frame as shown above?
-Supposing `d` is your list of dicts, simply: 
-@CODE
+Supposing `d` is your list of dicts, simply: @CODE

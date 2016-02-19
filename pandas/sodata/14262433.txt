@@ -38,17 +38,12 @@ Solution
 Ensure you have sure you have pandas at least `0.10.1` installed. 
 Read iterating files chunk-by-chunk and multiple table queries . 
 Since pytables is optimized to operate on row-wise (which is what you query on), we will create a table for each group of fields. This way it's easy to select a small group of fields (which will work with a big table, but it's more efficient to do it this way... I think I may be able to fix this limitation in the future... this is more intuitive anyhow): 
-(The following is pseudocode.) 
-@CODE
-Reading in the files and creating the storage (essentially doing what `append_to_multiple` does): 
-@CODE
+(The following is pseudocode.) @CODE
+Reading in the files and creating the storage (essentially doing what `append_to_multiple` does): @CODE
 Now you have all of the tables in the file (actually you could store them in separate files if you wish, you would prob have to add the filename to the group_map, but probably this isn't necessary). 
-This is how you get columns and create new ones: 
-@CODE
-When you are ready for post_processing: 
-@CODE
-About data_columns, you don't actually need to define ANY data_columns; they allow you to sub-select rows based on the column. E.g. something like: 
-@CODE
+This is how you get columns and create new ones: @CODE
+When you are ready for post_processing: @CODE
+About data_columns, you don't actually need to define ANY data_columns; they allow you to sub-select rows based on the column. E.g. something like: @CODE
 They may be most interesting to you in the final report generation stage (essentially a data column is segregated from other columns, which might impact efficiency somewhat if you define a lot). 
 You also might want to: 
 create a function which takes a list of fields, looks up the groups in the groups_map, then selects these and concatenates the results so you get the resulting frame (this is essentially what select_as_multiple does). This way the structure would be pretty transparent to you. 
@@ -56,26 +51,19 @@ indexes on certain data columns (makes row-subsetting much faster).
 enable compression. 
 Let me know when you have questions!
 This is the case for pymongo. I have also prototyped using sql server, sqlite, HDF, ORM (SQLAlchemy) in python. First and foremost pymongo is a document based DB, so each person would be a document (`dict` of attributes). Many people form a collection and you can have many collections (people, stock market, income). 
-pd.dateframe -> pymongo Note: I use the `chunksize` in `read_csv` to keep it to 5 to 10k records(pymongo drops the socket if larger) 
-@CODE
-querying: gt = greater than... 
-@CODE
+pd.dateframe -> pymongo Note: I use the `chunksize` in `read_csv` to keep it to 5 to 10k records(pymongo drops the socket if larger) @CODE
+querying: gt = greater than... @CODE
 `.find()` returns an iterator so I commonly use `ichunked` to chop into smaller iterators. 
-How about a join since I normally get 10 data sources to paste together: 
-@CODE
-then (in my case sometimes I have to agg on `aJoinDF` first before its "mergeable".) 
-@CODE
-And you can then write the new info to your main collection via the update method below. (logical collection vs physical datasources). 
-@CODE
+How about a join since I normally get 10 data sources to paste together: @CODE
+then (in my case sometimes I have to agg on `aJoinDF` first before its "mergeable".) @CODE
+And you can then write the new info to your main collection via the update method below. (logical collection vs physical datasources). @CODE
 On smaller lookups, just denormalize. For example, you have code in the document and you just add the field code text and do a `dict` lookup as you create documents. 
 Now you have a nice dataset based around a person, you can unleash your logic on each case and make more attributes. Finally you can read into pandas your 3 to memory max key indicators and do pivots/agg/data exploration. This works for me for 3 million records with numbers/big text/categories/codes/floats/... 
 You can also use the two methods built into MongoDB (MapReduce and aggregate framework). See here for more info about the aggregate framework , as it seems to be easier than MapReduce and looks handy for quick aggregate work. Notice I didn't need to define my fields or relations, and I can add items to a document. At the current state of the rapidly changing numpy, pandas, python toolset, MongoDB helps me just get to work :)
 I spotted this a little late, but I work with a similar problem (mortgage prepayment models). My solution has been to skip the pandas HDFStore layer and use straight pytables. I save each column as an individual HDF5 array in my final file. 
 My basic workflow is to first get a CSV file from the database. I gzip it, so it's not as huge. Then I convert that to a row-oriented HDF5 file, by iterating over it in python, converting each row to a real data type, and writing it to a HDF5 file. That takes some tens of minutes, but it doesn't use any memory, since it's only operating row-by-row. Then I "transpose" the row-oriented HDF5 file into a column-oriented HDF5 file. 
-The table transpose looks like: 
-@CODE
-Reading it back in then looks like: 
-@CODE
+The table transpose looks like: @CODE
+Reading it back in then looks like: @CODE
 Now, I generally run this on a machine with a ton of memory, so I may not be careful enough with my memory usage. For example, by default the load operation reads the whole data set. 
 This generally works for me, but it's a bit clunky, and I can't use the fancy pytables magic. 
 Edit: The real advantage of this approach, over the array-of-records pytables default, is that I can then load the data into R using h5r, which can't handle tables. Or, at least, I've been unable to get it to load heterogeneous tables.

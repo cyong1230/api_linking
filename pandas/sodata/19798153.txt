@@ -11,17 +11,11 @@ Element-wise Python functions can be used, too. Suppose you wanted to compute a 
 The reason for the name applymap is that Series has a map method for applying an element-wise function: 
 @CODE
 Summing up, `apply` works on a row / column basis of a DataFrame, `applymap` works element-wise on a DataFrame, and `map` works element-wise on a Series.
-@jeremiahbuddha mentioned that apply works on row/columns, while applymap works element-wise. But it seems you can still use apply for element-wise computation.... 
-@CODE
+@jeremiahbuddha mentioned that apply works on row/columns, while applymap works element-wise. But it seems you can still use apply for element-wise computation.... @CODE
 Adding to the other answers, in a `Series` there are also map and apply . 
-Apply can make a DataFrame out of a series ; however, map will just put a series in every cell of another series, which is probably not what you want. 
-@CODE
-Also if I had a function with side effects, such as "connect to a web server", I'd probably use `apply` just for the sake of clarity. 
-@CODE
+Apply can make a DataFrame out of a series ; however, map will just put a series in every cell of another series, which is probably not what you want. @CODE
+Also if I had a function with side effects, such as "connect to a web server", I'd probably use `apply` just for the sake of clarity. @CODE
 `Map` can use not only a function, but also a dictionary or another series. Let's say you want to manipulate permutations . 
-Take 
-@CODE
-The square of this permutation is 
-@CODE
-You can compute it using `map`. Not sure if self-application is documented, but it works in `0.15.1`. 
-@CODE
+Take @CODE
+The square of this permutation is @CODE
+You can compute it using `map`. Not sure if self-application is documented, but it works in `0.15.1`. @CODE

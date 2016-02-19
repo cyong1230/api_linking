@@ -43,15 +43,12 @@ ax2.set_xticklabels([], minor=True)
 plt.show()
 print testSeries['6/4/2011':'6/7/2011']
 ` 
-and it's output: 
+and it's output: @CODE
 @CODE
 @CODE
-@CODE
-Update: I've been able to get closer to the layout I wanted by using a loop to build the major xtick labels: 
-@CODE
+Update: I've been able to get closer to the layout I wanted by using a loop to build the major xtick labels: @CODE
 But this is a bit like doing the x-axis using ax.annotate, possible but not ideal.
 Both `pandas` and `matplotlib.dates` use `matplotlib.units` for locating the ticks. 
 But while `matplotlib.dates` has convenient ways to set the ticks manually, pandas seems to have the focus on auto formatting so far (you can have a look at the code for date conversion and formatting in pandas). 
-So for the moment it seems more reasonable to use `matplotlib.dates` (as mentioned by @BrenBarn in his comment). 
-@CODE
+So for the moment it seems more reasonable to use `matplotlib.dates` (as mentioned by @BrenBarn in his comment). @CODE
 (my locale is German, so that Tuesday [Tue] becomes Dienstag [Di])

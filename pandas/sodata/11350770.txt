@@ -1,24 +1,15 @@
 pandas + dataframe - select by partial string
 I have a `DataFrame` with 4 columns of which 2 contain string values. I was wondering if there was a way to select rows based on a partial string match against a particular column? 
-In other words, a function or lambda function that would do something like 
-@CODE
+In other words, a function or lambda function that would do something like @CODE
 returning a boolean. I am familiar with the syntax of `df[df['A'] == "hello world"]` but can't seem to find a way to do the same with a partial string match say 'hello'. 
 Would someone be able to point me in the right direction?
-Here's what I ended up doing for partial string matches. If anyone has a more efficient way of doing this please let me know. 
-@CODE
-Based on github issue #620 , it looks like you'll soon be able to do the following: 
-@CODE
+Here's what I ended up doing for partial string matches. If anyone has a more efficient way of doing this please let me know. @CODE
+Based on github issue #620 , it looks like you'll soon be able to do the following: @CODE
 Update: vectorized string methods (i.e., Series.str) are available in pandas 0.8.1 and up.
-Quick note: if you want to do selection based on a partial string contained in the index, try the following: 
-@CODE
-I am using pandas 0.14.1 on macos in ipython notebook. I tried the proposed line above: 
-@CODE
-and got an error: 
-@CODE
-but it worked perfectly when an "==True" condition was added, like this: 
-@CODE
-Say you have the following `DataFrame`: 
-@CODE
-You can always use the `in` operator in a lambda expression to create your filter. 
-@CODE
+Quick note: if you want to do selection based on a partial string contained in the index, try the following: @CODE
+I am using pandas 0.14.1 on macos in ipython notebook. I tried the proposed line above: @CODE
+and got an error: @CODE
+but it worked perfectly when an "==True" condition was added, like this: @CODE
+Say you have the following `DataFrame`: @CODE
+You can always use the `in` operator in a lambda expression to create your filter. @CODE
 The trick here is to use the `axis=1` option in the `apply` to pass elements to the lambda function row by row, as opposed to column by column.

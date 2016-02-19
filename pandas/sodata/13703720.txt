@@ -1,62 +1,45 @@
 Converting between datetime, Timestamp and datetime64
 How do I convert a `numpy.datetime64` object to a `datetime.datetime` (or `Timestamp`)? 
-In the following code, I create a datetime, timestamp and datetime64 objects. 
-@CODE
-Note: it's easy to get the datetime from the Timestamp: 
-@CODE
+In the following code, I create a datetime, timestamp and datetime64 objects. @CODE
+Note: it's easy to get the datetime from the Timestamp: @CODE
 But how do we extract the `datetime` or `Timestamp` from a `numpy.datetime64` (`dt64`)? 
 . 
-Update: a somewhat nasty example in my dataset (perhaps the motivating example) seems to be: 
-@CODE
+Update: a somewhat nasty example in my dataset (perhaps the motivating example) seems to be: @CODE
 which should be `datetime.datetime(2002, 6, 28, 1, 0)`, and not a long (!) (`1025222400000000000L`)...
-One option is to use `str`, and then `to_datetime` (or similar): 
-@CODE
-Note: it is not equal to `dt` because it's become "offset-aware" : 
-@CODE
+One option is to use `str`, and then `to_datetime` (or similar): @CODE
+Note: it is not equal to `dt` because it's become "offset-aware" : @CODE
 This seems inelegant. 
 . 
-Update: this can deal with the "nasty example": 
-@CODE
-@CODE
+Update: this can deal with the "nasty example": @CODE
+` dt64.tolist()
+datetime.datetime(2012, 5, 1, 0, 0)
+` 
 For `DatetimeIndex`, the `tolist` returns a list of `datetime` objects. For a single `datetime64` object it returns a single `datetime` object.
-To convert `numpy.datetime64` to datetime object that represents time in UTC on `numpy-1.8`: 
-@CODE
+To convert `numpy.datetime64` to datetime object that represents time in UTC on `numpy-1.8`: @CODE
 The above example assumes that a naive datetime object is interpreted by `np.datetime64` as time in UTC. 
-To convert datetime to np.datetime64 and back (`numpy-1.6`): 
-@CODE
+To convert datetime to np.datetime64 and back (`numpy-1.6`): @CODE
 It works both on a single np.datetime64 object and a numpy array of np.datetime64. 
 Think of np.datetime64 the same way you would about np.int8, np.int16, etc and apply the same methods to convert beetween Python objects such as int, datetime and corresponding numpy objects. 
-Your "nasty example" works correctly: 
-@CODE
-I can reproduce the `long` value on `numpy-1.8.0` installed as: 
-@CODE
-The same example: 
-@CODE
+Your "nasty example" works correctly: @CODE
+I can reproduce the `long` value on `numpy-1.8.0` installed as: @CODE
+The same example: @CODE
 It returns `long` because for `numpy.datetime64` type `.astype(datetime)` is equivalent to `.astype(object)` that returns Python integer (`long`) on `numpy-1.8`. 
-To get datetime object you could: 
-@CODE
-To get datetime64 that uses seconds directly: 
-@CODE
+To get datetime object you could: @CODE
+To get datetime64 that uses seconds directly: @CODE
 The numpy docs say that the datetime API is experimental and may change in future numpy versions.
 Welcome to hell. 
-You can just pass a datetime64 object to `pandas.Timestamp`: 
-@CODE
-I noticed that this doesn't work right though in NumPy 1.6.1: 
-@CODE
-Also, `pandas.to_datetime` can be used (this is off of the dev version, haven't checked v0.9.1): 
-@CODE
+You can just pass a datetime64 object to `pandas.Timestamp`: @CODE
+I noticed that this doesn't work right though in NumPy 1.6.1: @CODE
+Also, `pandas.to_datetime` can be used (this is off of the dev version, haven't checked v0.9.1): @CODE
 You can just use the pd.Timestamp constructor. The following diagram may be useful for this and related questions.
-If you want to convert an entire pandas series of datetimes to regular python datetimes, you can also use `.to_pydatetime()`. 
-@CODE
-It also supports timezones: 
-@CODE
+If you want to convert an entire pandas series of datetimes to regular python datetimes, you can also use `.to_pydatetime()`. @CODE
+It also supports timezones: @CODE
 indeed, all of these datetime types can be difficult, and potentially problematic (must keep careful track of timezone information). here's what i have done, though i admit that i am concerned that at least part of it is "not by design". also, this can be made a bit more compact as needed.
 starting with a numpy.datetime64 dt_a: 
 dt_a 
 numpy.datetime64('2015-04-24T23:11:26.270000-0700') 
 dt_a1 = dt_a.tolist() # yields a datetime object in UTC, but without tzinfo 
 dt_a1 
-datetime.datetime(2015, 4, 25, 6, 11, 26, 270000) 
-@CODE
+datetime.datetime(2015, 4, 25, 6, 11, 26, 270000) @CODE
 dt_a2=datetime.datetime(*list(dt_a1.timetuple()[:6]) + [dt_a1.microsecond], tzinfo=pytz.timezone('UTC')) 
 ... and of course, that can be compressed into one line as needed.

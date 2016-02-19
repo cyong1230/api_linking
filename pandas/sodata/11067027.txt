@@ -5,29 +5,21 @@ I need to re-order the columns as follows:
 ['Q1.1','Q1.2','Q1.3',.....'Q6.1',......] 
 Is there someway for me to do this within python? 
 Thanks!
-@CODE
+`df.reindex_axis(sorted(df.columns), axis=1)
+` 
 This assumes that sorting the column names will give the order you want. If your column names won't sort lexicographically (e.g., if you want column Q10.3 to appear after Q9.1), you'll need to sort differently, but that has nothing to do with pandas.
-The `sort` method and `sorted` function allow you to provide a custom function to extract the key used for comparison: 
-@CODE
+The `sort` method and `sorted` function allow you to provide a custom function to extract the key used for comparison: @CODE
 You can also do more succinctly: 
 `df.sort_index(axis=1)`
-Tweet's answer can be passed to BrenBarn's answer above with 
-@CODE
-So for your example, say: 
-@CODE
-You get: 
-@CODE
-Then do: 
-@CODE
-resulting in: 
-@CODE
-You can just do: 
-@CODE
-Don't forget to add "inplace=True" to Wes' answer or set the result to a new DataFrame. 
-@CODE
-The quickest method is: 
-@CODE
-Be aware that this creates a new instance. Therefore you need to store the result in a new variable: 
-@CODE
-@CODE
+Tweet's answer can be passed to BrenBarn's answer above with @CODE
+So for your example, say: @CODE
+You get: @CODE
+Then do: @CODE
+resulting in: @CODE
+You can just do: @CODE
+Don't forget to add "inplace=True" to Wes' answer or set the result to a new DataFrame. @CODE
+The quickest method is: @CODE
+Be aware that this creates a new instance. Therefore you need to store the result in a new variable: @CODE
+`print df.sort_index(by='Frequency',ascending=False)
+` 
 where by is the name of the column,if you want to sort the dataset based on column

@@ -6,11 +6,31 @@ how : string, method for down- or re-sampling, default to mean
 So from looking at as many examples as I found online I can see for rule you can do `'D'` for day, `'xMin'` for minutes, `'xL'` for milliseconds, but that is all I could find. 
 for how I have seen the following: `'first'`, `np.max`, `'last'`, `'mean'`, and `'n1n2n3n4...nx'` where nx is the first letter of each column index. 
 So is there somewhere in the documentation that I am missing that displays every option for `pandas.resample`'s rule and how inputs? If yes, where because I could not find it. If no, what are all the options for them?
-@CODE
+`B business day frequency
+C custom business day frequency (experimental)
+D calendar day frequency
+W weekly frequency
+M month end frequency
+BM business month end frequency
+MS month start frequency
+BMS business month start frequency
+Q quarter end frequency
+BQ business quarter endfrequency
+QS quarter start frequency
+BQS business quarter start frequency
+A year end frequency
+BA business year end frequency
+AS year start frequency
+BAS business year start frequency
+H hourly frequency
+T minutely frequency
+S secondly frequency
+L milliseconds
+U microseconds
+` 
 See the timeseries documentation . It includes a list of offsets (and 'anchored' offsets ), and a section about resampling . 
 Note that there isn't a list of all the different `how` options, because it can be any NumPy array function and any function that is available via groupby dispatching can be passed to `how` by name.
-There's more to it than this, but you're probably looking for this list: 
-@CODE
+There's more to it than this, but you're probably looking for this list: @CODE
 Source: http://pandas.pydata.org/pandas-docs/stable/timeseries.html#offset-aliases
 A lot of the rules are based on scikits.timeseries library. 
 Check out: http://pytseries.sourceforge.net/core.constants.html

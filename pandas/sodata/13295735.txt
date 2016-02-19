@@ -1,8 +1,6 @@
 How can I replace all the NaN values with Zero's in a column of a pandas dataframe
-I have a dataframe as below 
-@CODE
-when I try to .apply a function to the Amount column I get the following error. 
-@CODE
+I have a dataframe as below @CODE
+when I try to .apply a function to the Amount column I get the following error. @CODE
 I have tried applying a function using .isnan from the Math Module
 I have tried the pandas .replace attribute
 I tried the .sparse data attribute from pandas 0.9
@@ -12,10 +10,8 @@ All the methods I have tried have not worked or do not recognise NaN.
 Any Hints or solutions would be appreciated.
 I believe `DataFrame.fillna()` will do this for you. 
 Link to Docs for a dataframe and for a Series . 
-Example: 
-@CODE
-To fill the NaNs in only one column, select just that column. in this case I'm using inplace=True to actually change the contents of df. 
-@CODE
+Example: @CODE
+To fill the NaNs in only one column, select just that column. in this case I'm using inplace=True to actually change the contents of df. @CODE
 I just wanted to provide a bit of an update/special case since it looks like people still come here. If you're using a multi-index or otherwise using an index-slicer the inplace=True option may not be enough to update the slice you've chosen. For example in a 2x2 level multi-index this will not change any values (as of pandas 0.15): 
 `idx = pd.IndexSlice
 df.loc[idx[:,mask_1],idx[mask_2,:]].fillna(value=0,inplace=True)` 

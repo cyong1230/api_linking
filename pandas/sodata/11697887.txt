@@ -1,12 +1,16 @@
 Converting Django QuerySet to pandas DataFrame
-I am going to convert a Django QuerySet to a pandas DataFrame as follows: 
-@CODE
+I am going to convert a Django QuerySet to a pandas DataFrame as follows: @CODE
 It works, but is there a more efficient way?
 From the Django perspective (I'm not familiar with `pandas`) this is fine. My only concern is that if you have a very large number of records, you may run into memory problems. If this were the case, something along the lines of this memory efficient queryset iterator would be necessary. (The snippet as written might require some rewriting to allow for your smart use of `.values()`).
-@CODE
+`import pandas as pd
+import datetime
+from myapp.models import BlogPost
+df = pd.DataFrame(list(BlogPost.objects.all().values()))
+df = pd.DataFrame(list(BlogPost.objects.filter(date__gte=datetime.datetime(2012, 5, 1)).values()))
+# limit which fields
+df = pd.DataFrame(list(BlogPost.objects.all().values('author', 'date', 'slug')))
+` 
 The above is how I do the same thing. The most useful addition is specifying which fields you are interested in. If it's only a subset of the available fields you are interested in, then this would give a performance boost I imagine.
-You maybe can use model_to_dict 
-@CODE
+You maybe can use model_to_dict @CODE
 Django Pandas solves this rather neatly: https://github.com/chrisdev/django-pandas/ 
-From the README: 
-@CODE
+From the README: @CODE
