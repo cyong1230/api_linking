@@ -2,9 +2,29 @@ Why are pandas merges in python faster than data.table merges in R?
 I recently came across the pandas library for python, which according to this benchmark performs very fast in-memory merges. It's even faster than the data.table package in R (my language of choice for analysis). 
 Why is `pandas` so much faster than `data.table`? Is it because of an inherent speed advantage python has over R, or is there some tradeoff I'm not aware of? Is there a way to perform inner and outer joins in `data.table` without resorting to `merge(X, Y, all=FALSE)` and `merge(X, Y, all=TRUE)`? 
 Here's the R code and the Python code used to benchmark the various packages.
+My hypothesis: because data.table is based on data.frame and data.frames are slow.  And I think most of the pandas merge code is in Cython.
+@JoshuaUlrich: IIRC `data.table` just inherits from `data.frame`, but it relies on C-code under the hood.
+@digEmAll: data.frames are slow even if you manipulate them in C, but I've never looked at the data.table source.
+@JoshuaUlrich: it implements basically a binary search on a sorted data.frame. But yes, probably is slower than pandas because of the access to data.frame's (I wouldn't call them "slow" though, just "slower")
+@Joshua What do you mean by "data.frames are slow even if you manipulate them in C"?  Is that relative to something else? And slow at what?
+@digEmAll  `data.frame`'s are a vector of pointers to column vectors. What can be better than that as a storage mechanism? I know that row storage (as in SQL) is much worse for the types of ordered data a lot of us deal with. How does pandas store a DataFrame?  I'm not saying `data.frame` is fast, I'm just saying there isn't anything fundamentally wrong with how it is stored in memory, afaik.
+@MatthewDowle: I agree, but having no direct experience in manipulating data.frame's in C I couldn't prove JoshuaUlrich opinion was wrong. Anyway, as you can notice, I didn't fully accept the label of "slow" ;)
+@MatthewDowle: relative to matrices; slower at accessing elements of the object.
+@Joshua  That's simply not true at C level. Do you mean at R level? If so, have you seen `:=` in `data.table` which, for one particular easily reproducible 'element access' test, appears to be [500 times faster](http://stackoverflow.com/questions/7029944/when-should-i-use-the-operator-in-data-table) than `data.frame`? Is that what you mean? `data.frame` can be fast when manipulated in C, as `data.table` does, iiuc.
+@MatthewDowle: in the example you link to, the `:=` operator still appears to be several times slower than matrix access (`system.time(for (i in 1:1000) m[i,1] <- i)`).  I.e. you're still slower than matrix access even after all the awesome stuff you've done at the C level.
+@Joshua Ah ok. I guess I was content at the time to reduce 10 mins to 1 sec ;)  What do you see 1 sec reduce to with matrix?  That sub 1 sec difference (?) may be down to checks at the top of [.data.table. I could take a look. The test is a little unrealistic as we can usually vectorize of course, but worth looking into.  I don't think it's anything at C level, though.
+@MatthewDowle: data.table took ~0.5s and matrix is 0.02s (at most).  We can talk more about this in chat or over email (my address is easy to find).
+@JoshuaUlrich I just noticed this comment trail was never put to bed. So to clear it up: `set()` was added to `data.table` soon after this discussion. Very similar to `:=` but avoids the small overhead of `[.data.table` when looped and is consequently as fast as `matrix`. Therefore, `data.frame` _can_ be manipulated just as fast as matrix. Benchmark is [here](http://stackoverflow.com/a/7030140/403310).
 The reason pandas is faster is because I came up with a better algorithm, which is implemented very carefully using a fast hash table implementation - klib and in C/ Cython to avoid the Python interpreter overhead for the non-vectorizable parts. The algorithm is described in some detail in my presentation: A look inside pandas design and development . 
 The comparison with `data.table` is actually a bit interesting because the whole point of R's `data.table` is that it contains pre-computed indexes for various columns to accelerate operations like data selection and merges. In this case (database joins) pandas' DataFrame contains no pre-computed information that is being used for the merge, so to speak it's a "cold" merge. If I had stored the factorized versions of the join keys, the join would be significantly faster - as factorizing is the biggest bottleneck for this algorithm. 
 I should also add that the internal design of pandas' DataFrame is much more amenable to these kinds of operations than R's data.frame (which is just a list of arrays internally).
+Of course, now that you've figured it all out in python, it should be easy to translate into R ;)
+But why would anyone ever want to? :)
+Umm ... maybe because they would want data operations to be faster in R? Just guessing :))
+nearly got this to 100!
+I am the 100 ! A new benchmark would be usefull, did I win this gift fot the 100th vote ?
+Hi Wes-- it seems that your results for `data.table` were primary driven by a bug that has since been fixed.  Any chance you could re-run your benchmark and write an updated blog post?
+Zach make sure you check this out: https://github.com/Rdatatable/data.table/wiki/Benchmarks-:-Grouping
 It looks like Wes may have discovered a known issue in `data.table` when the number of unique strings ( levels ) is large: 10,000. 
 Does `Rprof()` reveal most of the time spent in the call `sortedmatch(levels(i[[lc]]), levels(x[[rc]])`? This isn't really the join itself (the algorithm), but a preliminary step. 
 Recent efforts have gone into allowing character columns in keys, which should resolve that issue by integrating more closely with R's own global string hash table. Some benchmark results are already reported by `test.data.table()` but that code isn't hooked up yet to replace the levels to levels match. 
@@ -35,13 +55,18 @@ multi column ordered keys such as (id,datetime) ii) fast prevailing
 join (`roll=TRUE`) a.k.a. last observation carried forward. 
 So the Pandas equi join of two character columns is probably still faster than data.table. Since it sounds like it hashes the combined two columns. data.table doesn't hash the key because it has prevailing ordered joins in mind. A "key" in data.table is literally just the sort order (similar to a clustered index in SQL; i.e., that's how the data is ordered in RAM). On the list is to add secondary keys, for example. 
 In summary, the glaring speed difference highlighted by this particular two-character-column test with over 10,000 unique strings shouldn't be as bad now, since the known problem has been fixed.
-Since both of the other answers are from the respective authors of the two packages, I thought I'd add a users view on this, since I've used both packages quite a bit. 
-Headline message for users: don't choose between these packages based on speed or benchmarks, that will be second order in your work. If you care that much about speed, write you application in assembly/C for your specific case, and buy a faster computer. 
-Looking at the implementation of both, they should generally come out similar in speed, and tests I've run now generally do. (As explained above the big difference found in an early benchmark was a bug). For certain tasks one or other can come out a tad faster, but never by much. 
-The reason for this, is the heavy lifting part is "factoring" the join keys, and both packages seem to have found the same solution to this problem , to use something very similar to a Counting Sort . Matthew (data.table) generally calls this a Radix Sort (since it is incorrectly named such in R) and Wes (pandas) is using a klib hash table to achieve a similar end. Thus the only real difference in approach that I can see is 
-To hash or not
-Pandas gives everything to klib to hash, and relies on klib being smart (which it is), but this must still cause at least one opcode! 
-data.table will just use the object itself if it can, e.g. integer, and uses Rs internal hash tables for strings. Other data-types things get a bit less optimal. An advantage to this is you often get things in "natural" order. 
-Build the index in advance or not (although it appears pandas does some caching here for future calls?) 
-And these two effect can mess with benchmarks quite badly. Leave out the `set.index` part of the `data.table` and `data.table` looks good. Use keys that are "ugly" in their raw form and pandas can look better. I've not found the pattern but I'm sure non-unique key values will also cause differences. So you can see, in the wild you are likely to be unsure where on the spectrum you will actually be. For example, you may have a situation where the join favours pandas slightly, but later on you need to have the table sorted by that key column, and the "unhashed" approach of data.table can make that sort faster (since it will already be in order). 
-I haven't gone through every line in the source of both packages, so I can't be certain I haven't missed anything.
+If you supply a test case for a reasonably large, realistic data set, I'll be happy to run the benchmarks. You're more than welcome to, also. I actually have not yet optimized the code for the integer join key case (put that on my todo list!), but you can expect significantly better performance than the string case given the hash table study in the linked presentation.
+I don't use either of these libraries but pleased to see a constructive response from the R side in the shape of Matthew Dowle.
+Here's some Rprof results http://pastie.org/3258362. It looks like 20-40% of the time is spent in sortedmatch depending on the join type. Will have to look into integer columns another time-- I made a pandas GitHub issue to remind me to optimize that case (https://github.com/wesm/pandas/issues/682)
+Did you confirm/have any update on this?
+@AndyHayden Improvements were made some time ago. I'll edit in the NEWS items. Wes picked on one specific test (equi joining two character columns) which played on that known problem. If he'd picked integer columns it would have been different. And if he'd given me a heads up before presenting the benchmark at the conference then I could have told him more about the known problem.
+@MattDowle I'd love to see an updated benchmark sometime!
+This topic is two years old but seems like a probable place for people to land when they search for comparisons of Pandas and data.table 
+Since both of these have evolved over time, I want to post a relatively newer comparison (from 2014) here for the interested users: https://github.com/Rdatatable/data.table/wiki/Benchmarks-:-Grouping 
+It would be interesting to know if Wes and/or Matt (who, by the way, are creators of Pandas and data.table respectively and have both commented above) have any news to add here as well. 
+-- UPDATE -- 
+A comment posted below by jangorecki contains a link that I think is very useful: https://github.com/szilard/benchm-databases 
+The graph depicted there shows how different tools and packages compare in terms of aggregation and join speed. It was really educational for me.
+I was just about to post this!  Thanks for adding.
+I hope someone does a join benchmark soon too!
+@Zach see this: https://github.com/szilard/benchm-databases and that is nice too: https://speakerdeck.com/szilard/r-stories-from-the-trenches-budapest-r-meetup-aug-2015

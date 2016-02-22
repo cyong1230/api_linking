@@ -14,6 +14,12 @@ codecs.register_error('replace_against_space', lambda e: (u' ',e.start + 1))
 mycompile = lambda pat:  re.compile(pat,  re.UNICODE)
 WS_RE = mycompile(r'  +')
 
+Url_new = r"""(?i)\b((?:https?:(?:/{1,3}|[a-z0-9%])|[a-z0-9.\-]+[.](?:com|net|org|edu|gov|mil|aero|asia|biz|cat|coop|info|int|jobs|mobi|museum|name|post|pro|tel|travel|xxx|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cs|cu|cv|cx|cy|cz|dd|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|Ja|sk|sl|sm|sn|so|sr|ss|st|su|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)/)(?:[^\s()<>{}\[\]]+|\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\))+(?:\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’])|(?:(?<!@)[a-z0-9]+(?:[.\-][a-z0-9]+)*[.](?:com|net|org|edu|gov|mil|aero|asia|biz|cat|coop|info|int|jobs|mobi|museum|name|post|pro|tel|travel|xxx|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cs|cu|cv|cx|cy|cz|dd|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|Ja|sk|sl|sm|sn|so|sr|ss|st|su|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)\b/?(?!@)))"""
+# the following two does not work well. 
+#r"""((https?):((//)|(\\\\))+([\w\d:#@%/;$()~_?\+-=\\\.&](#!)?)*)"""
+#r"""(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))"""
+AtMention = r'@[a-zA-Z0-9_]+'
+
 def squeeze_whitespace(s):
     new_string = WS_RE.sub(" ",s)
     return new_string.strip()
@@ -74,6 +80,8 @@ def strip_tags(html):
     html = re.sub(r'<code>', '`', html)
     html = re.sub(r'</code>', '`', html)
     html = re.sub(r'&#xA;&#xA;<pre>.*?</pre>', '@CODE', html)
+    html = re.sub(AtMention, '@USER', html)
+    html = re.sub(Url_new, '@URL', html)
     #html = re.sub(r'(`(?=\S)|(?<=\S)`)', '', html)
     html = re.sub(r'(&#xA;)+','\n', html)
     s.feed(html)
@@ -87,10 +95,64 @@ def html2txt(content):
     pro = squeeze_whitespace(pro)
     return pro
 
+def replace_url_atmention(content):
+    content = re.sub(AtMention, '@USER', content)
+    content = re.sub(Url_new, '@URL', content)
+    return content
+
 class DataReader:
     def __init__(self):
-        self.db = MySQLdb.connect(host="localhost", user="root", passwd="ydh0114", db="stackoverflow201508")
+        self.db = MySQLdb.connect(host="localhost", user="root", passwd="ydh0114", db="stackoverflow201601")
         self.cur = self.db.cursor()
+    
+    def read_pandas_all(self):
+        pandas_ids = []
+        f = open('pandas_qid.txt', 'r')
+        for line in f:
+            pandas_ids.append(line.strip())
+        f.close()
+        fw = open('pandas_q_a_c.txt', 'w')
+        cnt = 1
+        for id in pandas_ids:
+            print cnt
+            try: 
+                self.cur.execute("SELECT Title FROM posts where Id=%s" % (id))
+                title = self.cur.fetchall()[0][0]
+                fw.write(title + '\n')
+                print "title finished... "
+                self.cur.execute("SELECT Body FROM posts where Id=%s" %(id))
+                qbody = self.cur.fetchall()[0][0]
+                qbody = html2txt(qbody)
+                fw.write(qbody + '\n')
+                print "question body finished... "
+
+                self.cur.execute("SELECT Text FROM comments where PostId=%s" % (id))
+                qcomm = self.cur.fetchall()
+                for qrow in qcomm:
+                    tmp_qrow = html2txt(qrow[0])
+                    fw.write(tmp_qrow + '\n')
+                print "question comments finished... "
+
+                self.cur.execute("SELECT Id FROM posts where ParentId=%s" %(id))
+                aids = self.cur.fetchall()
+                for row in aids:
+                    aid = row[0]
+                    self.cur.execute("SELECT Body FROM posts where Id=%s" %(aid))
+                    abody = self.cur.fetchall()[0][0]
+                    abody = html2txt(abody)
+                    fw.write(abody + '\n')
+                    
+                    self.cur.execute("SELECT Text FROM comments where PostId=%s" % (aid))
+                    acomm = self.cur.fetchall()
+                    for arow in acomm:
+                        tmp_arow = html2txt(arow[0])
+                        fw.write(tmp_arow + '\n')
+                print "answer and comments finished... "
+            except:
+                pass
+            fw.write('\n')
+            cnt += 1
+        fw.close()
 
     def read(self, qid):
         f = open('./sodata/' + str(qid) + '.txt', 'w')
@@ -133,12 +195,12 @@ class DataReader:
 
 if __name__ ==  '__main__':
     dr = DataReader()
-	#qids = [5486226, 5515021, 5558607,5955695,6467832,7577546,7776679,7813132,7837722,8273092]
-	#qids = [14262433,11346283,10715965,8991709,12555323,12065885,13148429,7837722,13413590,15891038]
-    qids = [14262433,11346283,10715965,8991709,12555323,12065885,13148429,7837722,15891038,13413590,
-            12096252,11707586,19482970,13703720,15943769,13295735,18172851,16923281,20638006,16476924,
-            12945971,19798153,14349055,10373660,25631076,17557074,10065051,13331698,11067027,12356501,
-            11622652,20625582,11077023,17116814,11350770,10511024,10457584,13784192,17001389,14661701,
-            18022845,10665889,13035764,12190874,14734533,14300137,18062135,13187778,19758364,11697887]
-    for qid in qids:
-        dr.read(qid)
+    dr.read_pandas_all()
+    #qids = [14262433,11346283,10715965,8991709,12555323,12065885,13148429,7837722,13413590,15891038]
+    #qids = [14262433,11346283,10715965,8991709,12555323,12065885,13148429,7837722,15891038,13413590,
+    #        12096252,11707586,19482970,13703720,15943769,13295735,18172851,16923281,20638006,16476924,
+    #        12945971,19798153,14349055,10373660,25631076,17557074,10065051,13331698,11067027,12356501,
+    #        11622652,20625582,11077023,17116814,11350770,10511024,10457584,13784192,17001389,14661701,
+    #        18022845,10665889,13035764,12190874,14734533,14300137,18062135,13187778,19758364,11697887]
+    #for qid in qids:
+    #    dr.read(qid)

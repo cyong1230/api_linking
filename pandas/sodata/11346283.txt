@@ -4,12 +4,28 @@ I'd like to change the column names in a data table `A` where the original colum
 to @CODE
 I have the edited column names stored it in a list, but I don't know how to replace the column names.
 Just assign it to the `.columns` attribute: @CODE
+Thanks for the help!
+Is it possible to change a single column header name?
+@ericmjl: suppose you want to change the name of the first variable of df. Then you can do something like:&#xA;`new_columns = df.columns.values; `&#xA;`new_columns[0] = 'XX';`&#xA;`df.columns  = new_columns`
+Looks like you could've simply done df.columns.values[0]='XX'
+Just kidding, @RAY - don't do that. Looks like that's a list generated independent of whatever indexing stores the column name. Does a nice job destroying column naming for your df...
+@MitchFlax Thanks. I now see that too. Disappointing behavior, but it is how it is. Looks like you could then recover by calling <code>df.columns = df.columns.values</code>. How weird is that.
+@ericmjl yes `df.rename(columns = {'$b':'B'}, inplace = True)`
 `df = df.rename(columns={'$a': 'a', '$b': 'b'})
 # OR
 df.rename(columns={'$a': 'a', '$b': 'b'}, inplace=True)
 ` 
 http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.rename.html
+when I do this with a 6 column data frame (dataframe <press enter>) the abbreviated representation:`code` <class 'pandas.core.frame.DataFrame'>&#xA;Int64Index: 1000 entries, 0 to 999&#xA;Data columns:&#xA;BodyMarkdown        1000  non-null `code` works, but when i do dataframe.head() the old names for the columns re-appear.
+a picture for above comment: http://www.pasteall.org/pic/show.php?id=37577
+I google for this answer probably once a week.
+I think this is the most upvoted pandas answer of all time!
+the `$` sign is confusing, better remove it.
+Is it possible to change the accepted answer on this question to this one?
 The `rename` method can take a function, for example: @CODE
+Nice approach @Andy
+Nice.&#xA;&#xA;This one saved my day: `df.rename(columns=lambda x: x.lstrip(), inplace=True)`
+Similar to @root-11 -- in my case there was a bullet point character that was not printed in IPython console output, so I needed to remove more than just whitespace (stripe), so : `t.columns = t.columns.str.replace(r'[^\x00-\x7F]+','')`
 Since you only want to remove the $ sign in all column names, you could just do: @CODE
 OR @CODE
 `old_names = ['$a', '$b', '$c', '$d', '$e'] 
@@ -18,4 +34,16 @@ df.rename(columns=dict(zip(old_names, new_names)), inplace=True)
 ` 
 This way you can manually edit the `new_names` as you wish.
 Works great when you need to rename only a few columns to correct mispellings, accents, remove special characters etc.
+I like this approach, but I think `df.columns = ['a', 'b', 'c', 'd', 'e']` is simpler.
+I like this method of zipping old and new names. We can use `df.columns.values` to get the old names.
 As documented in http://pandas.pydata.org/pandas-docs/stable/text.html : @CODE
+This looks like the simplest solution BY FAR.  all you need to say is `df.columns = [any, list, like, thing, you, want]`
+Best answer, imho.
+If you've got the dataframe, df.columns dumps everything into a list you can manipulate and then reassign into your dataframe as the names of columns... @CODE
+Best way? IDK. A way - yes.
+Why do you need rename method? Something like this worked for me # df.columns = [row.replace('$', '') for row in df.columns]
+`df.columns = [col.strip('$') for col in df.columns]
+`
+Can you explain how/why this works? That will make the answer more valuable for future readers.
+Real simple just use @CODE
+and it will assign the column names by the order you put them

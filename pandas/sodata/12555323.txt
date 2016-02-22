@@ -1,19 +1,40 @@
-Adding new column to existing DataFrame in python pandas
-I have a DataFrame with named columns and rows indexed with not continuous numbers like from the code: @CODE
-I would like to add new column 'e' to the existing df and do not change anything in the df. (The series got always the same length as a dataframe.) I try different version of `join`, `append`, `merge` but do not have this what I want, error at the most. 
-The series and df is already given and above code is only to illustrate example. 
-I am sure there is some easy way to that but can't figure it out
-Doing this directly is via numpy will be most efficient: @CODE
+Adding new column to existing DataFrame in Python pandas
+I have a DataFrame with named columns and rows indexed with not- continuous numbers like from the code: @CODE
+I would like to add a new column, 'e', to the existing data frame and do not change anything in the data frame. (The series always got the same length as a dataframe.) I tried different versions of `join`, `append`, `merge`, but I did not get it as what I want, only errors at the most. 
+The series and data frame is already given and the above code is only to illustrate it with an example. 
+I am sure there is some easy way to that, but I can't figure it out.
+Doing this directly via NumPy will be the most efficient: @CODE
 Note my original (very old) suggestion was to use `map` (which is much slower): @CODE
+thanks for your reply, as I have e already given, have can I modify your code, `.map` to use existing series instead of `lambda`? I try `df1['e'] = df1['a'].map(lambda x: e)` or `df1['e'] = df1['a'].map(e)` but it not what I need. (I am new to pyhon and your previous answer already helped me)
+@tomasz74 if you already have `e` as a Series then you don't need to use `map`, use `df['e']=e` (@joaquins answer).
 Use the original df1 indexes to create the series: @CODE
 Edit 2015 
 Some reported to get the `SettingWithCopyWarning` with this code. 
-However the code still runs perfect with the newer version. @CODE
+However, the code still runs perfect with the current pandas version 0.16.1. @CODE
 The `SettingWithCopyWarning` aims to inform of a possibly invalid assignment on a copy of the Dataframe. It doesn't necessarily say you did it wrong (it can trigger false positives) but from 0.13.0 it let you know there are more adequate methods for the same purpose. Then, if you get the warning, just follow its advise: Try using .loc[row_index,col_indexer] = value instead @CODE
-In fact this is currently the more efficient method as described in panda docs
+In fact, this is currently the more efficient method as described in pandas docs
+The series comes from sensor and are fed to the computer. The only thing is that it has given length, the same length as DataFrame. The presented code is only to illustrate example
+@tomasz74  Not sure what do you mean and how that affects your question and my answer.
+Thanks a lot @joaquin your answer is perfectly what I couldn't figure out.
+if you need to *prepend* column use DataFrame.insert: df1.insert(0, 'A', Series(np.random.randn(sLength), index=df1.index))
+From Pandas version 0.12 onwards, I believe this syntax is not optimal, and gives warning: `SettingWithCopyWarning: A value is trying to be set on a copy of a slice from a DataFrame. Try using .loc[row_index,col_indexer] = value instead`
+@Zhubarb No warning with 0.15.1. Do you **believe** or you actually tried the above **exact** code ?
+I got this warning with pandas 0.16 too. What is the optimal syntax three years later?
+@Juanlu001 with that same code ?. Please see edit
+@joaquin I have tried with this exact code and things work as expected.  I have also done operations like this with pretty much identical code and had it throw up SettingWithCopyWarning.  I can't nail down when the warning will appear and when it won't.
+@GregoryArenius Yeah, they explain in the docs: _The SettingWithCopy warning is a ‘heuristic’ to detect this (meaning it tends to catch most cases but is simply a lightweight check). Figuring this out for real is way complicated_.
+Use [assign](http://pandas.pydata.org/pandas-docs/stable/dsintro.html#assigning-new-columns-in-method-chains) `df1.assign(e = Series(np.random.randn(sLength), index=df1.index))`
+It should be noted that this approach -- as any other based on the assignment `df['column_name'] = array_like` -- will overwrite an existing column with the same name as `'column_name'`. `.join` will throw a `ValueError` if no prefix/suffix is given.
 This is the simple way of adding a new column: `df['e'] = e`
-One thing to note, thought, is that if you do @CODE
-this will effectively be a left join on the df1.index. So if you want to have an outer join effect, my probably imperfect solution is to create a dataframe with index values covering the universe of your data, and then use the code above. E.g. @CODE
-I got the dread `SettingWithCopyWarning` and wasn't fixed by using the iloc syntax. My DataFrame was created by read_sql from an ODBC source. Using a suggestion by lowtech above the following worked for me: @CODE
-This worked fine to insert the column at the end. I don't know if it is the most efficient but I don't like warning messages. I think there is a better solution but can't find it and I think it depends on some aspect of the index.
+Despite the high number of votes: *this answer is wrong*. Note that the OP has a dataframe with non continuous indexes and `e` (`Series(np.random.randn(sLength))`) generates a Series 0-n indexed. If you assign this to df1 then you get some NaN cells.
+What @joaquin says is true, but as long as you keep that in mind, this is a very useful shortcut.
+One thing to note, though, is that if you do @CODE
+this will effectively be a left join on the df1.index. So if you want to have an outer join effect, my probably imperfect solution is to create a dataframe with index values covering the universe of your data, and then use the code above. For example, @CODE
+I got the dreaded `SettingWithCopyWarning`, and it wasn't fixed by using the iloc syntax. My DataFrame was created by read_sql from an ODBC source. Using a suggestion by lowtech above, the following worked for me: @CODE
+This worked fine to insert the column at the end. I don't know if it is the most efficient, but I don't like warning messages. I think there is a better solution, but I can't find it, and I think it depends on some aspect of the index.
 Before assigning a new column, if you have indexed data, you need to sort the index. At least in my case I had to: @CODE
+The following is what I did... But I'm pretty new to pandas and really Python in general, so no promises. @CODE
+Let me just add that, just like for hum3 , `.loc` didn't solve the `SettingWithCopyWarning` and I had to resort to `df.insert()`. In my case false positive was generated by "fake" chain indexing `dict['a']['e']`, where `'e'` is the new column, and `dict['a']` is a DataFrame coming from dictionary. 
+Also note that if you know what you are doing, you can switch of the warning using
+`pd.options.mode.chained_assignment = None`
+and than use one of the other solutions given here.

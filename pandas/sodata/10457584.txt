@@ -1,5 +1,0 @@
-Redefining the Index in a Pandas DataFrame object
-I am trying to re-index a pandas DataFrame object, like so, @CODE
-I am going about this as shown below and am getting the wrong answer. Any clues on how to do this? @CODE
-Any idea why this is happening?
-Why don't you simply use `set_index` method? @CODE
