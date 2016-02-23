@@ -1,1 +1,4 @@
-sorry , your code works but only if you use ' print uni ' as the last row of code . if you try to use just ' uni ' you get the error : " unicodedecodeerror : ' utf8 ' codec can't decode byte 0xe9 in position 67 : invalid continuation byte "
+dataframe [ ns ]
+dataframe (( ns ))
+neworder [ df.index.labels [ 0 ]]
+[ what have you tried ] ( @url ))

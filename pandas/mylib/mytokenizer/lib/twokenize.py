@@ -34,7 +34,7 @@ def optional(r):
 PunctChars = r'''['“".?!,(/:;]'''
 foo = r'''foo'''
 Punct = '%s+' % PunctChars
-PunctSeq = r"""['`\"“”‘’)]+|[.?!,…]+|[:;/(]+"""
+PunctSeq = r"""['`\"“”‘’)\]]+|[.?!,…]+|[:;/(\[]+"""
 Entity = '&(amp|lt|gt|quot);'
 
 # one-liner URL recognition:
@@ -112,7 +112,7 @@ ProtectThese = [
     EmbeddedApostrophe,
     API,  # Deheng
     PunctSeq,  # Deheng
-    plural,   # Deheng
+    #plural,   # Deheng
     ProgrammingOperators  # Deheng
 ]
 Protect_RE = mycompile(regex_or(*ProtectThese))
@@ -241,9 +241,9 @@ EdgePunctRight_RE= mycompile(EdgePunctRight)
 
 def edge_punct_munge(s):
   s = EdgePunctLeft_RE.sub( r"\1\2 \3", s)
-  #print s
+  print s
   s = EdgePunctRight_RE.sub(r"\1 \2\3", s)
-  #print s
+  print s
   return s
 
 
