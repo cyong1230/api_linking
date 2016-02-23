@@ -241,9 +241,9 @@ EdgePunctRight_RE= mycompile(EdgePunctRight)
 
 def edge_punct_munge(s):
   s = EdgePunctLeft_RE.sub( r"\1\2 \3", s)
-  print s
+  #print s
   s = EdgePunctRight_RE.sub(r"\1 \2\3", s)
-  print s
+  #print s
   return s
 
 
