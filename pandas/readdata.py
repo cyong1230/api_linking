@@ -89,8 +89,8 @@ def strip_tags(html):
     s = MLStripper()
     html = re.sub(r'<code>', '`', html)
     html = re.sub(r'</code>', '`', html)
-    html = re.sub(r'&#xA;&#xA;<pre>.*?</pre>', '@CODE', html)
-    html = re.sub(r'<pre>.*?</pre>', '@CODE', html) # add this line to handle code snippet only posts. 
+    html = re.sub(r'&#xA;&#xA;<pre.*?>.*?</pre>', '#CODE', html) # add .*? to match tag class
+    html = re.sub(r'<pre.*?>.*?</pre>', '#CODE', html) # add this line to handle code snippet only posts. 
     #html = re.sub(r'(`(?=\S)|(?<=\S)`)', '', html)
     html = re.sub(r'(&#xA;)+','\n', html)
     s.feed(html)
@@ -103,13 +103,14 @@ def html2txt(content):
     pro = re.sub(r'[\n]+', '\n',pro)
     pro = squeeze_whitespace(pro)
 
-    pro = re.sub(Url_new, '@URL', pro, flags=re.DOTALL)
+    pro = re.sub(Url_new, '#URL', pro, flags=re.DOTALL)
+    pro = re.sub(AtMention, '@USER', pro)
 
     return pro
 
 def replace_url_atmention(content):
     content = re.sub(AtMention, '@USER', content)
-    content = re.sub(Url_new, '@URL', content, flags=re.DOTALL)
+    content = re.sub(Url_new, '#URL', content, flags=re.DOTALL)
     return content
 
 class DataReader:
