@@ -2,7 +2,6 @@ Series
 DataFrame
 Panel
 Panel4D
-Index
 CategoricalIndex
 DatetimeIndex
 TimedeltaIndex
