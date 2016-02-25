@@ -27,6 +27,7 @@ API_pattern = re.compile(
 # TOKENIZATION_REGEX = re.compile(API)
 NEWLINE_TERM_REGEX = re.compile(r'(.*?\n)')
 
+api_list = []
 
 def text_to_conll(f):
     """Convert plain text into CoNLL format."""
@@ -76,7 +77,7 @@ def build_list():
     #    api = line.strip()
     #    api_list.append(api)
     #return api_list
-    api_list = []
+    
     with open('apidoc/all-remove.txt', 'r') as gaz:
         for line in gaz:
             line = str(line.strip())
