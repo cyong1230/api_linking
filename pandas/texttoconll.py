@@ -27,7 +27,6 @@ API_pattern = re.compile(
 # TOKENIZATION_REGEX = re.compile(API)
 NEWLINE_TERM_REGEX = re.compile(r'(.*?\n)')
 
-api_list = []
 
 def text_to_conll(f):
     """Convert plain text into CoNLL format."""
@@ -40,20 +39,26 @@ def text_to_conll(f):
     for s in sentences:
         nonspace_token_seen = False
         tokens = [t for t in s.split() if t]
-        for t in tokens:
+        for i,t in enumerate(tokens):
             if not t.isspace():
                 # pre label rules designed by Deheng
                 #if API_pattern.match(t) is not None:
                 #    lines.append([t, 'B-API'])
+                if i < len(tokens) - 2: 
+                    comp = tokens[i-1] + t + tokens[i+1]
+                    comp = comp.lower()
                 if t.endswith("()"):
                     #print t
                     t_nobracket = t[:-2]
-                    if t_nobracket in api_list:
+                    if t_nobracket.lower() in api_list:
                         lines.append([t, 'B-API'])
                     else:
                         lines.append([t, 'O'])
-                elif t in api_list:
+                elif t.lower() in api_list:
                     #print t
+                    lines.append([t, 'B-API'])
+                elif comp in api_list:
+                    print comp
                     lines.append([t, 'B-API'])
                 else:
                     lines.append([t, 'O'])
@@ -66,10 +71,23 @@ def text_to_conll(f):
     return StringIO('\n'.join(('\t'.join(l) for l in lines)))
 
 def build_list():
-    f = open('./apidoc/all-remove.txt', 'r')
-    for line in f:
-        api = line.strip()
-        api_list.append(api)
+    #f = open('./apidoc/all-remove.txt', 'r')
+    #for line in f:
+    #    api = line.strip()
+    #    api_list.append(api)
+    #return api_list
+    api_list = []
+    with open('apidoc/all-remove.txt', 'r') as gaz:
+        for line in gaz:
+            line = str(line.strip())
+            line = line.lower()
+            api_list.append(line)
+
+    with open('apidoc/ambiguousAPI.txt', 'r') as gaz2:
+        for line in gaz2:
+            line = str(line.strip())
+            line = "`" + line.lower() + "`"
+            api_list.append(line)
     return api_list
 
 def main(arg1, arg2):
