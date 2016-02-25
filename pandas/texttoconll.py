@@ -48,6 +48,9 @@ def text_to_conll(f):
                 if i < len(tokens) - 2: 
                     comp = tokens[i-1] + t + tokens[i+1]
                     comp = comp.lower()
+                else:
+                    comp = ""
+                    
                 if t.endswith("()"):
                     #print t
                     t_nobracket = t[:-2]
