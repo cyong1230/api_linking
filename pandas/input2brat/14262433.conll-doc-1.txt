@@ -1,6 +1,4 @@
-Title :
 " Large data " work flows using pandas
-Q :
 I have tried to puzzle out an answer to this question for many months while learning pandas .
 I use SAS for my day-to-day work and it is great for it's out-of-core support .
 However , SAS is horrible as a piece of software for numerous other reasons .
@@ -49,7 +47,6 @@ What I'm doing is creating candidate variables that explain the relationship bet
 At the very end of this process , I apply some learning techniques that create an equation out of those compound columns .
 It is rare that I would ever add rows to the dataset .
 I will nearly always be creating new columns ( variables or features in statistics / machine learning parlance ) .
-A1 :
 I routinely use tens of gigabytes of data in just this fashion
 e.g. I have tables on disk that I read via queries , create data and append back .
 It's worth reading the docs and late in this thread for several suggestions for how to store your data .
@@ -92,7 +89,6 @@ This way the structure would be pretty transparent to you .
 indexes on certain data columns ( makes row-subsetting much faster ) .
 enable compression .
 Let me know when you have questions !
-A2 :
 This is the case for pymongo .
 I have also prototyped using sql server , sqlite , HDF , ORM ( SQLAlchemy ) in python .
 First and foremost pymongo is a document based DB , so each person would be a document ( ` dict ` of attributes ) .
@@ -101,7 +97,7 @@ pd.dateframe -> pymongo Note : I use the ` chunksize ` in ` read_csv ` to keep i
 @CODE
 querying : gt = greater than ...
 @CODE
-` ` returns an iterator so I commonly use ` ichunked ` to chop into smaller iterators .
+` .find() ` returns an iterator so I commonly use ` ichunked ` to chop into smaller iterators .
 How about a join since I normally get 10 data sources to paste together :
 @CODE
 then ( in my case sometimes I have to agg on ` aJoinDF ` first before its " mergeable " . )
@@ -118,7 +114,6 @@ You can also use the two methods built into MongoDB ( MapReduce and aggregate fr
 See here for more info about the aggregate framework , as it seems to be easier than MapReduce and looks handy for quick aggregate work .
 Notice I didn't need to define my fields or relations , and I can add items to a document .
 At the current state of the rapidly changing numpy , pandas , python toolset , MongoDB helps me just get to work :)
-A3 :
 I spotted this a little late , but I work with a similar problem ( mortgage prepayment models ) .
 My solution has been to skip the pandas HDFStore layer and use straight pytables .
 I save each column as an individual HDF5 array in my final file .
@@ -136,11 +131,9 @@ For example , by default the load operation reads the whole data set .
 This generally works for me , but it's a bit clunky , and I can't use the fancy pytables magic .
 Edit : The real advantage of this approach , over the array-of-records pytables default , is that I can then load the data into R using h5r , which can't handle tables .
 Or , at least , I've been unable to get it to load heterogeneous tables .
-A4 :
 If your datasets are between 1 and 20GB , you should get a workstation with 48GB of RAM .
 Then Pandas can hold the entire dataset in RAM .
 I know its not the answer you're looking for here , but doing scientific computing on a notebook with 4GB of RAM isn't reasonable .
-A5 :
 I think the answers above are missing a simple approach that I've found very useful .
 When I have a file that is too large to load in memory , I break up the file into multiple smaller files ( either by row or cols )
 Example : In case of 30 days worth of trading data of ~30GB size , I break it into a file per day of ~1GB size .
@@ -148,16 +141,13 @@ I subsequently process each file separately and aggregate results at the end
 One of the biggest advantages is that it allows parallel processing of the files ( either multiple threads or processes )
 The other advantage is that file manipulation ( like adding / removing dates in the example ) can be accomplished by regular shell commands , which is not be possible in more advanced / complicated file formats
 This approach doesn't cover all scenarios , but is very useful in a lot of them
-A6 :
 Consider Ruffus if you go the simple path of creating a data pipeline which is broken down into multiple smaller files .
-A7 :
 I know this is an old thread but I think the Blaze library is worth checking out .
 It's built for these types of situations .
 From the docs :
 Blaze extends the usability of NumPy and Pandas to distributed and out-of-core computing .
 Blaze provides an interface similar to that of the NumPy ND-Array or Pandas DataFrame but maps these familiar interfaces onto a variety of other computational engines like Postgres or Spark .
 Edit : By the way , it's supported by ContinuumIO and Travis Oliphant , author of NumPy .
-A8 :
 One more variation
 Many of the operations done in pandas can also be done as a db query ( sql , mongo )
 Using a RDBMS or mongodb allows you to perform some of the aggregations in the DB Query ( which is optimized for large data , and uses cache and indexes efficiently )

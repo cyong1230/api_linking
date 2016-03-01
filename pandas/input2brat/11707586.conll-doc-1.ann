@@ -1,0 +1,16 @@
+T1	API 164 174	describe()
+T2	API 196 205	dataframe
+T3	API 217 226	dataframe
+T4	API 322 331	dataframe
+T5	API 681 691	describe()
+T6	API 979 990	to_string()
+T7	API 1011 1020	DataFrame
+T8	API 1039 1047	describe
+T9	API 1060 1069	DataFrame
+T10	API 1116 1125	DataFrame
+T11	API 1166 1174	describe
+T12	API 1400 1409	to_string
+T13	API 1532 1541	to_string
+T14	API 1608 1618	dataframes
+T15	API 2612 2629	pandas.set_option
+T16	API 2780 2789	DataFrame

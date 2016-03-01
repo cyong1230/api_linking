@@ -10,3 +10,4 @@ from	O
 malay	B-API
 .	I-API
 
+chee	O

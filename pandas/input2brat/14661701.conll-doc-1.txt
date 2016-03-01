@@ -1,0 +1,8 @@
+How to drop a list of rows from Pandas dataframe ?
+I have a dataframe df :
+@CODE
+Then I want to drop rows with certain sequence numbers which indicated in a list , suppose here is ` [1 , 2 , 4] , ` then left :
+@CODE
+How or what function can do that ?
+Use DataFrame.drop and pass it a Series of index labels :
+@CODE

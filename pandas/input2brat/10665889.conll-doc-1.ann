@@ -1,0 +1,10 @@
+T1	API 29 38	dataframe
+T2	API 278 287	dataframe
+T3	API 295 305	dataframes
+T4	API 516 525	dataframe
+T5	API 846 855	DataFrame
+T6	API 931 943	DataFrame.ix
+T7	API 1312 1321	DataFrame
+T8	API 1435 1439	iloc
+T9	API 1463 1472	dataframe
+T10	API 1802 1811	dataframe

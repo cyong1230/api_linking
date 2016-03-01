@@ -1,0 +1,15 @@
+how to get row count of pandas dataframe ?
+i try to get the number of rows of dataframe df , both code snippets give me an error : TypeError : unsupported operand type(s) for + : ' instancemethod ' and ' int '
+@CODE
+I'd be grateful for any suggestions what I'm doing wrong .
+EDIT : According to the answer given by root the best ( the fastest ) way to check df length is to call :
+@CODE
+You can use the ` .shape ` property or just ` len ( DataFrame.index )` as there are notable performance differences :
+@CODE
+EDIT : As noted @Dan Allen in the comments ` len ( df.index )` and ` df[0] .count() ` are not interchangeable as ` count ` excludes ` NaN ` s ,
+Use ` len ( df )` .
+This works as of pandas 0.11 or maybe even earlier .
+` __len__() ` is currently ( 0.12 ) documented with ` Returns length of index ` .
+Timing info , set up the same way as in root's answer :
+@CODE
+Due to one additional function call it is a bit slower than calling ` len ( df.index )` directly , but this should not play any role in most use cases .
