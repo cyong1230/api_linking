@@ -11,7 +11,7 @@ with open('apidoc/ambiguousAPI.txt', 'r') as gaz2:
 		line = "`" + line + "`"
 		api_list.append(line)
 #print api_list
-
+"""
 if any(api in "I am having the x-value and corresponding counts in a file. I read that as list of tuples in the following form" for api in api_list):
 	print "ya"
 for api in api_list:
@@ -31,4 +31,3 @@ with open('pandas_q_a_c.txt', 'r') as fileinput:
 				f.write(line)
 
 f.close()
-"""

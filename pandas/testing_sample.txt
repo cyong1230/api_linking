@@ -1,0 +1,1619 @@
+Combine Columns Pandas
+I have problem combining two pandas dataframe columns. 
+I have tried #CODE
+but gives me error: #CODE
+My Data looks like this: #CODE
+Note that I've converted everything to float when reading in the data. I am reading in line by line using linecache.getline which returns an entire string of each line. I then use `.split(',')` to fix this. But afterwards can't convert to datetime. Do i need to convert the dates in to integers? 
+Thanks
+Is there a reason you're reading the lines in like that? with `read_csv()` you can pass `parse_dates=[['Date', 'Time']]` and the two columns will be combined into a single Datetime column. You may need to write a custom `date_parser` function.
+I've got a massive csv file but I don't need all the lines...
+I think you can do this: #CODE
+If your `'Date'` and `'Time'` are both `float64`, you need these two lines first: #CODE
+
+Pandas.DataFrame.read_sql to read as float32 instead of float64
+I'm using `pd.DataFrame.read_sql` to retrieve a large number of records from a SQL database causing a huge amount of memory to be used. 
+I noticed that the `dtype` of the numerical values are `float64`, but I only require `float32` dtypes on most of the numerical values. 
+Is it possible to retrieve values via `read_sql` as `float32`?
+No #URL ... :/
+You could convert it once read using `.astype('int32')`
+
+Eigenvalues of masked array (NumPy)
+How can I compute the eigenvalues and eigenvectors of a masked NumPy array (for an unmasked array, this can be achieved by `scipy.linalg.eig`). 
+Edit: 
+Turns out you can do this after all. #CODE
+that's not defined -- what is the shape of your masked array??
+If you have answered your own question you should submit it as an answer, rather than edit the question.
+
+Create subset table from Pandas dataframe with hierarchical index in a loop
+I want to iterate through a hierarchical index panda dataframe and print a subsets based on "group1" level. 
+here is my dataframe #CODE
+This is what it looks like: #CODE
+I can successfully print a SINGLE subset based on group1 like this: #CODE
+But how can I put this in a loop to print a subset for each group of elements in 'group1'? 
+My failed attempt: #CODE
+This printed a subset for each index instead of grouping them together (hope that makes sense).
+Use `get_level_values` on the index to return just those index values at that level, additionally call `unique` as what is returned are duplicate index values for each sublevel row. #CODE
+Perfect! thanks for explaining it.
+@USER no worries, you can upvote too ;)
+This is what `groupby` is for (iteration gives your the groupname,group): #CODE
+Most of the time you actually want to do something with it though, e.g. #CODE
+Ahh right, thanks a lot for this info.
+
+3D-plot of the error function in a linear regression
+I would like to visually plot a 3D graph of the error function calculated for a given slope and y-intercept for a linear regression.
+This graph will be used to illustrate a gradient descent application. 
+Let s suppose we want to model a set of points with a line. To do this we ll use the standard y=mx+b line equation where m is the line s slope and b is the line s y-intercept. To find the best line for our data, we need to find the best set of slope m and y-intercept b values. 
+A standard approach to solving this type of problem is to define an error function (also called a cost function) that measures how good a given line is. This function will take in a (m,b) pair and return an error value based on how well the line fits the data. To compute this error for a given line, we ll iterate through each (x,y) point in the data set and sum the square distances between each point s y value and the candidate line s y value (computed at mx+b). It s conventional to square this distance to ensure that it is positive and to make our error function differentiable. In python, computing the error for a given line will look like: #CODE
+Since the error function consists of two parameters (m and b) we can visualize it as a two-dimensional surface. 
+Now my question, how can we plot such 3D-graph using python ? 
+Here is a skeleton code to build a 3D plot. This code snippet is totally out of the question context but it show the basics for building a 3D plot.
+For my example i would need the x-axis being the slope, the y-axis being the y-intercept and the z-axis, the error. 
+Can someone help me build such example of graph ? #CODE
+The above code produce the following plot, which is very similar to what i am looking for.
+@USER no, i removed the R tag, I didn't noticed it was added; thanks
+Simply replace `fun` with `computeErrorForLineGivenPoints`: #CODE
+yields
+Tip: I renamed `computeErrorForLineGivenPoints` as `error`. Generally, there is no need to name a function `compute...` since almost all functions compute something. You also do not need to specify "GivenPoints" since the function signature shows that `points` is an argument. If you have other error functions or variables in your program, `line_error` or `total_error` might be a better name for this function.
+Thanks @USER This is exactly the implementation I am looking for. I will change the function signature as you suggest. Thanks !
+
+Pandas datetime index all set to the same date in a month (1st)
+I have a dataframe like: #CODE
+I want all the dates to be the 1st of the month like: #CODE
+I know this has to be really simple, but I'm new at pandas/python and looked for over an hour at this point. Thanks in advance.
+Is the `Date` the `index`, or a `column'?
+You may just use simple list comprehension to "convert" and re-assign your index: #CODE
+
+Repeat data frame, with varying column value
+I have the following data frame and need to repeat the values for a set of values. That is, given #CODE
+I need to do something like this, but more performant: #CODE
+That is, the expected output is: #CODE
+This looks like it is working to me. What exactly are you expecting to be different?
+@USER something more efficient, perhaps vectorized.
+
+Plot bar graph using multiple groupby count in panda
+I am trying to plot bar graph using pandas. DataTime is index column which I get from timestamp. Here is table structure: 
+So far i have written this: #CODE
+I want output like this: 
+June has total 4 entry and one entry starts with u. so X has 4 y has 1. Same for July. 
+Also i want to plot bar graph (X and Y entries) using output. I want MONTH vs Values bar graph
+This is a near-exact duplicate of #URL
+Please write your questions so they make sense without reference to links to external sites. Questions on SO should be helpful to future readers, and if those links die your question will be very hard to understand. Also, please do not post links to images of text (or embed direct images of text) - post the text itself, perhaps in a Quote block, or in a Code block if you need to preserve formatting.
+I would created the DataFrame with a dict: #CODE
+Now you can use the plot method to plot months vs values. #CODE
+Note: you can create grouped more efficiently: #CODE
+I am getting an error when i use your groupby code. This is error "'Series' object has no attribute 'dt'". This is sample data on my df['DateTime'] => 2013-06-25
+@USER you need to ensure your Series is of datetime64 type, rather than - say - strings... e.g. using df['DateTime'] = pd.to_datetime(df['DateTime']). Also ensure you're using a fairly recent version of pandas >= 0.15.
+I am using panda version # 0.14.1. my df['DateTime'].dtype is object. It should be datetime64 as per your last comment. I tried to convert it but i could not solve the problem. I am using anaconda with 2.7 python version
+I use pf['DateTime'] = pf['DATE'].apply(lambda x: dt.date.fromtimestamp(x)) to convert timestamp to date. Also to groupby i use this df1['DateTime'].groupby(lambda x: x.month). In my final output i want Month-Year on x axis.
+@USER use `pd.to_datetime` rather than apply. If you use the apply it may not create a Datetime column. I think you may have to update to 0.15.X for the dt accessor. If you want month-year then use the `to_period` part of the answer above?
+result.plot() does not short the month and year together. it short by only month, thats why i get plot for Jan 2014 Jan 2015 together.
+how to short result data frame
+@USER you should ask that as a new question :)
+#URL
+
+Pandas: Merge or join dataframes based on column data?
+I am trying to add several columns of data to an existing dataframe. The dataframe itself was built from a number of other dataframes, which I successfully joined on indices, which were identical. For that, I used code like this: #CODE
+I actually joined these on a multi-index, so the dataframe looks something like the following, where Name1 and Name 2 are indices: #CODE
+So the Name1 index does not repeat data, but the Name2 index does (I'm using this to keep track of dyads, so that Name1 Name2 together are only represented once). What I now want to add are 4 columns of data that correspond to Name2 data (information on the second member of the dyad). Unlike the "present" "r" and "behavior" data, these data are per individual, not per dyad. So I don't need to consider Name1 data when merging. 
+The problem is that while Name2 data are repeated to exhaust the dyad combos, the "Name2" column in the data I would now like to add only has one piece of data per Name2 individual: #CODE
+What I would like the output to look like: #CODE
+Despite reading the documentation, I am not clear on whether I can use join() or merge() for the desired outcome. If I try a join to the existing dataframe like the simple one I've used previously, I end up with the new columns but they are full of NaN values. I've also tried various combinations using Name1 and Name2 as either columns or as indices, with either join or merge (not as random as it sounds, but I'm clearly not interpreting the documentation correctly!). Your help would be very much appreciated, as I am presently very much lost.
+I'm not sure if this is the best way, but you could use `reset_index` to temporarily make your original DataFrame indexed by `Name2` only. Then you could perform the `join` as usual. Then use `set_index` to again make `Name1` part of the MultiIndex: #CODE
+To make the result look even more like your desired DataFrame, you could reorder and sort the index: #CODE
+This works - I must have been setting the wrong parameters as this is one of the approaches I attempted. Good to know I'm not wandering in the entirely wrong direction.)
+
+Export Pandas data frame with text column containg utf-8 text and URLs to Excel
+My Pandas data frame consists of Tweets and meta data of each tweet (300.000 rows). Some of my colleagues need to work with this data in Excel which is why I need to export it. 
+I wanted to use either `.to_csv` or `.to_excel` which are both provided by Pandas but I can't get it to work properly. 
+When I use `.to_csv` my problem is that it keeps failing in the text part of the data frame. I've played around with different separators but the file is never 100% aligned. The text column seems to contain tabs, pipe characters etc. which confuses Excel. #CODE
+When I try to use `.to_excel` together with the `xlsxwriter` engine I'm confronted with a different problem, which is that my text column contains to many URLs (I think). `xlswriter` tries to make special clickable links of these URLs instead of just handling them as strings. I've found some information on how to circumvent this but, again, I can't get it to work. 
+The following bit of code should be used to disable the function that I think is causing trouble: #CODE
+However, when using `to_excel` I can't seem to adjust this setting of the Workbook object before I load the data frame into the Excel file. 
+In short how do I export a column with wildly varying text from a Pandas data frame to something that Excel understands? 
+edit: 
+example: #CODE
+So in this case It is obviously a line brake that is my data. I will try to find some more examples. 
+edit2: #CODE
+Translation of Dutch stuff: 
+Errors were found in "file". Here follows a list of removed records: removed records: formula of the part /xl/worksheets/sheet1.xml
+can you give us a sample of the df that doesn't work?
+@USER I've added an example, I will add more if needed.
+I don't think it is currently possible to pass XlsxWriter constructor options via the Pandas API but you can workaround the `strings_to_url` issue as follows: #CODE
+The code works so that is a great start. When I open the Excel file I get a warning that it needs to be recovered. I've put the log file in my post for better formatting.
+You get a warning when you open the file created by my example?
+Yes, that is what I mean.
+I don't see any warning when I open the file and there really isn't any reason that there should be for such a simple test case. Also in relation to the warning you added above there isn't any "formula" part in `/xl/worksheets/sheet1.xml`. Did you add a formula or other data to the dataframe in the example?
+Well I was testing it now on my full data frame. I've not added any formulas. To me the log warning seems empty. Apparently it is a known issue/bug: #URL I will look into it further. You have been a great help!!
+Perhaps there is some data in the dataframe that is being interpreted as a formula. Try adding the following at the same point as the other option to see if it makes a difference: `writer.book.strings_to_formulas= False`.
+That did the trick! SWEET!
+
+Running alternative version of Python on RedHat 6 produces "wrong ELF class: ELFCLASS64"
+I inherited some python code that I need to modify. I installed python 2.7.10 on my RedHat 6 machine and ran the original code which produced results different from those that were generated last time it was run using an older version of python. I was given a path to an old python installation and tried to run the code using it. Got errors. Here's what I've done so far: 
+This is the path to the old python install (2.7.8): #CODE
+Tried running the code and got the first error: #CODE
+Searched for `libstdc++.so.6` and found it in `/usr/lib64`: #CODE
+So I modified `LD_LIBRARY_PATH` as was suggested in another SO post: #CODE
+Tried running again and got another error: #CODE
+How can I get rid of this error and, ultimately, be able to run the old python version with `pandas`? Whatever I do to achieve this, however, I don't want to mess up the environment for the current version of python I am using (which, in case this is relevant, was installed into a local subdirectory of my home dir using `miniconda`)
+The version of python you're trying to use wasn't compiled for 64 bit, so it isn't linked against a 64 bit `libstdc++`. 
+The proper way to run the older version of python would be doing an install on the machine. I'm not sure how Redhat handles multiple package versions, but I'd be surprised if it didn't support it (most distributions do). 
+Other than that, you would need to find a host that the older version is installed on.
+
+UnboundLocalError in ggplot 0.5
+I have the following code #CODE
+and I get the following error: #CODE
+some sample data #CODE
+Hm. Can you try:
+```
+import ggplot
+print ggplot.__version__
+```
+And perhaps pasting a few rows of your data would also help reproduce the issue you're seeing too.
+ggplot version 0.5.0
+It's done above . thanks
+there's a space in your x variable name in `aes` but not in your data frame? 'DHT temp' vs 'DHTtemp'. Is that it?
+I am using `x`and `y`as axis indicators.
+Can you please store the final ggplot object (`p = p + ...`) and run `p.draw()` on it. This should result in a complete stacktrace insteed of only the error message. I think this is a bug in gpplots code, so opening an issue at #URL would be nice. :-)
+Great. Thx for posting some data. Unfortunately, I'm not able to recreate the issue on my end. #CODE
+The plot renders for me without the exception you're seeing. Of course, since this is only the top 5 rows, the plot doesn't really describe anything interesting. 
+Will keep digging and ask a few people on my team if they know what's up.
+This was a bug in ggplot which has been fixed in version 0.5.8.
+
+Pandas for Python, grouping
+I have a data set consisting of multiple tuples per time stamp - each of these has a count. There could be different tuples present at each time stamp. I would like to group these together in 5 minute bins and add the counts for each unique tuple. Is there a nice clean way to do this using Pandas group-by ? 
+They have the form:
+((u'67.163.47.231', u'8.27.82.254', 50186, 80, 6, 1377565195000), 2) 
+This is currently a list, with a 6-tuple (last entry is time-stamp), and then count. 
+There will be a collection of 5-tuples for every time stamp: 
+(5-tuple), t-time-stamp, count, for example (for just one time stamp) #CODE
+or converted: #CODE
+Here's what seems to work well: #CODE
+Can you give a short example data of the whole dataframe?
+[((u'71.57.43.240', u'8.27.82.254', 33108, 80, 6, 1377565195000), 1),
+((u'67.163.47.231', u'8.27.82.254', 50186, 80, 6, 1377565195000), 2),
+((u'8.27.82.254', u'98.206.29.242', 25159, 80, 6, 1377565195000), 1),
+((u'69.66.156.250', u'8.27.82.254', 59274, 80, 6, 1377565195000), 3),
+((u'76.16.235.239', u'8.27.84.126', 48104, 80, 6, 1377565195000), 1),
+((u'8.27.84.254', u'98.226.117.227', 63795, 80, 6, 1377565195000), 2),
+((u'24.1.153.243', u'8.27.82.126', 18970, 80, 6, 1377565195000), 1),
+((u'76.16.101.243', u'8.27.82.126', 41329, 80, 6, 1377565195000), 1),
+You can edit you question to include it instead of as a comment. Where is the timestamp in this example?
+last entry in the 6-tuple
+Do you already put it in a pandas DataFrame? How does that look like (is the tuple one column)?
+I've not put these into a DataFrame yet. Given this is a list (or a dictionary if I don't sort on the time stamp). But the intent would be to have the tuple as a column. But then use the time-stamp as a time-series - to really the first 5-tuple is the unique key, then the time-stamp, and the count.
+How is the timestamp defined? How can it be converted to a datetime?
+The timestamp is time since the UNIX epoch - can be converted to datetime
+In [226]: df
+Out[226]: 
+data1 data2 key1
+0 1 1377565195000 (71.57.43.240, 8.27.82.254, 33108, 80, 6)
+1 2 1377565195000 (67.163.47.231, 8.27.82.254, 50186, 80, 6)
+Do you only have timestamps every 5 mins? Or do you have to combine several minutes in one 5 min bins?
+The data needs to be grouped (binned) into 5min bins. There can be multiple (100's of 5-tuples or keys) per time step - and these can change from time step to time step - for each unique key or tuple, want to add together the counts (data1)
+Can you give a more elaborate example dataset, and also give an example of the desired output
+Here is a simpler example that illustrates the idea:
+time count city
+00:00:00 1 Montreal
+00:00:00 2 New York
+00:00:00 1 Chicago
+00:01:00 2 Montreal
+00:01:00 3 New York
+after bin-ing into 5min bins
+time count city
+00:05:00 3 Montreal
+00:05:00 5 New York
+00:05:00 1 Chicago
+time count city
+00:00:00 1 Montreal
+00:00:00 2 New York
+00:00:00 1 Chicago
+00:01:00 2 Montreal
+00:01:00 3 New York
+after bin-ing
+If you just want to add together the counts for each unique tuple, just groupby `key1`: #CODE
+If you want to do this for each time step and each unique tuple, you can give multiple column to group by: #CODE
+If different timesteps have to be combined in one 5min bin, a possible approach is to round your timestamp to 5 min, and then group by on that: #CODE
+If you want to preserve some of the original timestamps (but you have to choose which if you are binning them), you can specify a function to apply on the individual columns. For example take the first: #CODE
+If you just want to resample on 5 mins and add the counts regardless of the keys, you can simply do: #CODE
+The keys are unique (but may not appear every time step). I would like to add the data1 (counts) together for each unique key - and then bin these into 5min bins - so the second approach
+So the second approach is what you want? Or not yet?
+This looks way nicer than mine, but it doesn't bin into 5 minute intervals (I guess you could make a column with rounded times?)
+@USER Yeah, that's what I was trying (rounded times), but it is not clear to me if it is needed (maybe all the times are already 5-mins, and then it is just a simple groupby)
+@USER Oops, mislooking at the seconds/minutes, so it is certainly not yet in 5-min times ..
+Yeah, as usual here example not the best... Not sure how you do the rounded times (will upvote when you get it :p ).
+I would want the second approach - but it groups together the keys ?
+ideally would want to keep the time-stamp intact, for each unique key - then I understood that the time stamp resample() could handle mutiple keys when resampling ?
+Yes, it groups together the *unique* keys (the tuples). Isn't that what you want?
+How can you keep the time-stamp intact if you want to bin your data every 5 min?
+OK, if you want to keep the time stamp intact, you should not group by it and take the first approach.
+I've read that the time series resample can work with repeated time stamps - I'd really just like to aggregate so that the counts (data1) are added when creating a 5 min time bin. In this example there were just 2 time stamps (same value). A larger data set would have 1000's or more time stamps for keys, and a cound for each. Would like to sum the counts for unique keys when binned
+OK, I get that, but the last approach does this? What do you mean with keep the timestamp intact? If you have two rows with a unique key but different timestamps in the same 5min bin, which of the two timestamps you want to preserve?
+by time-stamp intact, just meant that it is included in the time series or dataframe, even after aggregation
+If you "aggregate" for different timestamps, you cannot just include it (because for each aggregated count, you have multiple and different timestamps). How do you want it included?
+Can you give a more elaborate example dataset (with different timestamps), and also give an example of the desired output.
+would resample() be able to create the 5min bins ? even when there are repeated time stamps
+yes off course, but you also want to group by key (tuple)?
++1 goodness, that's an awful hack to round dates :)
+@USER, indeed ... That's certainly something that can be improved with a handy function :-)
+I want add the counts (data1) associated with a unique key - so if a (count,key) appears for a time stamp in any 5 min interval, the counts are added. Do not want to add counts for all keys in the 5 min bin.
+OK, but in that case, I think my answer is working (with the rounding)?
+@USER Lol, another hack to round :-) `df['data2'].map(lambda x: pd.DataFrame([0],index=pd.DatetimeIndex([x])).resample('5min').index[0])`
+in the case of df.set_index('data2', inplace=True)
+df.resample('5min', 'sum'), it is adding toegther counts for all the keys - want to keep the counts for the unique keys separated
+In that case all counts are added, also for non-unique within a 5 min bin. So that is not what you want. But my third code block is doing what you want I think?
+That block adds together the counts (data1) for all keys - need to keep the unique keys separate - need the counts added for each unique key when binned - so in this case would not change - need to have more time stamps that span several minutes
+This ``df.groupby(['data2_5min', 'key1']).aggregate('sum')`` keeps the keys seperate, and adds the counts within each 5 min bin together for the unique keys
+Thanks so much ! I will take a look
+Would it be possible let resample() create the 5min bins - afterwards and preserve the unique keys (along with their counts).
+This would allow for example, to create 2 min, 10 min bins using resample - and look at the data over different bin sizes (time scales)
+I've posted a much simpler example (based on cities as keys) above
+If you set the date as the index you can use TimeGrouper (which allows you to group by, for example, 5 minute intervals): #CODE
+You can then count the number of unique items in each 5 minute interval using nunique: #CODE
+If you're looking for a count of each tuple, you could use value_counts: #CODE
+Note: this is a Series with a MultiIndex (use reset_index to make it a DataFrame). #CODE
+You'll probably want to give these more informative column names :). 
+Update: previously I hacked get `get_dummies` , see edit history.
+I ? get_dummies, but there is probably a short-cut for `get_dummies(x).sum()` lol it's value_counts
+Nice trick with the TimeGrouper! But I think he wants to 'add the counts' (which is an existing column), and not to 'count the unique keys'
+Yeah, it should be in the docs! (Also seems a shame you can't do it to a column...)
+(you could be right: maybe I don't follow the question...)
+Very nice, thanks.
+But for sure, the counts need to be added
+@USER I don't understand what you mean, this does count the number of occurrences. If this isn't what you want could you include the desired outcome in your question?
+Sorry - I want to add the counts (data1 column) for unique keys - when binning into 5 min bins -
+in this example there was just one time stamp - but there will be 1000's of time stamps across several minutes up to an hour say.
+this groups these timestamps into 5 minute bins
+ah you want to groupby data1 too (i.e. my solution but also separated by data1)
+essentially add (aggregate) the data1 (counts) for each unique key, into 5 min bins.
+so when there are enough time stamps (data2) spanning more than 5 minutes (e.g an hour), add together the counts(data1) for each of the unique keys appearing (in a given 5min bin or interval). The difficulty is that not all keys will appear or be present for any given time stamp
+
+When plotting datetime index data, put markers in the plot on specific days (e.g. weekend)
+I create a pandas dataframe with a DatetimeIndex like so: #CODE
+Which gives #CODE
+I can easily plot the `A` colum with pandas by doing: #CODE
+which plots a line of the `A` column but leaves out the `weekend` column as it does not hold numerical data. 
+How can I put a "marker" on each spot of the `A` column where the `weekend` column has the value `yes`?
+Meanwhile I found out, it is as simple as using boolean indexing in pandas. Doing the plot directly with pyplot instead of pandas' own plot wrapper (which is more convenient to me): #CODE
+Now, the red dots mark all weekend days which are given by `df.weekend='yes'` values.
+You could shorten it a smidge with `df['A'][df['weekend'] == 'yes'].plot(style='ro')` which is a bit more readable (IMO) but still, nice self-answer.
+
+pandas applying regex to replace values
+I have read some pricing data into a pandas dataframe the values appear as: #CODE
+I want to strip it down to just the numeric values.
+I know I can loop through and apply regex #CODE
+to each field then join the resulting list back together but is there a not loopy way? 
+Thanks
+You could remove all the non-digits using `re.sub()`: #CODE
+regex101 demo
+`\D+` will be the smallest :-P
+whats the best way to apply it to the column in the dataframe? so I have df['pricing'] do I just loop row by row?
+@USER I don't have much experience with pandas, but I think that you should be able to use it like this: `df['pricing'] = re.sub(r"[^0-9]+", "", df['pricing'])`.
+@USER Smaller doesn't necessarily mean better. `\D` tends to be slower and that's not better at all.
+ok I think I got it for pandas use: df['Pricing'].replace(to_replace='[^0-9]+', value='',inplace==True,regex=True) the .replace method uses re.sub
+@USER Nice, thanks for letting me know too :)
+You could use `Series.str.replace` : #CODE
+yields #CODE
+
+Pandas groupby: How do I use shifted values
+I have a dataset that represents reoccurring events at different locations. #CODE
+Each location can have 8-10 events that repeat. What I'm trying to do is build some information of how long it has been between two events. (they may not be the same event) 
+I am able to do this by splitting the df into sub-dfs and processing each location individually. But it would seem that groupby should be smarter that this. This is also assuming that I know all the locations which may vary file to file. #CODE
+What I would like to do is groupBy based on location... #CODE
+Then for each grouped location 
+Add a delta column 
+Shift and subtract to get the delta time between events 
+Questions: 
+Does groupby maintain the order of events? 
+Would a for loop that runs over the DF be better? That doesn't seem very python like.
+Also once you have a grouped df is there a way to transform it back to a general dataframe. I don't think I need to do this but thought it may be helpful in the future. 
+Thank you for any support you can offer.
+#URL looks like it provides what you need. #CODE
+or #CODE
+Will split it into groups of rows with matching values in the location column. 
+Then you can sort the groups based on the time value and iterate through to create the deltas.
+JohnB - Yes I know how to group-by based on the location. That it actually included as part of the question. But when you group by you end up with a group-by object which you can iterate over. for a specific group is there a way to apply a shift to it. Or do I need to iterate over it. Also once you have the groups there seems to be options to process the data but not add another column to the group. This is kind of where I'm stuck.
+It appears that when you group-by and identify a column to act on the data is returned in a series which then a function can be applied to. #CODE
+This groups by location and returns the time column for each group. 
+Each sub-series is then passed to the function deltaTime.
+
+Why does a pandas Series of DataFrame mean fail, but sum does not, and how to make it work
+There may be a smarter way to do this in Python Pandas, but the following example should, but doesn't work: #CODE
+I won't post the whole traceback, but the main error message is interesting: #CODE
+It looks like the dataframe was successfully summed, but not divided by the length of the series. 
+However, we can take the sum of the dataframes in the series: #CODE
+Returns #CODE
+Why wouldn't mean work when sum does? Is this a bug or a missing feature? This does work: #CODE
+And so does this: #CODE
+But this of course is not ideal.
+Unclear if it should work at all but you could apply the function: `s.apply(pd.DataFrame.mean)`
+This just gives the mean of each constituent data frame.
+When you define `s` with #CODE
+you get a Series with DataFrames as items: #CODE
+The sum of the items is a DataFrame: #CODE
+but when you take the mean, `nanops.nanmean` is called : #CODE
+Notice that `_ensure_numeric` ( source code ) is called on the resultant sum.
+An error is raised because a DataFrame is not numeric. 
+Here is a workaround. Instead of making a Series with DataFrames as items,
+you can concatenate the DataFrames into a new DataFrame with a hierarchical index : #CODE
+Now you can take the `sum` and the `mean`: #CODE
+You could (as suggested by @USER) use a hierarchical index but when you have a three dimensional array you should consider using a " pandas Panel ". Especially when one of the dimensions represents time as in this case. 
+The Panel is oft overlooked but it is after all where the name pandas comes from. (Panel Data System or something like that). 
+Data slightly different from your original so there are not two dimensions with the same length: #CODE
+Panels can be created a couple of different ways but one is from a dict. You can create the dict from your index and the dataframes with: #CODE
+The mean you are looking for is simply a matter of operating on the correct axis (axis=0 in this case): #CODE
+With your data, `sum(axis=0)` returns the expected result. 
+EDIT: OK too late for panels as the hierarchical index approach is already "accepted". I will say that that approach is preferable if the data is know to be " ragged " with an unknown but different number in each grouping. For " square " data, the panel is absolutly the way to go and will be significantly faster with more built-in operations. Pandas 0.15 has many improvements for multi-level indexing but still has limitations and dark edge cases in real world apps.
+You're right that computation on the panel is significantly faster than on the hierarchical dataframe. But what are the extra built-in operations that panels have that dataframes don't? `set(dir(pan))-set(dir(df))` did not turn up anything interesting. Also, can you elaborate on the "limitations and dark edges cases" to which you referred?
+This is my fault for asking two questions in one. I will be using your solution for my problem since, as you point out, the `Panel` solution is the correct one for the example I gave. But I think @USER addressed the full question of what exactly is keeping my original series-based code from working. I very much appreciate your insight! Both of these should be in the docs!
+I want to also add, that unlike the hierarchical index version, you can now also do `s_mean = np.mean(s, axis=0)`, or sum, std, or I'm guessing any numpy function that works on arrays.
+
+Change dataframe index values while keeping other column data same
+I have a DataFrame with 4 columns and 251 rows and an index that is a progression of numbers e.g. 1000 to 1250 . The index was initially necessary to aid in joining data from 4 different dataframes. However, once i get the 4 columns together, i would like to change the index to a number progression from 250 to 0. This is because i would be performing the same operation on different sets of data (in groups of 4) that would have different indices, e.g. 2000 to 2250 or 500 to 750, but would all have the same number of rows. 250 to 0 is a way of unifying these data sets, but i can't figure out how to do this. i.e. i'm looking for something that replaces any existing index with the function range(250, 0, -1) 
+I've tried using set_index below and a whole bunch of other attempts that invariably return errors, #CODE
+and in the instance when i am able to set the index of the df to the range, the data in the 4 columns change to NaN since they have no data that matches the new index. I apologize if this is rudimentary, but i'm a week old in the world of python/pandas, haven't programmed in +10yrs, and have taken 2 days to try to figure this out for myself as an exercise, but its time to cry... Uncle!!
+Try introducing the 250:0 indices as a column first, then setting them as the index: #CODE
+Before: #CODE
+After: #CODE
+Thanks for the quick response, I just tried it, and i believe i'm getting a datatype conflict of some sort. I am able to add 250:0 as a column to the dataset, the set_index command doesn't throw any errors, but when i look at the dataframe, i still have the old index with the 250:0 as the last column. Below is the output i got on executing the set_index command
+I didn't use the `inplace=True` argument in my code like you did, so it doesn't actually modify `df`, just returns a new dataframe with those indexes set. Add that argument, or assign the result to a new variable, and you should be good.
+All solved. Thanks and sorry for my incomplete response earlier.
+You can just do #CODE
+or am I missing something?
+
+how to concat sets when using groupby in pandas dataframe?
+This is my dataframe: #CODE
+Now when I `groupby`, I want to update sets. If it was a `list` there was no problem. But the output of my command is: #CODE
+What should I do in groupby to update sets? The output I'm looking for is as below: #CODE
+This might be close to what you want #CODE
+In this case it takes the union of the sets. 
+If you need to keep the column names you could use: #CODE
+Result: #CODE
+Thanks, It solved set problem, but column name renamed to 0. Why that happened?
+It's because the result is a Series so no column name. I've added a method for keeping the column name if you need it.
+
+Take a Pandas Series where each element is a DataFrame and combine them to one big DataFrame
+I have a Pandas Series where each element of the series is a one row Pandas DataFrame which I would like to append together into one big DataFrame. For example: #CODE
+so how do I take `myResult` and combine all the little dataframes into one big dataframe?
+#CODE
+yields #CODE
+was just about to post very similar....fyi, you function could return the column labels as the index of the function series, e.g. ``pd.Series([val**2,val**3,index=['square','cube'])`` will work as well
+@USER: Ah, much better. Thank you.
+Its seems overly complicated, although you probably posted a simplified example. Creating a new Series for each row creates a lot of overhead. This for example is over 200 times faster (for n=500) on my machine: #CODE
+your intuition is correct. My example is a bit of an extreme simplification.
+concat them: #CODE
+Since the original indexes are all 0, I also reset them.
+You can also do `pd.concat(myResult, ignore_index=True)`
+
+pandas: Multiply MultiIndex DataFrame with Series
+I have a MultiIndex DataFrame that contains these values: #CODE
+-- 
+and a Series that contains these values: #CODE
+I'd like to multiply all of the minor index CC values by the CC value in the Series, and the same with the other values. I saw another question on here that gave me the .mul method, but when I try that, even with the level='minor', it tells me: 
+TypeError: can only call with other hierarchical index objects 
+I've unstacked the minor index to make it columns, and specified level='minor', axis='columns' with the same result. 
+Finally, the end result is to be able to run this same calculation on a DataFrame where the major columns are several equities -- in that instance, would .mul() work against each equity as well? 
+Thanks for your assistance!
+If you add the output of the DateFrame and Series `.to_dict()` then it is much easier for us to solve these type of questions :) What code are you using to multiplying the "minor index CC by the CC value"?
+I updated it to add to_dict() output.
+Series based it works with `level`: #CODE
+Then you can insert it again into your DataFrame. But that should work with DataFrames too, maybe you can suggest it.
+I used this and DataFrame.apply to apply it to all major columns in the dataframe. After thinking about it a bit more, I think this is the intended design, and it perfectly accomplishes the goal.
+
+Merging two pandas timeseries shifted by 1 second
+I have two sets of time series like this. 
+One: #CODE
+The other: #CODE
+As you can see one of them is shifted by 1 second.
+But I would like to treat them as same bucket. For instance, 2014-03-17 13:25:01 should be same as 2014-03-17 13:25:00. How can i achieve this?
+Nevermind figured out one way to do it. #CODE
+And then I merge the two.. 
+If there are better ways please do let me know.
+Seems a reasonable way. You could also do: `df.index = df.index.values.astype('datetime64[m]')`.
+you can also round the as well, see here: #URL
+
+Python / Pandas - GUI for viewing a DataFrame or Matrix
+I'm using the Pandas package and it creates a DataFrame object, which is basically a labeled matrix. Often I have columns that have long string fields, or dataframes with many columns, so the simple print command doesn't work well. I've written some text output functions, but they aren't great. 
+What I'd really love is a simple GUI that lets me interact with a dataframe / matrix / table. Just like you would find in a SQL tool. Basically a window that has a read-only spreadsheet like view into the data. I can expand columns, page up and down through long tables, etc. 
+I would suspect something like this exists, but I must be Googling with the wrong terms. It would be great if it is pandas specific, but I would guess I could use any matrix-accepting tool. (BTW - I'm on Windows.) 
+Any pointers? 
+Or, conversely, if someone knows this space well and knows this probably doesn't exist, any suggestions on if there is a simple GUI framework / widget I could use to roll my own? (But since my needs are limited, I'm reluctant to have to learn a big GUI framework and do a bunch of coding for this one piece.) 
+Thanks.
+Would Pyspread be of any assistance?
+Looks like overkill for my need, but I'll look into it if there's nothing easier. Thanks.
+can this be done in spyder(#URL)? I have been using Rstudio with R and I like being able to see the data with a single click. I totally agree that a comparable tool for Python/Pandas is missing and iPython is great but not in this area.
+i've found that the ipython notebook is pretty good for this.
+I'm not a Pandas user myself, but a quick search for "pandas gui" turns up the Pandas project's GSOC 2012 proposal : 
+Currently the only way to interact with these objects is through the API. This project proposes to add a simple Qt or Tk GUI with which to view and manipulate these objects. 
+So, there's no GUI, but if you'd write one using Qt or Tk, the project might be interested in your code.
+Thanks, but I think building a generally usable tool would be above my skill level!
+It seems there is no easy solution. So, below is a little function to open a dataframe in Excel. It's probably not production quality code, but it works for me! #CODE
+I use `QTableWidget` from PyQt to display a `DataFrame`. I create a `QTableWidgetObject` and then populate with `QTableWidgetItems` created with `DataFrame` values.
+Following is the snippet of code that reads a CSV file ,create a `DataFrame`, then display in a GUI: #CODE
+That's awesome. I will definitely try this next time.
+I use ipython notebooks to drive pandas -- notebooks provide a nice clean way of incrementally building and interacting with pandas data structures, including HTML-ized display of dataframes: #URL
+You could use the to_html() dataframe method to convert the dataframe to html and display it in your browser. Here is an example assuming you have a dataframe called df. You should check the documentation to see what other options are available in the to_html() method. #CODE
+If you want to get the table to be nicely formatted and scrollable then you can use the datatables plug-in for jQuery #URL . Here is the javascript I use to display a table the scrolls in both x and y directiions. #CODE
+Hey - this looks great. I'll try that next time I need to look at data.
+Pandas 0.13 provides as an experimental feature: 
+PySide support for the qtpandas `DataFrameModel` and `DataFrameWidget` 
+see #URL 
+you can add this feature using #CODE
+Thank you for this! There's now a working sample in the Pandas docs: #URL
+There's tkintertable for python2.7 and pandastable for python3.
+I've been working on a PyQt GUI for pandas DataFrame you might find useful. It includes copying, filtering, and sorting. 
+#URL
+The nicest solution I've found is using `qgrid` (see here , and also mentioned in the pandas docs ). You can install by #CODE
+and then you need to do a further install (just once) in your `IPython` notebook #CODE
+Afterwards, it's as easy as taking your `pandas` `df` and running #CODE
+The other nice thing is that it renders in `nbviewer` too. See it in action here
+
+Convert one row of a pandas dataframe into multiple rows
+I want to turn this: #CODE
+Into this: #CODE
+Context: I have data stored with one value coded for all ages (age = 99). However, the application I am developing for needs the value explicitly stated for every id-age pair (id =1, age = 25,50, and 75). There are simple solutions to this: iterate over id's and append a bunch of dataframes, but I'm looking for something elegant. I'd like to do a #URL merge from my original dataframe to a template containing all the ages, but I would still have to loop over id's to create the template.
+Don't know, may be there's more elegant approach, but you can do something like cross join (or cartesian product ): #CODE
+Thanks! This is exactly what I was looking for, and I guess I even said the words many to one in my question, but I didn't understand that you could merge like that
+@USER I think code could be cleaned a bit, but you've got overall idea
+
+use for loop to concat dataframe to a larger dataframe
+my question is for every step of for loop, a new dataframe will be generated. I want to concat the data frames together to have a larger one but somehow my function will only return the last step of the result rather than the merged result #CODE
+Thanks!
+maybe result = pd.concat( [result, rate], ignore_index=True) ??
+BTW: add `spaces` around `=` and after `,` to make code more readable - see: [PEP 8 -- Style Guide for Python Code](#URL)
+@USER unfortunately it does not work :(
+@USER thank you so much! I am really new to Python will def pay attention to that next time. bad habit in R lol
+This might not be the right answer, it is more readable written as answer. 
+I think the right logic should be ( but I can be very wrong): #CODE
+Can you please try this and let us know if it works? 
+I think one of your problem is the way you use pd.concat(obj) , the obj should be a list of item or a dict of pd.Series.... 
+but you didn't concat rate with anything else. 
+and the use of variable "result" is unnecessary to me. 
+but, again, I could be wrong.
+I agree - `result` is unnecessary. `cvResult` should be used in place of `result`.
+it still did not work the error is "cannot concatenate a non-NDFrame object" but thx @USER :)
+oh , you need to do rate = pd.DataFrame( {"classfier":classifier_i,"model":index_i,"recall":recall_rate,"precision":precision_rate,"accuracy":accuracy_rate}) to make it a DataFrame before you concat it.
+
+pandas.to_html() returning None
+I'm trying to use the formatters argument to add a html property to a specific cell/text. 
+I've found an answer that fits completely my request. However trying it, results in returning None. 
+The example that I'm trying: #CODE
+This question is from 2013. Does the syntax changed from one version to another?
+I'm using python Python 2.7.9 pandas 0.16.0.
+Meybe result is in `buf`?
+As above: the to_x methods return None, the results will be visible in whatever file-like you pass as the first parameter
+Ok, I wasn't understanding the stringIo use. I was thinking the formatter argument required a stringIo object. The result that I was expecting was simply: df.to_html(formatters={'p_value': significant}, escape=False)
+The df.to_html() method is not returning the output, the output is returned to the buf stringIo object wich can be conveniently written later.
+What I was expecting: #CODE
+You have given the DataFrame.to_html function a StringIO buffer, which means that the result is written to it, not returned as a string. 
+This has not changed since Pandas version 0.10 of DataFrame.to_html() function 
+To get the output as a returned string, simply remove the buffer: #CODE
+OR, if you want to use a buffer, this is how to print the value of it: #CODE
+
+pandas resample MAX-VALUE with corresponding ANGLE-VALUE
+I have to resample wind_velocity and wind_angle from the 2 sec period to 2min and receive the maximum wind_velocity (=MAX) with the corresponding wind_angle (not MAX). The lines below give me the maximum of both columns. #CODE
+the data looks like #CODE
+Any help?
+This answer has a couple strategies - #URL
+Thank you. This helped. lg, s
+
+HDFStore error appending - "Cannot serialize the column"
+I have a dataframe, df: #CODE
+Trying to append this to a new datastore. The datastore does not exist so I use the following to create and append the data; #CODE
+I get this error: on the `store.append` line. #CODE
+How do I get the data to store properly?
+do ``df.dtypes``. you have ``object`` dtypes on the columns (the message indicates that they look like ``float`` type, but they are not typed that way. You need to convert as @USER Cloud suggest below (or event better convert when you are reading them in). It is hard to create object dtyped floating values unless you are doing it on purpose (that's why I say when you read it in)
+Call `DataFrame.convert_objects()`: #CODE
+It might be worth checking to see if you can get your data in the correct format before you start saving to HDF5. For example, wherever `df` is created, convert the objects there, instead of converting them when you save. In general, operations in pandas will be very cumbersome with a `Series` of `float`s with a `dtype` of `object`. Your life will be much easier if you convert your object arrays (where possible) as soon as you need to do anything with them.
+Thanks. What's the advantage to using `dtype=object` here rather than, say, `dtype=numpy.float64` ?
+Nothing. You shouldn't use `object`. I was using it to reproduce the issue. If you have floating point values, avoid the `object` dtype.
+When facing "TypeError: Cannot serialize the column [myvar] because its data contents are [mixed] object dtype", I tried .convert_objects(), and that too failed, with " *** AssertionError: Block ref_items must be BlockManager items"
+That might be a bug. Can you post a reproducible example over at the pandas github and I'll take a look?
+
+Pvalues of Coeffcients in Lasso in scikit-learn
+I ran a L1 regularisation on 19 features with 143 observations. While Lasso did give me coefficients with zero value thereby helping in further reduce features (I had initially done a preliminary feature reduction by running a combination of random forests and LARS. 
+But the problem is while it does tell me coefficient estimates and I can get a regression equation, if I have to explain the feature importance to someone, they would want to see how much confidence is there on those coefficients. Like without showing any p value of coefficient ppl are sceptical. 
+So is there a way to get pvalue for Lasso coefficients from scikit learn? Or in R. I guess even R does not give that.
+You will have better luck with this question on #URL
+Also p-value or significance with respect to lasso is a new thing #URL
+How about bootstrapping and getting the frequency at which each variable is included in LASSO-ed model?
+Don't perpetuate the problems with using p-values to determine importance. The coefficients are estimates of effect size. If you standardise your features so they're all on the same scale, coefficients can be compared to one another for "importance". For uncertainty in effect, use bootstrapping to produce intervals for the coefficients.
+
+pandas reindex DataFrame with datetime objects
+Is it possible to reindex a pandas DataFrame using a column made up of datetime objects? 
+I have a DataFrame `df` with the following columns: #CODE
+I can reindex the `df` easily along `DOYtimestamp` with: `df.reindex(index=df.dtstamp)`
+and `DOYtimestamp` has the following values: #CODE
+but I'd like to reindex the DataFrame along `dtstamp` which is made up of datetime objects so that I generate different timestamps directly from the index. The `dtstamp` column has values which look like: #CODE
+When I try and reindex `df` along `dtstamp` I get the following: #CODE
+I'm just not sure what I need to do get the index to be of a datetime type. Any thoughts?
+It sounds like you don't want reindex. Somewhat confusingly `reindex` is not for defining a new index, exactly; rather, it looks for rows that have the specified indices. So if you have a DataFrame with index `[0, 1, 2]`, then doing a `reindex([2, 1, 0])` will return the rows in reverse order. Doing something like `reindex([8, 9, 10])` does not make a new index for the rows; rather, it will return a DataFrame with `NaN` values, since there are no rows with indices 8, 9, or 10. 
+It seems like what you want is to just keep the same rows, but make a totally new index for them. For that you can just assign to the index directly. So try doing `df.index = df['dtstamp']`.
+Thanks, that does exactly what I need. Somehow it wasn't clear to me that I could assign one of the columns to the index.
+You can also use the `set_index` method
+
+autoscaling in matplotlib, plotting different time series in same chart
+I have a 'master' panda dataframe that has a time series of 'polarity' values for several terms. I want to work with 4 of them, so I extracted 4 separate dataframes, containing the time series(same time series for all of the terms, but different polarity values.) 
+I plotted them in 4 separate matplotlib graphs, using the code below #CODE
+Now, I want to graph them all in the same graph so I have an idea of the magnitude of each graph, because the auto scaling of matplotlib can give the wrong impression about the magnitude by just looking at the graphs.
+Two questions:
+1) Is there are way to set the min and max values of the Y-axis when plotting? 
+2) I am not an expert in matplotlib, so I am not sure how to plot the 4 variables in the same graph using different colors, markers, labels, etc. I tried nrows = 1, ncols = 1 but can't plot anything. 
+Thank you
+did you check the approach of the answer below?
+`axes[i,j].set_ylim([min,max], auto=False)` will set the y-limits of the plot in the `i,j`th plot. `auto=False` keeps it from clobbering your settings. 
+You can plot multiple lines on the same graph by calling `plt.hold(True)`, drawing a bunch of plots, and then calling `plt.show()` or `plt.savefig(filename)`. 
+You can pass a color code into `plt.plot()` as a third positional argument. The syntax is a little byzantine (it's inherited from MATLAB); it's documented in the matplotlib.pyplot.plot documentation. You can pass this argument to `DataFrame.plot` as (for example) `style='k--'`. 
+For your case, I would try #CODE
+You can perhaps loop into your `AxesSubplot` objects and call `autoscale` passing the `axis` parameter: #CODE
+Thank you! A combination/hybrid of the two suggestions worked for me. Thank you.
+
+pandas rearrange dataframe to have all values in ascending order per every column independently
+The title should say it all, I want to turn this DataFrame: #CODE
+into this DataFrame: #CODE
+And I want to do it in a nice manner. The ugly solution would be to take every column and form a new DataFrame.
+To test, use: #CODE
+This is a bit tricky due to the presence of the `NaN`, one method would be to sort the columns that have no NaNs and then sort the columns with NaN and concat them together, does that sound reasonable?
+If you can give a solution that is better than using df.values in np (that is without leaving pandas) then go ahead.
+The desired sort ignores the index values, so the operation appears to be more
+like a NumPy operation than a Pandas one: #CODE
+yields #CODE
+awesome, thanks!
+
+Inconsistent Nan Key Error using Pandas Apply
+I'm recoding multiple columns in a dataframe and have come across a strange result that I can't quite figure out. I'm probably not recoding in the most efficient manner possible, but it's mostly the error that I'm hoping someone can explain. #CODE
+s1 works fine, but when I try to do the same thing with a list of integers and a np.nan, I get `KeyError: nan` which is confusing. Any help would be appreciated.
+A workaround is to use the get dict method, rather than the lambda: #CODE
+It's not clear to me right now why this is different... 
+Note: the dicts can be accessed by nan: #CODE
+and `hash(np.nan) == 0` so it's not that... 
+Update: Apparently the issue is with `np.nan` vs `np.float64(np.nan)`, the former has `np.nan is np.nan` (because `np.nan` is bound to a specific instantiated nan object) whilst `float('nan') is not float('nan')`: 
+This means that get won't find `float('nan')`: #CODE
+This means you can actually retrieve the nans from a dict, any such retrieval would be implementation specific! In fact, as the dict uses the id of these nans, this entire behavior above may be implementation specific (if nan shared the same id, as they may do in a REPL/ipython session). 
+You can catch the nullness beforehand: #CODE
+But I think the original suggestion of using .get is a better option.
+I think this may be a bug in apply/map_infer, definitely worth a github issue.
+Thanks for the sanity check. I opened an issue on github.
+Great, thanks! #URL
+@USER Ah yes, I meant is. Thanks!!
+
+Pandas DataFrame index by belonging to a set
+I have a Pandas DataFrame that, among the columns, has one called Phone_Number. I want to get just the rows that have a phone number that shows 50 times or more. My best attempt was this: #CODE
+I get, however, this error: TypeError: 'Series' objects are mutable, thus they cannot be hashed 
+What would be the best way to get the rows in the data frame for this situation? 
+Thank you very much!
+Use `isin()`: #URL
+Thank you, @USER! It does not throw an error, but I get an empty set, which I thought wasn't possible (the counts set is not empty, and was generated from the phone numbers contained in 'data')
+That's odd, I would have thought `data[data.Phone_Number.isin(counts.index)]` would work. Are you able to post a small sample of your data?
+@USER thanks again, my mistake was not to use isin(counts.index) but just isin(counts), this is also a valid solution for the problem.
+You can use `groupby` with `filter`. #CODE
+Thank you, @USER-li!
+
+Python Pandas hdfstore's select(where='') return unqualified results
+When I query a large hdfstore file (>10G) like this: #CODE
+I got results where most entries' node_id is 1, but some entries have node_id other than 1. So is it a hdfstore glitch, or I did something wrong? 
+Here is part of the results you can see there are some entries with node_id other than 1. #CODE
+Noticing row 300002 is an unwanted result, I try to select node 1 around that particular area like this: #CODE
+Only node 3 is returned in the result: #CODE
+Then I try use index instead of start/stop like this: #CODE
+And this time it returned correct results: #CODE
+I guess I might walk around this problem with selection on index, but I am not completely sure because the method with start/stop also get the correct results most of the time, so even though the method with index got it right where start/stop failed, it might fail somewhere else. 
+And I would really like the start/stop method to work, because it is much faster, and I have a large data set, a slow method is really time-consuming. 
+BTW, In case you are wondering, I cannot use 'chunksize' like this: #CODE
+Every time I try chunksize I got a MemoryError like this .
+Struggling with many problems, Pandas is really tough for a newbie like me.
+Any help is greatly appreciated.
+This was a recently fixed bug in `PyTables`, see the related issue here . In effect on some larger stores the indexers where not computed correctly when using a `where` and `start/stop`. 
+You will need to update to `PyTables` 3.2, then re-write the store itself. You can either recreate it how you did the first time, or use ptrepack
+I use anaconda, and I cannot upgrade with `conda update pytables` , it says "already installed". Then I tried `pip install --upgrade tables`, it says `LINK : fatal error LNK1181: cannot open input file 'hdf5dll.lib' ... ERROR:: Could not find a local HDF5 installation. ` I searched my harddisk, and couldn't find hdf5dll.lib file.
+
+Pandas: Crash when dividing one column by the other with index set
+I have a larger data set, with 121232 rows and many columns: #CODE
+If I do #CODE
+pandas, python, my editor (PyCharm) and Windows 7 all together crash, one after the other. I guess there is an additional issue related to PyCharm and its memory usage, but this should not be happening inside pandas in the first place, should it? 
+By the way, if I reset the index before the division, `pandas` does not crash. 
+My pandas version is `0.13.1`. My Python system: `2.7.3 | 64-bit | (default, Aug 8 2013, 05:30:12) [MSC v.1500 64 bit (AMD64)`
+How many rows and are you using 64-bit python?
+updated the question
+This worked fine for me using ipython 2.0 python 3.3 64-bit pandas 0.13.1, maybe a problem with pycharm, I have 16gb on my machine but I don't think that should make a difference as your dataset size is small. Not sure why resetting the index would suddenly make it work
+
+Skip last row when importing CSV into Pandas.DataFrame
+`pd.read_csv(f, skiprows=n)` skips only the first `n` rows of the CSV. 
+Is it possible to skip the last X rows of a CSV file when importing it into a `pandas.DataFrame`?
+See the other answer for the question just pass `skipfooter=n` to `read_csv`
+
+How to remove the u' and some other information from Ipython/Pandas output
+I've been reading the great Python for Data Analysis book and following its exercises along, but my outputs are not the same that the outputs shown in the book. 
+One of them happens when I want to print the indices of a data frame object. For example: #CODE
+When I call data.index, I get a output different from the book. Here's the output shown in the book: #CODE
+And this is my output: #CODE
+How do I configure either Ipython or Pandas to change the output formatting? At least the u' piece of string. 
+Edit: I'm using Python 2.7.
+It just means its a unicode string, it shouldn't affect any operations so it's a display thing, see this: #URL
+Also, that book is based on a somewhat older version of pandas and some things (like indexes) have changed in the meantime. It shouldn't be a problem for the most part, as old ways of doing things will mostly continue to work even as better ways to do them are provided. You can look at the release notes in the docs if you want to see how things have changed
+your output is different from what you can see in the structure itself, see answer below. EdChum summarized about the unicode character before each string.
+Using Python 3 would be one way to get rid of the `u` prefixes, though perhaps a bit of a drastic one.
+You can have this display if you do a `list` conversion: #CODE
+
+How to get the reverse percentile for a list of scores from a huge txt file?
+I have a very big text file (>80Gb). It contains tab-delimited values. I am interested only in one column. For that specific column, I want to get the reverse percentile for ~10 thresholds. So basically, my questions look like this: "What is the percentage of rows where the value of column x is below $threshold?". Thresholds are roughly 1, 5, 10, 100, 500, 1000.
+Sample data: #CODE
+In the above case, I would like to ask "What is the percentage of values below 500?" and the answer would be 80%. 
+How would I do this? 
+Notes: 
+Using awk to filter the file first for the interesting column took ~26mins which is fine speed-wise (ended up with a file 10Gb). 
+Reading the resulting file into a pandas data frame takes ~7 mins; but the calculation (`df[df threshold].shape(0) / total_length`) takes way too long. I stopped calculations after a couple of hours. I guess ~1h would be okay. 
+`wc -l filename ` and `df = pd.read_csv(filename, sep='\t', header=None); print(pandasdataframe)` yielded a different number of rows which astonished me. (I'm new to Pandas, though). 
+I'd prefer a solution in Python/Shell but I'm open for any ideas. 
+EDIT: 
+The answer below is correct. I came up with the script below. FYI, reading the prefiltered file (one column only, 10G) took 1h02 and reading the original file (5 cols, >80G) took 1h16. For the sake of simplicity, I won't prefilter the file then. mawk was 2x better than gawk in my tests. I used `NR` instead of `(NR-1)` as there is no header row. #CODE
+This code should be fast enough: `awk 'BEGIN {n=0;getline}; {if ($3<500) {n+=1}} END {print n/(NR-1)*100}' x.txt`
+@USER What is the point of that begin block ?
+@USER, to skip the header line
+@USER ahh okay, don't need the n=0 though. All variables are initialised at 0 anyway in awk.
+@USER, yes, that's true.
+Explicit is better than implicit ...
+No, explicit is NOT better than implicit. If it were we'd all be writing assembly code. Conciseness is an attribute of good software.
+@USER Thanks, that helped.
+I would suggest using awk to do this: #CODE
+For all lines after the first one where the third field is less than 500, increment `n`. Once the file has been processed, print the percentage, as long as one or more records have been read (this avoids a division by 0).
+
+Pandas FloatingPoint Error
+I'm getting a floating point error on a simple time series in pandas. I'm trying to do shift operations... but this also happens with the window functions like `rolling_mean`. 
+EDIT: For some more info... I tried to actually build this from source yesterday prior to the error. I'm not sure if the error would've occurred prior the build attempt, as I'd never messed around w/ these functions. 
+EDIT2: I thought I'd fixed this, but when I run this inside python it works, but when it's in ipython I get the error. 
+EDIT3: Numpy 1.7.0, iPython 0.13, pandas 0.7.3 #CODE
+Works fine for me. Python 2.7.3, pandas 0.7.0
+Thanks - are did you try this in ipython or python?
+What version of NumPy?
+1.7.0, installed using the scipysuperpack
+PS, just bought your Python for Data Analysis early release, which is great, but also how I ran into this.
+Yes, I tried with ipython without any problems. Though mine was 0.12.1. You are using a development version, both for ipython and numpy. It's highly possible that those are unstable. That might be the problem.
+I would add this as a comment, but I don't have the privilege to do that yet :) 
+It works for me in python and iPython 0.12; iPython 0.13 is still in development (see #URL ), and, since the errors you're getting seem to involve formatting in the iPython 0.13 egg, I suspect that might be the cause. Try with iPython 0.12 instead-- if it works, file a bug report with iPython and then probably stick with 0.12 until 0.13 is (more) stable.
+Thanks for the reply, I'm still getting the error on 0.12. So it seems to be more pervasive in my system. Oddly works in bpython.
+Hm. Just a stab, but, what happens if you try np.abs([np.nan, 1, 2, 3]) in iPython?
+Good catch... throws the same error.
+Thought so. Are you sure your iPython numpy is the same as the other installs? Try np.__version__ in the working vs. nonworking environments.
+It is the same version `1.7.0.dev-3cb783e`.
+I'm guessing your iPython for some reason is operating with a lower error threshold. The FloatingPointError about the NaN raises an "invalid" flag which is usually ignored, but can be raised if desired. Check out the docs here: #URL , and play around with resetting the numpy errors as in the examples. Does that fix it? If so, there must be some way to configure the error levels for iPython...
+I've solved this... even though the version numbers were some build issues I guess. I cleaned up the packages I had and it works now... thanks for all them help.
+
+Get last "column" after .str.split() operation on column in pandas DataFrame
+I have a column in a pandas DataFrame that I would like to split on a single space. The splitting is simple enough with `DataFrame.str.split(' ')`, but I can't make a new column from the last entry. When I `.str.split()` the column I get a list of arrays and I don't know how to manipulate this to get a new column for my DataFrame. 
+Here is an example. Each entry in the column contains 'symbol data price' and I would like to split off the price (and eventually remove the "p"... or "c" in half the cases). #CODE
+which yields #CODE
+But `temp2[0]` just gives one list entry's array and `temp2[:][-1]` fails. How can I convert the last entry in each array to a new column? Thanks!
+You could use the `tolist` method as an intermediary: #CODE
+From which you could make a new DataFrame: #CODE
+For good measure, you could fix the price: #CODE
+PS: but if you really just want the last column, `apply` would suffice: #CODE
+Thanks for the education!
+Do this: #CODE
+Love the clean solution!
+from the author of "Pandas" :)
+
+Unpacking list of dictionary elements into pandas data frame
+I am trying to parse my itunes playlist which is in xml format. 
+Here is the sample xml which i am trying to parse and put the end result in pandas data frame. #CODE
+Following is my python code for parsing the xml #CODE
+The end result "oddelements" object is a list of element dictionaries 
+Each element dictionary in this list contains the information enclosed in "dict" tag in the sample xml which i have pasted above. 
+How do i parse this list of element dictionaries and unpack them into pandas data frame for further analysis? 
+Many thanks for help
+Something like that should work: #CODE
+Thanks Uri. However if i was to go by my way of doing it though lxml package, do u have any ideas about how to unpack key values from list of dictonary elements i.e say if my object was a list containing dictionaries like [ dict 1, dict 2.... dict n]?
+
+With pandas, how do I calculate a rolling number of events in the last second given timestamp data?
+I have dataset where I calculate service times based on request and response times. I would like to add a calculation of requests in the last second to show the obvious relationship that as we get more requests per second the system slows. Here is the data that I have, for example: #CODE
+For this I would like a rolling data set of something like: #CODE
+I've tried rolling_sum and rolling_count, but unless I am using them wrong or not understanding the period function, it is not working for me.
+For your problem, it looks like you want to summarize your data set using a split-apply-combine approach. See here for the documentation that will help you get your code in working but basically, you'll want to do the following: 
+Create a new column (say, 'Req_Time_Sec that includes `Req_Time` down to only second resolution (e.g. `14:07:08.729000` becomes `14:07:08`) 
+use `groups = serviceTimes.groupby('Req_Time_Sec)` to separate your data set into sub-groups based on which second each request occurs in. 
+Finally, create a new data set by calculating the length of each sub group (which represents the number of requests in that second) and aggregating the results into a single DataFrame (something like `new_df = groups.aggregate(len)`) 
+The above is all untested pseudo-code, but the code, along with the link to the documentation, should help you get where you want to go.
+You first need to transform the timestamp into a string which you then groupby, showing the count and average service times: #CODE
+Alternatively, create a data frame of the request time in the appropriate string format, e.g. 15-13-15 17:27, then count the occurrence of each time stamp using value_counts(). You can also plot the results quite easily. #CODE
+
+Replacing duplicates pandas to_sql (sqlite)
+I am appending pandas dataframes to sqlite. My primary key is: #CODE
+My issue is that sometimes I get a new file with old data that I want to append to the existing sqlite table. I am not reading that table into memory so I can't drop_duplicates in pandas. (For example, one file is always month-to-date data and it is sent to me everyday) 
+How can I ensure that I am only appending unique values based on my primary key? Is there a pandas to_sql function to insert or replace when I append the new data? 
+Also, should I specify dtypes in pandas before writing to SQL? I had some error messages when I tried to write to SQLite and I had categorical dtypes.
+What errors are you getting for the category dtypes?
+If you attempt to insert duplicate data you'll get a `sqlite3.IntegrityError` exception. You can catch that and do nothing, for example: #CODE
+Will that mean the data will be duplicated in the SQLite table? Is it easier to just drop duplicates within SQLite? I have it set up to only accept unique values for the primary key (the three columns).
+The above will not insert duplicate data into the SQLite table.
+
+Looping through a groupby and adding a new column
+I need to write a small script to get through some data (around 50k rows/file) and my original file looks like this: #CODE
+Its a rather big table with up to 50k rows. Now not all the data is important to me, I mainly need the Track_ID and the X and Y Position. 
+So I create a dataframe using the excel file and only access the corresponding columns #CODE
+And this works as expected. Each track_id is basically one set of data that needs to be analyzed. So the straight forward way is to group the dataframe by track_id #CODE
+Also works as intended. Now I need to grab the first POSITION_X value of each group and substract them from the other POSITION_X values in that group.
+Now, I already read that looping is probably not the best way to go about it, but I have no idea how else to do it. #CODE
+This stores the value in vect, which, if I print it out, gives me the correct value. However, I have the problem that I do not know how to add it now to a new column.
+Maybe someone could guide me into the correct direction. Thanks in advance. 
+EDIT 
+This was suggested by chappers #CODE
+So expected Output would be that the very first calc value of every group is 0
+not sure of another method other then a loop but to keep track of the values just append them to a new list. 
+`new_list = []
+loop start:
+do some stuff
+new_list.append(vect)`
+Here is one way of approaching it, using the apply method to subtract the first item from all the other obs. #CODE
+This would have input: #CODE
+and output #CODE
+Thanks a bunch, in principle it works very well and I really like your short way. I never really worked with lambda operators, therefor I am just reading up on them now. One problem is, preferably the Value for the 0s would return 0 and not the initial X value. any idea?
+Could you provide an expected input/output? I don't quite understand what you mean.
+I don't follow, could you post a minimal data set that I can reproduce showing your expected input and output?
+yes, sorry, I edited into my op. Hope that helps
+Oh right in that case you don't need the adjustment thingy I've made; I'll edit my answer.
+works like a charm, thanks so much
+
+Iterate Through Dictionary using Column
+I have the following code using Pandas and a for loop to iterate through the index of the DF and produce strings of each row in a dictionary: #CODE
+Is this a bad way of doing this? Is there a better way to be able to dynamically create the dictionary object, event, and pass it through a for loop function? 
+Thanks!
+Chris
+that looks quite complex - and you are overwriting your `event` dictionary on every iteration of the loop? I'm pretty sure this code won't even run, with `i` being the variable of the for-loop AND some index in the `zip(...)`. I think you should try to specify what your expected outcome is, and then somebody might be able to help you.
+I am wondering if there is a way to iterate through columns in Pandas producing a dictionary with the iterated variables in place of that dictionary. I am not even sure what this is called haha. Even what that would be called would be helpful...@USER-sc
+that still doesn't sound helpful.. If you would add some example of your data in the DF and your expected outcome, one could try to understand what you want to achieve. But not with this confusing and not working code example. Also have a look at #URL
+let me re edit the question...@USER-sc
+
+Multiply two pandas series with mismatched indices
+Created two series: `s1` and `s2` from `df`. 
+Each have same length but differing indices. `s1.multiply(s2)` unions the mismatched indices instead of multiplying against them. 
+I just want to multiply entrywise `s1` against `s2` ignoring the mismatched indices. 
+I could run `s1.reset_index()` and `s2.reset_index()` and then take the column I want from these two dfs, since it turns the original index into a separate column, but that's tedious and I thought there might be a simpler way to do it. #CODE
+doesn't seem to work either
+you can convert to a numpy array which will ignore the index with `values`: `s1.values.mul(s2.values)`.
+Thanks John, that does indeed work to multiply the values of the series. Unfortunately, it converts the series to a numpy array. Do you know of a way to keep the whole process using series, instead of moving to numpy arrays, and then back to series ( result = pandas.Series(s1.values*s2.values) ) ?
+`s1 * s2.values` should work
+It depends on what you want the index to be. Your suggestion will result in a fresh `[0,1,2...]` index whereas Ed's suggestion will use the index from `s1`
+Ah, okay. Thank you both John and Ed. Both of those cover the solutions I needed.
+Could someone add this an answer so we can close the question?
+I think going with `reset_index()` is the way, but there is an option to drop the index, not push it back into the dataframe. 
+Like this: #CODE
+The reason I favour the `reset_index()` approach before the other suggested approach with simply multiplying by values #CODE
+is that this is not very explicit. This line does not tell me that there is an index problem that you are solving. 
+While this line tells the story very explicitly that you are solving an index problem: #CODE
+Or break it down to multiple rows: #CODE
+
+Conditional sum across rows in pandas groupby statement
+I have a dataframe containing weekly sales for different products (a, b, c): #CODE
+I would like to create a new column containing the cumulative sales for the last n weeks, grouped by product. E.g. for `n=2` it should be like `last_2_weeks`: #CODE
+How can I efficiently calculate such an cumulative, conditional sum in pandas? The solution should also work if there are more variables to group by, e.g. product and location. 
+I have tried creating a new function and using `groupby` and `apply`, but this works only if rows are sorted. Also it's slow and ugly. #CODE
+You could use `pd.rolling_sum` with `window=2`, then `shift` once and fill `NaNs` with `0` #CODE
+Thanks. Clear solution and much faster compared to my custom function. Requires sorting the data frame by `week`.
+
+How can I make this loop more efficient?
+I have a historical collection of ~ 500k loans, some of which have defaulted, others have not. My dataframe is `lcd_temp`. `lcd_temp` has information on the loan size (`loan_amnt`), if loan has defaulted or not (`Total Defaults`), annual loan rate (`clean_rate`),term of loan (`clean_term`), and months from origination to default (`mos_to_default`). `mos_to_default` is equal to `clean_term` if no default. 
+I would like to calculate the Cumulative Cashflow [`cum_cf`] for each loan as the sum of all coupons paid until default plus (1-severity) if loan defaults, and simply the `loan_amnt` if it pays back on time. 
+Here's my code, which takes an awful long time to run: #CODE
+Any thoughts or suggestions on improving the speed (which takes over an hour so far) welcomed!
+Which version of python are you using?
+Did you profile it to see where the time is going?
+You can (probably should, if it takes over an hour) use numpy for this, and then select between the two use cases with a mask, e.g. `mask = lcd_temp.loc[..., 'Total_Defaults'] == 1`.
+OP: are you using Pandas? @USER: why do you believe the `[pandas]` tag is not appropriate?
+@USER I don't see any indication of a pandas import, nor any use of a pandas namespace. For all I know, the OP is using normal classes, lists and dicts.
+I think, if you are using python 2.6 or above, then `multiprocessing` is available to you. It seems to me that you could split your data set into a number of chunks, one per core, and pass each chunk to a process and write the results back after all chunks have been calculated.
+@USER In your code I don't see anything which make this too much latent.. `1 hour` is huge, you might have to add more information here like.. what is your data frame? is this the simple calculation or any other operation happening?
+@USER the question mentions a dataframe, which in Python means Pandas. Things like `lcd_temp.loc` in the question also show that OP is using Pandas, not standard Python data structures.
+Sorry for delay, yes, using Pandas. The import occured in another cell not included in my code. Apologies. And thanks to unutbu below for the suggestion.
+Assuming you are using Pandas/NumPy, the standard way to replace an `if-then` construction such as the one you are using is to use `np.where(mask, A, B)` . The `mask` is an array of boolean values. When True, the corresponding value from `A` is returned. When False, the corresponding value from `B` is returned. The result is an array of the same shape as `mask` with values from `A` and/or `B`. #CODE
+Notice that this performs the calculation on whole columns instead of row-by-row. This improves performance greatly because it gives Pandas/NumPy the opportunity to pass larger arrays of values to fast underlying C/Fortran functions (in this case, to perform the arithmetic). When you work row-by-row, you are performing scalar arithmetic inside a Python loop, which gives NumPy zero chance to shine.
+If you had to compute row-by-row, you would be just as well (and maybe better) off using plain Python. 
+Even though `A` and `B` computes the values for the entire column -- and some values are not used in the final result returned by `np.where` -- this is still faster than computing row-by-row assuming there are more than a trivial number of rows.
+Tnx, I'll check this out and revert. Didn't know about mask - nor about the efficiency difference with Numpy (I'm a Newbie).
+
+Pandas file IO Read Error
+New to pandas, running into an error consistently with WinXP file path, for example: #CODE
+Keep getting an error as follows: #CODE
+From reading thru available documentation, haven't isolated if its a problem with my syntax or a parser issue. 
+Any feedback would be appreciated.
+You need to include the entire traceback, not just the first line.
+Also use raw-strings or forward-slashes or escape your backslashes in your file path.
+Unless you put `r` in front of the string, the `\n` is being interpreted as a newline: #CODE
+vs #CODE
+
+Python Pandas DataReader vs get_data_yahoo which is better?
+I understand both of these functions do the exact same thing. Is there an advantage using one over the other? #CODE
+Also is there any other similar functions with better or equal performance in Pandas?
+Looking at the source code, `DataReader` is simply a wrapper around a few other functions including `get_data_yahoo`, so if you're definitely going to use Yahoo as your data source, I'd say just stick with `get_data_yahoo`. But it really doesn't matter. I don't believe there are other functions within Pandas that do this task.
+
+Merge a csv and txt file, then alphabetize and eliminate duplicates using python and pandas
+I am trying to combine two csv files (items.csv and prices.csv) to create combined_list.txt. The result (combined_list.txt) should be a list sorted in alphabetical order in the format: item (quantity): $total_price_for_item and include 2 additional lines: a separator line with 10 equal signs and a line with the total amount for the list: #CODE
+items.csv looks like #CODE
+and prices.txt looks like #CODE
+I have to do a version with python and another with pandas but nothing I find online hits the mark in a way I can work with. I started with #CODE
+But I am having trouble putting everything together. Some of the solutions I found are a little too complex for me or don't work with my files, which have no column headers. I'm still trying to figure it out but I know that for some of you this is super easy so I am turning to the collective wisdom instead of hitting my head against the wall alone.
+Pandas has a built in method for reading csv files. Here is code to get both sets of data into one dataframe: #CODE
+To sort and drop duplicates: #CODE
+Thanks so much. I have to sort out the column headers but this helps get started.
+
+subset dataframe pandas timeseries
+**Updated code based on provided answer**
+The implemented solution isn't subsetting the original dataframe. #CODE
+**Original problem:**
+I'm trying to subset a dataframe based on a comparison between its datetime index, and the datetime index of another data frame. df1 is a dataframe of downsampled timeseries to use as a filter. df2 is a dataframe of records to be filtered, which has higher temporal resolution, and multiple records per date appearing in df1: #CODE
+I'm losing the contents beyond the index. I'd really like a subset of records from df2, including all data, that have datetimes matching df1 at the day frequency, like: #CODE 
+Any help would be appreciated!
+Use the `isin` method: #CODE
+You can check that the result only contains date indices where they overlap on the day frequency by comparing #CODE
+Thanks for your input. I'm attempting to implement something similar to this, but am getting hung up at df2[Index(df2.index.date).isin(Index(df1.index.date))], which throws the error:---------------------------------------------------------------------------
+NameError Traceback (most recent call last)
+in ()
+----> 1 df2[Index(df2.index.date).isin(Index(df1.index.date))]
+NameError: name 'Index' is not defined
+You need to do `from pandas import Index`.
+I'll add the necessary imports to the answer.
+Thanks. This looks like it will work much better. The last solution I came up with prior to this looks like: `df2_sub = [i for i,item in enumerate(df2.index.date) if item in df1.index.date]`
+`new_df2= pd.DataFrame(ais.ix[ais_sub])` Which is sloppy code and fairly inefficient. Each of my files to be filtered is about 1M records.
+Last comment was inaccurate. point is the code was not good.
+Can you be a bit more specific?
+I had made cosmetic changes to keep code in df1, df2 context. I missed renaming some variables: new_df2=pd.DataFrame(ais.ix[ais_sub]). ais_sub is a subset of ais (df1) that I made with the filter (df2). I assigned that to a variable, and then cast the variable as a dataframe called new_df2. It works, but it's an iterative solution, and takes a significant amount of time to run on large data sets. Your version appears to be array wise, and does in 1 line of code what I did in 3. I implemented your solution but it's not subsetting. Updated code in the original problem.
+Can you show the output of what you're getting from what you implemented? Thx
+That's in out [5] of the new code.
+I expanded that - Output is now in out [7]. Out[8] and out[9] are for verification.
+
+how to switch columns rows in a pandas dataframe
+I have the following dataframe: #CODE
+I tried with pivot table #CODE
+but I get the following error: #CODE
+any alternative to pivot table to do this?
+What is the desired result? What is the value of `index`?
+You can use `df = df.T` to transpose the dataframe - if I'm understanding the question correctly. This switches the dataframe round so that the rows become columns.
+
+Pandas - Get Rank on a Groupby Object without running out of memory
+I have a large table of records, about 4 million rows. I need to add an index that counts orders by email address based on the orderID (ascending). #CODE
+When I try to set a variable called rank, the program ran for 90 minutes and took about 5.5 gigs of RAM, but never returned the data. I am just trying to add a column so that for each email (my customerID), I get the order rank based on the orderId. So if I had 3 orders, my first order would have the lowest orderID, etc...the rank restarts for every email. 
+Thanks for your help. 
+Jeff
+sorting is slow, it's O(n*log(n)). I think this may also be doing an apply, which is also slow. What's the reason you have to do this?
+For each orderid I need to get the order number for the email. Many emails have multiple orders. Open to any solution that will do that.
+try `df = df.sort(['email','orderId']); df.groupby('email').cumcount()` - may be more efficient?
+@USER is the ranking important? Can you get away with just enumerating? I think it depends what's the next step...
+@USER - the next step will be taking the categories from the first time customers, then calculating total lifetime value. So I need to get all the emails in the set of rank=1, then for all those emails, given their starting category, calculated average all time lifetime value.
+@USER - the sort operation was super fast (10 second) but the df.groupby('email').cumcount() wasn't clear on what it was supposed to return
+[cumcount doc](#URL). When you say "rank" do you mean size, i.e. user only goes once, or the first entry (which would be, once sorted, `.groupby("email").nth(0)`
+@USER - for each order an email has, i need a column that has that order as being the customer's Nth order. The criteria for the first order could be that the orderid for the customer is the lowest possible orderid related to that customer. By customer I mean 'email'
+Typically in large memory situations you would chunk your data and run each chunk serially. There's lots of good suggestions for doing this: 
+Large data work flows using pandas
+That's not going to work with rank/sort however.
+
+Can you use datetime.strptime without knowing the format?
+I am writing a function that takes 3 pandas Series, one of which is dates, and I need to be able to turn it into a dataframe where I can resample by them. The issue, is that when I simply do the following: #CODE
+I get the following error: #CODE
+I know this is because even though the index type is a datetime object, when going through with resampling, unless it is in the form `datetime(x,x,x,x,x,x)`, It wont read it correctly. 
+So when I use it, my date data looks like this: `2011-12-16 08:09:07`, so I have been doing the following: #CODE
+My issue is that I am using this for open source and I cannot know what format the dates will be when inputted. 
+So my question is: how can I turn a string with a date and a time to a datetime object WITHOUT knowing the way that string is formatted?
+If you don't know how the string is formatted, how do you know if `02-01-2013` is the first of February or the second of January? IOW, you have to make *some* assumptions about the format.
+You can use the `dateutil` library for that purpose #CODE
+thank you!!! Worked perfectly.
+it did and it was great, but it did cause an extra import so I consider the answer I accepted now better for that reason
+Pandas has a `to_datetime` function for this purpose, and when applied to a Series it'll convert values to Timestamp rather than datetime: #CODE
+Where: #CODE
+great! Quick question...if data.time is already in datetime, will this produce an error or still work?
+@USER It'll still work just fine :)
+
+pandas - Joining CSV time series into a single dataframe
+I'm trying to get 4 CSV files into one dataframe. I've looked around on the web for examples and tried a few but they all give errors. Finally I think I'm onto something, but it gives unexpected results. Can anybody tell me why this doesn't work? #CODE
+Expected result: #CODE
+Getting this: #CODE
+Did you mean to save the result of `df.join(data['TempC'])` into `df`?
+@USER yes
+You need to save the result of your join: #CODE
+
+KDB+ like asof join for timeseries data in pandas?
+kdb+ has an aj function that is usually used to join tables along time columns. 
+Here is an example where I have trade and quote tables and I get the prevailing quote for every trade. #CODE
+How can I do the same operation using pandas? I am working with trade and quote dataframes where the index is datetime64. #CODE
+I see that pandas has an asof function but that is not defined on the DataFrame, only on the Series object. I guess one could loop through each of the Series and align them one by one, but I am wondering if there is a better way?
+this is also called *rolling join*
+As you mentioned in the question, looping through each column should work for you: #CODE
+We could potentially create a faster NaN-naive version of DataFrame.asof to do all the columns in one shot. But for now, I think this is the most straightforward way.
+Thanks. I am taking this approach for now. But a NaN-naive version would be very welcome!
+#URL
+I wrote an under-advertised `ordered_merge` function some time ago: #CODE
+It could be easily (well, for someone who is familiar with the code) extended to be a "left join" mimicking KDB. I realize in this case that forward-filling the trade data is not appropriate; just illustrating the function.
+Thanks, this is very good to know. This is essentially uj (#URL) in KDB!. For the aj functionality, I am going with Chang's approach but I plan to take a serious stab at the code later.
+Could this be generalized the case where the dataframe contains many Series together, for example if the data, in addition of timestamps, also had a stock ID column? (Thus we may have thousands of groups, and each of them is a Series). I suspect we'll need a mix of `groupby()` and `ordered_merge`, but I'm wrestling about how to do it... For sure, it would be wrong to simply `ffill` on the overall order of the dataframe (I don't want a group to spill into the next group by virtue of forward filling).
+
+bar plot with different colors in python
+I have data like this : #CODE
+I want to plot the dataframe in horizontal bars with different colors reffering to the column `'typ'`
+Perhaps the accepted answer to another [matplotlib question](#URL) may help you: it cycles through the individual bars (patches) and assigns a color to each patch individually. You'll need to adopt it for a barchart plot.
+You can use the `color` parameter of matplotlib's `barh` function: #CODE
+
+Sub Value and Add new column pandas
+I am trying to read few `files` from a `path` as extension to my previous question The answer given by Jianxun Definitely makes sense but I am getting a key error. very very new to pandas and not able to fix error. 
+Note: I use Python 2.7 and Pandas 0.16 #CODE
+Programs: #CODE
+Error: #CODE
+#CODE
+Still the same error : `File "distribute_lac.py", line 30, in 
+df_master = pd.read_csv(master_csv_file, index_col=['Ids']).sort_index()
+File "/usr/lib/pymodules/python2.7/pandas/io/parsers.py", line 256, in _read
+return parser.read()
+File "/usr/lib/pymodules/python2.7/pandas/io/parsers.py", line 715, in read
+ret = self._engine.read(nrows)
+File "/usr/lib/pymodules/python2.7/pandas/io/parsers.py", line 1184, in read
+values = data.pop(self.index_col[i])
+KeyError: 'Ids'`
+@USER Can you post the first few rows of the original `Master1_Test.csv` file? it seems that the file has no 'Ids' column.
+I using the same sample file and I am getting error for this only haven't tried with real data yet.
+@USER Why in master csv, there are three column headers `Ids, 00:00:00, 00:30:00`, but 4 columns of values `1234,1000,500,100`?
+Now I did edit the Master input file and I do not get error but it does not even show results.
+@USER Could you please double check whether each file has been read successfully? for example, print out the first few lines of each `df` see whether the `df` looks normal. If not, please post what you saw.
+Pls find the Download like of Dropbox for the files and program. #URL
+The data sets are for two programs the current one and the one from this link. #URL
+@USER I've replaced the code with the real file path and it works on my PC. Give a check and see whether it raises any error on your side.
+Finally !! Awesome .. Thank you so much ... so now if i write a schedule program to auto run the program those with NAN will be refilled ? and if possible do help with second program also.
+@USER I am certainly happy to help out. For the 2nd program, base on the files you sent, I didn't see the `Ids` columns at all in any of the csv files. Could you please give a look at this issue and re-upload the files?
+@USER also, the name `New York` in `lat_lon_2.csv` seems to have some white space between these two names. Is this natural to your real data file?
+For second program only the two data files of data_repository are to be considered.. Not from Transition_Data.
+
+After dataframe append I have the same amount of the rows
+I'm trying to flatten the 3rd column which contains an array: #CODE
+However, after the "for" `data2.id.count() == data.id.count()` and `data['Column 3'].count() == data2.my_array_items.count()` and #CODE
+which is the same as #CODE
+Why?
+The pandas `DataFrame.append` method returns a new DataFrame. It does not
+modify the original. Therefore, you would need #CODE
+However, this would be terrible slow, since each time `append` is called a new DataFrame must be created and all the data from `data2` and `x` would need to be copied into the new DataFrame. That's on the order of `n**2` copies being made where `n` is the number of calls to `append`. 
+A faster way to achieve the same result is #CODE
+For example, #CODE
+`data2 = pd.concat([data2, pd.DataFrame(series)])
+` - in the loop?
+Number one rule of programming: Try first, ask later. Therefore, try it in a loop and see what happens. If it works, you have your answer. If it doesn't, again you have your answer.
+The rule number two: strive to avoid doing the things you don't really have to do. Your code from the 1st solution doesn't work, the 2nd does.
+
+kde density plot using python pandas
+I was following the "python for data analysis" in ipython, trying to do a kde plot using pandas(chapter 8, Histograms and Density Plots).the codes are simple: #CODE
+the error is #CODE
+I googled around and I think it is a local global variable problem and may be due to a wrong way to import the modules. Anybody can suggest any ideas?
+Your code works fine for me. Are you sure you are running %pylab?
+Which version of `pandas` are you running? `print(pd.__version__)`. I suspect it's pre-0.8, in which case you should take this opportunity to upgrade to `0.10.1`.
+The problem resolved after pandas be updated. Thank you very much!
+
+Converting string objects to int/float using pandas
+#CODE
+The csv file "100 life_180_data.csv" contains columns like age, bmi,Cigarettes,Alocohol etc. #CODE
+Cigarettes column contains "Never" "1-5 Cigarettes/day","10-20 Cigarettes/day".
+I want to assign weights to these object (Never,1-5 Cigarettes/day ,....) 
+The expected output is new column CigarNum appended which consists only numbers 0,1,2
+CigarNum is as expected till 8 rows and then shows Nan till last row in CigarNum column #CODE
+The output I get shoudln't give NaN after few first rows. #CODE
+Are you sure row 10 and 11 actually equals 'Never' and that there isn't a space or other character in the value?
+Yes,I didn't check the space till now.Really thanks.Could you help me with an efficient way to ignore these spaces.I have lot more columns with space in the beginning.Thanks in advance.
+OK, first problem is you have embedded spaces causing the function to incorrectly apply: 
+fix this using vectorised `str`: #CODE
+now create your new column should just work: #CODE
+UPDATE 
+Thanks to @USER as always for pointing out superior ways to do things: 
+So you can call `replace` instead of calling `apply`: #CODE
+you can also use `factorize` method also. 
+Thinking about it why not just set the dict values to be floats anyway and then you avoid the type conversion? 
+So: #CODE
+you can use ``series.replace(dict)`` I believe to do the substitution, then ``convert_objects(convert_numeric=True)`` to change to float (forcibly); you can also ``factorize`` to make categoricals (e.g. map the strings to numbers)
+@USER so is `replace` faster than calling `map` or `apply` and passing a dict now? Wasn't aware of `factorize` also, when was this introduced?
+replace should be much faster; ``factorize`` has been their quite a while (but not advertised :))
+Try using this function for all problems of this kind: #CODE
+
+Indexing Row Values Based on Value of Each Column
+I have an 8r x 10c data frame and I want to duplicate the dataframe by dividing the values in each row by the first value in its column (i.e. 'indexing' each column, with the first value = 100). 
+So if I start with... #CODE
+It would return... #CODE
+Is there a simple command to do this, or is it some sort of loop?
+When you say "data frame", do you specifically mean [`pandas.DataFrame`](#URL)? If you're using some other data structure, please tell us what it is (a list of lists, a NumPy array, etc).
+Sorry, yes -- a Pandas dataframe.
+The first column in your example has been divided by 10... should it not have been divided by 1000 (as that's the first value in the column)?
+I want the first value in each column to be 100 and everything else to be indexed to that. So the first column values are x/10 and second column values are x/20 and third column values are x/30 (etc).
+You could do the following: #CODE
+`df.iloc[0]` selects the first row. Divide it by 100 to get a row of values to adjust each column by. Lastly we divide the entire DataFrame by this new row of values. Division happens along axis 0 by default (i.e. downwards along each column). 
+An equivalent operation would be `df / df.iloc[0] * 100`.
+Fantastic -- thank you. Knew there had to be a simple way to do it.
+iloc works to select the first row, but the division fails. I'm going to assume this is my lack of Python knowledge and that I'm missing something obvious, but if anyone knows of a reason it would not work as presented please let me know.
+@USER: do you get a particular error message when you try the division?
+Yields a long strong of errors...
+OK - there should be an short error message right at the bottom of the stack trace, e.g. beginning with `ValueError` or `TypeError` or something similar. What is it and what does say?
+Turned out the problem was a hidden index column. Worked around the problem another way, but seems like .iloc would work.
+
+pandas series: change order of index
+I have a Pandas series, for example like this #CODE
+How can I change the order of the index, so that `s` becomes #CODE
+I have tried #CODE
+but that will give me a key error. (In this particular example I could presumably take care of the order of the index while constructing the series, but I would like to have a way to do this after the series has been created.)
+You don't have enough square brackets. You meant to do this: `s[['B','A','C']]` -- aka advanced or fancy indexing. The error message is b/c pandas thinks you are asking for columns 'B', 'A', and 'C'.
+Use `reindex` : #CODE
+
+Difference Pivot_table Pandas and excel
+When I create a pivot table from data in Pandas (python), I get an other result than when I create it with Excel. I think this is due to the fact of characters. Someone knows the difference between the pivot table in Pandas and Excel? 
+I've made this example. I have the excel file 'funds_steven' with following data in 1 column. (column name = Steven_Funds) #CODE
+How can I read this in and calculate the sum of the values?
+Always helps if you could show expected result and pandas result to debug.
+Seems may be a formatting issue.
+Taking the sum of all these values is not really a pivot table. For the sum you can just use the `sum()` method
+
+Conditionally concatenate aggregated columns from different DataFrames into a new DataFrame
+I have several DataFrames with the following structure: #CODE
+I want to construct the following DataFrame. 
+`max` is the maximum value in the column '0' subarray; 
+`nth` is the 0-th element in the column '2' subarray if first-level index value contains '1' and 0-th element in the column '3' subarray otherwise). #CODE
+I tried `df[0].groupby(level=[0, 1]).max()` to calculate `max` and `df[2 or 3].groupby(level=[0, 1]).nth(0)` to calculate `nth` but stuck with concatenation using index values as a condition to select column 2 or 3.
+Here's my starting point (same code as yours, different random values): #CODE
+#CODE
+I couldn't find a way to directly check for a '1' in the first level so I just converted it to a colunn with `reset_index` and then it's fairly easy to use a string method on it. #CODE
+Now clean things up (some of which could be done earlier but I thought it more clear to wait until the end and combine it all): #CODE
+I'm not sure if you're asking about concat also, but it's pretty straightforward: #CODE
+I found that we can say `df['one'] = df.index.get_level_values(0).to_series().str.contains('1').values`
+Yeah, that's a good way.
+I managed to implement the solution I wanted: #CODE
+
+Pandas DataFrame: transforming frame using unique values of a column
+I have a pandas dataframe/csv of the form #CODE
+I want to convert this to a form #CODE
+In general I am looking for a way to transform a table using unique values of a single column. 
+I have looked at `pivot` and `groupby` but didn't get the exact form. 
+HINT: possibly this is solvable by `pivot` but I haven't been able to get the form
+Probably not the most elegant way possible, but using unstack : #CODE
+A little more generally, and removing the strange hierarchical columns in the result: #CODE
+wow.. thanks for the quick response.. I am guessing a mental block but is there a way I can remove the index name
+If you mean `Type` there, it's not actually `df.index.name` but instead `df.columns` is hierarchical and has the name `Type`. I edited in how to get rid of that.
+Thanks figured it out... forgot to edit.. but it seems efficient enough.. accepting the answer :)
+I cooked up my own pivot based solution to the same problem before finding Dougal's answer, thought I would post it for posterity since I find it more readable: #CODE
+And then carry on with Dougal's cleanups: #CODE
+Note that `DataFrame.to_csv()` produces your requested output: #CODE
+Thanks for the alternate solution!
+
+convert ceilometer output to python dataframe
+I'm a little new to Python and openstack ceilometer. I'm reading ceilometer data using the following code: #CODE
+(Please see picture of output attached) 
+Does anyone know how i could convert this into a dataframe? 
+I tried : `ls2 = pandas.DataFrame(ls, columns=["user_id", "name", "resource_id", "source", "meter_id", "project_id", "type", "unit"])` 
+but get the following error: #CODE
+if someone could help it would really be much much appreciated.. 
+Thank you 
+Best Wishes 
+T
+If the <Meter part was not there (i.e. if you had a list of dicts), your code would work.
+I tried removing it with ls[ls.index("[<Meter ")] = "'" but it throws and error:
+what is type(ls[0])?
+Also, what happens when you do ls2 = pandas.DataFrame(ls)? (This will give you an insight as to why you got that ValueError)
+it's a list type; it returns this when i try to convert to pandas.dataframe: 0
+0 <Meter {u'user_id': u'f82bcc547ffd4bf0ae28c452...
+1 <Meter {u'user_id': u'f82bcc547ffd4bf0ae28c452...
+not sure what it means?
+I'm a bit busy atm but it's possible to use `DataFrame.from_items` with a generator. Will post an answer soon
+With the help of a colleague we managed to find the solution. 
+I'm posting it in case it's useful to anyone trying to convert ceilometer data into a dataframe. #CODE
+Replaced characters which make it as invalid dictionary and converted into dataframe
+#CODE
+
+Python Pandas : dataframe groupby and aggregation UnicodeEncodeError
+i have a dataframe y that i read it from a csv file with has two columns one for text and other for votes #CODE
+what i need to is group by unique text and omit remove controversy text which has mixed votes, (only keep text groups which all of them has same vote either 1 or -1 )
+there's no nans in the data so far.
+the "text" column values are in arabic utf-8 read characters 
+what i have tried is : #CODE
+unfortunately i have this error: #CODE
+#CODE
+the first line give me the same UnicodeEncodeError, probably also it wasn't clear (edited now ) that i read the data using pandas.read_csv function which AFAIK fills the datatypes automatically in the dataframe
+
+pandas.Series.interpolate() does nothing. Why?
+I have a dataframe with DatetimeIndex. This is one of columns: #CODE
+When I'm trying to use `interpolate()` on function I get absolutly nothing changes: #CODE
+How to make it work? 
+Update:
+the code for generating such a dataframe. #CODE
+After that I fill cells with some data. 
+I have dataframe `field_data` with survey data about boarding and alighting on railroad, and `station` variable.
+I also have `interval_end` function defined like this: #CODE
+The code: #CODE
+Absolutly the same results I achieve with `linear`, `cubic` and all other methods.
+Can you provide a [SSCCE](#URL)? Esp. some code to construct your dataframe, that would be nice
+I think interpolate needs regular spaced time series. Looks like you need to resample before.
+Try converting your series to a float dtype.
+You need to convert your `Series` to have a dtype of `float64` instead of your current `object`. Here's an example to illustrate the difference. Note that in general `object` dtype `Series` are of limited use, the most common case being a `Series` containing strings. Other than that they are very slow since they cannot take advantage of any data type information. #CODE
+
+Pandas to_sql returning error due to column names with sqlite?
+I'm trying to store stock screens in an sqlite database but when I use screen.to_sql() from pandas it returns: #CODE
+If I replace all the slashes with ' over ' then I get the following: #CODE
+I'm confused because this code is nearly identical to the one I used for a mysql database, can anyone see why sqlite does not like this? 
+Here is the full query as created by pandas. #CODE
+is this the cause: [This_Yr`s_Est.d_Growth_(F(1)/F(0))] TEXT it looks like this maybe escaping the string
+Taking care of both the / and the ` we end up with 
+[This_Yr's_Est.d_Growth_(F(1)_over_F(0))] TEXT,
+but it still returns the error concerning the ]. Thanks though!
+I'd do a divide and conquer to find the offending column line, so remove half the columns, parse again, if it succeeds, try the other half, on failure keep halving until you find the line. Fix it and restart again
+I'll probably just make a quick python screen to try to make a table with each line individually. Thanks!
+even `"` may break now depending on the database backend, I have created an issue [here](#URL) and the fix is to properly quote and escape things. Actually the issue is about table names, but similar.
+`[]` quotes cannot be nested. 
+You should use a quote character that can be escaped, such as `"` (which would have to be doubled): #CODE
+(In this case, you don't even have `"` in the names.)
+
+Matplotlib DateFormatter for axis label not working
+I'm trying to adjust the formatting of the date tick labels of the x-axis so that it only shows the Year and Month values. From what I've found online, I have to use mdates.DateFormatter, but it's not taking effect at all with my current code as is. Anyone see where the issue is? (the dates are the index of the pandas DF) #CODE
+thanks guys! 
+Reproducible scenario code: #CODE
+Still can't get just the year and month to show up...
+what happens if you set the format after you draw the bars?
+@USER - if I set the format after .plot , get an error like this: ValueError: DateFormatter found a value of x=0, which is an illegal date. This usually occurs because you have not informed the axis that it is plotting dates, e.g., with ax.xaxis_date(). It's the same for if I put it before ax.xaxis_date() or after.
+oof -- this is why i hate plotting with pandas. can you make your example reproducible (i.e., add code that creates `basisDF` without any external files) and I'll try to take a look.
+@USER - reproducible code up!
+pandas just doesn't work well with custom date-time formats. 
+You need to just use raw matplotlib in cases like this. #CODE
+And that gives me:
+ah gotcha. thanks Paul!
+
+pandas series/frame quantile function taking multiple probabilities?
+Is there a way to call frame.quantile (or series.quantile) and provide a list of probabilities? It looks like this is simply an omission in the code as it relies on scipy.stats.scoreatpercentile which takes both a list of probabilities and an axis argument. #CODE
+Compare to: #CODE
+You could write one: #CODE
+Example use: #CODE
++1 for ``type(df)`` as a constructor. Wish I'd thought of that or seen it a year ago!
+Just use the built in quantiles in scipy.stats.mstats or pencentile in numpy.
+@USER lol, considering the OP is using it in their question!!
+
+Summarize grouped data in Pandas while filtering after the group part
+I am stumbling over the exact (or at least most elegant) steps to group and aggregate some data in Pandas. Let's say I have a DataFrame that looks something like this - #CODE
+I'd like to get the sum of datacount while grouping by system and sub_system, as long as the datatype does not equal bar, and then put those totals back into the original dataframe. 
+If I try non_bar_totals = df[df.datatype != 'bar'].groupby(['system', 'sub_sytem']).agg(np.sum), it'll get me something like - #CODE
+But now I'm not sure how to push that count value back into the original DataFrame. What is the right syntax to get those counts to be pushed back into the original Dataframe? The end product should look like - #CODE
+Thanks, I know this is something simple, I'm just missing the right keyword to find an example of someone doing it.
+Feels like you should be able to use a transform like `g.transform(lambda x: x['datacount'].where(x['datatype'] != 'bar').sum())` but not quite.
+You can go by using the power of apply function: #CODE
+Superb! Thanks for the quick and simple answer!
+
+Pandas sparse dataframe larger on disk than dense version
+I find that the sparse versions of a dataframe are actually much larger when saved to disk than dense versions. What am I doing wrong? #CODE
+Using version 0.12.0 
+I would ultimately like to efficiently store 10^7 by 60 arrays, with about 10% density, then pull them into Pandas dataframes and play with them. 
+Edit: Thanks to Jeff for answering the original question. Follow-up question: This appears to only give savings for pickling, and not when using other formats like HDF5. Is pickling my best route? #CODE
+This is data that, as a list of indices in a Matlab .mat file, is less than 12M. I was eager to get it into an HDF5/Pytables format so that I could grab just specific indices (other files are much larger, and take much longer to load into memory), and then readily do Pandasy things to them. Perhaps I am not going about this the right way?
+add a compression filter, see here: #URL
+With a dense dataframe and complevel=9 and complib='blosc', that drops us from 544M to 26M. Far better, but still not keeping up with 12M. Trying compression with the sparse dataframe throws a TypeError:
+`TypeError: cannot properly create the storer for: [_TABLE_MAP] [group->/test_sparse (Group) '',value-> ,table->True,append->True,kwargs->{'encoding': None}]`
+hmm....that's not the correct format;it should save it with table=False; but that's the default too. let me take a look.
+can you post the frame that you saved (in dense format is ok), compressed pls! on say a dropbox link?
+Here you go: #URL
+you are creating a frame that has 4000 columns, and only 4 rows; sparse is dealt with rows-wise, so reverse the dimensions. #CODE
+Followup. Your store that you supplied was written in `table` format, and as a result saved the dense version (Sparse is not supported for table format which are very flexible and queryable, see docs . 
+Furthermore, you may want to experiment with saving your file using 2 different representations of the sparse format. 
+so, here's a sample session: #CODE
+IIRC their is a bug in 0.12 in that `to_hdf` doesn't pass all the arguments thru, so you prob want to use: #CODE
+These are stored basically as a collection of `SparseSeries` so if the density is low and non-contiguous then it will not be as minimal as far as size goes. Pandas sparse suite deals better with a smaller number of contiguous blocks, though YMMV. scipy provides some sparse handling tools as well. 
+Though IMHO, these are pretty trivial sizes for HDF5 files anyhow, you can handle gigantic number of rows; and files sizes into the 10's and 100's of gigabytes can easily be handled (though recommend). 
+Furthermore you might to consider using a table format if this is indeed a lookup table as you can query.
+
+Difficulty importing .dat file
+I am somehow having difficulty reading in this file into python with pandas read_table function. 
+#URL 
+This is my code: #CODE
+Which yields error: #CODE
+Dont know about read_table, but you can read this file directly as follows: #CODE
+Prints: #CODE
+The same can be obtained as follows: #CODE
+Just thought it might be more efficient to do so with built-in functions. Do you know of anyway to do it with built-in functions?
+you can simply use ``skiprows=0``
+Thanks a ton. I think the trick is to use regular expression in the sep argument. Cause when I use "\s+", even with read_table, it works.
+Good to hear its ok now:-)
+
+Pandas Grouping and Reducing DataFrame
+I am rather new to Python, and VERY new to Pandas (I am having a more difficult time learning Pandas than Python). 
+I am trying to transform a large dataset, and I am stuck. 
+I upload data from a CSV that has the following structure. #CODE 
+My end goal is find a way to group this into form where I can get the series of categories leading up to a success flag for a specific ID, then an array of the time elapsed during from the previous row the same ID. 
+So a result would something like: #CODE
+I am not sure if Pandas' or NumPy's multidimensional arrays would be better suited for the task. I am also not sure what functions to play around with more in Pandas to accomplish this. 
+A point in the right direction would be greatly helpful.
+I do not 100% understand the question.
+I am unsure what the (0,2,4) means. 
+Ok let's make a start. 
+This is a non pandas-esque way, what with all the dataframe looping. 
+I have your data in csv so load it as follows: #CODE
+and looks like: #CODE
+And now the code: #CODE
+produces #CODE
+wow, that worked. To clarify, the second array is a time delta. I updated your code to give the day delta from the first instance of the unique ID, then to reset after a success. Thanks! the real data file is pretty huge, so I have to figure out how to make this fit into memory. But this is awesome, I now have a direction to keep learning toward.
+
+Pandas Python: sort dataframe but don't include given row
+I have df which looks like this: #CODE
+I would like to sort this in acsending order but I dont want "A gauche" and "A droite" included in the sorting. 
+The code below does what I want but I'm not sure how to exclude "A gauche" and "A droite" from the sorting. #CODE
+expected output #CODE
+Thanks
+You probably want to filter out the rows you don't want included in your sort operation: #CODE
+Which can then be sorted #CODE
+And if you want the excluded rows appended to the end of your data frame, you could do this: #CODE
+Thanks for this. Q - What would I do if the rows I didn't want sorted were in the middle, say row 3 and 5?
+You'd either have to do more splitting and concatenation, or maybe you could introduce some kind of weighting function. It would probably depend on whether you mean 'put this row at position 3 when I'm done sorting' or 'put this row after this other row when I'm done sorting'
+
+Pandas filter rows by substring within text column
+I have a list of keywords as well as a DF that contains a text column. I am trying to filter out every row where the text in the text field contains one of the keywords. I believe what am I looking for is something like the `.isin` method but that would be able to take a regex argument as I am searching for substrings within the text not exact matches. 
+What I have: #CODE
+And I would like to remove any rows that contain a key in the text so I would end up with: #CODE
+use `str.contains` and join the keys using `|` to create a regex pattern and negate the boolean mask `~` to filter your df: #CODE
+
+Convert pandas multi-index to pandas timestamp
+I'm trying to convert an unstacked , multi-indexed data-frame back to a single pandas datetime index. 
+The index of my original data-frame, i.e. before multi-indexing and unstacking, looks like this: #CODE
+then I apply the multi-indexing and unstacking so I can plot the yearly data on top of each other like this: #CODE
+My new data-frame for the first two days of May looks like this: #CODE
+The index for the new data frame shown above now looks like this: #CODE
+which doesn't produce a very nice plot with respect to the xticks (major and minor). If I can convert this multi-index back to a single pandas datetime index, using only the month, day and hour data, then the major/minor ticks will be plotted automagically the way I would like (I think). For example: 
+current solution: #CODE
+required solution: #CODE
+Even a little hint would be greatly appreciated.
+How do I go about bumping this up for some support? There are some questions on here over a year old without any answers.
+Another month? Anything at all will help...
+Is there a reason you want to do this "auto-magically"? I would probably just write a function to custom generate the x-labels. That sounds faster than what you want.
+Thanks for he reply. Maybe you're right, it's just I need to maintain a sensible scale when zooming in. I know this would be taken care of using this method.
+#CODE
+I think this is a better way to accomplish your goal than re-indexing. What do you think?
+Hey!, thanks very much for the reply. Ok, I've just given this a go. Yes, this appears to be a much easier way of stacking/sorting yearly data on top of each other into one plot, so thanks for that. However, it isn't a solution to the question. Instead of my xticks, minor/major, being yearly coded (e.g. day month hour), they are now just broken down into arbitrary chunks of single data points, scaling from 0 to n-1, where n is the number datapoint in my measurement sample set.
+Right, I would imagine at that point it's an x_axis tick manipulation... but I am unable to figure out how exactly to do that. Could you perhaps load the data up to a csv somewhere so that I could play with it and maybe create another post on this?
+Would hte best term for this be a 'Seasonality Plot'- take information from multiple years and plot them on one Jan-Dec axis? I can't find any documentation on how to do this which is surprising to me
+Hey! I've been away, sorry for the delay. Let me get back to you on this. I'll get a csv to you also. Yes to your question also. That's exactly what the plot is all about.
+Ok, here's a [link to the source files](#URL). I've included a small program too, so that you can have a real example to play with. If you launch the script, you will see two figures. Figure.1 is the requested stacked yearly data, but the horrible xticks. Figure.2 is the requested xticks but without the yearly stacking.
+Converting data back and forth in pandas gets messy very fast, as you seem to have experienced.
+My recommendation in general concerning pandas and indexing, is to never just set the index, but to copy it first. Make sure you have a column which contains the index, since pandas does not allow all operations on the index, and intense setting and resetting of the index can cause columns to dissapear. 
+TLDR;
+Don't convert the index back. Keep a copy.
+This also ahears to the open/closed principle: #URL
+
+Sort Pandas Dataframe by Date
+I have a pandas dataframe as follows: #CODE
+I want to sort it by `Date`, but the column is just an `object`. 
+I tried to make the column a date object, but I ran into an issue where that format is not the format needed. The format needed is `2015-02-20,` etc. 
+So now I'm trying to figure out how to have numpy convert the 'American' dates into the ISO standard, so that I can make them date objects, so that I can sort by them. 
+How would I convert these american dates into ISO standard, or is there a more straight forward method I'm missing within pandas?
+You can use `pd.to_datetime()` to convert to a datetime object. It takes a format parameter, but in your case I don't think you need it. #CODE
+I also have a df['Date'].unique() before the sort, which returns a series instead of a Dataframe. This makes 02/20/2015 into 2015-02-19T18:00:00.000000000-0600 which then gets split into 2015-02-19. Is there a way to add a day? Or a more formal way to correct this?
+`df.Date.astype(np.int64)` should work for epoch time
+Turns out that epoch would be wrong since its assuming times of 18:00 hours etc. I need them to be 00:00 hours. I have a way to convert to epoch if I could just get the date objects to not have a time, or the wrong time.
+for me `pd.to_datetime(df.Date)[0]` returns `Timestamp('2015-02-20 00:00:00')`
+Starting new question with more formal description of issue
+It looks like there may actually be [a faster way](#URL) of converting strings into dates.
+@USER's answer is fast and concise. But it changes the `DataFrame` you are trying to sort, which you may or may not want. 
+( Note : You almost certainly will want it, because your date columns should be dates, not strings!) 
+In the unlikely event that you don't want to change the dates into dates, you can also do it a different way. 
+First, get the index from your sorted `Date` column: #CODE
+Then use it to index your original `DataFrame`, leaving it untouched: #CODE
+Magic!
+
+Python - Pandas '.isin' on a list
+I'm using Python 2.7 on Mac OSX Lion and Pandas 0.11.0 with the IPython shell. 
+I have a brief issue, using the data selection method `.isin`. 
+The issue is that I would like to use `.isin` on a list of items, so: #CODE
+I get the following error when I do this: `KeyError: u'no item named '` 
+I generate the initial list by calling a previously developed function. I tried using `eval` on the list, which seems to solve an issue that comes about when using `raw_input` and iterating over items within it - kinda trying to work out some of the issues I've been having when transitioning to `IPython` and `Python 2.7` (originally used `Python 3.3`). 
+I also tried iterating over the list, by first doing: #CODE
+But that also returns: `KeyError: u'no item named '` 
+UPDATE:
+Here is the header: #CODE
+Also, I have a function I use to get the header, which makes things easier for me, the output looks like this: #CODE
+Which, actually, now that I think about it, may be what is causing the problem- although `eval` still would not fix it. 
+UPDATE 2: 
+So, initially, as you can see in the above `.isin`, I was using `header[0]`, which was not right. I tried again using `header[1]`, which is appropriate. I get the following error: #CODE
+I also tried the regular list again and got this error: #CODE
+Which, I guess, speaks more definitively to the issue....
+Is your `header` a DataFrame?, What's the difference between your `df` and `header`?
+Within the `df[df[header[0]].isin(list)]`, header is not a `DataFrame`. It is a list of the column names, which compose the header.
+How did you get the header? By `df.columns`?
+I got the header by calling a function I wrote called `getHeader`, which literally just returns the name of the columns, in the form of a list, from a CSV file.
+Although, I did also put the result of calling `DataFrame.columns`, which is right below where it says "UPDATE"...
+let us [continue this discussion in chat](#URL)
+Try to use df.columns as your header instead: #CODE
+
+Pandas: Quickly joining on a MultiIndex or reindexing
+I have some very sparse, multidimensional time series, with activity at certain times and zero activity at other times. I'm representing the data in Pandas as a `SparseDataframe` with a `MultiIndex`. The work flow is to perform calculations on the small set of data that are non-zero, then put the results into the large sparse dataframe. Later I will do calculations on that sparse dataframe (namely tracking the change in activity over time, including the zero activity areas). 
+The problem is in putting the small set of data into the sparse dataframe. Below is a much smaller dataset than what I will eventually use. 
+With a regular index it's ok: #CODE
+With a `MultiIndex` it's much slower! #CODE
+I thought the issue might be in using `join`, so I tried another route. It was faster but did not solve the problem. #CODE
+It is indeed faster to use `reindex` instead of `join`, but now `MultiIndex` is even slower, comparatively! 
+What are my options? Is there a way to achieve the speed of a regular index with the `MultiIndex`? Is there an elegant way to make a regular index function like the `MultiIndex`? Should I be rethinking how to do all of this?
+
+Pandas dataframe: representing variable length 3D data? column with variable length list?
+There's been a couple times where I've had a timeseries, where one of the columns is a variable length array of information. 
+One example would be image statistics, where the index is a datetime, and the columns are statistics. There is also some global information for each image (location, size, average intensity, etc), but also a variable number of features are detected, and is some information for each of those features (e.g. response, distance, angle). 
+I'd want to be able to plot and explore both global frame stats along with the feature stats. For example, plotting average intensity vs location. However, I'd also want to be able to do histograms or violin plots across all of the features: e.g. density plots of feature responses based on time of day. Idealy I could groupby and have all of those variable length lists (feature responses) appended to the same group. 
+I'd love to be able to represent as much as I can natively pandas. Of course I could have a tuple or np.array, and groupby manually, but then I couldn't serialize to a table format, unless I convert to a string, etc.
+did you consider using HDF? It ties in well with numpy and pandas, allows you to have a bunch of attributes that describe the timeseries and has 2 good python modules H5PY and PyTables.
+Can you explain how to tie it in with reference to my question? I use HDF to store the entire dataframe (in fixed format, not table format), but are you saying I can reference a HDF as a column for a row?
+
+pandas handle NaN/None inserts into sybase
+is there already a working solution to insert NaN/None values from a pandas dataframe into sybase-ASE tables? 
+I tried the suggested solution after researching online (for pandas side):
+df.where(pd.notnull(df), None) 
+However, when I try to insert this into sybase-ASE using bulk_copy/bcp, the None gets inserted as 'nan.0' for some reason. 
+Any ideas why this would happen or anyone knows of a workaround to accomplish these insertions of NaN/None as NULL into sybase? [sybase supports NULL] 
+full stacktrace for the DatabaseError: #CODE
+As Sybase is supported by sqlalchemy (#URL), this should just work out of the box with `to_sql` (no need to convert to Nones with `where`). What version of pandas are you using? And can you provide a small code sample that you use to insert the data?
+Thank you for your response. My understanding (from a brief previous attempt) was that to_sql or pd.io.sql.write_frame does not work for sybase, but I will test this out again with to_sql. I am using 0.12.0 version of pandas.
+Here is a code sample of how I convert the dataframe to a list and then do the bulk copy to insert this data into sybase ase: inList = df.values.tolist() blk = self.sybase_conn.blkcursor() blk.copy(table,direction='in') blk.rowxfermany(inList)
+You will have to update your pandas version to at least 0.15 to be able to try if it works with sybase (in previous versions only mysql/sqlite were supported)
+ok, thanks. I am trying to test this with pandas 0.15.2-16 now. The connection to sybase and sqlalchemy engine creation looks good.
+However, I am running into the following error when trying to execute the to_sql: dataframe.to_sql('sybase_table_name', engine, if_exists='append', index=False) sqlalchemy.exc.DatabaseError: (DatabaseError) Msg 102, Level 15, State 181, Line 1
+Incorrect syntax near ','.
+can't see anything obvious as to the root cause of the above DatabaseError.
+Can you post the full error stacktrace in your question?
+File "/six2r9cj6gx8yhdpjygflakgnxyjxj2y-sybase-15.0-jump1.00-3/lib-python/Sybase.py", line 753, in _raise_error
+raise exc
+sqlalchemy.exc.DatabaseError: (DatabaseError) Msg 102, Level 15, State 181, Line 1
+Incorrect syntax near ','. Does this help? Unable to post the full trace due to size limitation here.
+you can update the original question to include it.
+Let us [continue this discussion in chat](#URL).
+This seems a bug in sqlalchemy. But, you have a rather old version of sqlalchemy (0.7.9, while the most recent is 1.0.x). Can you first try to update sqlalchemy
+ok, tried with the latest version of sqlalchemy and encountered similar error: In [9]: sqlalchemy.__version__
+Out[9]: '1.0.6' dataframe.to_sql('sybase_table_name', engine, if_exists='append', index=False) 
+DatabaseError: (Sybase.DatabaseError) Msg 102, Level 15, State 181, Line 1
+Can you try with only a couple of columns first? Do you then get the same error then? (or try only a couple of rows, some different things to see what triggers the error)
+
+possible bug in pandas sort with NaN values
+If I make a dataframe like the following: #CODE
+basic sorts perform as expected. Sorting on column c appropriately segregates the nan values. Doing a multi-level sort on columns a and b orders them as expected: #CODE
+But doing a multi-level sort with columns b and c does not give the expected result: #CODE
+And, in fact, even sorting just on column c but using the multi-level sort nomenclature fails: #CODE
+I would think that this should have given the exact same result as line 133 above. Is this a pandas bug or is there something I'm not getting? (FYI, pandas v0.11.0, numpy v1.7.1, python 2.7.2.5 32bit on windows 7)
+possible duplicate of [Pandas nested sort and NaN](#URL)
+I noticed that test.sort(columns='c', ascending=False).sort(columns='b', ascending=False) does give the correct answer in this case. But I don't know if that's a robust solution. Anyone have a thought?
+That will only work if pandas sorting algorithm is stable. I didn't find anything in the docs (and numpy's sorting algorithm is not stable by default). I'm trying to find the source now....
+@USER checkout this [bug report](#URL) on this
+it calls `k.argsort` ... where `k` is a column of the dataframe -- Presumably this is a numpy array which gives the indices to tell pandas how to re-order the data. Unfortunatetly, np.argsort uses (by default) the `quicksort` algorithm which isn't stable, so your solution isn't 100% robust.
+@USER -- I'm glad unutbu's on it. :)
+This is an interesting corner case. Note that even vanilla python doesn't get this "correct": #CODE
+The reason here is because `NaN` is neither greater nor less than the other elements -- So there is no strict ordering defined. Because of this, `python` leaves them alone. #CODE
+Pandas must make an explicit check in the single column case -- probably using `np.argsort` or `np.sort` as starting at numpy 1.4, `np.sort` puts `NaN` values at the end.
+Thanks for the heads up above. I guess this is already a known issue. One stopgap solution I came up with is: #CODE
+This method wouldn't work in regular numpy since .min() would return nan, but in pandas it works fine.
+Numpy does have a `nanmin` function I believe :).
+
+pandas: filter intraday df by non-consecutive list of dates
+I have dataframes of 1 minute bars going back years (the datetime is the index). I need to get a set of bars covering an irregular (non-consecutive) long list of dates. 
+For daily bars, I could do something like this: #CODE
+However if I try that on 1 minute bar data, it only gives me the bars with time 00:00:00, e.g. in this case it gives me two bars for 20140101 00:00:00 and 20140205 00:00:00. 
+My actual source df will look something like: #CODE
+Is there any better way to get all the bars for each day in the list than looping over the list? Thanks in advance.
+One way is to add a date column based on the index #CODE
+Then use that column when filtering #CODE
+Thank you - simple and effective. I was actually able to do without the extra column by just directly doing: `df1m[pd.to_datetime(df1m.index.date).isin(datelist)]`
+
+Constructing 3D Pandas DataFrame
+I'm having difficulty constructing a 3D DataFrame in Pandas. I want something like this #CODE
+Where `A`, `B`, etc are the top-level descriptors and `start` and `end` are subdescriptors. The numbers that follow are in pairs and there aren't the same number of pairs for `A`, `B` etc. Observe that `A` has four such pairs, `B` has only 1, and `C` has 3. 
+I'm not sure how to proceed in constructing this DataFrame. Modifying this example didn't give me the designed output: #CODE
+yielded: #CODE
+Is there any way of breaking up the lists in C into their own columns? 
+EDIT: The structure of my `C` is important. It looks like the following: #CODE
+And the desired output is the one at the top. It represents the starting and ending points of subsequences within a certain sequence (`A`, `B`. `C` are the different sequences). Depending on the sequence itself, there are a differing number of subsequences that satisfy a given condition I'm looking for. As a result, there are a differing number of #URL pairs for `A`, `B`, etc
+First, I think you need to fill C to represent missing values #CODE
+Then, convert to a numpy array, transpose, and pass to the DataFrame constructor along with the columns. #CODE
+My data is organized as a list of lists so that `C=[[...],[...],[...]...]` since each nested list has a different length. How could I handle this situation?
+This implementation is giving me an error because the length of the nested lists within `C` is not equal to length of `A` and `B`
+What does each list represent, rows or columns? Why are they different lengths? Are the shorter lists supposed to be missing certain elements? See edited answer for a guess.
+The values in each nested list are the rows and the nested list themselves are the columns. The length of the columns is different because `one` has a different number of #URL pairs than `two`
+I think we're getting tangled on terminology - can you edit your question to provide some data that matches what you're talking about, and then show what output you want?
+I added the structure of my `C` to the question. The desired output was what was shown at the top. Thanks for the help!
+I added an extra couple clarifying sentences to the description as well. I'm open to redesigning `C`'s structure, but I'm not aware of a better way to represent the data.
+Thanks, try the latest edit.
+It looks like it worked! Is there no better way of making a 2d numpy array from arrays of non-identical lengths?
+Can't you just use a panel? #CODE
+It's likely that my dataset will be higher dimensional in the future. Isn't panel limited to 3 dimensions?
+
+Resample error: ValueError: month must be in 1..12
+I have a .csv file that I would like to resample at 1 minute granularity. 
+I do this in the following way: #CODE
+But I get the following error: 
+ValueError: month must be in 1..12 
+I got confused, because when I print main to see how it looks like, the time stamp is in the following format: 
+Timestamp 
+2014-04-15 00:00:00
+Just what it says: you try to create a date from incorrect input. The traceback should tell you where this is happening.
+With little information to go on, but a decent amount of experience working with dates in programming, I would guess that you likely have one of two problems: 
+Your data is bad and you are going to have to find out where your month is out of bounds. 
+Your timestamp format needs to be specified when you parse it. Your program is reading 2014 and trying turn it into a month. 
+infer_datetime_format : boolean, default False
+If True and parse_dates is enabled for a column, attempt to infer the datetime format to speed up the processing 
+Since you believe you have eliminated both of the above possibilities, maybe this will help. All of the examples I see for this function have this format for max in how: #CODE
+Thank you for your answer. I'm very new to python so I have zero experience. How do I specify the timestamp format? I checked the data and it seems to me that the month is not out of bounds.
+#URL Try using the intialization part of the documentation examples with your resample method. Print their data after it is initialized and compare it to yours for formatting.
+Thank you! I solved it!
+No problem. If you are satisfied with an answer, you should mark it as accepted though.
+
+Replacing item values in a data frame on certain condition in other columns
+I have a pandas data frame like this one: #CODE
+There are two sets of columns: dx and dxpoa. Depending on certain values in dxpoa, I have to keep values in dx or discard it. Foe each value in dx there is a value in corresponding dxpoa in that row. For ex: If dxpoa = ['Y'or 'W' or '1' or 'E'] then keep dx value in corresponding row otherwise discard it or fill it with 0. Like dxpoa1, in first row, is 'Y' therefore dx1 will remain as it is. But dxpoa1, in second row, is 'N' therefore corresponding value of dx1, of second row, will become 0.
+Did you already try anything? Are you facing any issues there?
+@USER: I can change value of a column in a row but don't know how to iterate over row or column. I am trying to use iterrow() function. But handicapped with little knowledge of python.
+Given a dataframe built like so: #CODE
+Which gives: #CODE
+Define a function that implements your substitution rules. This is replaces the target column with zero when the value in the reference column is not 'Y', 'W', '1' or 'E', as I understood from your description: #CODE
+Then iterate over the column names applying subfunc over each row: #CODE
+Results in the dataframe #CODE
+Here's a vectorized way of looking at it (using @USER's handy starting frame): #CODE
+What this does is make an array of True and False for the last N//2 columns, with True where the value is in the list and False where it's not (note also that I'm assuming 1 is the string `"1"` and not the integer `1`): #CODE
+Then we can use `where` to set the value of the first N//2 columns, keeping the values where `keep` is True and otherwise replacing them with 0.
+
+split dataframe into multiple dataframes based on number of rows
+I have a dataframe `df` : #CODE
+that I need to split into multiple dataframes that will contain every 10 rows of `df` , and every small dataframe I will write to separate file. so I decided create multilevel dataframe, and for this first assign the index to every 10 rows in my `df` with this method: #CODE
+that throws out #CODE
+so have you idea how to fix it? where my method is wrong? 
+but if you have another approache to split my dataframe into multiple dataframes every of which contains 10 rows of `df`, you are also welcome, cause this approach was just the first I thought about, but I'm not sure that it's the best one
+You can use a dictionary comprehension to save slices of the dataframe in groups of ten rows: #CODE
+There are many ways to do what you want, your method looks over-complicated. A groupby using a scaled index as the grouping key would work: #CODE
+thanks @USER, it's exactly what I was looking for!!
+
+groupby common values in two columns
+I need to extract a common max value from pairs of rows that have common values in two columns. 
+The commonality is between values in columns A and B. Rows 0 and 1 are common, 2 and 3, and 4 is on its own. #CODE
+The goal is to extract max values, so the end result is: #CODE
+I could do this if there is a way to assign a common, non-repeating key: #CODE
+Following up with the groupby and transform: #CODE
+Question 1:
+How would one assign this common key? 
+Question 2:
+Is there a better way of doing this, skipping the common key step 
+Cheers...
+You could sort the values in columns `A` and `B` so that for each row the value in `A` is less than or equal to the value in `B`. Once the values are ordered, then you could apply `groupby-transform-max` as usual: #CODE
+yields #CODE
+The above method will still work even if the values in `A` and `B` are strings. For example, #CODE
+yields #CODE
+Thanks @USER. Is there a similar approach with the strings?
+df = DataFrame([['ab', 'ac', 30], ['ac', 'ab', 20], 
+['cb', 'ca', 15], ['ca', 'cb', 70], 
+['ff', 'zz', 35]], columns=['A', 'B', 'Value'])
+Ah, in that case, geometry is not going to help -- unless you convert the values to factors first. But that would probably negate the speed advantage.
+Used Categorical and get_indexer. Seem to work. Thanks for help.
+c = pd.Categorical.from_array(df.A)
+idx = c.levels
+df['A1'] = idx.get_indexer(df.A)
+df['B1'] = idx.get_indexer(df.B)
+That may not work since `idx.get_indexer(df.B)` will return -1 wherever the value in `B` is not in `A`. Thus, `(ff, zz)` and `(ff, qq)` would both be mapped to something like `(4, -1)`.
+@USER: The first method still works even if the values are strings.
+It's not the most performant, but there's also `df["Value"].groupby(map(frozenset,df[["A","B"]].values),sort=False).transform(max)`.
+
+Looking up values from one csv-file in another csv-file, using a third csv-file as map
+I didn't quite figure how to formulate this question, suggestions to improve the title is welcome. 
+I have three files: e_data.csv , t_data.csv and e2d.csv . I want to merge `e_id`, `t_id`, `gene_name` and `value` into one file, as represented by desired_result.csv . The naive approach is as follows: 
+For each row in e_data.csv , extract `e_id` and `value`. 
+Check e2t.csv for which `t_id` that corresponds to the given `e_id`. 
+Check t_data.csv for which `gene_name` that corresponds to the given `t_id`. 
+Merge them all to one file. 
+Please see the following example for what I'm trying to achieve: 
+e_data.csv: #CODE
+e2t.csv: #CODE
+t_data.csv: #CODE
+desired_result.csv: #CODE
+There's no limitation to which tools or language to use, but I would prefer to use Python, as that's what I'm most familiar with. R could also be an option. I've already implemented a solution in pure Python, but the datasets are rather large, and I'm hoping something like Pandas or Numpy can speed things up a bit. Thanks!
+After you load all the csvs using `read_csv` you can just iteratively `merge` them so long as the column names are consistent: #CODE
+The above works as by default it will try to merge on matching column names and perform an inner merge so the column values must match on lhs and rhs.
+Thanks for the quick reply! I get an empty DataFrame when trying to do t_data.merge(e2t.merge(e_data)). But the column names are the same as in your answer. Merging e2t and e_data works, however. I'll look into the documentation on merge, perhaps I'm doing something wrong.
+I'd look at the output of each merge, also you don't necessarily need to merge the entire df to debug this, ie. `e2t.iloc[:5].merge(e_data.iloc[:5])` will merge just the first 5 lines
+For some reason, e2t and t_data won't merge in my example, which is identical to the data in the question. I shouldn't matter that the the position of the t_id column is different in the two files, right? On my real data it works, however, and I have to say, it is lightning fast compared to my pure python solution.
+position doesn't care, I'd check the column names to see if the spelling is identical `e2t.columns.tolist()` and `t_date.columns.tolist()`
+Do all the entries in the DataFrames have to be the same data type? If I'm changing "Gene1" etc to integers (or, conversely, the IDs to strings), the merge goes fine.
+Not sure, I'd imagine it will either barf or produce a mixed dtype column
+OK, I just tried this, the dtypes have to match otherwise you get an empty df, so that's your problem
+Yes, good to know. Thanks for helping me out!
+
+Python - Using a List, Dict Comprehension, and Mapping to Change Plot Order
+I am relatively new to Python, Pandas, and plotting. I am looking to make a custom sort order in a pandas plot using a list, mapping, and sending them through to the plot function. 
+I am not "solid" on mapping or dict comprehensions. I've looked around a bit on Google and haven't found anything really clear - so any direction to helpful references would be much appreciated. 
+I have a dataframe that is the result of a groupby: #CODE
+The numerical column is 'Symbol' and the exchange listing is the index 
+When I do a straightforward pandas plot #CODE
+I get this: 
+The columns are in the order of the rows in the dataframe (Amex, NYSE, Nasdaq) but I would like to present, left to right, NYSE, Nasdaq, and Amex. So a "sort" won't work. 
+There is another post: 
+Sorting the Order of Bars 
+that gets at this - but I just couldn't figure it out. 
+I feel like the solution is one step out of my reach. I think this is a very important concept to get down as it would help me considerably in visualizing data where the not-infrequent case of a custom row presentation in a chart is needed. I'm also hoping discussion here could help me better understand mapping as that seems to be very useful in many instances but I just can't seem to find the right on-line resource to explain it clearly. 
+Thank you in advance.
+The solution to your problem is putting your output dataframe into desired order: #CODE
+As soon as you have the rightly ordered data you can plot it: #CODE
+Thanks for this - so easy and yet it escaped me. The real lesson here for me was the use of iloc. I'm familiar with using it to iterate in two dimensions (e.g., df.iloc[row,column]). I didn't know I could iterate this way where a column is specified. Makes it super simple. Thanks again!
+
+Finding index of a pandas DataFrame value
+I am trying to process some .csv data using pandas, and I am struggling with something that I am sure is a rookie move, but after spending a lot of time trying to make this work, I need your help. 
+Essentially, I am trying to find the index of a value within a dataframe I have created. #CODE
+The maxindex variable gets me the answer using idxmax(), but what if I am not looking for the index of a max value? What if it is some random value's index that I am looking at, how would I go about it? Clearly .index does not work for me here. 
+Thanks in advance for any help!
+Does this dataframe have only 1 column or do you know which column has the max value? if you know the column then `df.loc[df.col == max].index` would return you the index
+Hi EdChum, thanks for your answer. Doing this gives me the following error
+`Traceback (most recent call last):
+File "psims2.py", line 81, in 
+print cd_gross_revenue.loc[cd_gross_revenue.col == max].index
+File "C:\Python27\lib\site-packages\pandas-0.14.1-py2.7-win32.egg\pandas\core\generic.py", line 18
+43, in __getattr__
+(type(self).__name__, name))
+AttributeError: 'Series' object has no attribute 'col'`
+I think you misunderstand, `col` was a generic name for your column of interest so substitute the column name with the one from your df, my question is how many columns does this df have and is there only 1 or do you know which column has the max value, if so the subsitute `col` with that name
+Use a boolean mask to get the rows where the value is equal to the random variable.
+Then use that mask to index the dataframe or series.
+Then you would use the `.index` field of the pandas dataframe or series. An example is: #CODE
+Hi Daniel, thanks for your response, this worked!
+When you called idxmax it returned the key in the index which corresponded to the max value. You need to pass that key to the dataframe to get that value. #CODE
+`s[s==13]` 
+Is all you need. 
+from pandas import Series #CODE
+Yields #CODE
+
+filling data gaps with monthly averages (Python)
+I have a very long time series over 10 years with half-hourly measurements as Csv file. Every now and then the measurement device break down. I want to interpolate this gaps either with the monthly average or a moving average (which neglect missing values). I guess I need a for-loop to do this but I have no Idea how to do this exactly. Could anybody help me?
+My data look like this: #CODE
+my current code is: #CODE
+So i get the daily sum of my evaporation data. I can resample the monthly daily average as well but I don't know how to tell Python it need to use for each gap the meanvalue for this specific month.
+I'd propose to interpolate the missing values from the two surrounding values; that should be closer to the real missing value than a monthly average.
+In case you've got your values in a list (alas, you didn't state your data structures) of tuples `(timestamp, value)`: #CODE
+This will print #CODE
+well, I have a csv file with 160,000 entries. The missing values are somtimes several days (which means one day = 48 measurements which are missing), sometimes several weeks. I think this solution is only for a short series, isn't it?
+I don't see a reason why even a million entries should pose a problem. But of course, interpolation won't simulate typical daily curves. You will get a straight line from one existing point to the next only.
+Okay thanks for your effort! As far as i understand it, it build averages from the last known value and the next value after the gap, correct? I have two Questions: 1) is it possible to fill the gap with the monthly average (or 30 day moving average), because this would be more accurate? 2) My data are originally in a csv file which i need to import to python. If i use "data = pd.read_csv('ET_T_2000.csv', sep=';', parse_dates=[['date', 'time']]) I get an error "KeyError: u'no item named 187055'". the csv file has 187057 rows. do you have any idea how to fix it?
+Of course you can compute a monthly average and use this to fill any gap, but that's more complicated (and this is not a site for developing solutions but just for answers to questions). Concerning the KeyError: sounds like another question you should ask here (do not mix all problems into one question ;-)
+Note: This should be a comment but I don't have the rep for it :) 
+Pandas has a nice 'interpolate' function on both series and dataframes: ( #URL ). I'm going to suggest, especially if you have 'several days' of missing data, that you just leave the values as NaNs ( #URL ). Pandas has really nice support for plots with NA values and seeing a plot that has the correct measurement values and then a 'gap' is easily to interpret. Also that approach gives additional information, lets say that you're looking at the plots and you see that the weekends have more gaps than other days, that might indicate the measure device is less stable on the weekend (or whatever).
+Yes, thank you. I know this interpolation function of pandas, but it uses only some values before and after the gap. this is too inaccurate. the data represant evaporation in a forest. If for some days the device broke down and it interpolate just the values before and after the gap then I don't get the course over the day and it's in general to inaccurate.
+I agree that for your use case interpolation might not be what you want that's why I suggested just leaving the data as NA values. Pandas has great support for it and functions like 'mean,min,max,std' will all work well (do the right thing) with NA values. If you replace the missing values with 'monthly average' than all of those stats will be incorrect.
+With such big gaps of missing values, I guess you're really better off, to keep them as NANs, and adjust your calculations, that they can deal with missing data. Looks like you're doing financial simulations with it, and in the long run, it will always backfire, if you modify the actual raw data. In case you're using Numpy for the calculations, Bottleneck adds a bunch of modified functions, that skip NAN values in arrays, e.g. when calculating means and so on. Better go on with that!
+Don't whatever you do, change your source data : always keep original data as it is. 
+Any consumers of the data can then decide on a particular interpolation scheme relevant to what the data are showing and what they intend to do with it. 
+In particular, if you are doing some volatility analysis of the data then your putting in interpolated values will have the effect of artificially reducing that volatility. 
+( PS you say you have a Character Separated Value file, but what is the delimiter?)
+the delimiter is ";". I need to interpolate it cause I want to sum up all values per year to create a water balance. This values are evaporation data. If i build a cumulative sum for a year with so many missing values, the sum will be much to less below the real evaporation. So I need to interpolate.
+(I don't see any delimiters in the file). In this case then, consider computing your sum (`s`) and the number of recorded times (`t`) and scaling that to the whole year using `s * p / t` where `p` is the potential number of records.
+Maybe you should sum the existing values, count them and then use their mean value to estimate what the sum for a complete year would have been. Interpolating here could grossly falsify the value if data dropout is correlated to extreme values (e. g. if the sensor always breaks when the water is extremely high) because then the interpolation would extend the extreme value to a longer time period than it actually was.
+
+how to Join 2 columns in numpy when they are list of lists?
+Dataframe is: #CODE
+The convenient way, but slow way, is to use: #CODE
+I want to achieve this method by `numpy`, for now it is very slow `4 seconds`. As `Pandas` use numpy I think I should use numpy without using `Pandas` in order to reduce the overhead. 
+I use `column_stack` but the output is: #CODE
+[concatenate](#URL)?
+This may no be fast, however, `[np.append(x,y) for x, y in zip(a, b)]` works?
+@USER I'm looking for a fast way as `df['something'] + df['another_thing']` would solve my problem without code complexity.
+@USER `concatenate` is not the solution as it merge the way I don't want to. I want something similar to `column_stack`
+The problem with `np.column_stack` is that in `b` you don't have equal-length columns (and thus a `dtype` of `object`). 
+You can do this with `np.concatenate` (or as @USER Galt said in comments `np.append`); e.g.: #CODE
+
+pandas merging of two data-frames using conditions
+Is there a way in pandas to merge two data frames with varying lengths by using a conditional statement?
+eg: #CODE
+For example assume there are two data frames, df1 and df2 with 10,000 and 15,000 objects respectively. 
+I want to match common objects between the two catalogues using their x and y position. Objects should be matched between df1 and df2 such that the matched objects fall within 1m radius of each other. 
+Other than x and y, there is nothing common between between the two data frames. 
+The best I can think so far involves a for loop. I'm sure there is a faster and better way to do this? #CODE
+Do you need to compare each value in df2 with each in df1? And what if more than one row fulfil the condition? Would that be possible?
+You **cannot** join on a conditional statement with any pandas functions. You have to create keys in each dataframe that can be joined on.
+@USER-sc yes for all the questions. so this should be able to identify multiple matches and return them as well.
+@USER can you please explain how would you do this in pandas then? Apparently there is a non-pandas function that does similarly using a kd-tree: #URL
+When you need to check each value permutation, this is of O(m*n) complexity (with m and n the number of values per df). The problem you need to solve is how to get your loops more efficient, but I don't think there is a straight forward way (aka existing function) to do that in pandas.
+
+Pandas groupby category, rating, get top value from each category?
+First question on SO, very new to pandas and still a little shaky on the terminology: I'm trying to figure out the proper syntax/sequence of operations on a dataframe to be able to group by column B, find the max (or min) corresponding value for each group in column C, and retrieve the corresponding value for that in column A. 
+Suppose this is my dataframe: #CODE
+Using `df.groupby('type').votes.agg('max')` returns: #CODE
+So far, so good. However, I'd like to figure out how to return this: #CODE
+I've gotten as far as `df.groupby(['type', 'votes']).name.agg('max')`, though that returns #CODE
+... which is fine for this pretend dataframe, but doesn't quite help when working with a much larger one. 
+Thanks very much!
+If `df` has an index with no duplicate values, then you can use `idxmax` to return the index of the maximum row for each group. Then use `df.loc` to select the entire row: #CODE
+If `df.index` has duplicate values, i.e. is not a unique index, then make the index unique first: #CODE
+then use `idxmax`: #CODE
+If you really need to, you can return `df` to its original state: #CODE
+but in general life is much better with a unique index. 
+Here is an example showing what goes wrong when `df` does not have a unique
+index. Suppose the `index` is `AABB`: #CODE
+`idxmax` returns the index values `A` and `B`: #CODE
+But `A` and `B` do not uniquely specify the desired rows. `df.loc[...]`
+returns all rows whose index value is `A` or `B`: #CODE
+In contrast, if we reset the index: #CODE
+then `df.loc` can be used to select the desired rows: #CODE
+Thank you very much! Still trying to get the hang of indexes, will read through documentation much more thoroughly. Thanks again!
+
