@@ -605,3 +605,17 @@ write
 X
 XML
 zip
+math
+down
+copyright
+locals
+purge
+quantize
+retrieve
+socket
+writer
+enumerate
+list
+bool
+dir
+len
