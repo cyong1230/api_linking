@@ -1,4 +1,4 @@
 #!/bin/zsh
 
-perl conlleval.pl -d "\t" < crfresult
+perl conlleval.pl -d "\t" < crfresult2
 
