@@ -186,7 +186,6 @@ consolidate
 corr
 cov
 hist
-interpolate
 irow
 prod
 resample

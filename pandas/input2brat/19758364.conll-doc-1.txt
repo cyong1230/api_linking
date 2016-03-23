@@ -1,8 +1,0 @@
-python : rename single column header in pandas dataframe
-I've got a dataframe called data .
-How would I rename the only one column header ?
-For example ' gdp ' to ' log ( gdp )' ?
-@CODE
-@CODE
-The ` rename ` show that it accepts a dict as a param for ` columns ` so you just pass a dict with a single entry .
-Also see related

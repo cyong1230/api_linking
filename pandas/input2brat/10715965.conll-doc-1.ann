@@ -1,8 +1,0 @@
-T1	API 17 33	pandas.DataFrame
-T2	API 95 104	DataFrame
-T3	API 135 144	DataFrame
-T4	API 240 249	DataFrame
-T5	API 417 426	DataFrame
-T6	API 477 492	pandas.concat()
-T7	API 500 518	DataFrame.append()
-T8	API 1118 1127	dataframe

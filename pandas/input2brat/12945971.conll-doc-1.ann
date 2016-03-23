@@ -1,4 +1,0 @@
-T1	API 270 283	to_pydatetime
-T2	API 1109 1126	pandas.date_range
-T3	API 1226 1239	pandas.Series
-T4	API 2015 2032	pandas.date_range
