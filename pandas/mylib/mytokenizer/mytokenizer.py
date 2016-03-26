@@ -6,7 +6,10 @@ def tokenize(istring,ostring):
   ifile=open(istring,'r')
   ofile=open(ostring,'w')
   for line in ifile:
-    ofile.write(u" ".join(lib.twokenize.tokenize(line[:])).encode('utf-8')+'\n')
+    try:
+      ofile.write(u" ".join(lib.twokenize.tokenize(line[:])).encode('utf-8')+'\n')
+    except:
+      print line
   ofile.close()
   ifile.close()
 

@@ -43,15 +43,12 @@ def text_to_conll(f):
         for t in tokens:
             if not t.isspace():
                 # pre label rules designed by Deheng
-                #if API_pattern.match(t) is not None:
-                #    lines.append([t, 'B-API'])
                 if t.endswith("()"):
-                    #print t
                     t_nobracket = t[:-2]
-                    if t_nobracket in api_list:
-                        lines.append([t, 'B-API'])
+                    #if t_nobracket in api_list:
+                    #    lines.append([t, 'B-API'])
+                    lines.append([t, 'B-API'])
                 elif t in api_list:
-                    #print t
                     lines.append([t, 'B-API'])
                 else:
                     lines.append([t, 'O'])
@@ -63,15 +60,8 @@ def text_to_conll(f):
     lines = [[l[0], l[1]] if l else l for l in lines]
     return StringIO('\n'.join(('\t'.join(l) for l in lines)))
 
-def build_list():
-    f = open('./apidoc/all-remove.txt', 'r')
-    for line in f:
-        api = line.strip()
-        api_list.append(api)
-    return api_list
 
 def main(arg1, arg2):
-    #api_list = build_list()
     api_list = []
 
     if arg1.endswith('.txt'):
