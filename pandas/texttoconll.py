@@ -92,17 +92,25 @@ def build_list():
             line = str(line.strip())
             line = "`" + line.lower() + "`"
             api_list.append(line)
+
+    with open('apidoc/real_amb.txt', 'r') as gaz3:
+        for line in gaz3:
+            line = str(line.strip())
+            line = line.lower()
+            api_list.append(line)
     return api_list
 
 def main(arg1, arg2):
     api_list = build_list()
-
+    '''
     if arg1.endswith('.txt'):
         filebase = '.'.join(arg1.split('.')[:-1]) if '.' in arg1 else arg1
     tokenfile = str(filebase) + '.tk'
 
     mytokenizer.tokenize(arg1, tokenfile)
     f = open(tokenfile, 'r')
+    '''
+    f = open(arg1, 'r')
     lines = text_to_conll(f)
     with open(arg2, 'wt') as of:
         of.write(''.join(lines))

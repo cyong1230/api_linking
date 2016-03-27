@@ -58,3 +58,6 @@ imag
 dt
 iget
 ptp
+reindex
+transform
+mask
