@@ -21,6 +21,7 @@ from link_api import views
 
 urlpatterns = [
 	#url(r'^$', 'views.home'),
-	url(r'^geturl/$', views.get_url),
+	url(r'^linkentity/$', views.link_entity),
+    url(r'^extractentity/$', views.extract_entity),
     url(r'^admin/', admin.site.urls),
 ]

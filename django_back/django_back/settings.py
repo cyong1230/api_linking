@@ -86,8 +86,7 @@ DATABASES = {
         'NAME': 'link_api',
         'USER': 'root',
         'PASSWORD': '',
-        #'PASSWORD': 'ydh0114',
-        'HOST': 'localhost',
+        'HOST': '192.168.56.1',
         'PORT': '3306',
     }
 }
@@ -130,3 +129,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
