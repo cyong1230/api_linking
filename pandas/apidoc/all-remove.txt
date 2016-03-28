@@ -2215,7 +2215,6 @@ to_native_types
 to_series
 tolist
 value_counts
-viewT
 dtypes
 ftypes
 iat
@@ -2307,7 +2306,8 @@ to_timestamp
 to_wide
 truediv
 tshift
-xsT
+xs
+T
 asobject
 freqstr
 inferred_freq
@@ -2343,12 +2343,11 @@ set_properties
 set_table_attributes
 set_table_styles
 set_uuid
-useT
 .describe_option
 .reset_option
 .get_option
 .set_option
-.option_contextT
+.option_context
 .asi8
 .base
 .data
@@ -2448,7 +2447,6 @@ useT
 .union
 .unique
 .value_counts
-.viewT
 .at
 .axes
 .blocks
@@ -2614,7 +2612,8 @@ useT
 .update
 .var
 .where
-.xsT
+.xs
+.T
 .asobject
 .freqstr
 .inferred_freq

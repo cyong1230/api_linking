@@ -2222,7 +2222,8 @@ describe_option
 reset_option
 get_option
 set_option
-option_contextT
+option_context
+T
 asi8
 base
 data
@@ -2322,7 +2323,8 @@ transpose
 union
 unique
 value_counts
-viewT
+vie
+T
 at
 axes
 blocks
@@ -2488,7 +2490,8 @@ unstack
 update
 var
 where
-xsT
+xs
+T
 asobject
 date
 day
@@ -2553,12 +2556,13 @@ set_properties
 set_table_attributes
 set_table_styles
 set_uuid
-useT
+use
+T
 .describe_option
 .reset_option
 .get_option
 .set_option
-.option_contextT
+.option_context
 .asi8
 .base
 .data
@@ -2658,7 +2662,8 @@ useT
 .union
 .unique
 .value_counts
-.viewT
+.view
+.T
 .at
 .axes
 .blocks
@@ -2824,7 +2829,7 @@ useT
 .update
 .var
 .where
-.xsT
+.xs
 .asobject
 .freqstr
 .inferred_freq
