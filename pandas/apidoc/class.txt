@@ -7,3 +7,11 @@ CategoricalIndex
 DatetimeIndex
 TimedeltaIndex
 Styler
+MultiIndex
+Rolling
+Expanding
+GroupBy
+DataFrameGroupBy
+SeriesGroupBy
+Resampler
+HDFStore

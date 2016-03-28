@@ -61,3 +61,11 @@ ptp
 reindex
 transform
 mask
+backfill
+Resampler
+Styler
+MultiIndex
+Rolling
+Expanding
+agg
+aggregate
