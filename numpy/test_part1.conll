@@ -1,13 +1,13 @@
 Note	O
 that	O
 the	O
-diagonal	B-API
+diagonal	N
 is	O
 always	O
 zero	O
 since	O
 `	O
-mahalanobis	O
+mahalanobis	U
 (	O
 x	O
 ,	O
@@ -60,7 +60,7 @@ definition	O
 they	O
 will	O
 be	O
-unique	B-API
+unique	N
 .	O
 
 I	O
@@ -74,7 +74,7 @@ output	O
 only	O
 contains	O
 the	O
-ids	B-API
+ids	N
 (	O
 single	O
 column	O
@@ -100,7 +100,7 @@ axis	O
 ,	O
 not	O
 by	O
-absolute	B-API
+absolute	N
 value	O
 )	O
 .	O
@@ -117,7 +117,7 @@ occurrences	O
 of	O
 the	O
 last	O
-unique	B-API
+unique	N
 item	O
 ,	O
 because	O
@@ -142,7 +142,7 @@ the	O
 Linux	O
 terminal	O
 to	O
-strip	B-API
+strip	N
 quotes	O
 from	O
 the	O
@@ -198,7 +198,7 @@ I	O
 think	O
 it	O
 will	O
-append	B-API
+append	N
 directly	O
 to	O
 the	O
@@ -210,7 +210,7 @@ would	O
 prefer	O
 it	O
 to	O
-append	B-API
+append	N
 to	O
 a	O
 new	O
@@ -235,7 +235,7 @@ all	O
 the	O
 lines	O
 and	O
-append	B-API
+append	N
 text	O
 or	O
 count	O
@@ -244,10 +244,10 @@ characters	O
 .	O
 
 The	O
-transpose	B-API
+transpose	N
 of	O
 the	O
-transpose	B-API
+transpose	N
 of	O
 a	O
 matrix	O
@@ -276,7 +276,7 @@ and	O
 using	O
 numpy.dstack	B-API
 to	O
-stack	B-API
+stack	N
 the	O
 1000	O
 arrays	O
@@ -304,7 +304,7 @@ dimension	O
 
 If	O
 you	O
-strip	B-API
+strip	N
 all	O
 these	O
 out	O
@@ -358,7 +358,7 @@ First	O
 you	O
 have	O
 a	O
-binomial	B-API
+binomial	N
 response	O
 :	O
 having	O
@@ -433,7 +433,7 @@ file	O
 GPBUSD1d.txt	O
 '`	O
 and	O
-transpose	B-API
+transpose	N
 (	O
 "	O
 unpack	O
@@ -466,12 +466,12 @@ floor	B-API
 Finally	O
 I	O
 just	O
-transpose	B-API
+transpose	N
 the	O
 dataframe	O
 to	O
 get	O
-ids	B-API
+ids	N
 as	O
 rows	O
 and	O
@@ -486,7 +486,7 @@ way	O
 of	O
 obtaining	O
 the	O
-unique	B-API
+unique	N
 elements	O
 in	O
 all	O
@@ -540,7 +540,7 @@ sense	O
 to	O
 me	O
 to	O
-reshape	B-API
+reshape	N
 it	O
 to	O
 a	O
@@ -557,7 +557,7 @@ from	O
 each	O
 integer	O
 and	O
-join	B-API
+join	N
 them	O
 together	O
 :	O
@@ -572,7 +572,7 @@ as	O
 much	O
 work	O
 to	O
-translate	B-API
+translate	N
 the	O
 top	O
 Matlab	O
@@ -591,7 +591,7 @@ example	O
 ,	O
 where	O
 your	O
-unique	B-API
+unique	N
 values	O
 are	O
 sequential	O
@@ -601,7 +601,7 @@ you	O
 can	O
 use	O
 `	O
-find_objects	O
+find_objects	U
 `	O
 directly	O
 .	O
@@ -638,7 +638,7 @@ are	O
 many	O
 other	O
 `	O
-ufunc	O
+ufunc	U
 `	O
 ,	O
 and	O
@@ -656,7 +656,7 @@ reduceat	B-API
 .	O
 
 All	O
-diagonal	B-API
+diagonal	N
 elements	O
 will	O
 be	O
@@ -711,7 +711,7 @@ that	O
 all	O
 but	O
 the	O
-diagonal	B-API
+diagonal	N
 #CODE	O
 
 To	O
@@ -719,7 +719,7 @@ compute	O
 the	O
 number	O
 of	O
-unique	B-API
+unique	N
 elements	O
 in	O
 a	O
@@ -738,7 +738,7 @@ x	O
 `	O
 or	O
 `	O
-len	O
+len	U
 (	O
 unique	B-API
 (	O
@@ -759,7 +759,7 @@ basically	O
 require	O
 implementing	O
 the	O
-outer	B-API
+outer	N
 loop	O
 in	O
 Cython	O
@@ -779,7 +779,7 @@ an	O
 inverse	O
 or	O
 a	O
-transpose	B-API
+transpose	N
 .	O
 
 Second	O
@@ -814,7 +814,7 @@ corners	O
 correspond	O
 to	O
 the	O
-diagonal	B-API
+diagonal	N
 elements	O
 .	O
 )	O
@@ -823,7 +823,7 @@ I	O
 tried	O
 using	O
 the	O
-scipy.stat	O
+scipy.stat	U
 module	O
 by	O
 creating	O
@@ -846,7 +846,7 @@ values	O
 like	O
 mean	O
 and	O
-std	B-API
+std	N
 dev	O
 (	O
 is	O
@@ -913,7 +913,7 @@ storing	O
 a	O
 matrix	O
 in	O
-diagonal	B-API
+diagonal	N
 dominant	O
 form	O
 .	O
@@ -976,7 +976,7 @@ memory	O
 I	O
 found	O
 another	O
-stack	B-API
+stack	N
 question	O
 about	O
 this	O
@@ -1021,7 +1021,7 @@ I	O
 would	O
 like	O
 to	O
-convolve	B-API
+convolve	N
 the	O
 two	O
 matrices	O
@@ -1052,7 +1052,7 @@ used	O
 to	O
 find	O
 the	O
-unique	B-API
+unique	N
 coordinates	O
 .	O
 
@@ -1074,7 +1074,7 @@ which	O
 will	O
 be	O
 an	O
-absolute	B-API
+absolute	N
 limiting	O
 factor	O
 .	O
@@ -1088,7 +1088,7 @@ then	O
 I	O
 could	O
 just	O
-append	B-API
+append	N
 to	O
 the	O
 b	O
@@ -1110,7 +1110,7 @@ loop	O
 
 Use	O
 `	O
-multiprocessing.Process	O
+multiprocessing.Process	U
 (	O
 target	O
 =	O
@@ -1125,7 +1125,7 @@ sa	O
 (	O
 and	O
 `	O
-start	O
+start	U
 `	O
 ,	O
 maybe	O
@@ -1190,7 +1190,7 @@ i.e.	O
 no	O
 need	O
 to	O
-reshape	B-API
+reshape	N
 upon	O
 reading	O
 in	O
@@ -1203,7 +1203,7 @@ think	O
 finding	O
 the	O
 local	O
-max	B-API
+max	N
 can	O
 be	O
 simplified	O
@@ -1237,7 +1237,7 @@ actually	O
 compute	O
 really	O
 a	O
-gradient	B-API
+gradient	N
 ?	O
 
 I	O
@@ -1253,7 +1253,7 @@ np.nditer	B-API
 `	O
 and	O
 then	O
-translate	B-API
+translate	N
 it	O
 into	O
 C	O
@@ -1336,7 +1336,7 @@ matrix	O
 
 This	O
 will	O
-join	B-API
+join	N
 the	O
 rows	O
 and	O
@@ -1356,7 +1356,7 @@ have	O
 `	O
 -det	O
 (	O
-mat	B-API
+mat	N
 )`	O
 in	O
 the	O
@@ -1377,7 +1377,7 @@ is	O
 `	O
 x	O
 `	O
-unique	B-API
+unique	N
 ?	O
 
 Pandas	O
@@ -1386,7 +1386,7 @@ filtered	O
 row	O
 to	O
 another	O
-DataFrame	O
+DataFrame	Y
 
 Again	O
 ,	O
@@ -1399,14 +1399,14 @@ of	O
 combinations	O
 is	O
 not	O
-unique	B-API
+unique	N
 ;	O
 but	O
 it	O
 does	O
 have	O
 a	O
-unique	B-API
+unique	N
 subset	O
 ,	O
 namely	O
@@ -1450,7 +1450,7 @@ to	O
 pass	O
 in	O
 the	O
-transpose	B-API
+transpose	N
 ,	O
 you'll	O
 need	O
@@ -1482,7 +1482,7 @@ vmax	O
 (	O
 or	O
 `	O
-norm	B-API
+norm	N
 `)	O
 of	O
 `	O
@@ -1515,7 +1515,7 @@ O	O
 (	O
 log	B-API
 (	O
-len	O
+len	U
 (	O
 weights	O
 )))`	O
@@ -1554,7 +1554,7 @@ A	O
 ,	O
 so	O
 you	O
-reshape	B-API
+reshape	N
 them	O
 accordingly	O
 and	O
@@ -1577,7 +1577,7 @@ standard	O
 error	O
 of	O
 the	O
-gradient	B-API
+gradient	N
 or	O
 intercept	O
 ?	O
@@ -1616,7 +1616,7 @@ time	O
 
 You	O
 can	O
-broadcast	B-API
+broadcast	N
 that	O
 into	O
 an	O
@@ -1636,7 +1636,7 @@ above	O
 test	O
 on	O
 the	O
-absolute	B-API
+absolute	N
 values	O
 of	O
 the	O
@@ -1649,7 +1649,7 @@ everything	O
 
 The	O
 returned	O
-gradient	B-API
+gradient	N
 hence	O
 has	O
 
@@ -1659,7 +1659,7 @@ the	O
 first	O
 case	O
 the	O
-gradient	B-API
+gradient	N
 is	O
 1	O
 mV	O
@@ -1719,7 +1719,7 @@ Why	O
 don't	O
 you	O
 just	O
-compress	B-API
+compress	N
 the	O
 files	O
 with	O
@@ -1741,7 +1741,7 @@ function	O
 that	O
 convert	O
 a	O
-poly	B-API
+poly	N
 parameters	O
 array	O
 to	O
@@ -1803,7 +1803,7 @@ to	O
 run	O
 hstack	B-API
 to	O
-join	B-API
+join	N
 a	O
 column	O
 of	O
@@ -1841,7 +1841,7 @@ to	O
 pass	O
 these	O
 `	O
-norm	B-API
+norm	N
 `	O
 and	O
 `	O
@@ -1852,11 +1852,11 @@ in	O
 matplotlib	O
 to	O
 `	O
-plt.show	O
+plt.show	Y
 `	O
 or	O
 `	O
-imshow()	O
+imshow()	Y
 `	O
 ?	O
 
@@ -1864,7 +1864,7 @@ Forget	O
 about	O
 the	O
 C	O
-stack	B-API
+stack	N
 ,	O
 numpy	O
 objects	O
@@ -1893,7 +1893,7 @@ tricky	O
 when	O
 trying	O
 to	O
-append	B-API
+append	N
 to	O
 a	O
 numpy	O
@@ -1975,7 +1975,7 @@ y	O
 and	O
 your	O
 `	O
-mat	B-API
+mat	N
 [:	O
 ,	O
 i+1	O
@@ -2010,7 +2010,7 @@ integers	O
 which	O
 gives	O
 a	O
-std	B-API
+std	N
 >	O
 0	O
 .	O
