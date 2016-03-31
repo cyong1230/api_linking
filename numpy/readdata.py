@@ -120,11 +120,11 @@ class DataReader:
     
     def read_numpy_all(self):
         numpy_ids = []
-        f = open('numpy_qid.txt', 'r')
+        f = open('numpy_qid.txt.test', 'r')
         for line in f:
             numpy_ids.append(line.strip())
         f.close()
-        fw = open('numpy_q_a_c.txt', 'w')
+        fw = open('numpy_q_a_c.txt.test', 'w')
         cnt = 1
         for id in numpy_ids:
             print cnt
