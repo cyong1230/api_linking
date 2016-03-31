@@ -1,1 +1,11 @@
 dot
+ones
+sum
+nonzero
+broadcast
+indices
+zeros
+histogram
+
+add:
+reduce

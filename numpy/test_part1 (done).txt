@@ -1,0 +1,212 @@
+OLS solution using pinv / svd #CODE
+The bad days are eliminated , and the good ones are kept .
+From this I've gathered that ` len() ` will return the number of rows , so I can always us the transpose , ` len ( A.T )` , for the number of columns .
+shape mismatch : value array of shape ( 1000 , ) could not be broadcast to indexing result of shape ( 1000,3,255,255 )
+@USER Well in this case , ` searchsorted ` is basically looking for places or indices where elements from ` message ` exists in the keys of ` codes ` .
+@USER -- I had a hard time remembering how ` translate ` and ` maketrans ` work for quite a while too , but I've gotten used to it .
+Edit : if you're using a version of numpy > = 1.8.0 , then ` np.linalg.eigvals ` operates over the last two dimensions of whatever array you hand it , so if you reshape your input to an ` ( n_subarrays , nrows , ncols )` array you'll only have to call ` eigvals ` once : #CODE
+` reshape ` returns a view of the original array , not a copy , so the conversion to 3D only requires altering the ` shape ` and ` strides ` attributes of the array , without having to copy any of the actual data .
+sum this new array along particular axes ; and then maybe
+Calling ` reshape ` returns a view , so it doesn't incur any big copying costs or anything like that .
+so at some point in the execution it will max my memory .
+If ` len ( vals )` is too long , do you want to truncate ` vals ` ? and if ` len ( vals )` is too short , do you want to fill the rest of the array with ` 0 ` s ?
+Note that extension to even higher combinatorics should be trivial , along the lines presented ; but keep an eye on the n used in that case .
+These functions return a list , which I convert to a numpy array and then sum over .
+Can it be because of the many zeros in the initial table ?
+I also understand that sum ( A , axis=1 ) will sum each row .
+But what I really want to do , is to bin ` array [: , 1 ]` by day ( as derived by the unix timestamps in array [: , 0 ]) , and plot these as a stacked histogram , with each ( colored ) stack representing a day .
+It's interesting to see that when I go back to ` nloop=1000 ` , ` nreps=3 ` I actually see a slightly * greater * rate of cache misses for the row sum ( 17% vs 13% ) , even though it's faster than the column sum .
+You can concatenate arrays in ` numpy ` .
+If you are 100% sure that l2 would only be one column then you can reshape that array to make it one dimensional before doing the subtraction .
+You won't be able to create a 2D array that way , and @USER method of returning a 1D array that you reshape afterwards is a sure go .
+I have a square matrix A ( could be any size ) and I want to take the upper triangular part and place those values in an array without the values below the center diagonal ( k=0 ) .
+You can mimic this behavior with a simple function to flatten a list : #CODE
+So ` popt ` , according to the documentation , returns * " Optimal values for the parameters so that the sum of the squared error of f ( xdata , popt ) - ydata is minimized " .
+And I'd like indices ` i ` such that , #CODE
+But , ` resize ` looks like it just might be the thing I'm looking for ...
+` rfft ` , apart from repeated terms excluded , and an almost 2x speed-up , returns the exact same you would get from ` fft ` .
+Plus , if I have 4 dimensions , I thought I should have 4 eigenvalues and not 150 like the eig gives me .
+If I run your code to generate ` d ` and ` dx ` with ` eig ` I get the following : #CODE
+In other words- it is not just taking a min or max .
+D [ I+1 , J+1 ] = map ( norm , x [ I ] -y [ J ]) + np.minimum ( np.minimum ( D [ I , J ] , D [ I , J+1 ]) , D [ I+1 , J ]) ?
+` dot ` just has tighter code for a specific combination of dimensions .
+numpy sum does not agree
+Since you are only adding many ` 1 ` s you can convert ` diff ` to ` bool ` : #CODE
+It isn't mathematically possible to represent 0 on a log scale , so the first value will have to either be masked or clipped to a very small positive number .
+possible duplicate of [ Efficiently count the number of occurrences of unique subarrays in NumPy ? ] ( #URL )
+Or you could mask the x value as well , so the indices were consistent between x and y #CODE
+Here the ` outer ` method of the ` multiply ` ufunc is used to create the new 20x20 array .
+I have a 3D numpy array consisting of 1's and zeros defining open versus filled space in a porous solid ( it's currently a numpy Int64 array ) .
+You are attempting to broadcast a 4-D array together with a 3-D array .
+Scipy NDimage correlate : unbearably slow
+I know that I can reshape the array to a 100 x 2 array of grid points : #CODE
+You probably could get ` append ` to work , but it just does a step by step concatenate , which is slower .
+This produces a random permutation of each column's indices .
+As it happens , the histogram is enough for the former .
+I see how the symmetry of the trace lets you replace the final ` dot ` .
+In that question , I sought to sum values in a numpy structured array based on multiple criteria , including matches in a list .
+Assuming I understand you , and you're looking for the indices where either the element is True or the next element is True , you can take advantage of ` shift ` and use #CODE
+to delete the lines that had zeros in them !
+Fill scipy / numpy matrix based on indices and values
+It looks like a vector product followed by a sum along the resulting array .
+The trick is that this convolve function can be used in-place so the double for loop : #CODE
+But this reshape should produce a ` ( n , 1 , 1 )` array , not your ` ( 1 , 1 , 1 ,... )` array .
+For an extreme example , consider a sequence that consists of 9 zeros followed by the result of a coin toss , 9 zeros and another coin toss , etc .
+If so then ` np.array ( a )` is a 2d array , and you can sum over ` axis=1 ` .
+I am trying to create a lat / lon grid that contains an array of found indices where two conditions are met for a lat / lon combination .
+This NAMBE is the absolute difference between a base vector and another vector , divided by the base vector and multiplied by a hundred , in pseudo-code notation : #CODE
+this my code to and i want to use histogram data to plot scatter where y axis is counts center from the histogram , is there any direct command or way to do this ?
+Please compile with ` cython -a ` , then show us the C code that the ` a [ 0 ] += sum ` line turns into .
+The revised question is still a duplicate , see [ this question ] ( #URL ) , and [ this question ] ( #URL ) for finding the indices .
+ValueError : operands could not be broadcast together with different shapes in numpy ?
+There are thousands of numbers below the ones shown here .
+Assuming you want to align all the arrays to the left , and pad to the right with zeros , then you could first find the maximum length with #CODE
+How to do the same If I want to apply norm column-wise to a matrix ?
+The easiest approach is to reshape to data to a long format using ` .stack ` , which can be be passed straight into rolling mean .
+It's pretty low-level , and mostly focused on how to address the more difficult problem of how to pass C++ data to and from NumPy without copying , but here's how you'd do a copied std :: vector return with that : #CODE
+` std = RMS ( data - mean )` .
+This generalized diagonal would be defined as those elements of the array whose 0th and 2nd index coincide , and would have shape ( 3 , 3 , 7 ) .
+I have a given array ` [ 0 , 0 , 0 , 0 , 0 , 0 , 1 , 1 , 2 , 1 , 0 , 0 , 0 , 0 , 1 , 0 , 1 , 2 , 1 , 0 , 2 , 3 `] ( arbitrary elements from 0-5 ) and I want to have a counter for the occurence of zeros in a row .
+To see the benefits of this , you need to use ` z , p , k = butter ( output= ' zpk ')` and then work with poles and zeros instead of numerator and denominator .
+In that case you would " extrapolate " zeros to the left and the right .
+can numpy interpret column of indices like matlab does
+To get the diagonal elements you can get their indices with ` np.triu_indices ` ( or , for the lower triangle , ` np.tril_indices `) and then index by them .
+The question states that the input array is of shape ` ( 128 , 36 , 8) ` and we are interested in finding unique subarrays of length ` 8 ` in the last dimension .
+What does work , however is nesting append and concatenate #CODE
+( ` b ` will be broadcast along ( ? ) the first axis ) #CODE
+As he points out , the ` [ 0 ] [ 1 ]` element is what you'd want for ` cov ( a , b )` .
+returns ` 1 ` , making the sum not commutative !
+But as I have a log of values ( 10000+ ) , this will be quite slow .
+@USER - good point . anyway , ` diff ` works on python lists too .
+It will also work if they are both arrays that can be broadcast .
+It's column stack that requires equal length strings .
+In the end it is usually not too complicated , especially if you use [ ` mgrid `] ( #URL ) or similar to get the indices .
+The absolute error will be at most 1 / 2 ULP , 2 -150 .
+AttributeError : ' Add ' object has no attribute ' log ' Python
+Or , you could initialize an array of all zeros if you know the size of the array ahead of time .
+Are you checking shape or number of nonzero values ?
+Something like ` eigvals , eigvecs = la.eigh ( mat )` ` principal = eigvecs [: , eigvals.argmax() ]` ` if ( principal > = 0 ) .all() or ( pricipal <= 0 ) .all() : print ' all the same '` ?
+I also want bins to have a width of .5 so that I can have a bin from 10.5 to 11 or 24 to 24.5 etc ... because otherwise , python outputs the histogram with the bins random and undetermined .
+Maximum is always bigger than the minimum ( more to the right on a 1d axis , not by absolute value ) .
+should give the sum of the columns .
+Suppose , You wanna check how many times you will get six if you roll dice 10 times .
+With this option , the result will broadcast correctly
+Do you mean ` indices = np.where ( a == a.max() )` in line 3 ?
+The problem I have much later on in the code is that if one of these parameters isn't in the ASCII file it throws errors up so I have to keep adding in ones I don't need .
+` append ` adds them to the end of the list , which is exactly what you want .
+I have two 3dim numpy matrices and I want to do a dot product according to one axis without using a loop in theano .
+you have at most 4 in that dimension ( see your reshape line ) , so the index it will count are 0 and 2 ( 1 and 3 are skipped , and 3 is the last element ) .
+Once we have the indices to sort ` data ` , to get a sorted copy of the array it is faster to use the indices than to re-sort the array : #CODE
+I hope this will help you perform your transpose and column-wise operations
+It is better to specify that I'm looking for something that performs the log-sum-exp trick , doing a simply succession of exp elem-wise , summing the rows and doing a log elem-wise is trivial in ` scipy.sparse ` .
+Scipy uses ` int32 ` to store ` indptr ` and ` indices ` for the sparse formats .
+But not able to plot it as a graph ( something like a histogram ) ... that is the problem .
+It gave error testing doesnot have attribute append as its of None Type .
+In both cases , you can access individual elements by indices , like ` R [ 0 ]` ( which would give you a specific object , a ` np.void ` , that still gives you the possibility to access the fields separately ) , or by slices ` R [ 1 : -1 ]` ...
+I think you can have a sum over a sliding window ( or a rolling window ) or a mean over a sliding window .
+I got your point and I find it more logical , but when trying the code you've suggested to get rid of the second error I got another error : ` AttributeError : flatten `
+` dot ` does many things under the hood , it is apparent that ` np.dot ( A , x )` is not calling BLAS and is somehow defaulting over to numpy's internal GEMM routine .
+Below is some code which uses a callback to print out the current azimuthal and elevation angles , as well as append them to a list for further use later .
+It's super alex , here to answer NumPy questions in the blink of an eye :)
+Your solution of searching the eigenvalues for the ones you want seems plausible enough .
+If d is larger than 8 or 9 , then bases will be sufficiently long that you probably would be better off going with the other version using the dot product .
+Interesting , in R ` Reduce ( ' + ' , s )` yields the same sum as in python .
+I'm not sure which indices i need to change to achieve the minimum and not the maximum values .
+The dimension of ` result ` has been set earlier to the correct dimension , so can check it , but it would be nice to only use the length of ` indices ` to determine it .
+Alternatively , what about applying the same function without indices along the depth axes ?
+Here's an O ( n log n ) algorithm for your problem .
+You need to add axes to ` coeffs ` so it will broadcast in the dimension ( s ) you want .
+If you want to search for a certain rank on B randomly , you need to start off with a valid B with max rank , and rotate a random column j of a random B i by a random amount .
+I want to save some histogram data in a csv file .
+I want to read a mat file back in python but I have trouble going back to a graph , because the mat file gives a numpy.ndarray type file and I need a sparse matrix to reconstruct my graph .
+numpy makes it easy to translate python objects into numpy ndarrays , and will even pick an appropriate resulting data type if one is not specified : #CODE
+This ` T ` and ` X ` broadcast together just fine , for example ` T*X ` works .
+I assume the number produced in exp is too big to fit in a ` float64 ` .
+I have a numpy matrix A and I need a function that will count ( A [ i , j ] / sum of all elements in i-th column ) - A [ i , j ] / sum of all elements in j-th row
+This also works if , instead of a single index , you provide an array of indices : #CODE
+How to solve nonlinear equation without sympy ( max and min ) ?
+Bivariate Legendre Polynomial Fitting to find orthogonal coefficents
+For numpy this list includes ' linalg ' , ' fft ' , ' random ' , ' ctypeslib ' , ' ma ' , and ' doc ' last I checked .
+I have a big n-square diagonal matrix , in the scipy's sparse DIA format
+To find the most frequent value of a flat array , use ` unique ` , ` bincount ` and ` argmax ` : #CODE
+The funny thing is in the above function If i pass an extra argument and just divide sum by it , then the times are the same again .
+are the same as the ones posted in the examples of this web page .
+How to remove rings from convolve healpix map ?
+With the information of the full stack trace report the bug to the ubuntu team .
+fastest way to get lookup table indices with numpy
+Well , a few more , anyway : ` cos ` , ` pi ` , ` diag `
+I implemented a LOWESS smoother ( which is the curve you see ) with a tight fit to eliminate noise , since the real waveforms have a non-trivial noise component , and then tried doing a rolling max with a window over the data , but I can't get anything solid .
+But sum function from numpy doesn't suport " 1:3 "
+( the ` np.nonzero ` should return a tuple with one element , an array of indices ) .
+Can the " small values of derivative " be small with respect to the sin curve ?
+6 columns , 92370574 rows , 2496502 locations , 37 months each , unique amounts for each value .
+Note that where possible , ` reshape ` will give you a view of the array .
+Here you append only a REFERENCE to your only one existing ` energy ` array .
+And you can combine the summation and multiplication into a dot product : #CODE
+For example , ` a ` is generated from ` a = z [ z ! =0 ]` ; ` a ` then changes through some processing , and now I need to insert ` nan ` s where there were originally zeros .
+I frequently use the numpy.where function to gather a tuple of indices of a matrix having some property .
+I suspect the original formula was right but you didn't encode it right in Python .
+This gets me the sum of all red combined in original - all red combined in mutated .
+` p2 = einsum ( ' nk , nk -> n ' , p1 , delta )` is the pairwise dot product of the rows of ` p1 ` and ` delta ` .
+I did the reshape , just so that both arrays are same shape , but I do not think you really need the reshaping , with the list comprehension the shape of array you get is ` ( length of string , )`
+I made a typo in the norm , fixed now .
+Also , I expect the positions of the zeros to be relatively sparse ( ~1% of all bit positions ) .
+Slicing arrays with meshgrid / array indices in Numpy
+( An nonzero exit status usually indicates an error on Unix style systems . A couple programs are different , e.g. , ` diff ` . ) Try examining the ` stderr ` produced by the subprocess to see what error messages are printed there .
+To achieve exactly what you are asking for I would apply a ` [ 3x3 ]` box-filter on the image and than I would resize the matrix using nearest neighbor interpolation .
+Is there a quick way to reshape my ` csr_matrix ` without copying everything in it ?
+The catch is that I need to keep the colors exactly the way they are ( background : I'm resizing a map where provinces are color-coded ) , and so I cannot just perform a resize with bicubic interpolation , because that will also interpolate the pixel colors while smoothing .
+You should " flatten " the array of arrays first . unfortunately , there's no builtin method , see #URL
+then concatenate the saved objects whit this code : #CODE
+For something like a dot product , pandas ` DataFrames ` are generally going to be slower than a numpy array since pandas is doing ** a lot more stuff ** aligning labels , potentially dealing with heterogenous types , and so on .
+I want to pass an array of indices and column names and get a list of objects that are found in the corresponding index and column name .
+From this you would expect the total sum to be ` 100,679,697 = 200* ( 1,000,000 - 499,097 ) + 499,097 `
+The histogram way is not the fastest , and can't tell the difference between an arbitrarily small separation of points and ` 2 * sqrt ( 2 ) * b ` ( where ` b ` is bin width ) .
+} for n=1 , 2 , 3 , 4 , 5 , 6 ( using Sum ( c_n exp ( i 2 pi n x ) ) as Fourier series ) .
+I think I can t just simple sum the " seq * " array , because instead of a chord I will get noise .
+I presume you want to transpose first : #CODE
+Oh , that's interesting you can do it with stack .
+In this case , using numpy outer operations allow you to compute the multiplications and sums at the ` C ` loop speed .
+The most efficient way is likely to use ' np.empty() ' to allocate the space / memory for your end dataset and then load data & broadcast within that using slice indexing .
+Ok , with your histogram I get at least the total number of each pair .
+This is because python's sum is basically summing a for loop over the object .
+Then the entire shape changes from ( x , y ) to merely ( x , ) and I get ' too many indices ' errors when I try to use masks .
+If reps has length d , the result will have dimension of max ( d , A.ndim ) .
+I want to do this by dividing each histogram by its maximum value so all the distributions have the same scale .
+An obvious path would be to transpose the array so that the indices that I am selecting would come up first .
+Now , for mean calculations , those numeric IDs could be used as `" weights "` for binning with ` np.bincount ` , giving us the sum of data elements corresponding to each ` ID ` .
+However , what I need is a string containing all the elements in the list linked by ' ; ' , not the list itself , so it seems like I have to sum all the elements in asString with another iteration ?
+the output I need : ` S = [ 2 , 5 , 8 , 11 , 14 ]` I thought something like : ` S1 = np.array ( L [: ] [ 1 , 0 ])` should work but whatever I try I have the error like : ` TypeError : list indices must be integers , not tuple ` .
+I need it because in the next part I will sum up this large np.array with some delta_array that has the same shape .
+Used reshape to make rows into columns .
+I understand that you could create an array of zeros and iteratively change the values in each column , but I also understand this is not an efficient method .
+I'm trying to implement the univariate gradient descent algorithm in python .
+numpy glossary says the sum along axis argument ` axis=1 ` sums over rows : " we can sum each row of an array , in which case we operate along columns , or axis 1 " .
+It also prints out the new indices signature .
+At first , your ` result ` does not look like a complex FFT output , because you calculated the absolute values of the FFT .
+When you do fft the frequencies ranges from -pi / timestep to pi / timestep ( assuming that frequency is defined as w = 2*pi / t , change the values accordingly if you use f =1 / t representation ) .
+debug performance diff of Same code on nearly same cpu / ram
+The HTML file generated by Cython indicates that the bottleneck is the dot products ( which is expected of course ) .
+` numpy.unique ` with ` return_index=True ` will give you a list of indices to take from .
+I forgot exactly why , but there is a good reason why you calculate it as the ratio between these two averages , instead of directly averaging ` fft ( y ) / fft ( x )` .
+Do you really want this ' roll ' ?
+By adding a nonzero number at the end of the array , you can still use np.nonzero to get your desired outcome .
+which simply sorts the terms and then takes the ones which aren't equal to the previous one .
+4 : I am not sure about the indices , by writing couple of code lines I just able to get cluster indices based on fclusterdata .
+Matlab gives me a norm = 2 for your matrix .
+I first generated a labelled array of unique IDs for each discrete region , calculated sizes for each ID , masked the size array to focus only on size == 1 blobs , then index the original array and set IDs with a size == 1 to 0 : #CODE
+absolute ( a - b ) = ( atol + rtol * absolute ( b ))
+Then I reshape this to form a 2D numpy array .
+n=5 ( min length of sequence )
+I have written a function which contains nested loops and a conditional statement ; the purpose of the loop is to return a list of indices for the nearest elements in array x when compared to array y .
+I also want to color the 1D histogram bars according to the same normalization .
+If you are calling it with an empty matrix for [ low , high ] it will just use whatever the max and min values in the array are .
+Creating a class deriving from ` ndarray ` and overriding indexing such that the absolute indices are used .
+One solution is to sort both arrays ( adding an index column so that the sorted arrays still contains the original indices ) .
+Use ` reshape ` : #CODE
+What's wrong with the normal div / mod operations ?
+You can use ` argmin ` to find the False values , and this will be faster and take less memory than using nonzero , but this is linear in the length of ` a ` .
+I'd like it to be like 8x10^8 or .8x10 ^9 to save space instead of putting all those zeros .
+The one I pointed out in a comment to other answer as to encode the binary representation of the array as a Base64 text block .
+due to broadcasting , you don't need to repeat duplicate indices , thus : #CODE
+Maybe ` flatten() ` the original array , then use your 1D solution , finally calculate the real nD indices using the original shape ?
