@@ -1,9 +1,10 @@
 api_list = []
 with open('apidoc/real_amb.txt', 'r') as gaz:
 	for line in gaz:
-		line = str(line.strip())
-		line = line.lower()
-		api_list.append(line)
+		if line != '\n'
+			line = str(line.strip())
+			line = line.lower()
+			api_list.append(line)
 #print api_list
 """
 if any(api in "I am having the x-value and corresponding counts in a file. I read that as list of tuples in the following form" for api in api_list):
