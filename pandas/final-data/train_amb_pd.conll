@@ -4666,7 +4666,7 @@ documents	O
 and	O
 then	O
 create	O
-join	U
+join	O
 queries	O
 to	O
 the	O
@@ -4756,7 +4756,7 @@ when	O
 I	O
 call	O
 the	O
-stats.boxcox	U
+stats.boxcox	O
 it	O
 says	O
 it	O
@@ -4775,7 +4775,7 @@ and	O
 `	O
 len	B-API
 (	O
-stats.boxcox	U
+stats.boxcox	O
 (	O
 df.variable	O
 ))`	O
@@ -5114,13 +5114,6 @@ Date_Time	O
 '	O
 columns	O
 intersect	O
-.	O
-
-and	O
-then	O
-do	O
-your	O
-merge	U
 .	O
 
 You	O
@@ -5479,23 +5472,6 @@ to	O
 each	O
 column	O
 ?	O
-
-You	O
-can	O
-also	O
-downsample	O
-using	O
-the	O
-`	O
-asof	B-API
-`	O
-method	O
-of	O
-`	O
-pandas.DateRange	U
-`	O
-objects	O
-.	O
 
 @	O
 Wes	O
@@ -5946,7 +5922,7 @@ almost	O
 anything	O
 inside	O
 the	O
-apply	U
+apply	B-API
 FYI	O
 
 In	O
@@ -5991,7 +5967,7 @@ and	O
 pass	O
 the	O
 `	O
-list	U
+list	B-API
 `	O
 method	O
 to	O
