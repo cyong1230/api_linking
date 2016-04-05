@@ -1,0 +1,11 @@
+dataframe[ns]
+dataframe((ns))
+neworder[df.index.labels[0]]]]))
+[what have you tried](@url))
+.ix[row slice, column slice]
+`pd.con(dfnew)`
+pd.con('dfnew_df', axis=1)`
+`pandas.read_sql_table('MyTable', MySQLEngine)` see here #URL
+5.6.9
+I'm 
+He'll

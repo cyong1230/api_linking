@@ -1,0 +1,87 @@
+Note that the diagonal is always zero since ` mahalanobis ( x , x )` equals zero for
+possible duplicate of [ NumPy min / max in-place assignment ] ( #URL )
+Once the tree structure has been built , go back and collect all the branches and leaves into the array structure and by definition , they will be unique .
+I wrote the following code but the output only contains the ids ( single column ) .
+Maximum is always bigger than the minimum ( more to the right on a 1d axis , not by absolute value ) .
+Note that ` unq_count ` doesn't count the occurrences of the last unique item , because that is not needed to split the index array .
+If yes , you can use the Linux terminal to strip quotes from the ends of the rows quickly .
+The append method for a numpy array returns a copy of the array with new items added to the end .
+I want to get the norm of this array using numpy .
+The only problem here is that I think it will append directly to the column , when I would prefer it to append to a new column .
+You don't need to import string , and you don't need to loop through all the lines and append text or count the characters .
+The transpose of the transpose of a matrix == that matrix , or , [ A^T ] ^T == A .
+Currently I am looping through the arrays and using numpy.dstack to stack the 1000 arrays into a rather large 3d array ... and then will calculate the mean across the 3rd ( ? ) dimension .
+If you strip all these out and just call lapack in your for loop ( since you already know the dimensions of your matrix and maybe know that it's real , not complex ) , things run MUCH faster ( Note that I've made my array larger ) : #CODE
+First , you have a binomial response : having or not having a particular behavior .
+The call to ` np.sqrt ` , which is a Python function call , is killing your performance You are computing the square root of scalar floating point value , so you should use the ` sqrt ` function from the C math library .
+This would call the function ` np.loadtxt ` which would load the file ` GPBUSD1d.txt '` and transpose ( " unpack ") it .
+You can't change the typing of the array in-place ( unless I'm grossly mistaken ) , but you can floor .
+Finally I just transpose the dataframe to get ids as rows and categories as columns .
+The following way of obtaining the unique elements in all sub-arrays is very fast : #CODE
+You can't use the numpy reshape for a simple reason : you have data duplicity in your original array ( time and positions ) and not in the result you want .
+So it does not make much sense to me to reshape it to a " 1d-matrix " .
+Now create 5-bit bitstrings from each integer and join them together : #CODE
+It would probably be just as much work to translate the top Matlab routine from Maurits .
+In the particular case of your example , where your unique values are sequential integers , you can use ` find_objects ` directly .
+axis=1 refers to working on rows in this 2d case ( axis=0 , in contrast , would be getting you the max in each column )
+There are many other ` ufunc ` , and other iteration modes - ` accumulate ` , ` reduceat ` .
+All diagonal elements will be of the form ` s_i ** 2 / s_i ** 2 == 1 ` .
+@USER In the example above , I get the following error : Non-broadcastable operand with shape ( 100 ) doesn't match the broadcast shape ( 100,100 )
+is calculated such that all but the diagonal #CODE
+To compute the number of unique elements in a numpy array , you can use ` unique ( x ) .size ` or ` len ( unique ( x ))` ( see ` numpy.unique ` ) .
+Or would that basically require implementing the outer loop in Cython ?
+For a tensor it is not clear how to define an inverse or a transpose .
+Second , you are doing transpose the hard way .
+Where does log ( b , 2 ) come from ?
+( The values in the corners correspond to the diagonal elements . )
+I tried using the scipy.stat module by creating my numbers with ` np.random.normal ` , since it only takes data and not stat values like mean and std dev ( is there any way to use these values directly ) .
+The asymptotic complexity of both of the ` matrix_rank ` and ` det ` calls are therefore O ( n^3 ) , the complexity of LU decomposition .
+I think the np.std() is just universal std .
+Golub and Van Loan also provide a way of storing a matrix in diagonal dominant form .
+I see no reason why ` numpy ` would need to make a copy for an operation like this , as long as it does the necessary checks for overlaps ( though of course as others have noted , ` resize ` may itself have to allocate a new block of memory ) .
+I found another stack question about this here , but I am not entirely sure how it was resolved , I'm still a little confused .
+Maybe ` floor ( arange ( 0 , 10 , 0.1 ))` ?
+In python , I would like to convolve the two matrices along the second axis only .
+` view ` is basically taking your two coordinates as a single variable that can be used to find the unique coordinates .
+Keep in mind that machine precision for a 32-bit double is ~ 10^-16 , which will be an absolute limiting factor .
+Also , if there is then I could just append to the b and c arrays each time instead of overwriting and starting from scratch each loop .
+Use ` multiprocessing.Process ( target = somefunc , args = ( sa , )` ( and ` start ` , maybe ` join `) to call ` somefunc ` in a separate process , passing the shared array .
+Take a look a the concatenate function .
+Unlike Joe Kington's answer , the benefit of this is that you don't need to know the original shape of the data in the ` .mat ` file , i.e. no need to reshape upon reading in .
+but I think , finding the local max can be simplified to : #CODE
+@USER ` swapaxes ` seemed to be indistinguishable from ` transpose ( 0 , 2 , 1 )` .
+Do gradient actually compute really a gradient ?
+I would suggest to first program it with ` np.nditer ` and then translate it into C .
+As you can see , using the join function on the list ( ` binary_list `) works properly , but on the equivalent numpy array ( ` binary_split_array `) it doesn't : we can see the string returned is only 72 characters long instead of 80 .
+@USER .B . the above question is significantly different from mine ; it asks for both min and max , and it is for 2D matrix
+This will join the rows and write them to a new csv : #CODE
+The reason I have ` -det ( mat )` in the energy function is because the simulated annealing algorithm does minimization .
+Also is ` x ` unique ?
+Pandas append filtered row to another DataFrame
+Again , the code notes that set of combinations is not unique ; but it does have a unique subset , namely [[ 2 3 ] , [ 0 1 ]] , which as you just revealed , you do consider a valid combination .
+That concatenate action should be pretty fast .
+If you want to pass in the transpose , you'll need to set ` rowvar ` to zero .
+You can override this behavior by using the arguments ` vmin ` and ` vmax ` ( or ` norm `) of ` imshow ` .
+@USER , ` cs ` is sorted and ` searchsorted() ` exploits that to do a binary search - only ` O ( log ( len ( weights )))` comparisons are needed .
+Think ` flatten ` without the copy .
+In your case it looks like the weight arrays will have the same dimension as ' A ' , so you reshape them accordingly and multiply dx and dy by their individual weight vectors .
+Does this mean the standard error of the gradient or intercept ?
+Also , the algo has a lot of matrices manipulation ( fft , filters , etc . ) , so using numpy / scipy should result in faster run time .
+You can broadcast that into an array using expressions , for example #CODE
+If I use the above test on the absolute values of the angles to be tested , everything
+The returned gradient hence has
+" In the first case the gradient is 1 mV / ms , in the second case it is 50 mV / ms .
+If True , uses the old behavior from Numeric , ( correlate ( a , v ) == correlate ( v , a ) , and the conjugate is not taken for complex arrays ) .
+Why don't you just compress the files with the built-in ` gzip ` module ?
+So you need to write some function that convert a poly parameters array to a latex string , here is an example : #CODE
+In your example , the square root is calculated by evaluating the the module and the argument of your complex number ( essentially via the log function , which returns log ( module ) + i phase ) .
+I am trying to run hstack to join a column of integer values to a list of columns created by a TF-IDF ( so I can eventually use all of these columns / features in a classifier ) .
+How to pass these ` norm ` and ` cmap ` parameters in matplotlib to ` plt.show ` or ` imshow() ` ?
+Forget about the C stack , numpy objects can't use it .
+You can use the append function as he has defined .
+This can be particularly tricky when trying to append to a numpy array quickly .
+I have a question regarding to the ` fft ` and ` ifft ` functions .
+So for now , I just changed the max ( z ) to a number that I know is the max ( 1567 ) .
+The ` add ` operation does not do the same thing as ` join ` .
+You don't specify ` x ` or ` y ` , and your ` mat [: , i+1 ]` indexing will not work with a structured array .
+This is because in some cases it's not just NaNs and 1s , but other integers , which gives a std > 0 .

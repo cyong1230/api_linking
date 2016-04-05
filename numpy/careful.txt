@@ -1,0 +1,13 @@
+dot
+ones
+sum
+nonzero
+broadcast
+indices
+zeros
+histogram
+transpose
+std
+
+add:
+reduce

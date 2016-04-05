@@ -1,0 +1,14 @@
+bar
+colorbar
+plot
+plotting
+append
+hist
+hlines
+pie
+subplots
+
+scatter
+legend
+subplot
+axes
