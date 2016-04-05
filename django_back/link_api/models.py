@@ -7,6 +7,8 @@ class Record(models.Model):
 	name = models.CharField(max_length=200)
 	url = models.URLField()
 	lib = models.CharField(max_length=200)
+	api_type = models.CharField(max_length=200, default='')
+	api_class = models.CharField(max_length=200, default='')
 	
 	def __str__(self):
 		return self.name
