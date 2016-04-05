@@ -6,6 +6,8 @@ broadcast
 indices
 zeros
 histogram
+transpose
+std
 
 add:
 reduce
