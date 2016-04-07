@@ -20,30 +20,6 @@ are	O
 kept	O
 .	O
 
-shape	O
-mismatch	O
-:	O
-value	O
-array	O
-of	O
-shape	B-API
-(	O
-1000	O
-,	O
-)	O
-could	O
-not	O
-be	O
-broadcast	O
-to	O
-indexing	O
-result	O
-of	O
-shape	B-API
-(	O
-1000,3,255,255	O
-)	O
-
 @USER	O
 Well	O
 in	O

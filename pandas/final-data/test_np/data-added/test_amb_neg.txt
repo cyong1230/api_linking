@@ -1,0 +1,10 @@
+You could check whether this is the case , and append to your sample in a loop if necessary .
+The above code works , but would be better to append the data_array retrieved from for loop directly into the numpy array rather than using python list .
+If you want an intersection between the two arrays you can loop ; for i data : and get i from first array , and i from second array.But I'm not sure if I follow it correctly , you have some data which has 0 occurences in some columns of your array , if you append the other values to a new array the memory of where in the data those values came from is already automatically stored .
+( 2 ) Collect the parts of the SQL command in a list and do a ` str.join ` in the end , to avoid allocating an increasingly long string each time ( you can't really append to a string in Python as they are immutable ) .
+append C :\ libav\usr\bin\ to the ' Path ' environment variable
+How to efficiently join a list of values to a list of intervals ?
+The alignment angles may be unique , a discrete set , or a continuum as below .
+Alternatively , you could assign the flip cards their own unique IDs and store them in the same record array as the regular cards , as the properties seem to have the same names , and then have a ` flip_id ` field that would be some set value such as ` 0 ` or ` None ` for cards without flip aspects and then the ID of the flip card for those cards that do have a flip .
+You can notice that there is gray strip on top and on the left ...
+Furthermore you then go and compute the norm of those three values .
