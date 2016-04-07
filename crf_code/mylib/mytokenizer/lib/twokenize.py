@@ -154,7 +154,7 @@ class AlignmentFailed(Exception): pass
 
 def unicodify(s, encoding='utf8', *args):
   if isinstance(s,unicode): return s
-  if isinstance(s,str): return s.decode(encoding, *args)
+  if isinstance(s,str): return s.decode(encoding, *args, errors='ignore')
   return unicode(s)
 
 def tokenize(tweet):
