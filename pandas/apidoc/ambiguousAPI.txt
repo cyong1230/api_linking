@@ -216,3 +216,4 @@ Rolling
 Expanding
 GroupBy
 DataFrame
+quantile
