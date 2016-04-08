@@ -4756,7 +4756,7 @@ when	O
 I	O
 call	O
 the	O
-stats.boxcox	O
+stats.boxcox	B-API
 it	O
 says	O
 it	O
@@ -4775,7 +4775,7 @@ and	O
 `	O
 len	B-API
 (	O
-stats.boxcox	O
+stats.boxcox	B-API
 (	O
 df.variable	O
 ))`	O
@@ -11702,3 +11702,21 @@ from	O
 the	O
 OP	O
 .	O
+
+You	O
+can	O
+also	O
+downsample	O
+using	O
+the	O
+`	O
+asof	Y
+`	O
+method	O
+of	O
+`	O
+pandas.DateRange	B-API
+`	O
+objects	O
+.	O
+
