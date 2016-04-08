@@ -28,8 +28,8 @@ with open(sys.argv[1], 'r') as f:
 			if word in api_neg or line in api_pos or word.endswith("()"):
 				outline = line + '\tB-API\n'
 				fout.write(outline)
-			#elif re.match(r'[a-zA-Z_]*\.[a-z_]+.*', word):
-			elif any(word in api for api in api_pos):
+			elif re.match(r'[a-zA-Z_]*\.[a-z_]+.*', word):
+			#elif any(word in api for api in api_pos):
 				outline = line + '\tB-API\n'
 				fout.write(outline)
 			else:
