@@ -64,7 +64,7 @@ def extract_txt(url,idx):
 		# lowers = text.lower()
 		all_text.append(text)
 
-	return [idx+1, ' '.join(all_text)]
+	return (idx+1, ' '.join(all_text))
 
 def crawl(links, token_list):
 	p = Pool()
@@ -109,7 +109,8 @@ def link_entity(request):
 	body_unicode = request.body.decode('utf-8')
 	# data = json.loads(body_unicode, object_pairs_hook=OrderedDict)
 	data = json.loads(body_unicode, object_pairs_hook=OrderedDict)
-	data_entity = data["entity"]
+	data_entity = data["entityList"]
+	data_entity_index = data["entityIndex"]
 	question_title = re.findall(r"[\w']+", data["title"].lower())
 	tag_list = [x.lower() for x in data["tags"]]
 	href_list = [x.lower() for x in data["hrefs"]]
@@ -139,7 +140,7 @@ def link_entity(request):
 			elif record_list.count() == 1:
 				record = record_list[0]
 				if record.api_type == "class":
-					class_list.append(value)
+					class_list.append((value, data_entity_index[int(key)]))
 			else:
 				result_sublist = [];
 
@@ -167,9 +168,7 @@ def link_entity(request):
 					result_sublist.append(result)
 				maxScoreResult = max(result_sublist, key=lambda x:x['score'])
 				if maxScoreResult['type'] == 'class':
-					class_list.append(maxScoreResult['name'])
-	# stemmer = PorterStemmer()
-	# class_list_stem = stem_tokens(class_list, stemmer)
+					class_list.append((maxScoreResult['name'], data_entity_index[int(key)]))
 	print class_list
 
 	for key in data_entity:
@@ -206,8 +205,8 @@ def link_entity(request):
 				crawl(links, token_list)
 				token_od = collections.OrderedDict(sorted(token_list.items()))
 
-				for value in token_od.itervalues():
-					token_list_sorted.append(value)
+				for item in token_od.itervalues():
+					token_list_sorted.append(item)
 
 				# gensim
 				# dictionary = corpora.Dictionary(token_list)
@@ -240,10 +239,13 @@ def link_entity(request):
 						mark[2] = True;
 
 					for valid_class in class_list:
-						if valid_class in record.api_class:
+						# if Levenshtein.ratio(valid_class, record.api_class) > 0.9:
+						if valid_class[0] in record.api_class:
 							mark[3] = True
+							result['distance'] = abs(int(key) - valid_class[1])
+						else:
+							result['distance'] = -1
 
-					print mark
 					result['mark'] = mark
 					result['score'] = sum(b<<i for i, b in enumerate(mark))
 					result['name'] = value
@@ -252,7 +254,11 @@ def link_entity(request):
 					result['type'] = record.api_type
 					result['tfidf'] = str(tdidf_result[idx+1])
 					result_sublist.append(result)
-
+				minDistanceResult = min((x for x in result_sublist if x['distance'] >= 0), key=lambda x:x['distance'])
+				for key, result in enumerate(result_sublist):
+					if(result['url'] == minDistanceResult['url']):
+						result['score'] = result['score'] + 1
 				result_list.append(result_sublist)
+
 	# print result_list
 	return HttpResponse(json.dumps(result_list))
