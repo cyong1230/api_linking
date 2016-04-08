@@ -1,0 +1,13 @@
+Tables have an append method that can easily add additional rows .
+@USER , I tested the append method of array by measure the time it cost , since resize the array will use more time .
+I think you need to use append function to append new array with previous array , asarray function converts input to array .
+I would store all your data in a python list and use the append function to add new measurement .
+The Series must also have a ` name ` to be used with ` join ` , which gets pulled in as a new field called ` name ` .
+NumPy by itself is a fairly low-level tool , and will be very much similar to using MATLAB . pandas on the other hand provides rich time series functionality , data alignment , NA-friendly statistics , groupby , merge and join methods , and lots of other conveniences .
+already have all header names listed then you can use " join " and
+Because these are irregular operations , I can't use merge / join .
+It should be a bit quicker just by not using so many intermediary bitstrings - it's all done in the join method .
+How can i use the unique ( a , rows ) from MATLab at python ?
+If you convert your 2D coordinates into ` target_map ` into flat indices into it using ` np.ravel_multi_index ` , you can use ` np.unique ` and ` np.bincount ` to speed things up quite a bit : #CODE
+To get the unobserved values filled , we'll use the ` unstack ` and ` stack ` methods .
+The actual RMS would be ` norm ( x ) / sqrt ( x.size )` , but for minimization the constant multiplier doesn't make any difference .
