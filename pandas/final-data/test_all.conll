@@ -68908,11 +68908,11 @@ to	O
 use	O
 the	O
 `	O
-acquire	O
+acquire	B-API
 `	O
 and	O
 `	O
-release	O
+release	B-API
 `	O
 methods	O
 that	O
