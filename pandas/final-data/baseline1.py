@@ -10,8 +10,8 @@ with open('../apidoc/pd-np-mpl-ambAPI.txt', 'r') as neg:
             #line = line.lower()
             api_neg.append(line)
 
-with open('../apidoc/pd-np-mpl-remove.txt', 'r') as pos: 
-    for line in pos: 
+with open('../apidoc/pd-np-mpl-remove.txt', 'r') as pos:
+    for line in pos:
         if line != '\n':
             line = line.strip()
             #line = line.lower()
@@ -25,7 +25,7 @@ with open(sys.argv[1], 'r') as f:
 		if line != '\n':
 			line = line.strip()
 			word = line.split()[0]
-			if word in api_neg or line in api_pos or word.endswith("()"):
+                        if word in api_neg or line in api_pos: #or word.endswith("()"):
 				outline = line + '\tB-API\n'
 				fout.write(outline)
 			elif re.match(r'[a-zA-Z_]*\.[a-z_]+.*', word):
@@ -34,6 +34,6 @@ with open(sys.argv[1], 'r') as f:
 				fout.write(outline)
 			else:
 				outline = line + '\tO\n'
-				fout.write(outline)			
+				fout.write(outline)
 		else:
 			fout.write(line)
