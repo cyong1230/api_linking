@@ -1,0 +1,123 @@
+but ` from matplotlib.path import Path ` throws #CODE
+The Path object does not store the points along a Bezier curve , just the minimum parameters it needs .
+Users of Path objects should not access the vertices and codes arrays
+The trick is to use Path and PathPatch .
+This allows you to get the Matplotlib Path vertices and codes in the projection coordinates which you can then convert into a new Path .
+I was playing with PathCollection ( my dyslexia is killing me switching between Path and Patch ) , and if I can get a unit circle drawn and I can apply an affine transformation to it , then I think it should work , as it doesn't seem to inherently fill the space .
+Thus the ` Spine ` objects are in question
+You can use the ` set_position() ` method of the ` Spine ` class : #CODE
+You mentioned the use of ` Locator ` and ` Formatter ` objects in your comment .
+You need to call remove on the instance of the ` Annotation ` object .
+Using Annotation Instead of Ticklabels
+What is the difference between a Text instance and string in python ?
+I believe the anti-aliasing of Text objects is up to the font engine being used .
+What you should do is save a reference to the first ` Text ` object and update its contents by calling its ` set_text() ` method .
+There is a references to the Text object returned by the original setting of suptitle in figure.texts .
+I'm having a problem with the Text object that matplotlib use to represent the ticklabels .
+I think you need to displace the ` Text ` object , using the ` set_position (( x , y ))` method .
+This includes ` Text ` objects , ` Line2D ` objects , ` collection ` objects , ` Patch ` objects ...
+Text object in matplotlib doesnt respond to zooming properly
+After drawing a matplotlib Text instance and then interactively panning , the resulting drawn text is clipped to the data window but not the surrounding bounding box .
+Something like ` Text ( 2 , 0 , u'Text ( 2 , 0 , u " Text ( 0.4 , u\ ' 0.4 \ ')")')` .
+` plt.legend ` returns a ` Legend ` object with methods that allow you to modify the appearance of the legend .
+So first we'll save the ` Legend ` object : #CODE
+In practice I seem to end up mixing them both myself in SW ; it's largely a matter of taste whether you go through the pyplot API or access the objects . pyplot is certainly very convenient although as you want to do more complex / exotic things you'll find what you can do with pyplot alone limited and you'll need to get to know at least the full API's Axes , Figure , Legend and Path objects better .
+There was a refactor of the ` Legend ` class awhile back .
+call ` Legend.get_texts() ` will get a list of Text object in the legend object : #CODE
+Some parameters could easily be read from the ` Legend ` object , others ( like ` title ` , ` fancybox `) required some ' artistics ' .
+42 from matplotlib.legend import Legend
+How do I choose the optimum width for a matplotlib Button ?
+I removed ` color=axcolor ` from the ` Button ` call ; and I added a ` plt.show() ` before the event connect , otherwise a figure window didn't appear for me ( neither through ` ipython ` , nor with ` python `) .
+button = Button ( ax=reset_axis , label= ' Reset ' , color= ' lightblue ' , hovercolor= ' 0.975 ')
+` tbar.add_button ( a Button object ); `
+For your buttons to work , you need to keep a reference to the ` Button ` object around .
+I know how to add and work with single cursor ` self.cursor = Cursor ( self.static_canvas.Dataplot , useblit=True , color= ' red ' , linewidth=2 )` , but what I should do to create to cursors ?
+I think tillsten is right -- study how the [ ` Cursor ` class ] ( #URL ) does it .
+I've checked briefly , but I don't know how to modify the properties of an ` Arc ` instance , although I'm sure it's possible .
+You could also try passing a ` Arrow ` instance as marker , but I'm not sure whether that works .
+Currently , I don't think it possible as the ` Arrow ` class only supports `' solid ' | ' dashed ' | ' dashdot ' | ' dotted '` four different linestyles .
+The Node class has the coordinates stored as members ( x and y ) , as well as index .
+You can scale your z values to fit this range with Normalize .
+You should mention the ` Normalize ` methods here as well .
+Matplotlib provides the class ` Normalize ` for that : #CODE
+Create a new instance of ` Normalize ` for each image you want to process .
+And then you can also replicate the functionality of ` Normalize ` ( since you seem to not like it ): #CODE
+Use these to create a ` Normalize ` instance ( other normalisation classes are available , e.g. log scale ) .
+The documentation of Normalize might be a bit deceiving here : ` process_value ` is a function which is only used for preprocessing ( and static ) .
+I have several questions regarding the Normalize class in Matplotlib .
+with your own ` Normalize ` function .
+This might be why they've avoided implementing it as part of Normalize .
+matplotlib : can I create AxesSubplot objects , then add them to a Figure instance ?
+Also do you use Figure from the local matplotlib installation or not ?
+Additionally , there are functions from the pyplot interface and there are methods on the ` Figure ` class .
+I'll assume in the following that ` fig ` is an instance of a ` Figure ` :
+Both the Figure and the Axes class have a ` clear() ` method .
+I had this same problem , and it was caused by calling ` show() ` on the Figure object instead of the pyplot object .
+It got wrapped up in a subclass of Figure , which also got level-of-detail functionality and context menus .
+I have an external function which returns a Figure object , and in this situation , each Figure object is composed of exactly one Axes object .
+While a search did lead me to see that pyplot.figure() is the development team's recommended instantiation technique , it doesn't change the question : is there any way to do Axes / Figure copy construction and Figure construction via composition of copied Axes ?
+A reference to it isn't stored in the ` Figure ` object , but is stored in the ` Canvas ` object so you can destroy a window via #CODE
+Removing the ` frameon=False ` option from ` f = Figure ( figsize =( 12 , 5 ) , dpi=100 , frameon=False )` solved the issue .
+I used the Bar class to plot length of videos vs views which are the x and y values of the tuples .
+Animation will not work on inplace ( or inline ? ) on notebook .
+By artifacts , I now understand to mean you are creating a second ` Animation ` object and what you get is both of them running in parallel ( which I am not sure what I expect to happen there ) .
+by ` ax ` I mean the current ` Axis ` object , which you were getting at via ` gca ` .
+Your legend command is using the markers , not the lines as inputs by using ` plot [ 0 ]` .
+` Axes ` objects know about things like tick location and labels and the display range ( which it does by knowing about ` Axis ` object , but that is getting even more into the weeds ) .
+Use Axis method ` set_xscale ` or ` set_yscale ` .
+` ax.set_xticks() ` is a method of the ` Axes ` object , whilst ` matplotlib.ticker.FixedLocator ` is an object which is used with the ` Axis ` object ( ` Axes ` is basically the whole graph , whilst ` Axis ` is just one of the ( two ) axis ( x or y ) .
+This is not particularly well documented , but ` Polygon ` objects have a pair of methods ` get_xy ` and ` set_xy ` .
+In particular , if / when there are so many circles for the figure to become connected , the ` for polygon in polygons : ` fails with a ` TypeError : ' Polygon ' object is not iterable ` .
+Just use the ` Polygon ` or ` Rectangle ` classes : #CODE
+As you can see , the edge is center-positioned along the border of the domain of the Rectangle object , and so bleeds into this domain .
+You can do this by overplotting a Rectangle patch on the cell that you would want to highlight .
+Currently I use the ` add_patch ( Rectangle ( ... ))` , but it does not fit really well .
+Unfortunately it seems that the ' Rectangle ' object has no attribute ' set_bottom ' .
+You can acces ALL the properties of a ` Tick ` object using this approach : #CODE
+Fortunately you can update figures you've moved to where you want them pretty easily , by using the object interface specifically , and updating the Axes object without creating a new figure .
+( You can also always find this data inside the ` Axes ` object if you know where to look . )
+By deferring the expense of drawing you can greatly improve the performance of functions that make many calls to ` Figure ` and ` Axes ` methods .
+` Figure.add_subplot() ` returns an ` Axes ` instance , and ` pyplot.subplots() ` returns an ` Axis ` object as second output parameter .
+As a side note , it is better to pass ` Axes ` objects into your function than create them ( implicitly ) internally .
+Here , what you have done is capture the ` Axes ` instance that is returned from ` add_subplot() ` .
+If I create an ` Axes ` object in ` matplotlib ` and mutate it ( i.e. by plotting some data ) and then I call a function without passing my ` Axes ` object to that function then that function can still mutate my ` Axes ` .
+Pass multiple matplotlib Axes objects from generator function and display them
+The ` transform ` in this case is a ` BboxTransformTo ` object , which :
+You can use the ` transform ` keyword : #CODE
+But when I checked the source code of draw_networkx_nodes draw_networkx , I realized that it is not a straight forward task as the draw function stores the positions ( nodes and edges ) in a numpy array , send it to the ax.scatter function of matplotlib ( sourcecode ) which is a bit hard to manipulate without messing something up .
+This simply calls the draw method of the figure periodically .
+Then I just added a signal to the custom version and overrode the draw method .
+EDIT : I'm super blind , sorry for that , you're calling the draw method , however it is a good idea to add * args and ** kwargs to any overriden methods .. try that , and perhaps call FancyBboxPatch.draw at the end of overriden method
+I'm also panning and zooming into this figure , and have been using the draw method to show the new perspectives from zooming in ( using set_xlim and set_ylim ) and from panning ( drag_pan and start_pan ) .
+I would use ` ax.autoscale ( enable=False )` before your call to ` scatter ` .
+You can perhaps loop into your ` AxesSubplot ` objects and call ` autoscale ` passing the ` axis ` parameter : #CODE
+@USER - If you'd like to rescale the axes , call ` ax.autoscale() ` every time you remove a point .
+Python : Add x-y margins automatically with autoscale ( pyplot )
+Ahh , it's the call to ` autoscale ` that I'm missing .
+The trick is at the end , in the custom refresh method !
+For what you're wanting to do , you'd be far better off using annotate .
+It's quite simple to do manually with ` annotate ` .
+If you're wanting to adjust vertical alignment , horizontal alignment , etc , just add those as arguments to ` annotate ` ( e.g. ` horizontalalignment= ' right '` or equivalently ` ha= ' right '`)
+It's quite simple to do manually with ` annotate ` .
+You can use the annotate command to place text annotations at any x and y values you want .
++1 Just as a side note , annotate has " offseting the annotations a little " built-in .
+While there's nothing wrong with Ofri's answer , ` annotate ` is intended especially for this purpose : #CODE
+Just use ` annotate ` and specify axis coordinates .
+It is also possible to make an arrow with text , using the annotate method .
+The closest thing I have been able to find while searching here is the annotate command , but that appears to create a fixed label on the plot .
+` plt.annotate ( ' Something ' , ( 0 , 0 ) , ( 0 , -20 ) , xycoords= ' axes fraction ' , textcoords= ' offset points ' , va= ' top ')`
+@USER I'm not sure why we have to explicitly call ` draw ` .
+The ` boxplot ` function only plots quartiles ( 0 , 25 , 50 , 75 , 100 ) .
+Is there any way I can extract these values for use in my downstream code from the boxplot object ?
+I am plotting a non-normal distribution using boxplot and interested in finding out about outliers using boxplot function of matplotlib .
+You should use the ` hist ` function .
+An similar example of such plot is " hist ( x , orientation= ' horizontal ')" .
+I need to use the ` hist ` function , I have looked elsewhere on this site but I haven't found anything .
+I tried doing hist ( x / x.sum() ) but that reduce the values of the numbers in the x axis and does not change their frequency , so the y-axis is unchanged
+How can I prevent the labels of ` xticks ` from overlapping with the labels of ` yticks ` when using ` hist ` ( or other plotting commands ) in matplotlib ?
+An easy way to do this is to add ` 0j ` to the argument of the ` sqrt ` , like this , ` sqrt ( 1+0j- ( 1 / x ) **2 )` .
+You need to set the new coordinates of the datapoints in the internal ` _ofsets3d ` variable of the ` Line3DCollection ` object returned by the ` scatter ` function .
+You can use ` scatter ` for this , but that requires having numerical values for your ` key1 ` , and you won't have a legend , as you noticed .
+The ` scatter ` and ` hist ` commands really expect ` x ` and ` y ` to be 1D arrays .
+I'm wondering if it is possible to have individual alpha values for each point to be plotted using the scatter function of Matplotlib .
+The problem happens when I call the scatter function .

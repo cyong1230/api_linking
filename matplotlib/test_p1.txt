@@ -1,0 +1,12 @@
+Then in the ` draw ` method , you could send draw commands directly to the desired axes object : #CODE
+I found a related question [ here ] ( #URL ) , looks like it's part of matplotlib's design to not have the color cycling apply to scatter plots .
+Regardless of the figure size I want if possible the subplot to have a constant size .
+In matplotlib at least v1.2.1 , you can add a tuple of lines that should be overlayed for the legend entry : #CODE
+For this , I toggle the line style of the plot between `" : "` ( background plot ) and `" - "` ( highlighted plot ) whenever a line is selected directly , or , by clicking on the corresponding entry in the legend .
+For the markers you can get star shapes using ` marker= ' * '` in the ` scatter ` call or by using the matplotlib.markers api .
+Just to restate the problem ; I would like to reproduce this plot almost exactly but in 2D without including the background axes .
+I use the ` ax = axes3d.Axes3D() ` to define my axes and ` ax.plot ( x , y , zs= ' z ')` to plot my 2D curves in the 3D space .
+Note : setting the rectangle on the first axis would have made it go behind the second axis , unless you want to manually change the zorder of the two axes .
+I'm trying to add legend to a 3d bar , but with no success .
+All I had to do was ` g.ax_joint.cla() ` to clear the axes where the points are plotted and then plot the points using the answer you mentioned .
+And , as for your question in the comment below , you can change the tick label offset using the ` frac ` argument to ` thetagrids ` .

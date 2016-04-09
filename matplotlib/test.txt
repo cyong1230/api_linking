@@ -1,0 +1,587 @@
+AMAZINGLY , it does not show the legend text sticking to the roof :/ .
+Basically , you want to pass ` patch_artist=True ` to ` boxplot ` .
+The append data is not the nicest way to get all the X and Y data in lists .
+My question is specifically about the colorbar , not about the axes itself .
+I am using an animation to save this process graphically .
+Also , all axes objects ( the objects that have plotting methods ) , have a parent figure object anyway , thus : #CODE
+I have a plot consisting of a blue surface ( plotted via ` plot_surface `) and a red sphere ( plotted via ` scatter `) .
+matplotlib's scatter plot changes the axis of another plot
+I have the strange effect , that the color of the outlier changes , if i change the symbol used to draw them .
+How to draw planes from a set of linear equations in Python ?
+The example borrows from the matplotlib contour demo : #CODE
+Matplotlib animation slows down when adding patches
+It isn't quite perfect though , the colors are ever-so-slightly off from the colors from contourf .
+Matplotlib Axis Control
+how can this be fixed ? to summarize , I'm trying to plot something very simple : a square dendrogram in the top subplot , and a square heatmap in the bottom subplot , with the color bar on the right . nothing fancy .
+To get an idea what a subplot should look like , this is the product in excel :
+Is there any way to move extreme y-labels of each subplot a little bit downwards or upwards ( as I did manually in mspaint , on the right ) ?
+Using a threshold would select the data within all those contour lines .
+python : scatter plot logarithmic scale
+I guess otherwise one would have to alter the handles before passing them to the legend which does not seem easier than consecutively calling errobar / plot .
+where is the ` legend ` here ?
+Adding y=x to a matplotlib scatter plot if I haven't kept track of all the data points that went in
+You append the content of ` col ` list , which is text .
+Have a look at this question : [ Custom Legend in Matplotlib ] ( #URL )
+You should use this only when you are playing around in an interactive terminal ( other than ` plt.subplots ` or ` plt.figure ` for setting up the figure / axes objects ) .
+This one disables all the axes stuff : #CODE
+My issue was that I did not know , how to access each subplot data .
+Here instead of the 5 plots drawn in the last column , I want several inset axes containing a plot .
+Since I have the legend outside the plot frame , I would like to remove only the top and bottom white space .
+However this winds me up with blank axes .
+Are there any colormaps or is there a simple way to transform a matplotlib colormap to provide a much bigger color range near 0.5 and a smaller one at the extremes ?
+56 after ( artist , renderer )
+I posted earlier about a program I was attempting to make to plot four-dimensional data ( xyz coords and voltages ) on a 3d scatter plot with a colour map dependent upon the magnitude of the voltages .
+First define a mappable such as an image ( with imshow ) or a contour set ( with contourf ) .
+The function for horizontal stem lines is ` hlines() ` ( ` vlines() ` is for vertical stem bars ): #CODE
+I just run the first code example in your solution , it doesn't show any animation or dynamically updating plot , I mean the plot just showed up after firing the code , why ?
+Then go ahead and create your axes and plots !
+The figure should have a subplot layout of two by two , where the first plot should occupy the first two subplot cells ( i.e. the whole first row of plot cells ) and the other plots should be positioned underneath the first one in cells 3 and 4 .
+I saw this image online and was wondering how to go about these types of animation .
+In any case , I'm dubious about the way you're doing animation .
+I would like to draw a plot with a logarithmic y axis and a linear x axis on a square plot area in matplotlib .
+My matplotlib.pyplot legend is being cut off
+Updating animation with variable that's being changed
+As a dummy case , I try to draw a sine with an amplitude multiplied by 1.1 each second : #CODE
+As of now , I get a very small legend which is empty , unreadable , and in the wrong location .
+I have a function call draw .
+Making the assumption that you are using legend ...
+Your ` subplots_adjust ` hides the axes which might not be what is needed .
+Lets say i want to " zoom in " by limiting the x scale with setting xlim =( 1 , 2 ) .
+I have 2 points ( a vector of size 8 ) and 3 different bitwise operation ( And , Or , Xor ) I mapped each point and the result of bitwise operations on the 2D plot . now I want to show each points real data itself and the result of operation beside plot ( righ of the plot or above the plot ( whenever is possible or it's better )) so later when I want to analysis the result I can read data value easily . right now my image is like this , and you can see the legend is cut off and I have no place outside of plot to write anything :
+How to reduce xticks label resolution when showing clock time
+You can probably set the ` ylim ` .
+this option is helpful but does not answer the question so i downvoted . as far as i can tell , best never puts the legend outside of the plot
+As it happens , I have a lot of data in the plot and when I am using ` pylab.show() ` , I have to maximize the window before I can see all of the plot correctly , and the xlabel tickers don't superimpose on each other .
+This is a nice tutorial on colormaps .
+The remaining question is how to plot the graph and refresh it according to ` n ` parameter value ?
+Is there a way to either ( a ) add space between the last scatter point and the spine using an existing command or ( b ) use the approach I attempted and hide or make the last label match the background color , or ( c ) since I'm new to matplotlib and I'm not familiar with all of the terminology , direct me to an existing link ?
+In case you want more control , set the ` colors ` keyword in ` contourf ` to a tuple of matplotlib colors , with the same number of elements as you have levels ( minus 1 : the colors correspond to the intervals between your level boundaries ) .
+I want to change my plot size smaller ( 3 , 2 ) but I have an issue that my text ( axis label , legend , axis title ) don't change their sizes .
+Is there a simpler method to add text in the legend and keep spacing constant with options of text alignment in the legend box and so on .
+Using pylab , I want to plot just the data with no axes or borders to a png file .
+I have managed to create the following subplot which needs to have the bar chart on the left , and the matrix / color mesh on the right : #CODE
+I ended up with a scatter plot in each of the two subplots , but now all the prettiness from prettyplotlib is gone .
+This will be very slow as you are setting up a ` scatter ` object every time .
+The ` matplotlib ` ` scatter ` and ` plot ` functions split out their arguments , so it's agnostic to the shape of the array , but ` ax.plot3d ( particles [ 0 ] , particles [ 1 ] , particles [ 2 ])` is shorter to type than the version with ` particles [ ..., 0 ]`
+I'm taking a data from files and want to make an animation of four plots at the same time : two colourbars and two lines .
+Or you can assign the axes to variables so you dont have to do everything in order , #CODE
+You need to call ` legend ` for the legend to appear .
+But I also guess that there are some colormaps that suit this task really well .
+As a side note , if you only have one axes in the figure , you can just use the axes title .
+To get the axes currently used by matplotlib use ` plt.gca() .get_ylim() `
+but this also results in the legend being at the right :
+@USER Asahi hacked a solution by violating the rules for ' axes fraction ' textcoords , but as mentioned , it is not the expected behavior .
+Find most distant points in contour curve
+This is where I'm running into a wall , I've read about setting twinx() to set properties for different axes but whenever I try to implement it , it tells me it doesn't know what twinx is .
+I'm confused by the relationship among ` matplotlib ` figures , axes , and subplots .
+Matplotlib contour plot of matrix type
+I cannot see / read the legend , which I want to be centered , but below the ` x labels ` of subplot 2
+How to make offset axes in matplotlib ?
+I'm not sure what you mean by " make the y-axis and x-axis non transparent " ; the line ` ax.collections [ 0 ] .set_alpha ( 0 )` is making the lowest contour transparent ; if you don't want that , don't include that line .
+How can I draw a cross which follows my mouse cursor ?
+My axes default to ` yaxis.offset_text_position = u'left '` .
+How must I transform these vectors to plot it in a common scale ?
+The font properties of the legend .
+You can use GridSpec directly to create two sets of axes , one at the top and one at the bottom and put a space between them .
+I am always bothered when I make a bar plot with pandas and I want to change the names of the labels in the legend .
+Byte 17 : Button states ( b1-b4 )
+Instead of relying on the default colors for the lines , I set them such that they can be referenced specifically in the legend .
+How to make an axes occupy multiple subplots with pyplot ( Python )
+why are the default x / y bounds for the scatter plot wrong ?
+Also , quite simple , just ` matplotlib.rc ( ' axes ' , axisbelow=True )`
+so how can i draw the histogram for the samedata with same parmeters that i have used for the barchart
+Call the Pandas ` plot() ` method on ` date_freq [ ' smstext_freq ']` , and set ` kind= ' hist '` .
+I think it was the autoscale that overrides the ` set_xlim ` command .
+placing a legend on a subplot in matplotlib , what am I doing wrong ?
+Tick properties for scatterplot matrices with Matplotlib
+Behind the scenes , a class called QuadContourSet is used to store all the contour paths in " line collections " , one line collection per level .
+Python matlibplot Arrow pointing to a point on a curve
+` subplot ` works as follows , if for example I had a subplot values of ` 3 , 1 , 1 ` .
+Use the label argument in combination with legend : #CODE
+First : there is some white space between the axes and the image , I don't really know why they appear .
+I'd go with using ` annotate ` rather than try to futz with ` legend ` , it provides a great deal of control over placement and properties .
+It turns out that some xticks are hidden automatically : there should be 18 xticks , but only 9 of them are shown ( seems to be hidden automatically ) .
+I could not figure out a way to remove a point from scatter plot after plotting , though if i use the same method i can plot a new point .
+This is where I'm standing now but want the legend in the bottom right corner regardless of where the last subplot is .
+Could I use ` hist ` to get the same result , without counting by pivot ?
+` 10 * log10 ( sqrt ( re*re + im*im ); `
+matplotlib - extracting values from contour lines
+` scatter ` takes an argument ` color ` which allows you to set the point color ( hard to guess ) .
+The little catch is that the unit is in axes unit , referred to the size of you plot , so a margin of 1 will put space around your plot at both sizes big as your present plot
+Matplotlib.patches.Wedge animation not working
+For me this is a bug somehow related with ` bar ` or some ` patches ` .
+Reset Matplotlib animation with a PySide button
+So instead I append data to the plot using ` myPlot ` but when I try to append data points to the twinx() subplot using a different style ( blue diamonds for example , the values don't show up .
+Is there a way to have the xticks have the values 2012 , 2014 etc ..
+In my experience , you have to set your axis limits after plotting the data , otherwise it will look at your data and adjust whatever axes settings you entered before to fit it all in-frame out to the next convenient increment along the axes in question .
+You can change the axes position using the set_position function : #CODE
+I.e. , each contour line at some level would have a color associated with it representing how many times it has happening in N realizations .
+The scatter plot isn't a great option as the data really do form little boxes of known size and scatters make that hard to replicate .
+If I comment the ax2.add line out , it shows the collection only in the first subplot .
+There's only 5 , so a custom legend is what I was thinking .
+How do I get handle to axes in pyplot twinned axes ?
+[ Follow-on question ] ( #URL ) about ensuring all the ` Axes ` for a custom figure are of a custom class .
+You can simplify Joe Kington's code using the ` ax ` parameter of ` figure.colorbar() ` with a list of axes .
+I am trying to annotate a scatter plot in Python 2.7 , with Matplotlib .
+It's the ` imshow ` command that's changing the aspect ratio of the axes , not the colorbar .
+@USER - It's not working because the way the axes stack for a figure works has been changed in newer versions of matplotlib .
+Basically , instead of having one marker or the other ( or both separately ) on the legend , I'm looking to have one legend entry with the marker being the circle with a ' dot ' in the middle ( the same as how it's displayed on the plot ) .
+We first draw the line and then add the markers as a scatterplot on top of it : #CODE
+I can draw the vertices using ` path ` s as well ( for example , using circle paths with the right style , placed at the right location .
+Do you mean remove the grid / axes / axis labels etc ?
+If I let it print t after every animation i corectly adds one up in console , but the text does not get updated in the plot .
+Some parameters could easily be read from the ` Legend ` object , others ( like ` title ` , ` fancybox `) required some ' artistics ' .
+I haven't found anything to animate this with the possibility to update the angle of a scatter marker .
+I'm trying to create a basic scatter plot based on a Pandas dataframe .
+I want the plot to simply update , not append another plot to the figure .
+You ask matplotlib to create figure and axes object , and then you do all the rest by calling methods of those objects : #CODE
+I now want to just have one shared , centralised Y Axis label but I'm not sure how to do this .
+@USER In this case , if your 4 subplots have the same horizontal dimension , I would define the yaxis location manually in coordinate relative to the axes instead , like shown here : #URL It requires to adjust manually the x-position though .
+The approach of just passing around a figure or axes instance ( or list of instances ) is much simpler for complex cases , in my experience ...
+I have a figure showing the contourf plot and another showing a plot i've made earlier and I want to plot both on the same figure what should I do ?
+Fix #1 : draw points instead of lines ( ` plot ( t , f1 , ' o ')`) , then you'll at least see all your data .
+Instead of one pixel , we then draw a bar in the plot .
+But I guess rectangles are handled by Axes only .
+error met in plot two curves in one Figure ( python-pandas-matplotlib )
+I know that I am able to use xticks to position the ticks , but it seems that I am limited to putting the ticks at one of the 10 points on my x axis .
+I open a file , read the columns and plot each fit as a subplot after fitting .
+The problem now is that though there are 61 frames of animation , I can't get the movie to stop there .
+` append ` in general is slow , because it copies the whole array and then
+For a scatter plot , I think the above design is not suitable .
+Mathplotlib contour error : Input z must be a 2D array
+Simplest might be to use a scatter plot : #CODE
+Although this method works with legend , it seems not to be working well with figlegend when there are multiple subplots and we want a single overall legend . figlegend still get cropped when savefig .
+At this level , simple functions are used to add plot elements ( lines , images , text , etc . ) to the current axes in the current figure .
+I'm calling scatter inside a loop and want each plot in a different color .
+Trouble implementing for loop to remove artist objects from matplotlib figure
+Use the axes methods of the subplot object ( e.g. ` ax.set_xticks ` and ` ax.set_xticklabels `) or
+Alternatively you can use the subplot feature to arrange the axes for you : #CODE
+I am making animation with matplotlib , and there at first I need to define it , and in every step of animation I set data ( points ) of my lines , but now I need use only a point , not line
+When ever you plot call ` draw ` events get added to the queue of events for the main loop to process .
+Matplotlib ` Artist ` s draw on a ` FigureCanvas ` ( e.g. ` fig.canvas `) using an instance of ` Renderer ` ( e.g. ` fig.canvas.renderer `) .
+Apparently the transforms on patches are composites of several transforms for dealing with scaling and the bounding box .
+On looking at this more , it looks like you are doing all of your plotting on the hartee / bohr axes and the using ` twinx ` and ` twiny ` to get the eV and angstrom axes , but never plot anything to them .
+How can I make the remaining subplot blank ?
+` sankey.add() ` supports a ` transform ` keyword argument .
+Also , note the ` set_position ([ left , bottom , width , height ])` command can be used to change the size of the axes , which will bring the title closer to the table .
+You can even do ` ax = event.artist.axes ; ax.lines.index ( event.artist )` if you need to work with multiple axes or don't want to deal with passing the axes object around .
+I read about * bbox_to_anchor * but cannot make sense of it when applied to a figure legend .
+Cursor over matplotlib canvas in Tkinter
+Could you please clarify where do you want which subplot and especially if you want some plots spanning multiple rows or columns ?
+1 ) I would like to have a figure of 4 subplots - one subplot for each animal .
+I would do a scatter plot , where the color is one value , and the size is another .
+The legend should be always drawn above the first plot 1 .
+1 - Instead of a scatter plot , create an N by N matrix where the value of each point determines the color at that point .
+I want to load data and will draw the basemap and fill the color with pcolormesh function .
+How to view all colormaps available in matplotlib 1.5 ?
+For the next release , I would like to have 3d axes to take up more than the default axes spacing , since the default was designed to take into account that tick labels and axes labels would be outside the axes , which is not the case for mplot3d .
+@USER -I just realized how surprising is the amount of details that I need to modify in order to implement the same functionality with the ` scatter ` command .
+To illustrate , the following code would generate a grouped boxplot #CODE
+Specifically , to animate the x-axis , set ` ax.xaxis.set_animated ( True )` and return ` ax.xaxis ` from the animation functions .
+But I don't know how to specify y for the scatter plot #CODE
+@USER Use ` contourf ` .
+If I use the values in the ` ylim ` function it does work , but it won't be in scientific notation .
+( Also , the xticks are placed correctly now , yay ! ) Thanks for digging into this !
+I was hoping this would also work for 3d axes , but it appears not .
+This line will always extend from the lower-left corner of the figure to the upper right corner , no matter how we interactively resize / zoom / pan the plot .
+I have the following code to draw some lines in matplotlib .
+The number of ` nan ` lines differs when I execute the file from Sublime Text instead of from the command line or when I add ` import matplotlib as mpl ` before the pyplot import .
+Why do you expect that using a 4th axes object ( a heavy object that needs to be fully rendered ) would be faster than updating three lines ( which are lightweight objects and it can be optimized greatly via ` blit `) ?
+You can annotate a specific point in the image using ` plt.text ( x , y , str )` .
+This is one of the many reasons why you'll often see people recommend avoiding the ` pyplot ` interface and using Axes / Figure methods instead .
+Adding axes manually is an advanced thing that you would do if you need precise placement of axes ; in most cases , however , you should just let Matplotlib do its thing , and use ` plt.tight_layout() ` when things go wrong .
+` plot ` always returns a tuple , even when there's only one artist .
+My main two problems are that it's not resizing with the frame it's in , and that I can only draw the bars , and nothing else .
+I draw a symmetrical n*n matrix ` D ` with ` matshow ` function .
+Can you make an issue for that , scatter _should_ work with the unit frame work .
+Partially transparent scatter plot , but with a solid color bar
+Adding a titled color bar and generally getting a colored scatter plot to look good
+ex 4 plots that all share x , y axes , and THEN overlay a bar graph on top of one of them that uses the same different axes to the ' right ' of the graph ?
+How to set the range of y-axis for a seaborn boxplot ?
+Why don't you try a contour plot instead ?
+Matplotlib string xticks
+` barbs ` seems to expect both of them in map coordinates , rather than a mix .
+i could just use the palette and transform the ndarray to the palette's indexes
+A hack would be to plot the points separately using ` plot ` and use them in legend .
+You can define a figure and axes , draw all the plots and then display the figure .
+Scaling axis for a scatter plot in matlibplot in python
+How to draw four different types of points in the same scatter plot using two columns ' info ?
+I guess it has to do with the behavior of the make_axes() function called by colorbar() , which does not simply modify the position of the first subplot ax but also other properties of ax and / or fig .
+This [ SO question , contour / imshow for irregular XYZ data ] ( #URL ) , appears to be relevant
+Tweaking the subplot positions should be easy enough by using the keyword arguments for ` GridSpec ` or by using the ` gridspec.update ` .
+draw the second network ( passing its positions )
+also , the only thing that ` animation ` is being used for there is the timers and such , everything else should work for you .
+You want to define your dates somewhere , though you'll also probably want to set the ` xticks ` to be the same as the dates you're plotting , as I can tell you care about the graph looking neat .
+The error is because ` set_major_formatter ` assumes it is getting a ` Formatter ` object ( doc ) so it is blowing up when it tries to do stuff with your function .
+I'm trying to make an animation based on this example .
+I think scatter plot is faster #CODE
+You can check the xticks with ` ax.get_xticks() ` .
+You might need to compute the limits first and then add the patches .
+All autoscale settings are on ( as is the default ) .
+I have made a phase plot of a bistable stable , with the nulclines on the main graph and have added a subplot with the trajectories overlaying it .
+I have defined a variable circle : ` @USER matplotlib.patches as patch ` , ` circle =p atch.pymember ( " Circle ")` .
+You get it directly from the axes ' patches : #CODE
+The normal matplotlib boxplot command in Python returns a dictionary with keys for the boxes , median , whiskers , fliers , and caps .
+I am drawing a scatter plot using matplotlib .
+I see your point , but when I use your code , matplotlib doesn't draw any of the axes until after another=False .
+Generates a nice HSV legend plot .
+( I have added data and labels to my_fig axes using the ax.plot() command ) #CODE
+Alternatively , you can update your data with ` set_xdata ` and ` set_ydata ` that are methods on the axes object that gets returned when you create a new plot ( either with ` pylab.plot ` or ` pylab.subplot `) .
+I tried the answer in link : How can I set the dash length in a matplotlib contour plot
+To summarise , I simply want to plot the data , but have two y axes for the very same data .
+Here is what one gets , with ` from pylab import * ; scatter ( range ( 10 ) , arange ( 0 , 100 , 10 ) , c=range ( 10 ) , alpha= 0.2 ); color_bar = colorbar() ` :
+2 ) To get the labels of both axes in the legend , have a look at the solution given by this question : Secondary axis with twinx() : how to add to legend ?
+This plot is for 50x50 grid with the actual X and Y axes :
+as completeness , you could say that in general ( summed up from the doc ) " ` bbox_to_anchor ` is a tuple of 4 floats ( x , y , width , height of the bbox ) , or a tuple of 2 floats ( x , y ) in normalized axes coordinates .
+This is not particularly well documented , but ` Polygon ` objects have a pair of methods ` get_xy ` and ` set_xy ` .
+I would like to split one of my title of a subplot , such that each line would be in the centered with respect to subplot .
+It creates one subplot array of one row , one column , and one subplot .
+looks like ` annotate ` is what you want :
+My basic approach is to divide the y-data into chucks and plot each vertical group on a new axes using ` ax.twinx() ` and setting the limits appropriately .
+Then you plot onto the ` Axes ` instance .
+I would use the OO interface , get explicit axes references and pass them to the pandas plotting functions . see #URL for some of this .
+I changed my code to : ax1 = scatter ( xActA , yActA , color = ' blue ' , s = 20 ) , and there is a new error : return array ( a , dtype , copy=False , order =o rder )
+Text object in matplotlib doesn't respond to zooming properly
+Thanks @USER I had tried code by minimising line and label and overwrite only the label but legend brings both back -> legend = ax.legend ( loc=0 , shadow=False )
+The ` transform ` in this case is a ` BboxTransformTo ` object , which :
+A simple way to do this would be to create an empty list before the loop , and each time you generate a number , just ` append ` it to the list instead of printing it .
+My solution is a more manual way of getting at the same piece of information using the same underlying concept : setting up the implicit equation as f ( x , y ) such that f ( x , y ) = 0 is equivalent to the original implicit equation and isolating its zero contour .
+Actually the following workaround works well , returning a ` dict ` from the boxplot command : #CODE
+I am using ` matplotlib.patches.FancyArrow ` to draw arrow between points .
+So now we know that ` setp ( a , xticks =[ ] , yticks =[ ])` removes the tick marks and labels from the axes ` a ` .
+with your own ` Normalize ` function .
+matplotlib.animation : how to plot an animation and save it in a file simultaneously ?
+You can close the animation in the script after a number of loops with something like ` if args == 100 : plt.close() ` or set max number of frames ( which also doesn't seem to work as expected for me ) ...
+I have a multiple plots figure , using this command ( all subplots share x and y axes ): #CODE
+you can do this with ` annotate `
+You can just plot with pandas , access the matplotlib ` Axes ` object by using ` ax = df.plot() ` and then customize it further from there .
+Say I have a marker with a known size in points and I want to draw an arrow to this point .
+The plot generates , however , the xlabel and ylabel won't show up for some reason .
+If you end up plotting points instead of lines like Joe suggests , you may be able to get away with adding new , finer-sampled collections over the old ( same color of course ) .
+I'm guessing that somehow the slider is getting locked to my maximum number of x values , but I don't see how .
+Moreover , when I pick a point in the first subplot , the color of the corresponding point in the second subplot changes but not vice versa .
+Can someone post a skeleton snippet ( preferably with links to further info ) , to show how I may get started with implementing this ( the main requirements being the ability to manually draw lines on a graph and then to save / load the lines into a plot ) .
+Just giving ` legend ( labelspacing= 0.25 )` worked for me .
+For various aesthetic reasons I'd like the number of columns in my legend to equal the number of lines ( and labels ) , which I change using the ` ncol ` option .
+I set the aspect of the Axes to " equal " , otherwise it's difficult to plot ticks perpendicular to the curve : #CODE
+` scatter ` produces a series of colored markers ( with the possibility of assigning varying colors and sizes to the markers ) , whereas ` plot ` just plots lines with a single color .
+But even the hiding of one subplot isn't working .
+` Figure.axes ` is a list of ` Axes ` ( not an instance of one , because you can have more than one ` Axes ` object for each figure ) .
+( copied almost directly from How to autoscale y axis in matplotlib ? )
+As the documentation for scatter explains , you can pass the ` c ` argument :
+Also , please let me know if there is anything suboptimal about my code above - I haven't really got to grips with what all these figure , canvas and axes objects do yet .
+If I can get the Matplotlib contour function to return the points of each contour line as it is drawn , I can handle the rest of the calculations .
+For an easier comparison of the legend items with the blended color of the overlapping circles , I Photoshopped the legend items into the figure ( small squares at the edges of the circles ) .
+I can't figure out how to rotate the text on the X Axis .
+Inset axes anchored to specific points in data coordinates ?
+` get_label() ` might return the text from the * legend * rather than the axis label .
+Or just do your scatter plot in light grey , and overlay with a line of daily average values in a dark blue or red .
+How do I draw a grid onto a plot in Python ?
+How do I plot multiple X or Y axes in matplotlib ?
+Do I adjust the contour levels to reflect the percentages ?
+Or the other suggestion made by @USER just use the ` normed ` argument in the call to ' hist ' .
+I'm trying to draw a scatter plot with a fitted dotted line .
+As you can see , this is a boxplot on which are superimposed a scatter of black points : x indexes the black points ( in a random order ) , y is the variable of interest .
+However , in my real application - which uses the exact same commands for subplots , contourf and colorbar , only that these are dispersed across several routines - the labels on the colorbars are not showing up ( the color patches seem to be ok though ) .
+It's not overwritten , the axes limits are just reset to the extents of the last image each time .
+In this second option , you can still use ` plt.xlabel() ` and ` plt.ylabel() ` to add labels to the axes .
+This means that if you would simply set ` xlim ( -1 , 1 )` and ` ylim ( -1 , 1 )` for all the subplots , you would get diagrams that all have the same total area ( assuming all subplots are shown at the same scale ) .
+The canvas seems to get locked and after the call of the pick event I can not use the other functionalities as well .
+Matplotlib : scrollbar for legend
+I know I can set xlim inside pandas plotting routine : ts.plot ( xlim = ... ) , but how to change it after pandas plotting is done ?
+Now I want to draw something to the first figure with the pyplot interface but the current figure can be either of them .
+` scatter ` returns a collection that is much harder to manage .
+This ratio will of course vary depending on figure / axes size .
+Consider your arrays are named ` mag ` , ` x ` , and ` y ` , then ` allthem = dstack (( x.ravel() , y.ravel() , mag.ravel() ))` and ` scatter ( x=allthem [ ..., 0 ] , y=allthem [ ..., 1 ] , c=allthem [ ..., 2 ])` .
+When i try to use the pan and zoom tool , the plot rotates on left click and zooms from the center on right click . zooming the plot by making a rectangular selection is not working .
+You can smooth the contour values doing : #CODE
+Create a widget in the window for drawing the animation
+I only did the append earlier because I tried passing in data , but it would send data from the wrong index ( a row of X , Psi , Ec , Ev ... ) .
+warnings.warn ( " Legend does not support %s\nUse proxy artist
+The idea is to do small subplots inside each subplot of a grid .
+Adding error bars to Matplotlib-generated graph of Pandas dataframe creates invalid legend
+the closest i got to it , was creating an empty proxy artist .
+First off , I think you're getting a bit confused between the axes ( basically , the plot ) , the figure , the scalar mappable ( the image , in this case ) , and the colorbar instance .
+Instead , I use matplotlib axes , as follows : #CODE
+Matplotlib : Adjust legend location / position
+The colorbars between the two data-sets display different ranges which is not ideal to draw comparisons between the two .
+Add legend #CODE
+I've follow this subject : How to draw planes from a set of linear equations in Python ?
+2 - Experiment with different colormaps ( ` plt.imshow ( ... cmap= " RdGy ")`)
+Autoscale a matplotlib Axes to make room for legend
+You want a legend that is part 2 columns , part 1 column ?
+I found the ` set_title ` in the ` axes ` -documentation ( which isn't the same as an ` axis ` , confusing for non-native-english readers ) .
+Draw an arrow on scatterplot subplot
+The following code gives me a plot with significant margins above and below the figure .
+The marker size in ` scatter ` is given as area .
+I have found that there is a keyword argument for the animation function , ` repeat ` , that can be set to ` False ` , but this has no apparent effect on my code !
+You need to append your ` end_date ` to ` x1 ` after you plot the actual data , then remake ` x2 ` with the new appended value , before you plot the trendline .
+how can I plot on the axes
+The contour is just to show how the function behaves around 0 .
+Thank you very much but i need to add continues vertical line from 0 to 10 of " y " axes , if i will use your methon i will have this : _ _ _ _ _ _ _ , but i nedd this _____________ ( but vertical ) .
+Below code plot the scatter plot with differnt markers for each year and different color for each month .
+but I would like the ticks to be at the zero axes ( as in a normal graph ... ) .
+I want a pdf ( preferably ) image inside a subplot in matplotlib to show the plots at different stages of the cycle .
+Thanks Joop , unfortunately the title command just changes the part that says ` Age ` in the boxplot ( in your post ) , that's why I asked .
+My doubt is can i be able to draw a histogram using 2 lists ?
+Note that all contours connect the two poles , but even though I have NOT plotted the 0 degree contour , all the other contours follow along the 0 degree discontinuity ( because pyplot thinks if it's 0 on one side and 360 on the other , there must be all other angles in between ) .
+In fact , I am writing a code where the appearance of the scatter point is bound with a Tkinter Checkbutton and I want it to appear / disappear when I click / unclick the button .
+You can sort out what the correct figure coordinates would be to be at a given place in data-space , but it will not update if you pan / zoom .
+Both of these cases are not ideal in my case as I would like to achieve reasonably high refresh rates .
+Draw and refresh two independent windows with pyplot
+I am trying to plot a scatter plot using certain colours for certain data points .
+This is the right idea , except generally the figure contains one or more axes and most of the action is in calling the axes methods to make your plots , so it's easier to make the figure , then the axes , and pass the axes ( or some object within them ) to the functions .
+Ok last question , how can I color with this results a a scatter point , tried to convert it to hex but it did not work
+Thanks - I had expected it to be somewhat similar to matlab where image() returns the axes handle .
+Just needs to be edited to have your ` xticks = [ ]` named something else e.g. ` xtks = [ ]` and instead of ` xticks ( xtks )` need to use ` set_xticklabels ( xtks )`
+You can do this quite simply on a per axis basis by simply re-assigning ` format_coord ` of the ` Axes ` object , as shown in the examples .
+None | parent axes object from which space for a new
+I want to fix the color range on multiple scatter plots and add in a colorbar to each plot ( which will be the same in each figure ) .
+So that if I have 10 subplots in a 3x4 grid the legend will be under the last subplot which will be the in the 2nd place of the bottom row , but if I have 19 subplots in a 4x5 grid the legend will be under the subplot which will be in the 4th place of the bottom row .
+I am trying to create a scatter plot with the color for each point based on the value in y-dimension and the tooltip for each point based on the value of x-axis .
+And since you want a legend , it seems plausible that you have a small number of lines .
+As a follow-up to my previous question , I was wondering what is the proper way of creating multiple polar ` contourf ` subplots and add a single color bar to them .
+Actually the following workaround works well , returning a ` dict ` from the boxplot command : #CODE
+My axes are improperly sized and my xlims and ylims are not taken into account -- I've updated my question with example code and a new figure .
+To fix this , let's make the histogram using ` np.histogram2d ` ( what ` plt.hist2d ` uses behind-the-scenes ) , and then plot it using ` pcolormesh ` ( or ` pcolor `) , which does support log axes : #CODE
+Also , if you change the animation to update an existing object instead of adding a new one on top of the old , you'll have much better performance ( your current approach may become slower with each frame ) .
+There's one additional trick : We need to have a special ` save ` method , as all of the others draw the canvas before saving , which will wipe out everything we've drawn on it previously .
+Even if you fixed this exact issue ( maybe by using a different backend , or stripping off the offending function ( which might break things in other ways )) I am pretty sure there are core parts of ` Figure ` , ` Axes ` , or ` Canvas ` objects that can not be pickled .
+mp.rcParams [ ' xtick.major.width '] : the linewidth of large xticks ( yticks similar )
+I use matplotlib to display a matrix of numbers as an image , attach labels along the axes , and save the plot to a PNG file .
+Say I have a marker with a known size in points and I want to draw an arrow to this point .
+Here is my code to draw the line : #CODE
+The matplotlib contour plots have this type of labeling functionality ( though the lines are labeled in the case of the contour plot ) .
+I want to transform the data in order to plot them in matplotlib as a rectangle .
+My main problem is that all of the examples I've come across online use subplot function to assign the location of the graph ( which I understand ) but then plot the graphs as a function of X and Y - as follows : #CODE
+If you put in an image as an annotation , zooming in on the axes will not scale the image .
+I'd find it very useful if there was a generic way to obtain the bounding boxes in data coordinates for any arbitrary matplotlib artist .
+Based on a reading of the Matplotlib Artists tutorial , it seems like ` pyplot ` takes care of a few behind-the-scenes setup tasks , most notably establishing the connection between the Figure object and the desired renderer / backend .
+The code I use to draw the graph for each different graph is identical apart from the data being drawn , is that the issue ?
+#URL I am referring to the scatter plot section .
+Basically , what's happening is that there's a third axes object created that you're not currently retaining a reference to .
+[ scatter ] ( #URL ) will set the color of markers based on the value of a separate array .
+Plotting 3-tuple data points in a surface / contour plot using matplotlib
+A ` contour ` -based solution would be fine as well .
+When the legend is created it accepts a number of keyword arguments :
+how much stuff do you have plotted on your axes when you clear it ?
+then the dots have acceptable sizes ( although a bit fake ) but the colorbar legend starts at 1 and ends at 11 , which I don't want .
+Notice that all 3 plots will stay in-sync as you zoom , pan , etc .
+This is just a example that shows how to change label spacing . you should set legend location and font size by other parameters of legend() .
+the result is the same : plot area is not increased and legend gets shifted off the plot .
+a quick look at artist demo #CODE
+I dont want to use subplots and also i dont want to add axvline for each axes .
+All right , with that working , I'd like to compile everything to a single exe , but using ' bundle_files ' : 1 and zipfile = None still elaves the mpl-data folder in the dist folder .
+Once this is done , it is just the matter of putting labels on the axes .
+The command I use seems to apply the xlim only to the last of the facets .
+The transform for each tick is set for data units for x ( because it's an xaxis ) and axis units for y ( 0 to 1 ) , but displaced by a fixed padding ( in pixels ) from the x axis .
+what I also want to move the ylabel on the right ?
+The force update is working by keeping the colors but only on the last scatter plot drawn .
+And wish to overlay those signals in the same subplot .
+The second subplot is just the first image with an overlay ploted .
+For the following code setting the axes limit does not work and I have no idea why .
+remove overlapping tick marks on subplot in matplotlib
+I saw this : Animating matplotlib axes / ticks and
+A considerable amount of code that does various parts of plotting things is omitted , but here is the generation of the figure and axes itself : #CODE
+In my display function I format the axis of the subplot like so : #CODE
+If I understand correctly , you seem to be looking for ` subplot ` s .
+Excel has a feature to draw data bars inside table cells .
+How to scatter ( draw ) on basemap in an streaming manner in Ipython Notepbook ?
+Plotting_context decorator should give a large text in the legend .
+In the documentation for Axis it mentions a ` get_label ` method which returns a Text instance .
+I am trying to animate a complex figure with several subplots and have started testing with the artist animation and the function animation methods .
+Do I have to resort to doing something like plotting my own rectangular patches ?
+In your example you create a figure and axes on-the-fly and keep plotting in that same axes .
+I'm not an expert with animation method .
+When you plot using axes , you generate an Artist object , but when you plot using plt , you generate a list of Artist objects .
+Turns out , you need to do ` ax.add_artist ( Rectangle )` to have the color specifications work ; when using ` patches.append ( Rectangle )` , the rectangle is shown in blue ( on my PC , at least ) ignoring any color specification .
+Figure Not Responding after returning to console from show() ?
+I have a polynomial equation expressed as a poly1d object and want to take it and use it to label the scatter plot I'm making .
+You need to find out exactly what you are calling from Sublime Text .
+Now I'd like to add titles for each subplot .
+Say I set things up with ` axes [ 0 ]` for the visualization and ` axes [ 1 ]` as the place where I want the table .
+Now ` errorbar_colors ` will be a ` (8 , 4 )` array of RGBA values from the ` winter ` colormap : #CODE
+I plotting both the curves then I would like to draw a line parallel to y axis passing through the intersection point and find the x value
+You may need a ` plt.pause ( 0.01 )` after the ` plt.draw() ` line to get the refresh to show .
+I'm pretty sure that there is many ways of plotting this kind of animation without global variables .
+I saw this image online and was wondering how to go about these types of animation .
+You can plot your infinity data point in its own subplot by substituting a sufficiently large number ( to make the curve look right ) .
+For example , ` scatter ` returns a ` Collection ` , so you need to call ` set_offsets ` instead of ` set_xy ` to change the x , y data .
+The handles used in the call to legend don't have to be on the ` axes ` that you calling ` legend ` on .
+First boxplot missing or not visible
+It is for this reason that the axes does not fill the space allocated to it on the figure .
+There was a question on the matplotlib mailing list , and the answer was that it is not possible with the current ( 2009 ) implementation of the legend ( #URL ) .
+Python Matplotlib figure title overlaps axes label when using twiny
+The ` transform ` in this case is a ` BboxTransformTo ` object , which :
+I am trying to create an iphone app in Xcode that takes data ( some matrix ) and creates a contour plot in uiimageview .
+The matplotlib contour plots have this type of labeling functionality ( though the lines are labeled in the case of the contour plot ) .
+I'm trying to find ( but not draw ! ) contour lines for some data : #CODE
+It might be something you configure in your ` Figure ` subclass via ` add_axes ` .
+How can matplotlib 2D patches be transformed to 3D with arbitrary normals ?
+The problem is that the coloring of the second y-axis via ` yticks ` is not working anymore .
+@USER - Alternately you could call ` ax.axis ( ' tight ')` to automatically set the axes limits to the bounds of the data , rather than manually specifying them .
+I want to make a contour plot of some data , but it is possible that all values in the field at the same value .
+I'm using 1.3.1 and when I ` set_zlim ` or ` set_zlim3d ` it just limits the axes but doesn't actually clip the data .
+I'm using FuncAnimation in matplotlib's animation module for some basic animation .
+Or is there a better way to create a contour plot in objective-c ?
+I don't know how to do this latter ( draw the lines with blur ) with Matplotlib .
+I tried a method using xticks , and it plotted my y values , but that was it .
+Unicode string in Matplotlib annotate
+I'm experimenting with ` matplotlib ` to draw figures in figures in figures .
+You could also use text instead of legend since you don't need the text associated with markers .
+And can you put in a PR to change the official example to use the ` Formatter ` class ?
+@USER - ` tight_layout ` changes the size of the axes .
+I could solve this manually setting the legend ( which I don't know if it's the best approach ): #CODE
+Then I use a for loop to plot the primary y-axis scatter plot - I have to use a loop in order to iterate through the columns of a Pandas dataframe which are the x and y-variables .
+In principle , you can change " ncol " within a legend by manually rearranging these offsetboxes .
+One way to do it is using spines : #CODE
+It worked for the first animation , but as soon as the configuration changed , I had artifacts from previous animations all over the new ones
+It has multiple colors for a given legend item .
+Otherwise I think factorplot doesn't operate on axes ( unlike distplot ) .
+The default behavior is to not draw anything on those pixels .
+I you want some kind of animation ( I don't how you're going to use the rotating image , so I can only speculate ) , maybe you're better off using some kind of game / graphics library , e.g. Pygame .
+How to show ? in the legend of matplotlib , python ?
+gca() means Get Current Axis
+The ' this ' I meant was the arguments on ` margins ` .
+In a nutshell , you want ` self.figure = Figure ( figsize =( 400 / 80.0 , 300 / 80.0 ))` .
+First of all , you say you want to make a surface plot , but in your code you make a scatter plot .
+You can also directly monkey-patch this in to ` Axes ` as-is .
+Here's the code I'm using to draw the lines : #CODE
+I want the contour lines to be on the edges of those rectangles .
+However , let's try making the plot a different way first ( after which we'll wind up coming back to ` annotate ` anyway ) .
+below is basic code and image for four subplots , I cant figure out how to reduce the size of the sci power notation above the y axis .
+I iterate over the axes to plot for Cabbage , Green beans , Potato and Wheat .
+If you want to use ` scatter ` try something like #CODE
+I am no longer receiving that error , however no graph is displayed following the animation .
+Since I need to draw several axvspan in the same plot , and I would like to know if there is a way to delete all at once ?
+In this case , they are set to ` 1e-300 ` and are not consulted when determining the ylim of the plot .
+Hi I have a data set for which I am using hist available in matplotlib.pyplot : #CODE
+My initial thought was to run a for loop for time ( t ) calculating h at all points ( this is what I would do in MATLAB ) , however looking at the examples in the Matplotlib documentation I am not sure whether carrying out an animation this way is possible .
+Another option is to provide an axes object using the ` ax ` argument : #CODE
+` subplots ` returns an ndarray of axes objects , you can just flatten or ravel it : #CODE
+I have a scatter plot : #CODE
+I'm having a similar issue with Gtk and patches .
+I have gotten a scatter plot working .
+This code is " zoom-safe " ( i.e. the altitude and pressure labels change nicely when you zoom into the plot or pan it , and the model levels change consistently ) .
+I am trying to use the animation features ( specifically FuncAnimation ) in 1.2 .
+If ax is the current axes in pyplot , then the kwarg ` ax=ax ` is not needed .
+I suspect this is a general matplotlib question ( e.g. , how to get to line color from a Figure ) , but I can't find the answer anywhere .
+How to disable auto-swapping in axes labels in matplotlib ?
+Instead you need to plot the boxplot on the axes in the subplot .
+As of matplotlib ` v1.4.0rc4 ` , a ` remove ` method has been added to the legend object .
+EDIT : minimal hist example #CODE
+Where is ` Figure ` from ?
+I would like to have the patches with a slight transparency so that the points and edges behind the patches can be seen .
+Everything works fine until I have many arrows to draw .
+A much improved subplot interface has been added to matplotlib since this question was first asked .
+You can't pass xlabel , ylabel and title as arguments to the ` plot() ` method , as those are properties of ` Axes ` instances .
+This ( along with proper titles and captions ) will draw attention to the smoothing so that there's no risk of anyone misunderstanding the fact that the smoothed plot is altered data , and lets you display the prettier large contours with another panel for the uglier , jagged small contours .
+` set_title() ` should work on an axes instance .
+IDL's contour plot does this ( filling in the wedge between 2* pi-epsilon and epsilon ) , with the very same dataset .
+The problem is the ` plt.ylim ` line which applies to only the current axes , hence they are not lined up because you instructed the library to have them not lined up .
+This looks like it is an issue with how the buttons are made ( drawn as circles ) and the aspect ratio of the axes .
+Hm this is why I tend to write the whole plotting procedure inside a single ` for ` loop , so that you're making a new subplot and immediately changing its settings .
+` .legend ` takes a parameter ` numpoints ` which sets number of point to show , so you can set it to 1 by adding ` numpoints=1 ` to ` legend ` call .
+Wrong value in matplotlib yticks
+The ` ondraw ` event handler gets the current x limits of the current axes ` gca() ` , selects ` y ` values with corresponding ` x ` coordinates within the x limits and sets new y limits determined by the minimum and maximum y value of selected coordinates .
+I somehow expected that tool which offers contour plot should offer smoothing too .
+Then call draw to update .
+I want to get multiple scatter plots with the following conditions :
+As you can see , the legend for the blue plot is overdrawn by the red plot .
+And in a similar manner , you can shrink the plot vertically , and put the a horizontal legend at the bottom : #CODE
+I would guess that thrope's solution does draw rectangles like this ( with the ` nearest ` neighbor option ) , but directly through Matplotlib .
+More oddly , the above code with the subplot will show the image if I interact with the figure , such as by using the zoom tool and clicking randomly in the figure window ( there is no visible axes object , but I just click somewhere in the middle of the figure window ) .
+When trying to save any of the figures created with ` transform =p rojection ` , ` cartopy._crs.CRS.transform_points ` raises the ` IndexError ` .
+If I'm understanding you correctly , you should just be able to pick a single point on the right hand edge of the graph where the axes should be aligned , and matplotlib will take it from there .
+You can draw the arrowhead midway along the arrow , like is done for a streamline .
+If stuff like ` caretdown ` doesn't work for you , you can create your own marker by passing a list of ( x , y ) pairs , which are passed to a Path artist .
+Django Matplotlib Animation embed in templates
+` scatter ( iris.field ( 0 ) , iris.field ( 1 ) , c= iris.field ( 4 ))` does not work ( from the docs it expect float values or a colormap ) .
+I ended up adding an extra subplot which I removed the frame and axis of , then plotted nothing to it and added a legend #CODE
+Axis bug on Pandas groupby boxplots
+edit : if I want to plot each point separately so it can have a separate legend , how can I do it ?
+What you need to do is tell the ` PatchCollection ` to match the original patches .
+Then , the autoscale ` ylim ` are ` 10**0 ` to ` 10**1 ` though the data are only in the top portion of the plot .
+Change figsize in matplotlib polar contourf
+attempt to convert to scatter plot : #CODE
+Permanently registering colormaps in matplotlib
+Perhaps I should add that I join the labels dynamically in the plot command using ` label=str ( pr_auc_values [ result_id ]) + ' | ' + filenames [ result_id ]` .
+This rotates the ticklabels 30 degrees and right aligns them ( same result as when using ` autofmt_xdate `) for the bottom right subplot , leaving the two other subplots unchanged .
+if i get mouse point value from browser page using jquery means that it is possible way to draw line . but i can't run any JavaScript script file inside the pt page
+I'm trying to fetch stock data from yahoo finance using csv2rec and save it as csv file with rec2csv .
+You just need to use ` twinx ` / ` twiny ` twice to get two independent axes ( there are probably ways to do this with out making a un-used middle axes , but this takes care a bunch of the behind-the-scenes details for you ): #CODE
+What is more , the issue is limited to the interactive display : if I add a few more lines to ` animator ` to save the animation in mp4 format , the mp4 file is saved correctly even from Canopy .
+The whole concept of a scatter plot is given by the non-diagonal elements of Example .
+The solution is to transform the text rotation angle from the plot to the screen coordinate system , and let's see if resizing the plot causes issues as you suggest : #CODE
+Create a scrollable legend in matplotlib - Python
+other solutions like : Python : 3D scatter losing colormap , assume continous Z ( X , Y ) functions , but what I have is a discontinious function .
+It will be a vector graphic ( contours are collections of polygons ) .
+Without the use of plt.tight_layout() , the overlap of the subplot axes is also worse .
+By adding the dictonary keys to xticks and the values to bar and by measuring the length of D I was able to get each word for each x axis bar .
+Then , in the second subplot , add the arguments ` sharex = ax1 ` and ` sharey = ax1 ` to the subplot command .
+Matplotlib : Adjust legend location / position
+How to hide / remove legend line and retain the label
+( I cannot post the image because I have not enough reputation , but basically it is a boxplot with Q1 at y=1 , Q3 at y=5 , and the outlier at y=10 )
+This code is a bit of a mess , I am unclear why you are monkey patching the object returned by ` contour ` , you should not have to set ` im.axes ` , and you should use ` ax.contour ` .
+The key is using the three parameter form of subplot : #CODE
+I am trying to circular contour lines around an array of random values of radius .
+I'm trying to make a satellite visualization tool using an animation in matplotlib .
+The contour lines are upside down .
+Because the pickle of the axes is actually the pickle of the entire figure .
+Calling annotate with the default ` xy= ` has the effect of associating an annotation with a graphed x / y pair .
+@USER Returning the artists makes sense , also in this case I'd also return figure and axes .
+How can I create a polar contour plot from these values ?
+Matplotlib draw outside plot
+Can I convert a contour plot in matplotlib to a format that can be imported and edited in AutoCAD ?
+` annotate ` doc and examples .
+Now when I try charts using ` ax1 ` and ` ax2 ` ( e.g. a Stock Price chart using ` ax1 ` and its Volume chart using ` ax2 `) and when I try to pan it , the ` ax1 ` charts don't move up-and-down , but the ` ax2 ` chart does .
+You can define the axes first , create your plot using the keyword ` ax ` and set the ticks and tick labels manually using ` ax.set_xticks() ` ( #URL ): #CODE
+If you change the third entry in the legend that starts with r ' to something like " asdf " and then comment out the rc line above plt.ylim that should remove everything that uses LaTeX and it might work .
+Below I draw what I suppose to be the correct shape - I hope , I'm not wrong here ...
+Regarding to the post Embedding small plots inside subplots in matplotlib , I'm working on this solution , but for some reason , transform is ignored !
+I'm trying to plot a contour with unevenly spaced data in python using numpy , matplotlib plyplot and scipy .
+I can use a pick event to pull off and re-plot the data in any one of the subplot .
+Edit : Added legend and fill_between ( maybe there is better way to do this ) .
+Thanks a lot , I just remove plt.show() and put it after all calls to the draw function .
+A scatter plot will give what you describe .
+Perhaps the issue is that ` ArtistAnimation ` expects a matplotlib artist and not a nx object ?
+This means that you generate a new subplot every time you hit that line ( in your case , 50 times ) .
+two output graphs in matplotlib scatterplot animation
+Python : 3D contour from a 2D image - pylab and contourf
+Thus ` contour ` does not know anything about the image which ` imshow ` creates .
+Is there also a way to add a hatched pattern to the legend ?
+I would like to have subtitles in my graph legend using matplotlib .
+matplotlib duplicate axes or figure ?
+In that case , you'll make a new transform instance that does nothing : the ` IdentityTransform ` .
+The most promising solution involves implementing a Locator ( based on MaxNLocator in this case ) to override MaxNLocator.view_limits .
+The update_figure method might look like this ( you have to call draw to explicitly trigger a repaint ): #CODE
+( any thoughts on this ? :)) Each subplot has the same style function .
+Maybe you should look at the definition of hist .
+I didn't play with it long enough to figure out how to force the legend to pick up the defined colors , but I'm sure you can do it .
+@USER - In that case , you'd want to iterate over ` axes.flat ` , as ` axes ` will be a 2D array .
+Matplotlib Axis Limits Change Plot to Plot
+Is there a way to draw 3D lines as a series of circles with matplotlib ?
+Matplotlib - Create grid of subplot with 1:1 axis scale
+Also , that doesn't save the animation in some usable format .
+I am trying to generate a 2-D contour plot of some data ( generated by a calculation at points on a Blender plane ) .
+You should also only have to set ` xlim ` once with ` ax.set_xlim ( 0 , 30 )` since you're putting everything on the same axes .
+If you want to rotate the xticklabels of the bottom right subplot only , use #CODE
+Here is an example , you can add the line to the axes of the image : #CODE
+Or is there a better way to create a contour plot in objective-c ?
+I am trying to draw a linear line in real time but I am unable to come up with the result .
+First define a mappable such as an image ( with imshow ) or a contour set ( with contourf ) .
+I have a function that I want to do a contour plot : ` mixed_model_pdf ([[ x , y ]])` .
+I'm trying to combine a normal matplotlib.pyplot ` plt.plot ( x , y )` with variable ` y ` as a function of variable ` x ` with a boxplot .
+If I have to be there to restart after every animation , then I may as well stick with what I had .
+If you want a title for each subplot , you can just use the title command for that axis .
+If you're wanting to adjust vertical alignment , horizontal alignment , etc , just add those as arguments to ` annotate ` ( e.g. ` horizontalalignment= ' right '` or equivalently ` ha= ' right '`)
+This answer is for anyone trying to change all the fonts , including for the legend , and for anyone trying to use different fonts and sizes for each thing .
+Then the new subplot overlaps with the fourth one , when I want it positioned below obviously .
+It's also _very_ slow to draw even a single plane , so I suspect that an OpenGL backend is the way to go , a la visvis .
+It seems that is adding more complexity and having the undesired result of altering your legend location for you .
+This code finds this axis and simply uses ax.plot() to draw the line .
+My knowledge on the inner workings of matplotlib is limited , and some things I've tried is putting close() , clf() , and gc.collect() in animation ( i ) , but none of them worked .
+When no axes limits are specified , matplotlib chooses default values as nice , round numbers below and above the minimum and maximum values in the list to be plotted .
+Instead call ` plt.hist ` once , then manipulate the existing ` matplotlib.patches.Rectangle ` s in ` patches ` to update the histogram , and call
+If you want separate colors for each point , you could use ` scatter ` : #CODE
+The idea is that I want to refresh the data in the bar chart , not to update the previous data .

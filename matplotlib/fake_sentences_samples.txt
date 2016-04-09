@@ -1,0 +1,500 @@
+How do I add a title to my MatPlotLib basemap ?
+It might help issue of things refusing to update , and at the least it will be faster .
+For future use you should really find out why it is installed in a location that isn't searched by python by default .
+I've done that and I'm still getting the same error - it can't find the sip module .
+ImportError : DLL load failed : The specified module could not be found .
+This has happened previously ( and I was not able to get around it ) .
+@USER SObolev : Histograms of the values falling within a range of keys where each bin is of size 0.1
+Also , now that I look at it , the y-axis limits haven't been set right .
+I've looked for various solutions to my problem but can't get any help .
+I normally use something akin to the following for this purpose and the result is a very nice plot where x1 , x2 and x3 are defined as follows
+And I have all of them installed .
+When I save these plots to pdf , it takes a long time to write , and reading the pdf is even worse .
+Seems like a security setting on OS X is preventing it , and the quick fix seems to be to run apache as root .
+Any ideas how to deal with this problem ?
+If I remove the function and put its body back under the " if name == ' main '" block , it works as expected ( like in the original code ) .
+Seems like a bit of searching would have turned up [ how to set custom ticks ] ( #URL ) , where the defined ` t11 ` is where you would write out A , B , C , and D .
+@USER , that would require to have root access ( sudo ) which i dont have !
+Any suggestions how this can work ?
+Any help would be appreciated in understanding what I am missing .
+How can I add the ` P_g ` values from each section to their respective column ?
+Is there any other python package that would help ?
+I'm having a problem , where I can't do a step graph of 2 lists I have , in which I need list ` x ` to be the x values , in which each ` x [ j ]` value will add with ` x [ j+1 ]` value for each step .
+The best thing would we if one could integrate it into the label of the colorbar ( to say the color means A in units of B where B includes the order of magnitude ) .
+ive tried to fix it with setting ax limits but that does not work .
+@USER : I added some more info and also a code used .
+If I wanted to make a combined image like the one shown below ( original source here ) ,
+When you ** add ** two ** random variables** , the resulting density is the ** convolution ** of their ** densities** .
+This made the program work just as in Windows , without any other modifications necessary .
+Using PySide in place of PyQt4 results in the same behavior .
+However , the first item appears to be a float #CODE
+The code below loads the image data hosted on github and plots it : #CODE
+I reduce the values to months using : #CODE
+That would solve Question 1 .
+I modified you code , and it can product the same ticks now .
+`' $\xi$ ( r ) M$_{200}$ 13.4 '` : several ` $ ` , where you should have only one .
+I just completed a brute force test running through all permutations of [ 0 , 1 , 2 , 3 , 4 , 5 ] for the tmp_planes , a total of 720 different arrangements .
+The way to fix it is using pip , as mentioned by @USER .
+Do you mean a scatterplot of your dataset instead ?
+Plotting subplots with secondary continuous y-axis across all subplots
+However , I want to be able to call something or write some code which then skips any value in the array which would cause this error , then ignoring that row altogether .
+Any help would be appreciated .
+You are typing your code in at the bash ( terminal ) prompt , not the Python interpreter prompt .
+Also , if you take a look at Rob's answer , its far simpler than the example shown on the website .
+MPL is a big project with lots of moving parts , any help keep them up is appreciated .
+I am less certain if I am solving the correct problem .
+I am having a problem getting matplotlib to work well with interactive plotting ... what I see is that after displaying a few frames of my simulated data matplotlib hangs-and doesn't display any more .
+If anyone has any idea , I appreciate the help .
+You can populate a general 2d array by : Zhu shows in the answer below .
+Have a look at this example : #CODE
+That way , it is possible to see 2 dots on the same place .
+This error shows up when the size of a and b ( taking from above example ) is not the same - so , 128 x-values here should be plotted against 128 y-values .
+[ These should all be installed into / usr / local / Cellar , which is the default install location for homebrew . ]
+I'm trying to make an exponential fit to find the Lyapunov Exponent of this data , however , I keep getting this error : #CODE
+So I wrote an argument ` origin= ' lower '` .
+Note that I don't reduce to 2 , I reduce to 10000 , and then extract the first 2 .
+which you can run with this sample code : #CODE
+Try converting your the pandas data series to lists or numpy array before plotting .
+If I de-homogenize only the last column I can find the center of where the ellipse was projected , but I would like to see some shape information as well .
+Ignoring a problem doesn't fix it .
+Will add the code .
+I found that in the folder C :\ Program Files\Python27\DLLs I cann't find the _socket file
+The index is zero-based .
+The image ggd4 for the test can be downloaded from :
+Load the data sets individually , and then plot each one individually .
+Have you looked at mplot3d on matplotlib ?
+The columns are floats , I'm not using the index of integers .
+Incidentally ( for someone reading this in the future as you know yours ) if you need to find your current Python version you can simply type ` python -V ` in the command line and it'll return the details , for example mine returns :
+The code is located at
+find the file from the link
+@USER : What do you mean ?
+Thank you in advance for any help you can give me
+how i can add vector arrows starting from 0 , 0 and end at the points that i want ?
+If you want the sum ( not the integral ) to be one #CODE
+As I have no idea how long ` data_all ` is , I created a ( random ) array , which in my case turned out to give a 2D array with 512 columns ( lucky shot ) .
+Do you mean something like this :
+Can you copy and paste the code lines described in your comment , please ?
+When I print this in A3 ( good size ) it still almost unreadable because the letters are stacking in each other .
+I mean my grid is 20 units in x direction however , my resulting plot is 10 units in x direction with replica plot from 10 to 20 units .
+Now how to plot [ M , F + other ]
+To specify that you want the first interval filled with " pure " black , set ` vmin=mean ( lvls [: 1 ])` in your example .
+Your Data looks pretty good without any filtering , your " outlieres " all have a very big error and won't affect the fit much .
+This is a terribly unclear answer , at least some comment in the code or explanation of why this helps floating point error would be nice .
+I produce a histogram where I put the weights in the parameter #CODE
+Besides , I see that you use ` numpy ` in your code , so you can save and load file by ` numpy ` with a more compact codes like this without using the ` csv ` module .
+Usually these sorts of simple array reshaping operations can be done in a couple of lines with Numpy , so I feel like I'm missing something .
+I don't see any way I could do that .
+Look at the docs : #CODE
+To fix that we turn the frame off on ` ax1 ` ( so we can see ` ax2 `) .
+At one point I was able to trick it into working from the console by installing some thing in the virtualenv , but other things only in the global namespace , but I forgot how I did it .
+( Technically we could skip the ` FigureCanvas ` , but it will be needed as soon as we want to save the plot to an image , etc . ) #CODE
+But how can I make plt do all this stuff ?
+From your piece of code it seems to me that ` clust_data ` is already a list of lists with the correct shape and that ` cellText ` after being filled is going to be the same of ` clust_data ` .
+Anaconda doesn't by default load pylab into IPython so you can choose the backend after launching IPython .
+Most likely I'll have graphs with longer labels and if I put them near lines , it'll look messy .
+The lines are random within ranges that cause clustering of lines ; a behavior I wanted to verify .
+have those lists all the same length aka would it be directly compatible witha 2d numpy array ?
+Any assistance will be appreciated .
+I have another working project where the toolbar is in the same panel as the canvas , and I think that might be the key difference between the two .
+any of #CODE
+Which way is the easiest to load all txt files ?
+( Note that F is not given in the data , but you gave it as an example )
+Now I need to put this plot in a PyQt form .
+Where is the URL API documented ?
+Are there any other option ?
+You need some criteria to select out the " best " in your context .
+What do you mean when you say ` the first histogram will be the first column as the x values plotted against the second column as the y-values ` .
+Unfortunately I don't have any experience doing this so won't be able to help .
+A sample of my data to plot : #CODE
+Also , I do not want user intermediation at all !
+Rather than put together an example from scratch , there's an excellent example of this written by Paul Ivanov in the matplotlib examples ( It's only in the current git tip , as it was only committed a few months ago . It's not on the webpage yet . ) .
+what to do next ?
+I think you'll find you get better help if you describe * what * you're trying to do , rather than * how * you want to do it .
+( ie save etc ) . ill have a look at the toolkits :D
+in place of #CODE
+You could cast the array to a list : #CODE
+Add as many symlinks to the directory as you wish , it gives you fine-grained control over which packages you want to make accessible .
+In the end , I found out that the problem was simply that matplotlib could not find any backend for plotting .
+Please change your title to describe your _actual_ issue .
+If you did not create one when you installed matplotlib , you can get this template from the matplotlib source , or from the matplotlib website .
+I am sorry to be so needy , but I really cant find any useful information anywhere .
+Or is there another way to change the size ?
+I did find the way to make my images almost what I wanted with : #CODE
+any idea ?
+@USER : I suppose the specific way I have it set up would work better if you had , say , a 1000x1000 matrix , as it lets numpy pick how the tics should be spaced .
+As you can see it only covers half of the matrix .
+You iterate the items in ` glass ` , but then compare to the whole list instead of to the current ` item `
+If that helps , this is the process that I am doing to save and plot : #CODE
+Please consider answering your own question or removing it all together if you feel it does not add .
+Now " print zi " gives me an array like before but with nan everywhere .
+Im not by computer to test .
+I want to put my custom datetime format but when I tried my custom date format is overlapped over the date given by default by pandas plot .
+Change formatting on datetime ticks when plotting daily mean with Pandas / matplotlib
+Any other way to get a similar effect ?
+If you see the right side , the size is changed .
+How can I select multiple data points with matplotlib and export it ?
+Two steps to sketch an idea to solve this :
+This is not necessarily the nicest possible way of doing things , and you may bump into resolution problems , as well ( check the size of the ` mayavi ` window ) .
+Is there a way I can get y=x to show up even if I don't have a list of all the points that I plotted ?
+Knowing all that , your example becomes : #CODE
+Any Ideas what might be the problem ?
+It appear that these disappear when I add the ` facecolors=UWR ( heatmap )` property to the ` surf ( ... )` .
+Can you post the full traceback ?
+The full list of positions is given here : #URL
+unutbu's answer should fix it everywhere .
+how can i insert the plot returned by create_predef_plot into f2 #CODE
+And the formatted ones ( Used as _id of the documents after using aggregation ): #CODE
+Any packages you accidentally installed for other Python installations , just reinstall them for MacPorts .
+However , other programs seem to be ok with filling almost all the memory before the swap is used .
+I'm not sure how to tackle this problem and any help or direction would be very appreciated .
+i looked at sage , the source code is huge , does it support python out of the box ?
+If any one know about it then please reply me .
+I'll have a look at it
+The main issue is that you can't make UI changes from a separate process from the main UI thread ( the one that all of your Qt calls are in ) .
+I say " quick fix " because there are more changes that could be recommended .
+Maybe look at the scikit-learn docs for inspiration ?
+Labels are located at the right place , but label is not correct .
+I ran the following code to get two plots next to each other ( it is a minimal working example that you can copy ): #CODE
+here is the code where I create the plot and a picture of this :
+Admittedly , I'm new to pandas but it seems like at every turn I am stopped , by my ignorance no doubt , but it's getting tiresome .
+Are all of your modes needed to demonstrate the problem ?
+Note that the explicit masking is no longer necessary in matplotlib master as arrays are now masked automatically internally .
+( The disadvantage is that this method is much less flexible . ): #CODE
+Python & Matplotlib : creating a chart first and showing it at a second moment
+Put #CODE
+If you require a completely manual installation , you should give those instructions a thorough read .
+Take a look at this example .
+I tried something like that already , but when I plot each data point individually in a for-loop , I see no way to use a colormap and colorbar for all of them .
+Here's how to do it : if you find that an answer has been helpful to you , then move your mouse over the upper left-hand corner of that answer ( where the answer " score " appears between two gray triangles ) .
+Can you recommend any tutorial for MATLAB speakers ?
+The second plot keeps rescaling the x-axis for me , losing the overview of the full column 1 plot .
+Thanks for the answer , I searched for event handling examples but could not find it ( I am newbie to python ) , can you please send me link to at least one such example .
+You can find it here .
+( I know I add nothing new , but the straightforward answer should be visible ) .
+So , I don't even know where to start looking
+When I try to run the example script at
+Thanks for your comment , I have put everything , I wanna plot ( years , Frequency_accidents_years , regions )
+Via ` apt-get ` , I've tried installing ffmpeg , every codec imaginable , and even tried to compile ffmpeg from source .
+@USER This isn't a bug , but a design choice .
+The left-hand side can , however , contain any number of elements , and provided it is a tuple of variables the unpacking will take place .
+You want to look at the OO interface , not the state machine interface for matplotlib .
+This would be an interesting thing to add to the emerging thoughts about semantic objects in mpl .
+Maybe you could post a sample of your data array ?
+I believe this is because I'm plotting the image wrong and so it is plotting all the data as 0 .
+Try running with ` python -X faulthandler ` and see if you get a useful traceback at the segfault .
+Notice how only one body has been coloured , all other disjoint polygons remain white :
+Thanks @USER , All I want set a plot title based on the what user is selected on the plot , for example if the plot shows a data from ' Jan 2012 ' to ' July 2014 ' dynamically want to set the title to ' Years ' and if the user selects from ' May 2014 ' to ' July 2014 ' then dynamically want to set the title to ' Months ' and if the user selects from ' July 2014 ' to ' July 2104 ' then dynamically want to set the title to ' Days ' .
+I would like to know if I have a triangular marker , is it possible to control its orientation ?
+I like to sort these points row by row .
+Before comparing between these two PDFs , I would like to compare original time series and the series of Gaussian distributed numbers with the standard deviation and mean from original wind velocity series .
+I will like create a alpha channel , for explanation I put a example :
+The function is supposed to be smooth and connect at 0 and 2 pi in the y range of ( 0 , 2pi ) not touching 0 and 2pi .
+I have run a similar script before , and I think I've imported all the relevant modules .
+The sample image makes things clear .
+Take Care , George
+I don't know of any movie format that is vector based ( but I don't know a lot about video codecs ) .
+I can't find anything like that in the galery and all my attempts do deal with the colorbar failed .
+I encourage you to try all of the great ideas people are telling you , and I'm interested to see if any of them work !
+Have you tried setting your backend to SVG so that all of your images are in vector format ?
+I appreciate any help :)
+Would be better to change the title
+My csv is like : id , author , title , language
+After making all of the changes listed in steps 2 and 3 ( and correcting the spelling of the title ) , I get the following very-reasonable-looking plot :
+When I look at the plot , the x range ends up being from 0 to 12000 .
+It was still at -1 when I saw it .
+when the bad points are deleted , the user can click on different buttons to classify the source ( lets say " star " , " galaxy " , " whatever ") .
+Your ` Z ` ' array ' is actually a list of numpy arrays of different lengths .
+when the 2D array is viewed as a color
+I looked through the examples in MatPlotLib or R and they all seem to already start with random data to generate the image .
+Filtering spreads out the information and makes the inner contours disappear .
+This is probably related to upgrading the library , and having old versions of the javascript hanging around .
+can you explain your data format in a little more detail and give us some copy / paste-able code to create a toy version of it ?
+' To open " Python , " you need to install X11 ' .
+@USER : You can certainly change the exact shape by modifying the factor " 3 " in front of the lower branch .
+Downvotes are due to the lack of research effort ( if you look at the reasons for downvotes , it says " This question does not show any research effort ") .
+As for the matplotlib version 1.1.0 , it's a really easy install , at least on my by-now-quite old Lucid it's no problem at all .
+Numpy index out of range error
+Though I want to add that manually saving the chart from Qt Widget is OK .
+Without seeing any of the existing plotting functions , how am I supposed to know how similar or different they are ?
+You can use spline to fit the [ blue curve - peak / 2 ] , and then find it's roots : #CODE
+I had to add ` colorbar ( im2 )` right after the definition of im2 ...
+Creating sample data #CODE
+The numbers choose now many decimal places you want and the e chooses scientific notation .
+To clear up the code , I put the individual plotting functions for the six or so groups of subplots into separate submodules and call them with the arrays they need for plotting purposes .
+You have given us a list of requirements , but what have you tried to solve your own problem ?
+For that purpose , I have put the following command in a for loop : #CODE
+I work at a large company and do not have admin rights .
+Note that it only detect truly equal placements , if you would have values of ` [ 0 , 0.00001 , 2 , 10 ]` , they would probably still overlap .
+Suppose I have a triangle mesh defined by X , Y , and Z , the 3D coordinates of a point cloud , each a vector of length n , and UVW , a 2D m-x-3 matrix in which each row is a triplet of indices into the point cloud .
+I am trying to create a plot with vertical bars equal to score length , AND with a radiobutton which enables the user to choose which level scores he / she wants to see , as such :
+The 2nd set of data will also include the first as written in this snippet ( looking for good way to delete it that doesn't cause problems later down the line ) .
+So you need to add ` u ` : #CODE
+Regardless , once you get used to it , I find it much easier to write reusable plotting functions in python with matplotlib than in Matlab .
+Now , you should be able to get all the libraries you need just as easily , using , too , Macports .
+I believe that I'm using the TK backend ; I'm not married to that choice , but it's not clear how I should install other backends .
+What is this float , and how can I convert it to a datetime ?
+xtics and ytics labels because they appear for all values of xPoints and yPoints ( they overlap ) .
+matplotlib ( equal unit length )
+Is there any reason why I can't do this ?
+I am using the following codes to generate the square wave format [ Eg : from 0 till 5 ] using for loop .
+Can you reduce the extent of you problem by calculating something akin to a density , reducing millions of line segments to maybe a few hundred or a few thousand data points ?
+array erroneously filled with the same value
+You can change the ` reduce_C_function ` option if you want something different than a simple average .
+The whole traceback is rather large but seems to revolve around this part ( if I read it correctly ): #CODE
+Matplotlib : WebAgg backend doesn't show any figures
+While this seems what I was looking for , I'm not lucky finding any proper documentation for webagg .
+If I were you , I'd start from this example to see where do these lines start showing up .
+According to efiring , matplotlib does not support NumPy datetime64 objects ( at least not yet ) .
+At least on my system ( OSX , Python 2.7 , mpl 1.1.0 ) , I don't have any issues with panning , etc .
+Yeah , I understand why Pylab exists , and why it seems so attractive to people moving over from MATLAB , but over the long term I feel like it's a net negative because it makes it harder to share code with and get help from everyone who isn't using it .
+How can I get around this ?
+Function of Numpy Array with if-statement
+By default it sets the ( 0 , 0 ) element of the array in the upper left corner .
+I appreciate any help with this .
+At the moment I do a for loop and plot each point : #CODE
+What I currently have to convert it : #CODE
+You should post your new code and the ** full ** traceback in another question .
+I don't want to make any translations / shifts to the data itself ( it's a large dataset , etc ) , so I'd be looking to do this with some matplotlib-trickery .
+Raster to Numpy Array - how to change a default color-scheme of a matplotlib plot
+or invert the Y-axis : #CODE
+So , a solution is simply to create a list of all objects that will be refreshed , and to call this ` remove ` method for everyone of them :
+The best choice is to make your widgets in the order you wish them to appear .
+Python : How to generate a power law graph
+Unfortunately the broken command is also preventing me from tryig this , so I'll have to fix that first .
+( ` 1 ` is the the start index , ` 2 ` is the increment ) In contrast , ` x [: : -1 ]` just specifies an increment of ` -1 ` , thus reversing the array .
+One way around this is not to use the pandas ` plot ` method , but to directly the matplotlib's ` plot ` function .
+where ` numctrl_ccm90 ` and ` numctrl_ucp90 ` are the widgets corresponding to the collimated counts at -90deg and the uncollimated counts +90deg etc .
+Any tips ?
+I would appreciate any comment or suggestion .
+I looked at ` masked_array ` which is different .
+Without having all the code listed , I had to make some assumptions about the data and about what you wanted .
+You mean ` Axes3D ` is different from ` axes3d ` ?
+If you already have python and gfortran and such , jump in at the point where you need .
+Maybe you know a fix for this ?
+How can I fix this ?
+The background is that the array's values represent the water depth of a square grid .
+And try debugging one step at a time : make sure you have good data before you try to plot it .
+What do you mean the " label " ?
+To do this we ll use the standard y=mx+b line equation where m is the line s slope and b is the line s y-intercept .
+If you check the Matplotlib example for the function you are using , you will notice they use a similar methodology : build empty matrix and fill it with strings built with the interpolation method .
+But the question still remains- how do I fix it ?
+Based on the plot selection I want to set the plot title , so I need to know the current x -axis value after the plot is shown .
+I have tried the following code but this creates 2 separate charts but I would like this all on one chart .
+Any advice would be greatly appreciated .
+How can I add colorbar to this code ?
+I'm reading in a file with several columns , each of which contains around 100 values between 1 and 10 .
+But for the all three plots We have same temperature T=4K .
+I've downloaded a number of nifty programs and utilities ( and info sites ) / quantum gis , virtual terrain project , grass , I'm looking to get an xyz csv file into a format that these tools can use .
+I have all the plots as several modules in python / matplotlib already coded , so that's perfect .
+At some level , this is purely a matter of taste and depends a bit on what you are doing .
+I really want to plot all the points in my matrix instead of the ( M-1 ) x ( N-1 ) .
+I want to set a colour scheme for my python plots , so that they don't repeat the same colour like they are for A and H in the top plot shown below .
+I've got a 2D numpy array with 1.0e6 as the no data value .
+Is this what you mean ?
+This is somewhat based on guesswork , since I can't test it with ` matplotlib ` , but something along these lines might work : #CODE
+Here is some sample code resembling my case : #CODE
+This is the result for printing every item in the xyz list and piping it into a file .
+Or is your plot supposed to be an average or something ?
+I just wasn't sure if changing some plotting functions around would help .
+I agree with you , but I just tried to make code which uses as few less well-known features of ` matplotlib ` .
+You could add a URL to the image , so someone with enough reputation can upload it to your post .
+' plot ' shows me a line interconnecting all data points , but not the data points themselves ( unless there's a way I don't know of ) .
+Did you add matplotlib to your PYTHONPATH ?
+I have successfully edited and put it in my code and works fine , but my problem is that I can't show multiple lines of data in the plot , I want to show up to 10 lines in my graph but I'm getting a lot of errors when I try to add them .
+That is correct , it draws a line from the lower left to the upper right of the plot as stated in my answer .
+The problem arises when I select a subset of the data based on the time , ie : #CODE
+Do you have any suggestion to fix this ?
+I think I'm going to start from scratch so that I know what I'm doing but I need help on where to start .
+It was a simplified example since I didn't have your code at the time .
+The question does not define matrix very well : " matrix of values " , " matrix of data " .
+The algorithm returns an array of ranges , then I create several histograms for the same dataset using different ranges .
+( Since all you're saying now is " I have this equation and it doesn't work " , we don't have enough info to answer this and it's not a question that can be answered . )
+This method generalizes to any number of rows ( or dimensions ) .
+Another possibility would be to put a tuple into flist : #CODE
+I downloaded the 100meg datafiles from the full Basemap distro .
+Do you have any other ideas to handle that ?
+This controls whether the data limits or the bounding rectangle's shape are changed when the aspect / limits are changed .
+Could you be able to give me some hints how to solve this ?
+like you could in MATLAB , as well as having all the features of
+I tried setting all x-values to ' 1 ' , but it turns out as kind of a 2d-diagram , anyway :
+This is the hacky way to fix your aspect ratio on the image .
+Is Anaconda's main advantage then that one has essentially all one would need , without needing continuously to pip this and pip that ?
+Just for the record , there's no need to jump through all of those hoops with PIL .
+I'll play with Dermen's link as well , but at the moment the most pressing problem is not having the data points be all squished together because the spacing between the ticks is very very small .
+This is perfect , though I'm not sure exactly where I went wrong ...
+you can manually set the size of the colorbar using : #CODE
+Plotting values From a Array in Real time using matplotlib in Python
+I will also gladly accept any examples where someone has built up any other distribution .
+How sure are you that the code * runs at all* ?
+I was temporarily disappeared at my day job !
+In addition , you'll find that ` pylab ` leaves a generous , often undesirable , whitespace around the image .
+Force plot to have a special size or to increase the distance between subplots
+If you do all the data processing beforehand , and provide the ( nearly ) finished product .
+To make it clearer I want to get the x-axis and the y-axis range so as to find the mid point of the grid .
+and you might want to add the ax to the colorbar .
+The question is : Why does the ` matplotlibrc ` file have an invalid backend ( ` pyside `) value in the first place ?
+Is that a bug ( could not find any reports to this ) , a feature ( ?! ) or
+I'm not sure how you want to convert your data , but if you have irregular line lengths , the easiest way would be something like this : #CODE
+No worries , I was coming at this from a radio perspective not a gamma-ray one .
+How can I fix this ?
+Is not there any wx example in your iPython distribution ?
+Hmm , sorry , maybe I wasn't clear - colours [ li , :] only substitutes the tuple with index " li " , but I need to substitute all tuples with indices in this list called " indices " ( and li=length ( indices ))
+I've also tried installing 1.3.0 through pip as well as source .
+Any help would be much appreciated .
+Maybe you need to rescale with 1 / 30000 to be at the right place on your graph .
+Changing this would require low-level tweaking .
+I've also refined your approach to allow zooming in over a section of the data and to produce better results at the borders .
+Any help would be appreciated .
+Can someone help me sort out the issue resulting to such an error .
+Is there any way , I can save a magnified version for proper visualisation later ?
+So let's say I only need ` 4402 x 4410 ` but I don't know the index .
+I had to upgrade to most recent MPL to find the subplots method of pylab .
+averaging elements in a matrix with the corresponding elements in another matrix ( in python )
+We consider now that ` -- pylab ` was a mistake , but that it was still really usefull at the beginning of IPython .
+Is there a way to increase the thickness and size of ticks in matplotlib without having to write a long piece of code like this : #CODE
+Or you could define column ' date_obj ' as the index of your data : #CODE
+Am I missing something , or have you left out all the plot commands ?
+This is my first attempt at python , however , and am still finding out how it works , so please put me right if this idea is fundamentally flawed !
+Finally , here's a sample portion of an old ( bad ) data file : #CODE
+If you you have any questions , please leave a comment .
+Where exactly is the problem ?
+The last dutch sentence does mean something like : The system can't find the specified file .
+This is nice of them , as not all Windows users have C++ compilers available .
+The root of the problem is that matplotlib tries to put all bins on the plot .
+This question has probably a totally simple solution but I just can't find it .
+Any suggestions would be awesome .
+In non-interactive mode , display all figures and block until the
+This is all very new to me .
+1 ) Let's assume I take 1 sample ` x = [ 1 , 2 ]` from the dataset
+I have a 4d or higher ellipsoid in matrix form ( which form is important ) .
+I didn't look into the documentation , simply used the dot completion on the handle
+Here is your example with those modifications and also with a single layout computed at the beginning that is reused in the loop .
+I now understand that I need to generate all the triplets across the three tables ( to cover all the combinations ) .
+i dont know how array concatenation works on numpy arrays
+I can't seem to get my head around why it doesn't show the value 128 as grey with I have chosen the cmap to be gray-scale .
+what do you mean with %s ?
+If that isn't what you want , I would recommend doing something where you create a PNG image of what you do want , create a child QLabel , and move the child widget around in your mouseMoveEvent .
+Any suggestion is welcome .
+I was trying to add a custom widget into qtdesginer using following code #CODE
+source : #URL
+As has been pointed out above , this will get more complicated if the both the y graphs were defined at different x points .
+@USER Simoes , what happens is you have Nan's in various places in your array ?
+An example script with generated data rather than the real data is : #CODE
+Also , it's harder to reproduce across multiple machines ( even if that just means " my current machine , and the new laptop I'll have 18 months from now when I've forgotten how to solve it ") .
+The words ' non-default ' and ' normal ' are mine - I'm not sure what they mean yet .
+( think of it as a unit square )
+This code uses a Counter to count the number of instances that an object occurs in an array ( in this case counting the number of times an integer is in your list ) .
+In the image above I'm trying to extract iso-value 25 from the scalar field of f ( x , y )= x^3+y^3 .
+Is there any other way I can plot my result continuously ?
+at lag 0 , the ACF is 0.5 .
+The example talks about a fit to power law , but clearly a straight line could be done as well .
+As I see it , I could resolve and make it work if I could adjust the line spacing / height to be less than what the font requests .
+tells the writer to temporarily save the frames to disc before composing the movie , which side-steps the problem .
+Select starting color in matplotlib colormap
+I know this question is a couple years old , but since there is no accepted answer , I'll add what works for me .
+include the piece of the code where you make call to ` mpl_connect `
+Is there any ready to use function based on python's matplolib ?
+-2 is high of indices range and then low of indices range
+Any insight you could provide that would help get me started the proper way would be fantastic .
+( I can open a new question if that's perferable )
+For example , here's a simple bit of code that sets up a list of colors based on whether the data is positive or negative : #CODE
+With that example data I was getting " shape mismatch " errors .
+Then , I'd use POV-Ray or Blender to model the planes at whatever angles , spheres for the round things ( planets ? ) .
+So , thus far , all I produce is :
+I'm hoping I can find a funciton ( or build one ) that does new_ids_arr = new_ids * new_ids^Transpose ... or similar
+Any help much appreciated .
+But there are still white edges around ( I have added a screenshot to my original question )
+How could I use ` matplotlib ` to represent such a matrix as a grid of red and black squares ?
+The thick grey line in the middle of the violin is the bootstrapped 99% confidence interval of the mean , which is the white horizontal line , both from pointplot .
+@USER I up voted you but add ` import numpy as np `
+So , when you reduce to 2 dimensions , the power is the sum of the first 2 eigen values .
+Indexing starts with ` 0 ` in Python ( and most any other programming language I know ) .
+I have a matrix file of Hurricane data and it plots with the command : #CODE
+If they enter 30 , they will look at a 30-minute time window , if they type 5 , matplotlib picks this up , data gets trimmed , and only 5 minutes worth of data gets shown .
+In the meanwhile does any one has a better suggestion ?
+I want it at y= 10.5 , specifically .
+I then plot each of these values , but to get a more sensible result , I need to take the mean of all of these files for each cell , and plot that with the standard deviation obtained as error bars .
+I'm using data of the form : ` [ num1 , num2 ,..., numk ]` ( an array of integers ) .
+For the time steps where convergence is reached Id like to have the x-axis green and for non-convergence starting from light red for not so bad to red for bad .
+For instance you can add #CODE
+I don't want to get a newer one just incase any of the practice problems / lecture problems are incompatible with a newer version of IDLE .
+All of these frames are loaded at the start of the application .
+if you suspect one specific builtin , try checking it's type ( ` type ( dict )`) , or look at the properties / functions it has ( ` dir ( dict )`) .
+In some work I have done we used a simple approximation of the derivative , when this changes sign you have a peak ( in 1D data ) , one can then add some parameters to remove peaks due to noise .
+Here's a working code sample that shows you how to get it working .
+How can I change this behavior and use Arial fonts for all of my plots ?
+How to divide ytics to a certain number in matplotlib ?
+Matplotlib cannot find facefile , is using old Python interpreter location
+do you get any message when trying plotting it ?
+I have mac os x 10.5.8 and was wondering if anyone could recommend where I could find the proper package .
+Well , this isn't a wxPython answer but I've used Chaco for this sort of thing and it's pretty straight forward .
+The point IS at its position namely ( 1 , 1 , 1 ) .
+All is fine again .
+The next plot to show has the same clusters and colors but a different location .
+@USER The first approach would help only if the internal representation was the problem , but it doesn't solve the underlying size issue .
+After hours analyzing the source code of basemap's ` tissot ` function , learning some properties of ellipses and lot's of debugging , I came with a solution to my problem .
+You'd need to refactor the code to break your worker method up into smaller pieces that multiple processes can work on at the same time , and then pull it back together once all the pieces are ready .
+are you just trying to open a separate window or display that window inside of your main window ?
+The one catch : if you embed a PDF inside a textbox , Word will rasterize this when you save it to a PDF .
+How can I address a specific line ( by name , by number , by reference ) throughout the program and delete that line ?
+And also I need to do that for all variables simultaneously .
+` newtitle = " %s\n$%s$ " % ( ' text\ below\ the\ main\ title ' , newtitle )`
+Have you had a look at the ` webagg ` matplotlib backend ?
+find the file from the link
+If you want separate figures , as the title of your question suggests the ` subplots=True ` argument might get the job done .
+I suggest removing all the domain specific stuff .
+Just change ` shape ` to ` ( 10 , 10 , 10 , 10 , 10 )` and see .
+Any help would be appreciated .
+However , ( at least what I have seen is that ) sometimes after the plot has been displayed , it goes into a " Not Responding " mode and you just have to kill the process anyways .
+It consists in a floating-point parameter P , with dimension NxM , and each pixel is geolocated by the fields latitude and longitude ( each of size NxM ) .
+In order to change the order of the bars , you should change the order in the index .
+This does not work when I replace the random plot data with an actual color PNG image .
+For example , say you had data between 0 and 1 but didn't like the colors used at the extremes of the colormap for 0 and 1 .
+After searching through multiple posts , I basically want to use a generic colormap ( rainbow ) and multiply my third array by the colormap in order to display different colors for each of the xy points .
+Hi , Thanks Tobold , I will check the source code you mention .
+This next block is what does what you want with the ` for ` loop .
+Say that I have 6 variables that I want to sort into these 3 groups and plot like a venn diagram .
+ValueError : setting an array element with a sequence .
+My need is that I want to plot these nominal values of both actual and predicted ones on the same plot so that It will be easy to compare how good was the prediction as compared to actual values .
+So , open up your favorite Terminal emulator and enter #CODE
+Also , the lists need to be equal length .
+Because matplotlib will convert things to numpy arrays regardless , there are more efficient ways to do it .
+And here is where I grab the data and I try to update the limits of the plot #CODE
+Any help is appreciated .
+Which is the why , conveniently , ` colors ` keyword exists .
+How can I find the code to support multiple plotting scales and X-axis on seperate panels using sizer routines ?
+I'm trying to build Matplotlib from source with Tkinter .
+This means that you can install matplotlib locally in your ` virtualenv ` and it will find all of its backend dependencies in the system-wide ` site-packages ` .
+I am trying to create a simple GUI using tkinter which will just open a window displaying the plot .
+Web convinces me using this is no good idea after all : For example #URL " Avoid 3-D charts at all costs .
+Using pure Python , you can extract columns ` 1 ` , ` 5 ` and ` 7 ` by using the following nested list comprehension : #CODE
+Is there any way of getting some input from a user in matplotlib ?
+` theta ` is in radians instead of degrees .
+' plot ' shows me a line interconnecting all data points , but not the data points themselves ( unless there's a way I don't know of ) .
+I could divide the ` peak_top ` by 2 to find the half height and then try and find y-values corresponding to the half height , but then I would run into trouble if there are no x-values exactly matching the half height .
+why can't it find the file ?
+However , the resulting image always has the same resolution , around ( 250x250 ) .
+Installing those packages from the source can be a pain , especially on Windows and OS X .
+Sort arrays by two criteria
+However , I am kinda confused , any help would be appreciated .
+Unfortunately if you search this array for all subnodes given some index you only get some of the subnodes contained by the original triangle because most nodes belong to several triangles and they are only added to one of these .
+If I set shrink 1.0 and fraction to anything , it shrinks the graph , not affecting the colorbar size at all , until changing fraction causes it to be exactly what I already have , at which point changing them stops doing anything .
+It doesn't add anything else .
+Now I just wish they'd add some kind of drop down menu to matplotlib ...
+Thanks for any help
+The source data's list is called xyz .
+I have been looking around and maybe it could be a version-of-Pyhton problem .
+( I want to reduce the size of the outlier ) #CODE
+This should work for any number of columns and length of data .
+Any assistance would be greatly appreciated , this has been doing my head in .
+where axes_square is simply : #CODE
+I can put together a more detailed answer based on that package if desired .
+It's fairly easy to speed it up by making an approximation -- just take the 2D histogram and blur it with a guassian filter of the right radius and covariance .
+I've tried the solutions posted by Marek and qarma attempting to obtain the coordinates of the bins rather than the index of them , like so : #CODE
+What do you mean by make sure the ' backend setting for pylab is not set to inline ?
+sets the initial x , v of every particle in an array
+Post more information on structure of your array .
+Here is a sample code if anyone wants to play with it .
+Are all these settings really necessary to achieve the result I'm looking for , or is there perhaps a more compact way to accomplish my goal : #CODE
+I want to select ( in the SQL sense ) just columns ` b0 ` through ` b9 ` from the array , giving the structure #CODE
+I can't find any method to tell mpl to plot all of the data , it seems that there are only methods for drawing every n'th element or similar ( and passing 1 does not help ) .

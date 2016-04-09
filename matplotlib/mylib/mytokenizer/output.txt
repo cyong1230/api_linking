@@ -1,0 +1,7 @@
+dataframe [ ns ]
+dataframe (( ns ))
+neworder [ df.index.labels [ 0 ]]]]))
+[ what have you tried ] ( @url ))
+.ix [ row slice , column slice ]
+pd.concat ([ df , new_df ] , axis=1 )
+#code

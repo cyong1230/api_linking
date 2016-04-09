@@ -1,0 +1,167 @@
+I tried adding ` / Library / TeX / Root / bin / universal-darwin ` to the Global Python Path of the Project Properties , but I still get the same errors .
+My Python Path is correct C :\ Python27_32bit\ and I also have \lib\ site-packages \ and \DLL included correctly .
+Adding Python Path on Windows 7
+Append ` ; C :\ python27\Scripts ` to the end of ` Path ` variable
+I use a palette file that I'm able to create using GIMP + Sample a Gradient Along a Path .
+Spine position is specified by a 2 tuple of ( position type , amount ) .
+Annotation along a curve in matplotlib
+Heat Map Annotation with text
+Annotation on top of the bars show the actual percentage of that category .
+Text File .
+I'm using Ubuntu and Sublime Text .
+Check this page : Text Rendering with LaTeX .
+When using Matplotlib ( Pylab ) for rendering Text with the same metrics as AriaL ( e.g. , Arial itself or Liberation Sans ) output looks ok - e.g. , the width of the legend box is right .
+Text box with line wrapping in matplotlib ?
+Python / Matplotlib - Quickly Updating Text on Axes
+Text display problem with matplotlib ?
+Network from Table ( Text / MS Excel ) ..
+Text alignment in a Matplotlib legend
+Underlining Text in Python / Matplotlib
+( Text colour comes out as black ) #CODE
+However , when I paste this code into my Wordpress page ( using the Text editor , not the visual editor ) nothing happens .
+This generates the plot but the Legend B is placed at the upper right hand side corner and Legend A is by default placed at the left hand upper corner .
+Multiple Pie Charts with a Shared Legend
+You can add a legend to only the first axes after plotting all of your pie charts : #CODE
+Matplotlib : Legend not displayed properly
+Legend colors in Matplotlib table function ?
+Legend transparency , when using secondary axis
+Legend is outside the frame .
+Button 1 : Shows the pointscores of John and Daniel in level 1 .
+How to get multiple Button Click Events in Python
+Button click -> ser.write , ser.read , draw
+Another solution is print a ' Cursor ' or marker line on the plot , and change its coordinates with the mouse events .
+An Arrow would appear with data about the invisible line one , but he wanted info about line two .
+Arrow on a line plot with matplotlib
+Drawing Arrow in ( x , y ) coordinate in Python
+To be more specific , if you look at the answer to that question it shows how to make a 3D Arrow and use that to annotate points in a 3D plot -- I have used this recipe extensively and it makes me wonder how it isn't built into matplotlib yet .
+Node positions are generated , stored and assigned like this #CODE
+Node and edge attribute files are simply formatted : a node attribute file begins with the name of the attribute on the first line ( note that it cannot contain spaces ) .
+Normalize the input data and scale it
+Normalize your data .
+Normalize again
+Normalize your data , apply the colormap , save the image . matplotlib provides all the necessary functionality : #CODE
+Normalize histogram2d by bin area
+Python / Matplotlib - Figure Borders in wxPython
+gcf() means Get Current Figure
+Figure title with several colors in matplotlib
+However , the sample consists of distinct solutions which form lines in the parameter space such that putting everything into a matrix and using ` imshow ` is not desirable because of the pixelation artefacts ( Figure 1 ) .
+See Figure 2 .
+Labeling Figure from String List
+I was able to maximize Figure windows for TkAgg , QT4Agg , and wxAgg using the following lines : #CODE
+I want to draw a quadratic Figure .
+So I guess I have to built each button separately , and don't know how to " order " them in the buttons_frame 2 ) I am working within a for loop , so I can't use a " main " specifically for this . and 3 ) the Figure to plot is already created before entering the GUI .
+But I wonder if there is a way to do the same link ( when zooming on figure 1 , I get the same zoom on figure 2 on one particular axis ) when defining 2 different Figures ( I want those graph to appear far from each other so I guess that I can't put them in the same Figure ... )
+I removed the reference to Figure 0 and had it generate a new figure each time .
+Right now , that it the best I can do , see Figure .
+Sounds like you just want an image in the Figure , right ?
+You should perhaps try some converter that can produce DXF from EPS , PDF , SVG ...
+For example see this converter in java :
+You already have one such converter in your ` np.loadtxt ` method call .
+You can achieve this by defining a converter that converts sting representations of dates to ` datenums ` .
+Matplotlib Plot Lines Above Each Bar
+Matplotlib.pyplot Bar Plot Grouping Subplots
+How to properly give Annotations to Pandas Bar Charts ?
+Pandas , Bar Chart Settings Customization
+Two Bar Plots- Non side by side
+I have a couple of problems with the Bar Chart that I'm trying to create in python .
+I have a simple graph with a Navigation Tool Bar .
+Matplotlib Subplot Animation with Basemap
+Basic Animation with matplotlib's pyplot
+How Can I Save Animation.Artist animation ?
+Animation with contours matplotlib
+I found the solution ( set 2 ) that uses the mpl Toolkit and AA to allow sharing of the X Axis and present more than 2 scales . by changing the code to allow for set 2 is where I noticed problems .
+The side scales almost look good ( exception is repeats on the right ) and I CANNOT CHANGE FONT size of the X-Axis labels and Y Axis labels .
+Reverse Z Axis on matplotlib 3D Plot
+You have an example of the broken axis in the matplotlib examples : Broken Axis
+Axis scale with bins
+Converting Integer ( Day Count ) X Axis to Months
+3d Polygon Plot in matplotlib baselines slanted
+I am trying to create my own version of the 3D Polygon plot as shown on the Matplotlib web site :
+I'm trying to make a polar chart with matplotlib and python 2.7 , but I'm struggling on how to increase the space between the X-Axis and the Tick Labels for that same axis .
+Tick labels on x-axis aren't symmetric ( Matplotlib )
+Tick label displayed when clicking on graph ?
+Axes missing when plotting in matplotlib using vispy as backend
+In theory , this code doesn't change any coordinates ; it just gets the coordinates of each label , maps it to Axes coordinates using the Text object's internally-stored transform , and then sets the position .
+@USER I think he wants to get the tick positions in Axes coordinates .
+Axes fonts with text.usetex ' true ' does not use set font
+Also , when specifying where you want the subplot to be placed ( the third input to ` Figure.add_subplot() `) , you do not want to use ` y+1 ` because that would start at ` 1 ` and end at ` 6 ` which would go out of the available range of 0-5 .
+While it might be possible to hack ` JointGrid ` to get this to work , I suspect it will very likely be easier to just use ` kdeplot ` on one Axes , using ` twinx ` and ` twiny to place and scale the marginal plots properly .
+I want to transform those intensity values to pixel intensity values as in the following image :
+The longer the time period becomes , the sharper the peaks will become ( the Fourier transform of the cosines ): #CODE
+How to transform your data into this format is a simple question , maybe a bit googling and trial and error .
+Perhaps it is best to transform to linear coordinates and calculate how to produce the curved grid for the declination and the radial lines for the right ascension .
+Since my data is roughly spherical I triangulate the azimuth and zenith angles from the spherical coordinate transform of my data points .
+A workaround might be to log10 transform the data before plotting , but the approaches I have tried , #CODE
+Without having to transform everything to string or another kind of object ?
+However , the dates mysteriously transform themselves to an ugly and unreadable format when plotting the same data as a bar plot .
+I want to find out how to transform magnitude value of accelerometer to frequency domain .
+Then , you need to set the transform for the new lines on ` a_all ` to move them to the new axis .
+What about applying a rectangular ( ok , in three dimensions , cubic ) window to your field before fourier transform ?
+The canvas seems to get locked and after the call of the pick event I can not use the other functionalities as well .
+When it is triggered it seems that the canvas gets locked and I can not use any other functionality .
+I am trying to draw an arrow on the scatterplot .
+Are these parametric orbits , so that you could draw vertical lines for each time ( or whatever ) _t_ ?
+I've follow this subject : How to draw planes from a set of linear equations in Python ?
+I am able to draw with all variables at x-axis if convert it to bar graph .
+But in my particular case I have to draw Line2D instances using Points coordinates on top of the regular plots that are all using Data coordinates .
+I'm using imshow() to draw a 2D numpy array , so for example : #CODE
+I need to draw all function in the same window
+I want to draw a small red box around one of the ticklabels , as so :
+I draw 4D plot .
+I'd like to draw / plot an horizontal line on top of the heatmap like in this figure
+How do I draw edge labels for MultiGraph in NetworkX ?
+How to draw a contour plot using Python ?
+I tried to draw a contour plot using Python .
+The second option is a touch more verbose , but has the advantage that the y-axis limits on the second plot will autoscale as you'd expect .
+I included the code to autoscale the viewport , but that's not strictly necessary .
+possible duplicate of [ How to autoscale y axis in matplotlib ? ] ( #URL )
+if the image is a NxM array of any type , it is interpreted through the colormap ( autoscale , if not indicated otherwise ) .
+Now I changed my mind and decide to autoscale the data ( and the view ) , expecting these limits :
+I would like to be able to autoscale a matplotlib figure to make arbitrarily placed text annotations visible .
+I have to refresh the page to get the tooltips back .
+will refresh your system's reference to the bash_profile and you should be good to go in importing and using matplotlib
+Id like the user to be able to update an existing and open axis i.e. to refresh the axis .
+Placing Custom Images in a Plot Window -- as custom data markers or to annotate those markers
+How to annotate / highlight a 3d plot in MatPlotLib
+Well , it takes a loop to annotate all data points , I thought that there should be a function that does just that .
+You can annotate a specific point in the image using ` plt.text ( x , y , str )` .
+To state it in a general form , I'm looking for a way to join several points with a gradient color line using matplotlib , and I'm not finding it anywhere .
+Now instead of straight arrows , I want to join points by curve arrows .
+If you like , join circos's google group to discuss : #URL
+Then join me in upvoting that answer and that comment :-)
+Because there have been closest points but when we join them they lead to an intersections or points which are not so close but should be joined together
+@USER Because Python automatically join two adjacent strings into one string .
+This produces a figure like the first figure at How to join overlapping circles ?
+Matplotlib has lots of pre-defined colormaps for you to use .
+Here are all of the predefined colormaps .
+For me the simplest way is plotting directly the masks with imshow , passing different colormaps .
+There is a list of colormaps to choose from here .
+There is also a way to define custom colormaps .
+The list of available colormaps by default is here .
+You can add your own colormaps to ` _cm.py ` in your mpl directory and then change your rc file .
+How can I tell append_axes that I want to append the y subplot to the right of the " main axes " containing the scatter plot ?
+I got a boxplot graph like this :
+add boxplot to other graph in python
+but when I do it on the ' link ' series I can draw the boxplot correctly .
+and I am able to draw the boxplot .
+Or , more generally , modify / transform to you heart's content , and then boxplot .
+If the ticklabels are already set to a string as in e.g. a boxplot , this is still working .
+How do I add inset axes and zoom in on the first boxplot of the two ?
+I'm not setting the position of each boxplot , so I don't know where they will appear exactly .
+I wanted to add a box for each boxplot with a zoomed-in view on a specific y-axis range .
+UserWarning : 2D hist input should be nsamples x nvariables ;
+I'm doing a hist plot and I want some numbers shown in the plot , so I put in a text box using mathtext for the text , but I doesn't work and I can't see why .
+This lead to my colorbar having sqrt ticks and I want to translate them back to the original values .
+avoiding the local cache when fetching yahoo finance data from matplotlib.finance in python
+I am fetching yahoo finance data in Python through this interface :
+It would also be worth looking at the scatter plot documentation at #URL #CODE
+I am using the following code to stitch a .png into a scatter plot from MATPLOTLIB .
+Now I want to create a scatter plot with the data above ..
+matplotlib : Understanding and changing axis labels for a scatter plot updated incrementally
+I have a script that generates scatter plots for data being generated by a hardware device .
+I build a scatter plot using matplotlib and python2.7
+Build a scatter plot for baz based on the x-axis ( foo ) and y-axis ( bar )
+It is a normal scatter plot .
+Value Error with color array when slicing values for scatter plot
+I want to specify the frequency of markers that are printed in my scatter plot .
+Regression line and fitted curve for scatter plots in matplotlib
