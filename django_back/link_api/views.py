@@ -97,6 +97,7 @@ def extract_entity(request):
 	for idx, line in enumerate(arr):
 		if not line.endswith("O") and line:
 		# if line.endswith("B-API"):
+			# remove remaining part after a tab (only entity name)
 			temp = re.sub('\t(.+)', ' ', line).strip()
 			if (re.search('[a-zA-Z]+', temp)):
 				output.append(temp)
@@ -225,6 +226,7 @@ def link_entity(request):
 					mark = [False] * 4
 					result = {};
 
+					# url
 					a = record.url.lower()
 					r = urlparse.urlsplit(a.encode('ascii','ignore').strip())
 
@@ -232,12 +234,15 @@ def link_entity(request):
 						if(link['domain'] == r.netloc and link['file'] == r.path.rsplit('/', 1)[-1]):
 							mark[0] = True;
 
+					# tag
 					if record.lib in tag_list:
 						mark[1] = True;
 					
+					# title
 					if record.lib in question_title:
 						mark[2] = True;
 
+					# class
 					for valid_class in class_list:
 						# if Levenshtein.ratio(valid_class, record.api_class) > 0.9:
 						if valid_class[0] in record.api_class:
