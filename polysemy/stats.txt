@@ -1,0 +1,14 @@
+matplotlib
+all: 3877
+polysemy: 622
+percentage: 16.04%
+
+numpy
+all: 2217
+polysemy: 923
+percentage: 41.36%
+
+pandas
+all: 774
+polysemy: 426
+percentage: 55.04%
