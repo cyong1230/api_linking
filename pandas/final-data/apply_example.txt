@@ -1226,8 +1226,8 @@ I encounterd the same question and I used a same way like you to solve it . ( ap
 Only better in terms of simpler syntax : ` df.rain_column.map ( d )` , and perhaps faster performance-wise , it depends on data size and type for a dataframe with 100 rows then ` apply ` is marginally faster ( apply 228 us vs map 287us ) , for one with 10000 rows then map is 26 times faster ( map is 512 us vs apply 13 ms )
 Alright , this makes a lot of sense , since apply is more general purpose than map .
 How can I use apply with pandas rolling_corr()
-Also how do we do the same using some applymap or apply / map method of df ?.
-Ok . I understand this is not how Pandas works . I was trying to relate it's functionality with other data analysis tools . But in R , I could do a similar thing using apply method and then using the same if-else statement . It creates the right flag . Isn't pandas an add on of R dataframe with more better features ?. Or do you think we also have a similar way to do this in pandas using some applymap or apply method and if-else construct ?. This is the R code which creates the flag properly :
+Also how do we do the same using some applymap or apply / map method of df ?
+Ok . I understand this is not how Pandas works . I was trying to relate it's functionality with other data analysis tools . But in R , I could do a similar thing using apply method and then using the same if-else statement . It creates the right flag . Isn't pandas an add on of R dataframe with more better features ? Or do you think we also have a similar way to do this in pandas using some applymap or apply method and if-else construct ? This is the R code which creates the flag properly :
 c$Flag -> apply ( c , 1 , function ( X ) {
 Why not just use apply with these functions .
 @USER obviously you have to elaborate . Anyway , like I commented usually it's better to use groupby methods e.g apply .
