@@ -87,11 +87,12 @@ def extract_entity(request):
 	featureextractor.main(os.path.join(settings.STATIC_ROOT, 'demo.conll'), os.path.join(settings.STATIC_ROOT, 'demo.data'))
 	p = subprocess.Popen(['crf_test', '-m', os.path.join(settings.STATIC_ROOT, 'CRFmodel0'), os.path.join(settings.STATIC_ROOT, 'demo.data')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	out, err = p.communicate()
-	with open(os.path.join(settings.STATIC_ROOT, 'result.txt'), 'w') as demo_file:
-		demo_file.write(out)
 	arr = out.splitlines()
-	# output = OrderedDict()
 	output = []
+	
+	# write the output to result.txt
+	# with open(os.path.join(settings.STATIC_ROOT, 'result.txt'), 'w') as demo_file:
+	# 	demo_file.write(out)
 
 	for idx, line in enumerate(arr):
 		if not line.endswith("O") and line:
@@ -107,7 +108,6 @@ def extract_entity(request):
 def link_entity(request):
 	print 'Begin POST'
 	body_unicode = request.body.decode('utf-8')
-	# data = json.loads(body_unicode, object_pairs_hook=OrderedDict)
 	data = json.loads(body_unicode, object_pairs_hook=OrderedDict)
 	data_entity = data["entityList"]
 	data_entity_index = data["entityIndex"]

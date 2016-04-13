@@ -1,0 +1,801 @@
+i	O am	O facing	O this	O strange	O behaviour	O ,	O i	O got	O a	O HDFStore	B-API containing	O DataFrames	O .	O 
+What	O happens	O if	O you	O do	O `	O ax.legend()	B-API `	O and	O `	O plt.draw()	B-API `	O ?	O 
+E.g.	O ,	O you	O can	O call	O `	O pandas.isnull	B-API (	O the_frame	O )`	O .	O 
+do	O this	O :	O ``	O df.ix	B-API [	O 0	O ,	O '	O a	O ']	O +=	O 1	O ``	O .	O 
+Using	O unstack()	B-API is	O one	O way	O .	O 
+Clearly	O I'm	O missing	O something	O as	O to	O why	O df.loc	B-API [:	O ,	O tuple	O ]	O is	O different	O than	O df	O [	O tuple	O ]	O .	O 
+datetime	O dtypes	B-API in	O pandas	O read_csv	B-API 
+If	O you're	O using	O version	O `	O 0.17.0	O `	O or	O higher	O then	O you	O can	O call	O this	O using	O `	O .dt	B-API .strftime	B-API `	O which	O is	O vectorised	O :	O #CODE	O 
+Looks	O like	O you	O need	O histogram()	B-API of	O months	O .	O 
+You	O want	O `	O .dt	B-API .time	B-API `	O see	O the	O docs	O for	O some	O more	O examples	O of	O things	O under	O the	O `	O .dt	B-API `	O accessor	O .	O 
+pd.rolling_apply	B-API (	O df.exma	O ,	O 2	O ,	O (	O df.alpha	O *	O df.exma.shift	O (	O 1	O ))	O +	O ((	O 1	O -	O df.alpha	O )	O *	O df.outperf	O ))	O 
+I	O suggest	O not	O using	O `	O file	O `	O for	O your	O `	O open()	B-API `	O object	O .	O 
+If	O you	O want	O every	O value	O from	O row	O 2	O you	O can	O just	O do	O `	O df.iloc	B-API [	O 2	O ]`	O or	O `	O df.iloc	B-API [	O 2	O ]	O .values	B-API `	O respectively	O .	O 
+dtype	B-API :	O object	O 
+Check	O out	O the	O glob	O module	O and	O pandas	O read_csv()	B-API and	O concat()	B-API 
+`	O np.dtype	B-API (	O '	O datetime64	O [	O ns	O ]')`	O and	O `	O np.dtype	B-API (	O '	O M	O 8[	O ns	O ]')`	O :	O #CODE	O 
+Doing	O `	O pd.crosstab	B-API (	O rows	O =[	O df	O [	O '	O A	O ']	O ,	O df	O [	O '	O B	O ']]	O ,	O cols	O =[	O df	O [	O '	O C	O ']]	O ,	O margins=True	O ,	O aggfu	O 
+DataFrame.drop_duplicates	B-API and	O DataFrame.drop	B-API not	O removing	O rows	O 
+`	O pd.rolling_mean	B-API (	O df	O ,	O num	O )	O .dropna()	B-API .plot()	B-API `	O 
+This	O is	O a	O replacement	O for	O `	O np.array_equal	B-API `	O which	O is	O broken	O for	O nan	O positional	O detections	O (	O and	O object	O dtypes	B-API )	O .	O 
+It	O looks	O like	O `	O pd.unique	O `	O does	O not	O respect	O the	O `	O datetime64	O `	O dtype	B-API :	O #CODE	O 
+df	O [	O '	O NumActivity	O ']	O =	O pd.factorize	B-API (	O df	O [	O '	O Activity	O '])	O [	O 0	O ]	O +1	O works	O .	O 
+calling	O `	O as_matrix()	B-API `	O on	O `	O df	O `	O returns	O a	O `	O numpy.ndarray	B-API `	O object	O #CODE	O 
+And	O using	O pandas.Series.map	B-API :	O #CODE	O 
+works	O ,	O but	O I	O think	O `	O df.select_dtypes	B-API `	O should	O be	O preferred	O since	O it	O uses	O the	O 
+Then	O you	O can	O access	O the	O relevant	O rows	O using	O groupby's	O `	O get_group	B-API `	O :	O #CODE	O 
+It's	O not	O in	O the	O online	O docs	O ,	O you	O have	O to	O check	O the	O `	O help	O (	O pd.bdate_range	B-API )`	O :)	O 
+dtype	B-API :	O int64	O `	O 
+df.drop	B-API ([	O '	O one	O '	O ,	O '	O two	O '	O ,	O '	O three	O ']	O ,	O axis=1	O ,	O inplace=True	O )	O 
+I	O tried	O make	O these	O '	O filenames	O '	O dataFrames	O using	O `	O pd.DataFrame	B-API `	O but	O wasn't	O able	O to	O do	O so	O .	O 
+Try	O using	O .loc	B-API [	O row_index	O ,	O col_indexer	O ]	O =	O value	O instead	O `	O .	O 
+Good	O question	O ,	O `	O plt.hist	B-API (	O hour_list	O ,	O bins=	O np.arange	B-API (	O 24	O )	O -	O 0.5	O )`	O will	O work	O .	O 
+what	O is	O the	O -	O 0.00343	O (	O ah	O I	O see	O ,	O a	O consequence	O of	O not	O using	O right=False	O )	O ,	O pd.cut	B-API very	O neat	O 
+2	O )	O Alternatively	O ,	O don't	O create	O levels	O for	O `	O aa	O `	O and	O `	O bb	O `	O using	O `	O as_index=False	O `	O and	O `	O pd.merge	B-API `	O #CODE	O 
+`	O df.groupby	B-API (	O level	O =[	O '	O major	O '	O ,	O '	O minor	O '])	O .mean()	B-API .dropna()	B-API `	O 
+Argh	O ,	O that	O still	O gives	O me	O `	O dtype	B-API (	O '	O datetime64	O [	O us	O ]')`	O .	O 
+or	O better	O yet	O ,	O just	O don't	O specify	O a	O dtype	B-API :	O #CODE	O 
+I	O was	O trying	O to	O do	O this	O with	O `	O df	O [	O df.shift()	B-API !	O =	O df	O ]	O .dropna()	B-API .reset_index	B-API (	O drop=True	O )`	O but	O `	O shift()	B-API `	O is	O not	O behaving	O in	O the	O way	O I	O meant	O .	O 
+`	O median_search_query	O =	O np.median	B-API (	O df.srch_query_affinity_score	O )`	O 
+Example	O using	O df.asfreq	B-API (	O '	O Q	O ')	O :	O #CODE	O 
+```	O In	O [	O 15	O ]:	O pd.to_timedelta	B-API (	O s.str.replace	O (	O '	O hrs	O '	O ,	O '	O h	O '))	O 
+Python	O Dict	O ,	O Lambda	O x	O ,	O map()	B-API doesn't	O work	O 
+I	O have	O tried	O to	O modify	O your	O answer	O to	O make	O it	O an	O example	O about	O modifying	O two	O columns	O like	O I	O asked	O (	O for	O one	O the	O `	O df.loc	B-API [:	O ,	O (	O '	O A	O '	O ,	O '	O a	O ')]`	O works	O like	O a	O charm	O )	O .	O 
+I	O thought	O np.ma.average	B-API is	O just	O what	O I	O need	O ,	O but	O that	O also	O gives	O me	O NaN	O as	O a	O result	O .	O 
+Although	O ```	O pandas.cut()	B-API ```	O is	O the	O better	O and	O more	O general	O answer	O ,	O it	O looks	O like	O in	O this	O case	O you	O could	O do	O ```	O df	O [	O '	O B	O ']	O =	O (	O df.A	O /	O 500	O )	O .astype	B-API (	O int	O )	O +	O 1	O ```	O .	O 
+outcome	O :	O displays	O good	O in	O `	O df.head()	B-API `	O ,	O but	O reverts	O to	O scientific	O notation	O upon	O coercion	O to	O string	O concatenation	O using	O +	O operator	O 
+The	O `	O ewma	B-API `	O case	O can	O be	O solved	O similarly	O :	O `	O df.groupby	B-API (	O level=0	O )	O .apply	B-API (	O lambda	O x	O :	O pd.ewma	B-API (	O x	O ,	O com=2	O ))`	O 
+I	O didn't	O realise	O that	O `	O .resample()	B-API `	O wasn't	O inplace	O !	O 
+I	O can't	O think	O of	O a	O way	O to	O overload	O the	O `	O .loc	B-API `	O method	O properly	O !	O 
+Do	O I	O have	O to	O specific	O the	O dtypes	B-API to	O make	O this	O work	O ?	O 
+It	O appears	O that	O the	O `	O applymap	B-API `	O is	O the	O culprit	O here	O :-)	O 
+"	O "	O .join	B-API (	O header.split()	O )	O .split	B-API (	O '	O ')	O 
+I	O want	O df.append	B-API (	O df2	O )	O in	O this	O case	O to	O be	O :	O #CODE	O 
+I	O completely	O forgot	O about	O .loc	B-API 
+It	O sounds	O like	O maybe	O you	O want	O `	O pandas.concat	B-API `	O ?	O 
+Is	O there	O anything	O in	O pandas	O that	O is	O the	O opposite	O to	O `	O .dropna()	B-API `	O ?	O 
+Datetimes	O are	O handled	O if	O they	O can	O properly	O be	O converted	O (	O e.g.	O they	O have	O a	O dtype	B-API of	O '	O datetime64	O [	O ns	O ]'	O ,	O notably	O datetimes.date	O are	O NOT	O handled	O (	O NaN	O are	O a	O different	O story	O and	O depending	O on	O usage	O can	O cause	O the	O entire	O column	O type	O to	O be	O mishandled	O )	O 
+The	O `	O args	O `	O and	O `	O kwargs	O `	O parameters	O were	O added	O to	O `	O rolling_apply	B-API `	O in	O Pandas	O version	O 0.14.0	O .	O 
+try	O ``	O df	O [	O '	O LastName	O ']	O =	O df.apply	B-API (	O updateDataframe	O )``	O ,	O but	O even	O better	O is	O :	O ``	O df.ix	B-API [	O df	O [	O '	O LastName	O ']	O ==	O '	O Joe	O '	O ,	O '	O LastName	O ']	O =	O '	O Black	O '``	O 
+There	O should	O be	O no	O problem	O ;	O `	O plt.plot	B-API `	O and	O `	O plt.fill_between	B-API `	O accept	O arrays	O of	O dtype	B-API `	O datetime64	O [	O ns	O ]`	O just	O fine	O .	O 
+You	O could	O try	O pandas	O pivot()	B-API .	O 
+Pandas	O Python	O read_csv	B-API error_bad_lines	O producing	O shell	O feedback	O 
+Though	O in	O some	O respects	O ,	O the	O np.clip	B-API or	O np.max	O solutions	O are	O more	O easily	O read	O ,	O I	O think	O this	O is	O the	O most	O precise	O answer	O to	O my	O original	O question	O .	O 
+Did	O you	O try	O setting	O the	O delimiter	O to	O semicolon	O in	O your	O `	O read_csv	B-API `	O call	O ?	O 
+In	O [	O 8]	O :	O %timeit	O df	O [	O '	O r	O ']	O =	O df	O [[	O '	O minor	O '	O ,	O '	O major	O ']]	O .abs()	B-API .max	B-API (	O axis=1	O )	O 
+I	O guess	O my	O confusion	O stems	O from	O the	O fact	O that	O the	O Series.value_counts	B-API doesn't	O seem	O to	O fit	O into	O the	O arguments	O required	O by	O the	O df.apply	B-API method	O .	O 
+The	O problem	O is	O that	O `	O a	O `	O is	O dtype	B-API `	O object	O `	O .	O 
+try	O `	O video_base	O =	O pd.merge	B-API (	O df_one	O ,	O df_two	O [[	O '	O count_watched_yeterday	O ']]	O ,	O how=	O '	O left	O '	O ,	O left_index=True	O ,	O right_index=True	O )`	O 
+ax.xaxis.set_major_locator	O (	O MultipleLocator	B-API (	O 10	O ))	O 
+Actually	O I	O think	O you	O want	O :	O `	O pd.concat	B-API ([	O df_may	O ,	O df_jun	O ]	O ,	O axis=0	O ,	O ignore_index=True	O )`	O 
+Maybe	O there	O is	O a	O better	O approach	O thats	O takes	O advantage	O of	O features	O of	O the	O Pandas.DataFrame	B-API class	O ?	O 
+Try	O `	O df.loc	B-API [	O '	O a	O ']`	O instead	O .	O 
+Then	O this	O should	O work	O :	O `	O df	O [	O '	O Gene.Symbol	O ']	O =	O df	O [	O '	O Gene.Symbol	O ']	O .str	B-API .strip()	B-API .str	B-API .upper()	B-API `	O 
+then	O [	O `	O df.groupy	O (	O '	O key	O ')	O .agg	B-API (	O ...	O )`]	O (	O #URL	O )	O might	O be	O what	O you	O are	O looking	O for	O .	O 
+DataFrame.apply	B-API in	O python	O pandas	O alters	O both	O original	O and	O duplicate	O DataFrames	O 
+you	O might	O want	O to	O try	O `	O df.iloc	B-API [	O 0	O ]`	O rather	O than	O `	O df.iloc	B-API (	O 0	O )`	O .	O 
+and	O ,	O `	O ts.asfreq	O (	O '	O H	O '	O ,	O method=	O '	O ffill	B-API ')`	O to	O have	O hourly	O frequency	O .	O 
+I	O tried	O something	O like	O `	O set_index	B-API `	O ,	O `	O pd.factorize()	B-API `	O and	O `	O index_col	O `	O but	O they	O do	O not	O work	O .	O 
+So	O df	O =	O df.reindex()	B-API results	O in	O the	O same	O indexing	O ...	O 
+I	O think	O this	O solution	O will	O execute	O faster	O than	O using	O iterrows()	B-API ,	O but	O I'm	O not	O sure	O .	O 
+One	O option	O using	O `	O df.reindex	B-API `	O :	O #CODE	O 
+I	O am	O using	O dtype	B-API as	O suggested	O in	O the	O answer	O there	O .	O 
+You	O might	O be	O interested	O in	O `	O pd.cut	B-API `	O :	O #CODE	O 
+df.groupby	B-API (	O '	O A	O ')	O .size()	B-API .apply	B-API (	O lambda	O x	O :	O float	O (	O x	O )	O /	O df.groupby	B-API (	O '	O A	O ')	O .size()	B-API .sum()	B-API *100	O )	O 
+`	O df.apply()	B-API `	O works	O off	O a	O single	O row	O ,	O `	O shift()	B-API `	O doesnt	O seem	O to	O work	O .	O 
+Could	O you	O try	O this	O :	O `	O df	O [	O '	O GC	O content	O ']	O =	O df	O [[	O '	O oligo_sequence	O ']]	O .apply	B-API (	O lambda	O row	O :	O GC	O (	O row	O )	O ,	O axis=1	O )`	O 
+And	O ,	O `	O pd.eval()	B-API `	O works	O well	O with	O expressions	O containing	O large	O arrays	O #CODE	O 
+The	O eventual	O goal	O being	O to	O arrange	O hierarchically	O to	O weekday	B-API hour-range	O ,	O something	O like	O :	O #CODE	O 
+Reading	O about	O `	O applymap	B-API `	O I	O wondered	O if	O there	O is	O a	O similar	O way	O of	O defining	O and	O applying	O operators	O that	O work	O on	O pairs	O of	O dataframes	O .	O 
+Executing	O your	O code	O with	O pandas	O 0.16.2	O yielded	O the	O two	O columns	O with	O dtype	B-API datetime64	O [	O ns	O ]	O .	O 
+`	O df	O [	O '	O price_trend	O ']	O .apply	B-API (	O lambda	O x	O :[	O i.split	O (	O '	O :	O ')	O for	O i	O in	O x	O ])`	O #CODE	O 
+Here	O the	O new	O value	O AND	O the	O existing	O dtype	B-API of	O the	O column	O matters	O .	O 
+how	O about	O using	O the	O `	O pd.DataFrame.drop_duplicates()	B-API `	O method	O ?	O 
+dtype	B-API :	O timedelta64	O [	O ns	O ]```	O 
+`	O gg	O [	O '	O cumt	O ']	O =	O gg.apply	O (	O lambda	O x	O :	O x	O [	O '	O tavg	O ']	O +	O x	O [	O '	O tavg	O ']	O .shift	B-API (	O 1	O )	O [	O 1	O :]	O )`	O 
+print	O '	O \nAfter	O replace\n	O '	O ,	O df.replace	B-API (	O {	O '	O c1	O '	O :	O c1_fromto	O ,	O '	O c2	O '	O :	O c2_fromto	O }	O )	O 
+Profiling	O shows	O the	O culprit	O is	O obviously	O `	O B.ix	O [	O row	O [	O 0	O ]]	O .irow	B-API (	O np.searchsorted	B-API (	O B.ts	O [	O row	O [	O 0	O ]]	O ,	O row	O [	O 2	O ])))`	O .	O 
+At	O the	O first	O step	O I	O used	O `	O df.T	B-API `	O to	O transpose	O the	O dataframe	O ,	O and	O tried	O something	O like	O `	O df.value_counts()	O `	O ,	O however	O I'd	O 
+Resample	B-API function	O throwing	O error	O with	O Twitter	O Data	O 
+I	O suspect	O this	O has	O something	O to	O do	O with	O the	O aggfunc	B-API ,	O but	O can't	O determine	O to	O what	O it	O should	O be	O changed	O .	O 
+Use	O a	O groupby	B-API to	O get	O at	O each	O combination	O of	O `	O col_1	O `	O and	O `	O col_3	O `	O ,	O then	O unstack	B-API to	O get	O the	O `	O col_3	O `	O values	O as	O columns	O :	O #CODE	O 
+possible	O duplicate	O of	O [	O Pandas	O join	B-API /	O merge	B-API /	O concat	B-API two	O dataframes	O ]	O (	O #URL	O )	O 
+However	O ,	O This	O it	O cannot	O `	O drop	B-API `	O `	O NCDC	O `	O either	O .	O 
+Rather	O than	O concat	O I	O would	O just	O assign	O directly	O to	O the	O df	O after	O `	O shift	O `	O ing	O ,	O then	O use	O `	O iloc	B-API `	O to	O reference	O the	O position	O you	O want	O to	O assign	O the	O row	O ,	O you	O have	O to	O call	O `	O squeeze	B-API `	O so	O that	O you	O assign	O just	O the	O values	O and	O lose	O the	O original	O index	O value	O otherwise	O it'll	O raise	O a	O `	O ValueError	O `	O :	O #CODE	O 
+Is	O there	O a	O standard	O way	O I	O could	O use	O `	O read_table	B-API `	O or	O some	O similar	O function	O to	O read	O this	O file	O directly	O ?	O 
+A	O groupby	B-API should	O try	O to	O use	O vectorized	O functions	O when	O possible	O .	O 
+It	O outputs	O just	O one	O array	O and	O is	O equivalent	O to	O df2	O [	O '	O array	O ']	O .sum()	B-API .	O 
+But	O you	O have	O given	O me	O an	O idea	O with	O apply	B-API .	O 
+You	O need	O `	O apply	B-API (	O your_func	O ,	O axis=1	O )`	O to	O work	O on	O a	O row-by-row	O basis	O .	O 
+Another	O way	O would	O be	O to	O call	O `	O unique	B-API `	O on	O the	O transpose	O of	O your	O df	O :	O #CODE	O 
+So	O my	O final	O goal	O is	O to	O drop	B-API values	O in	O one	O column	O of	O a	O `	O pandas	O `	O `	O DataFrame	O `	O according	O to	O some	O condition	O on	O another	O column	O of	O the	O same	O `	O DataFrame	O `	O ,	O plus	O several	O next	O values	O e.g.	O :	O #CODE	O 
+We	O can	O use	O the	O boolean	O condition	O index	O to	O slice	O the	O df	O using	O `	O loc	B-API `	O and	O set	O the	O following	O values	O :	O #CODE	O 
+Note	O ,	O `	O showbox	O `	O and	O `	O whiskerprops	O `	O are	O the	O `	O kwds	O `	O of	O boxplot	O ,	O which	O are	O in	O turn	O passed	O to	O `	O matplotlib.boxplot	B-API `	O .	O 
+Applying	O aggregate	B-API function	O on	O columns	O of	O Pandas	O pivot	O table	O 
+I	O could	O do	O a	O left	O merge	B-API ,	O but	O I	O would	O end	O up	O with	O a	O huge	O file	O .	O 
+Is	O there	O any	O way	O to	O add	O specific	O rows	O from	O df2	O to	O df1	O using	O merge	B-API ?	O 
+Unclear	O why	O you	O think	O a	O left	O merge	B-API would	O produce	O a	O huge	O file	O ,	O by	O performing	O a	O left	O merge	B-API on	O the	O product	O id	O you	O are	O stating	O that	O you	O are	O only	O interested	O in	O matches	O in	O the	O product_id	O column	O only	O 
+Just	O perform	O a	O left	O `	O merge	B-API `	O on	O '	O product_id	O '	O column	O :	O #CODE	O 
+The	O only	O way	O I	O can	O think	O of	O is	O to	O add	O an	O arbitrary	O field	O to	O people_usa	O (	O e.g.	O `	O people_usa	O [	O '	O dummy	O ']	O =1	O `)	O ,	O do	O a	O left	O join	B-API ,	O then	O take	O only	O the	O records	O where	O '	O dummy	O '	O is	O nan	O ,	O then	O delete	O the	O dummy	O field	O -	O which	O seems	O a	O bit	O convoluted	O .	O 
+You	O could	O do	O a	O `	O merge	B-API `	O and	O then	O eliminate	O the	O rows	O that	O exist	O in	O the	O merged	O df	O otherwise	O you'd	O have	O to	O build	O a	O boolean	O condition	O for	O all	O the	O columns	O you	O want	O to	O compare	O but	O presumably	O when	O checking	O the	O multiple	O columns	O you're	O stating	O that	O it's	O unique	O for	O those	O columns	O ,	O correct	O ?	O 
+Yes	O merge	B-API is	O what	O I	O have	O been	O doing	O but	O it	O feels	O like	O a	O hassle	O .	O 
+I've	O come	O up	O with	O this	O ,	O using	O itertools	B-API ,	O to	O find	O mid-day	O timestamps	O and	O group	O them	O by	O date	O ,	O and	O now	O I'm	O coming	O up	O short	O trying	O to	O apply	O imap	O to	O find	O the	O means	O .	O 
+Since	O not	O sure	O what	O your	O end	O output	O should	O look	O like	O ,	O just	O create	O a	O time-based	O grouper	B-API manually	O (	O this	O is	O essentially	O a	O resample	B-API )	O ,	O but	O doesn't	O do	O anything	O with	O the	O final	O results	O (	O its	O just	O a	O list	O of	O the	O aggregated	O values	O )	O #CODE	O 
+e.g.	O with	O values	O of	O srowb	O =	O 1	O and	O erowb	O =	O 18	O it	O will	O generate	O a	O list	O (	O tmp_brollb	O )	O which	O has	O either	O len	B-API (	O tmp_brollb	O )	O =	O 17	O or	O len	B-API (	O tmp_brollb	O )	O =	O 18	O 
+Use	O `	O max	B-API `	O and	O check	O for	O equality	O using	O `	O eq	B-API `	O and	O cast	O the	O boolean	O df	O to	O int	O using	O `	O astype	B-API `	O ,	O this	O will	O convert	O `	O True	O `	O and	O `	O False	O `	O to	O `	O 1	O `	O and	O `	O 0	O `	O :	O #CODE	O 
+`	O for	O i	O in	O range	O (	O len	B-API (	O df	O )):	O ...	O 
+df.loc	B-API [	O i	O ]	O [	O df.loc	B-API [	O i	O ]	O .idxmax	B-API (	O axis=1	O )]	O =	O 1	O ...	O 
+df.loc	B-API [	O i	O ]	O [	O df.loc	B-API [	O i	O ]	O !	O =	O 1	O ]	O =	O 0	O `	O 
+By	O default	O fillna	B-API will	O use	O the	O index	O so	O how	O do	O you	O want	O the	O mapping	O from	O `	O ds2	O `	O to	O map	O to	O the	O missing	O values	O in	O `	O ds1	O `	O ?	O 
+When	O using	O `	O DataFrame.apply	B-API `	O if	O you	O use	O `	O axis=0	O `	O it	O applies	O the	O condition	O through	O columns	O ,	O to	O use	O `	O apply	B-API `	O to	O go	O through	O each	O row	O ,	O you	O need	O `	O axis=1	O `	O .	O 
+But	O given	O that	O ,	O you	O can	O use	O `	O Series.apply	B-API `	O instead	O of	O `	O DataFrame.apply	B-API `	O on	O the	O `'	O diff	B-API '`	O series	O .	O 
+You	O can	O just	O set	O all	O the	O values	O that	O meet	O your	O criteria	O rather	O than	O looping	O over	O the	O df	O by	O calling	O `	O apply	B-API `	O so	O the	O following	O should	O work	O and	O as	O it's	O vectorised	O will	O scale	O better	O for	O larger	O datasets	O :	O #CODE	O 
+this	O will	O set	O all	O rows	O that	O meet	O the	O criteria	O ,	O the	O problem	O using	O `	O apply	B-API `	O is	O that	O it's	O just	O syntactic	O sugar	O for	O a	O `	O for	O `	O loop	O and	O where	O possible	O this	O should	O be	O avoided	O where	O a	O vectorised	O solution	O exists	O .	O 
+Then	O you	O can	O `	O stack	B-API `	O (	O first	O by	O `'	O Marker	O '`	O then	O by	O `'	O mrk	O '`)	O :	O #CODE	O 
+You	O could	O do	O this	O using	O 2	O `	O loc	B-API `	O calls	O :	O #CODE	O 
+``	O hist	B-API ``	O ->	O ``	O histogram	O ``	O (	O ``	O hist	B-API ``	O is	O pyplot	B-API or	O something	O )	O .	O 
+There	O is	O a	O pandas	O equivalent	O to	O this	O `	O cut	B-API `	O there	O is	O a	O section	O describing	O this	O here	O .	O 
+`	O cut	B-API `	O returns	O the	O open	O closed	O intervals	O for	O each	O value	O :	O #CODE	O 
+Pandas	O Dataframe	O ,	O Apply	B-API Function	O ,	O Return	O Index	O 
+`	O df.precedingWord.isin	O (	O neuter	O )`	O is	O just	O a	O Series	O of	O True	O or	O False	O (	O results	O of	O the	O previous	O test	O `	O isin	B-API `)	O ,	O and	O pandas	O will	O just	O access	O True	O indexes	O with	O `	O loc	B-API `	O 
+I	O have	O tried	O a	O some	O join	B-API /	O merge	B-API ideas	O but	O can't	O seem	O to	O get	O it	O to	O work	O .	O 
+Just	O `	O concat	B-API `	O them	O and	O pass	O param	O `	O axis=1	O `	O :	O #CODE	O 
+Or	O `	O merge	B-API `	O on	O '	O Symbol	O '	O column	O :	O #CODE	O 
+Now	O `	O apply	B-API `	O needs	O to	O return	O a	O `	O Series	B-API `	O ,	O not	O a	O `	O DataFrame	O `	O .	O 
+One	O way	O to	O turn	O a	O `	O DataFrame	O `	O into	O a	O `	O Series	B-API `	O is	O to	O use	O `	O stack	B-API `	O .	O 
+`	O stack	B-API `	O this	O DataFrame	O .	O 
+This	O can	O be	O done	O with	O `	O unstack	B-API `	O :	O #CODE	O 
+`	O del	O `	O +	O `	O pivot	B-API `	O turns	O out	O to	O be	O faster	O than	O `	O pivot_table	B-API `	O in	O this	O case	O .	O 
+Maybe	O the	O reason	O `	O pivot	B-API `	O exists	O is	O because	O it	O is	O faster	O than	O `	O pivot_table	B-API `	O for	O those	O cases	O where	O it	O is	O applicable	O (	O such	O as	O when	O you	O don't	O need	O aggregation	O )	O .	O 
+`	O apply	B-API `	O is	O now	O among	O my	O top	O 5	O functions	O to	O always	O remember	O .	O 
+Concerning	O the	O `	O pivot_table	B-API `	O solution	O :	O At	O which	O point	O am	O I	O supposed	O to	O enter	O the	O line	O ?	O 
+Or	O pass	O `	O axis=0	O `	O to	O `	O loc	B-API `	O :	O #CODE	O 
+I've	O got	O 2	O pandas	O dataframes	O ,	O each	O of	O them	O has	O an	O index	O with	O dtype	B-API `	O object	O `	O ,	O and	O in	O both	O of	O them	O I	O can	O see	O the	O value	O `	O 533	O `	O .	O 
+However	O ,	O when	O I	O join	B-API them	O the	O result	O is	O empty	O ,	O as	O one	O of	O them	O is	O the	O number	O `	O 533	O `	O and	O the	O other	O is	O a	O string	O `"	O 533	O "`	O .	O 
+Ideally	O I	O would	O like	O something	O like	O `	O apply_chunk()	O `	O which	O is	O the	O same	O as	O apply	B-API but	O only	O works	O on	O a	O piece	O of	O the	O dataframe	O .	O 
+whats	O about	O using	O the	O apply	B-API method	O ?	O 
+Anytime	O you	O find	O yourself	O using	O `	O apply	B-API `	O or	O `	O iloc	B-API `	O in	O a	O loop	O it's	O likely	O that	O Pandas	O is	O operating	O much	O slower	O than	O is	O optimal	O .	O 
+Convert	O freq	O string	O to	O DateOffset	B-API in	O pandas	O 
+In	O pandas	O documentation	O one	O can	O read	O "	O Under	O the	O hood	O ,	O these	O frequency	O strings	O are	O being	O translated	O into	O an	O instance	O of	O pandas	O DateOffset	B-API "	O when	O speaking	O of	O freq	O string	O such	O as	O "	O W	O "	O or	O "	O W-SUN	O "	O .	O 
+yes	O ,	O `	O isnull	B-API `	O will	O create	O a	O boolean	O series	O ,	O `	O all	B-API `	O returns	O `	O True	O `	O if	O all	O are	O `	O True	O `	O 
+I	O would	O like	O to	O read	O in	O a	O csv	O file	O iteratively	O ,	O append	O each	O chunk	O into	O HDFStore	B-API object	O ,	O and	O then	O work	O with	O subsets	O of	O the	O data	O .	O 
+If	O it's	O six	O ,	O then	O you	O can	O use	O join	B-API method	O by	O @USER	O Hayden	O .	O 
+Then	O you	O can	O simply	O `	O join	B-API `	O them	O :	O #CODE	O 
+@USER	O when	O you	O do	O a	O join	B-API with	O 2x2	O duplicates	O you	O get	O 4	O in	O the	O joined	O DataFrame	O .	O 
+I	O can	O easily	O do	O this	O iteratively	O with	O loops	O ,	O but	O I've	O read	O that	O you're	O supposed	O to	O slice	B-API /	O merge	B-API /	O join	B-API data	O frames	O holistically	O ,	O so	O I'm	O trying	O to	O see	O if	O I	O can	O find	O a	O better	O way	O of	O doing	O this	O .	O 
+A	O join	B-API will	O give	O me	O all	O the	O stuff	O that	O matches	O ,	O but	O that's	O not	O exactly	O what	O I'm	O looking	O for	O ,	O since	O I	O need	O a	O resulting	O dataframe	O for	O each	O key	O (	O i.e.	O for	O every	O row	O )	O in	O A	O .	O 
+Under	O the	O covers	O ,	O these	O are	O really	O similar	O uses	O of	O `	O apply	B-API `	O .	O 
+`	O loop_iter	O =	O len	B-API (	O A	O )	O /	O max	B-API (	O A	O [	O '	O SEQ_NUM	O '])	O 
+Easy	O way	O to	O apply	O transformation	O from	O `	O pandas.get_dummies	B-API `	O to	O new	O data	O ?	O 
+As	O an	O aside	O that	O may	O help	O you	O in	O the	O meantime	O ,	O with	O datetime-indexed	O data	O ,	O [	O resample	B-API ]	O (	O #URL	O )	O is	O usually	O a	O better	O choice	O than	O reindex	B-API .	O 
+Call	O `	O transform	B-API `	O on	O the	O '	O measurement	O '	O column	O and	O pass	O the	O method	O `	O diff	B-API `	O ,	O transform	B-API returns	O a	O series	O with	O an	O index	O aligned	O to	O the	O original	O df	O :	O #CODE	O 
+If	O you	O are	O intending	O to	O apply	O some	O sorting	O on	O the	O result	O of	O `	O transform	B-API `	O then	O sort	O the	O df	O first	O :	O #CODE	O 
+Or	O you	O can	O slice	O the	O columns	O and	O pass	O this	O to	O `	O drop	B-API `	O :	O #CODE	O 
+the	O documentation	O to	O concat	B-API is	O impenetrable	O and	O its	O hard	O to	O find	O examples	O of	O this	O relatively	O simple	O task	O in	O the	O docs	O 
+If	O you	O had	O not	O called	O `	O apply	B-API `	O on	O the	O `	O groupby	B-API `	O object	O then	O you	O could	O access	O the	O `	O groups	B-API `	O :	O #CODE	O 
+pandas	O groupby	B-API X	O ,	O Y	O and	O select	O last	O week	O of	O X1	O and	O X2	O (	O which	O have	O diff	O frequency	O )	O 
+Then	O you	O can	O select	O the	O rows	O you	O want	O in	O an	O apply	B-API call	O on	O the	O grouped	O object	O :	O #CODE	O 
+If	O you	O can't	O upgrade	O or	O don't	O solve	O the	O issue	O you	O have	O with	O 0.14	O ,	O you	O can	O try	O to	O use	O `	O ix	B-API `	O instead	O of	O `	O iloc	B-API `	O 
+You	O can	O use	O `	O to_csv	B-API (	O path	O ,	O mode=	O '	O a	O ')`	O to	O append	O files	O .	O 
+Use	O `	O shift	B-API `	O and	O `	O np.log	B-API `	O :	O #CODE	O 
+This	O new	O field	O is	O a	O constructed	O url	O ,	O which	O will	O then	O be	O processed	O by	O the	O requests.post()	B-API method	O .	O 
+Do	O you	O know	O if	O append	B-API returns	O a	O copy	O /	O view	O /	O reference	O of	O the	O original	O dataframe	O ?	O 
+You	O could	O pass	O an	O argument	O to	O `	O apply	B-API `	O :	O #CODE	O 
+Originally	O ,	O I	O used	O append	B-API api	O to	O create	O a	O single	O table	O '	O impression	O '	O ,	O however	O that	O was	O taking	O 80sec	O per	O dataframe	O and	O given	O that	O I	O have	O almost	O 200	O of	O files	O to	O be	O processed	O ,	O the	O '	O append	B-API '	O appeared	O to	O be	O too	O slow	O .	O 
+Also	O ,	O why	O is	O append	B-API so	O much	O slower	O than	O put	O ?	O 
+pandas	O merge	B-API with	O MultiIndex	B-API ,	O when	O only	O one	O level	O of	O index	O is	O to	O be	O used	O as	O key	O 
+This	O is	O almost	O (	O I	O think	O ?	O )	O a	O standard	O many-to-one	O merge	O ,	O except	O that	O the	O appropriate	O key	O for	O the	O left	O df	O is	O one	O of	O MultiIndex	B-API levels	O .	O 
+Or	O is	O there	O a	O better	O approach	O to	O this	O merge	B-API ?	O 
+loc	B-API will	O not	O attempt	O to	O use	O a	O number	O (	O eg	O 1	O )	O as	O a	O positional	O argument	O at	O all	O (	O and	O will	O raise	O instead	O );	O see	O main	O pandas	O docs	O /	O selecting	O data	O 
+I	O guess	O `	O groupby	B-API `	O should	O be	O used	O but	O I	O find	O this	O format	O very	O cryptic	O so	O it's	O hard	O to	O translate	O to	O python	O 
+EDIT	O :	O in	O regards	O to	O Edchum's	O answers	O ,	O I	O have	O tried	O merge	B-API and	O join	B-API but	O each	O create	O somewhat	O strange	O tables	O .	O 
+OK	O ,	O what	O you	O have	O to	O do	O is	O reindex	B-API or	O reset	B-API the	O index	O so	O they	O align	O 
+Use	O `	O concat	B-API `	O and	O pass	O param	O `	O axis=1	O `	O :	O #CODE	O 
+`	O join	B-API `	O also	O works	O :	O #CODE	O 
+As	O does	O `	O merge	B-API `	O :	O #CODE	O 
+To	O fix	O this	O you	O can	O reindex	O the	O second	O df	O either	O by	O calling	O `	O reset_index()	B-API `	O or	O assign	O directly	O like	O so	O :	O `	O df2.index	O =[	O 0	O ,	O 1	O ]`	O .	O 
+This	O argument	O is	O new	O in	O 1.9	O ...	O but	O there	O is	O a	O workaround	O ,	O try	O `	O np.linspace	B-API (	O 0	O ,	O len	B-API (	O pep_list	O )	O ,	O n+1	O ,	O endpoint=True	O )	O .astype	B-API (	O int	O )`	O 
+Take	O the	O time	O difference	O (	O using	O `	O shift	B-API `	O )	O til	O the	O next	O value	O ,	O and	O multiply	O (	O value	O *	O seconds	O ):	O #CODE	O 
+you	O can	O isnull	B-API (	O df	O [	O '	O difference	O '])	O will	O give	O True	O on	O NaT	O ,	O so	O you	O could	O subtract	O then	O use	O mask	B-API I	O think	O 
+Another	O solution	O (	O slightly	O harder	O ):	O Merge	O the	O columns	O `	O transcript_id	O `	O ,	O `	O gene_id	O `	O and	O `	O gene_name	O `	O in	O another	O column	O ,	O say	O `	O merged_id	O `	O and	O `	O groupby	B-API `	O on	O `	O merged_id	O `	O .	O 
+For	O each	O group	O in	O the	O groupby	B-API object	O ,	O we	O will	O want	O to	O apply	O a	O function	O :	O #CODE	O 
+That's	O done	O with	O `	O applymap	B-API `	O :	O #CODE	O 
+Given	O a	O time	O `	O t	O `	O ,	O we	O can	O select	O the	O `	O Value	O `	O s	O from	O `	O subf	O `	O whose	O times	O are	O in	O the	O half-open	O interval	O `	O (	O t-60	O ,	O t	O ]`	O using	O the	O `	O ix	B-API `	O method	O :	O #CODE	O 
+My	O data	O is	O in	O a	O DataFrame	O of	O about	O 10378	O rows	O and	O `	O len	B-API (	O df	O [	O '	O Full	O name	O '])`	O is	O 10378	O ,	O as	O expected	O .	O 
+But	O `	O len	B-API (	O choices	O )`	O is	O only	O 1695	O .	O 
+I'm	O fairly	O certain	O that	O the	O issue	O is	O in	O the	O first	O line	O ,	O with	O the	O `	O to_dict()	B-API `	O function	O ,	O as	O `	O len	B-API (	O df	O [	O '	O Full	O name	O ']	O .astype	B-API (	O str	O )`	O results	O in	O 10378	O and	O `	O len	B-API (	O df	O [	O '	O Full	O name	O ']	O .to_dict()	B-API )`	O results	O in	O 1695	O .	O 
+what	O is	O `	O len	B-API (	O df.index.unique()	O )`	O ?	O 
+@USER	O using	O `	O choices	O =	O dict	O (	O zip	O (	O df	O [	O '	O n	O ']	O ,	O df	O [	O '	O Full	O name	O ']	O .astype	B-API (	O str	O )))`	O ,	O where	O df	O [	O '	O n	O ']	O is	O np.arange	B-API (	O len	B-API (	O df	O ))	O ,	O worked	O fine	O and	O got	O what	O I	O needed	O .	O 
+This	O is	O what	O is	O happening	O in	O your	O case	O ,	O and	O noted	O from	O the	O comments	O ,	O since	O the	O amount	O of	O `	O unique	O `	O values	O for	O the	O index	O are	O only	O `	O 1695	O `	O ,	O we	O can	O confirm	O this	O by	O testing	O the	O value	O of	O `	O len	B-API (	O df.index.unique()	O )`	O .	O 
+The	O other	O way	O is	O much	O easier	O and	O involves	O using	O `	O resample	B-API `	O to	O convert	O to	O daily	O observations	O and	O backfill	O daily	O consumption	O .	O 
+Basically	O ,	O after	O calculating	O the	O daily	O consumption	O ,	O do	O a	O partial	O resample	B-API by	O adding	O the	O first	O and	O last	O day	O of	O each	O month	O .	O 
+I	O will	O implement	O it	O and	O see	O how	O it	O goes	O ,	O but	O can	O you	O also	O explain	O what	O '	O 1d	O '	O means	O in	O the	O resample	B-API method	O ?	O 
+@USER	O '	O 1d	O '	O just	O means	O 1	O day	O for	O the	O frequency	O of	O the	O resample	B-API .	O 
+Can	O you	O post	O an	O example	O data	O and	O df	O ,	O your	O text	O description	O is	O not	O clear	O enough	O but	O generally	O you	O want	O to	O merge	O and	O pass	O the	O list	O of	O cols	O to	O merge	O the	O ;	O hs	O and	O rhs	O on	O :	O `	O pd.merge	B-API (	O df1	O ,	O df2	O ,	O left_on	O =[	O '	O Key_Merge1	O '	O ,	O '	O Key_Merge21	O ']	O ,	O right_on	O =[	O '	O Key_Merge1	O '	O ,	O '	O Key_merge22	O '])`	O 
+OK	O ,	O you	O have	O to	O rename	O '	O PRODUCT_GROUP	O '	O in	O DF2	O in	O order	O for	O the	O `	O merge	B-API `	O to	O work	O :	O #CODE	O 
+the	O merge	B-API will	O naturally	O find	O the	O 2	O columns	O that	O match	O and	O perform	O an	O inner	O merge	B-API as	O desired	O 
+How	O to	O merge	O two	O DataFrame	O columns	O and	O apply	O pandas.to_datetime	B-API to	O it	O ?	O 
+The	O one-liner	O also	O employs	O some	O other	O tricks	O :	O Pandas	O '	O `	O map	B-API `	O and	O `	O diff	B-API `	O methods	O and	O a	O `	O lambda	O `	O function	O .	O 
+`	O map	B-API `	O is	O used	O to	O apply	B-API the	O `	O lambda	O `	O function	O to	O all	O rows	O .	O 
+There	O is	O a	O built	O in	O method	O for	O this	O `	O diff	B-API `	O :	O #CODE	O 
+as	O pointed	O out	O calling	O `	O diff	B-API `	O here	O will	O lose	O the	O first	O row	O so	O I'm	O using	O a	O ugly	O hack	O where	O I	O concatenate	O the	O first	O row	O with	O the	O result	O of	O the	O `	O diff	B-API `	O so	O I	O don't	O lose	O the	O first	O row	O 
+Using	O `	O diff	B-API `	O like	O this	O drops	O the	O first	O row	O .	O 
+Jeff	O ,	O I	O updated	O sec_id	O and	O dt	B-API in	O the	O dataframe	O .	O 
+0.12	O is	O fine	O ;	O FYI	O the	O format	O keyword	O doesn't	O do	O anything	O with	O append	B-API (	O and	O it's	O for	O 0.13	O anyhow	O );	O append	B-API always	O is	O a	O table	O 
+Since	O pandas	O '	O `	O resample	B-API `	O function	O has	O a	O `	O how	O `	O keyword	O that	O is	O supposed	O to	O be	O any	O numpy	O array	O function	O ,	O I	O thought	O that	O I	O could	O maybe	O try	O to	O use	O resample	B-API to	O do	O that	O with	O `	O polyfit	B-API `	O ,	O but	O apparently	O there	O is	O no	O way	O (	O right	O ?	O )	O .	O 
+Doesn't	O DataFrame.apply()	B-API default	O to	O inplace	O ?	O 
+There	O is	O no	O inplace	O parameter	O to	O the	O apply	B-API function	O .	O 
+Even	O if	O it	O doesn't	O default	O to	O inplace	O ,	O shouldn't	O it	O provide	O an	O inplace	O parameter	O the	O way	O replace()	B-API does	O ?	O 
+No	O ,	O apply	B-API does	O not	O work	O inplace*	O .	O 
+In	O general	O apply	B-API is	O slow	O (	O since	O you	O are	O basically	O iterating	O through	O each	O row	O in	O python	O )	O ,	O and	O the	O "	O game	O "	O is	O to	O rewrite	O that	O function	O in	O terms	O of	O pandas	O /	O numpy	O native	O functions	O and	O indexing	O .	O 
+*	O apply	B-API is	O not	O usually	O going	O to	O make	O sense	O inplace	O (	O and	O IMO	O this	O behaviour	O would	O rarely	O be	O desired	O )	O .	O 
+You	O can	O use	O the	O vectorised	O `	O str	B-API `	O methods	O to	O replace	O the	O unwanted	O characters	O and	O then	O cast	O the	O type	O to	O int	O :	O #CODE	O 
+perhaps	O `	O reindex	B-API `	O creates	O a	O new	O dataframe	O ,	O `	O ix	B-API `	O returns	O a	O view	O 
+@USER	O you	O are	O ,	O of	O course	O ,	O absolutely	O right	O .	O what	O do	O `	O loc	B-API `	O and	O `	O iloc	B-API `	O do	O ?	O 
+The	O reason	O for	O the	O seeming	O redundancy	O is	O that	O ,	O while	O using	O `	O ix	B-API `	O is	O syntacticly	O limiting	O (	O you	O can	O only	O pass	O a	O single	O argument	O to	O `	O __getitem__	O `)	O ,	O `	O reindex	B-API `	O is	O a	O method	O ,	O which	O supports	O taking	O various	O optional	O parameters	O .	O 
+I	O am	O getting	O different	O results	O when	O using	O `	O reindex	B-API `	O with	O `	O inplace=True	O `	O vs	O using	O `	O ix	B-API `	O (	O I	O updated	O the	O OP	O )	O 
+To	O find	O points	O skipped	O due	O to	O NA	O ,	O try	O the	O `	O isnull	B-API `	O method	O :	O `	O df	O [	O df.col3.isnull()	O ]`	O 
+Why	O do	O you	O say	O that	O reusing	O plt.figure	B-API will	O lead	O to	O memory	O issues	O ?	O 
+I	O am	O using	O matplotlib.pyplot	B-API to	O create	O histograms	O .	O 
+I	O corrected	O this	O using	O the	O `	O set_position	B-API `	O command	O .	O 
+`	O np.asarray	B-API (	O Image.fromarray	O (	O image.astype	O (	O '	O uint8	O ')	O *255	O )	O .convert	B-API (	O '	O L	O '))	O .astype	B-API (	O float	O )	O /	O 255	O `	O 
+python	O :	O ImportError	O :	O No	O module	O named	O patheffects	B-API 
+import	O matplotlib.patheffects	B-API 
+`	O plt.bar	B-API (	O left	O ,	O height	O ,	O width=	O 0.8	O ,	O bottom=None	O ,	O hold=None	O ,	O **	O kwargs	O )`	O 
+I	O typically	O have	O them	O in	O the	O ax.plot	B-API line	O .	O 
+my	O attempt	O to	O define	O the	O aspect	O ratio	O for	O both	O `	O y	O `	O -axis	O while	O using	O `	O twinx	B-API `	O (	O which	O does	O not	O work	O )	O 
+For	O each	O of	O this	O point	O ,	O I	O can	O calculate	O the	O value	O of	O my	O unordered	O categorical	B-API variable	O X	O .	O 
+You	O can	O achieve	O it	O using	O the	O `	O ScalarFormatter	B-API `	O :	O #CODE	O 
+@USER	O how	O is	O hexbin	B-API useful	O here	O ?	O 
+Hmm	O ,	O doesn't	O look	O like	O there	O is	O anything	O obvious	O is	O rcParams	B-API or	O the	O matplotlibrc	O file	O .	O 
+What	O you're	O doing	O is	O aliasing	O (	O "	O renaming	O ")	O matplotlib.font_manager	B-API to	O FontProperties	B-API so	O calling	O fontP	O =	O FontProperties()	B-API is	O actually	O calling	O matplotlib.font_manager	B-API which	O is	O not	O callable	O .	O 
+I	O think	O changing	O the	O arrowstyle	B-API will	O help	O here	O .	O 
+plt.plot	B-API (	O x	O ,	O z	O )	O 
+`	O plt.tight_layout	B-API (	O pad=	O 2.0	O ,	O h_pad=	O 6.5	O ,	O w_pad=	O 4.5	O )`	O gives	O the	O desired	O result	O (	O Fig.3	O )	O .	O 
+Should	O work	O without	O the	O line	O `	O X	O ,	O Y	O =	O np.meshgrid	B-API (	O X	O ,	O Y	O )`	O .	O 
+O1	O =	O np.array	B-API (	O new_OI	O )	O 
+There's	O no	O need	O for	O a	O vector	O representation	O of	O each	O pixel	O ,	O and	O `	O imshow	B-API `	O will	O be	O much	O faster	O .	O 
+So	O definitely	O not	O in	O an	O equidistant	O meshgrid	B-API .	O 
+Inserted	O after	O pyplot.savefig()	B-API and	O the	O problem	O seems	O to	O be	O solved	O .	O 
+`	O numpy.polyfit	B-API (	O x	O ,	O y	O ,	O deg	O ,	O rcond=None	O ,	O full=False	O ,	O w=None	O ,	O cov=False	O )`	O 
+Simply	O putting	O in	O :	O `	O bbox	O =d	O ict	O (	O facecolor=	O '	O blue	O '	O ,	O alpha=	O 0.5	O )`	O in	O the	O ax.text	B-API statement	O changes	O the	O color	O .	O 
+ax.set_xticks	B-API ([	O "	O 1975-01-01	O "	O ,	O "	O 1980-01-01	O "	O ,	O "	O 1985-01-01	O "	O ,	O "	O 1990-01-01	O "	O ,	O "	O 1995-01-01	O "	O ,	O 
+Also	O ,	O don't	O mix	O `	O pyplot	B-API `	O with	O guis	O (	O unless	O you	O are	O explicitly	O using	O a	O non-interactive	O backend	O )	O .	O 
+FuncAnimation	B-API 
+`	O x2	O '	O =	O -mu	O /	O np.sqrt	B-API (	O x	O **	O 2	O +	O y	O **	O 2	O +	O z	O **	O 2	O )	O *	O x	O `	O ,	O 
+matplotlib.pyplot.stem	B-API (	O *args	O ,	O **	O kwargs	O )	O 
+I've	O confirmed	O that	O this	O works	O for	O `	O plot()	B-API `	O as	O well	O as	O `	O imshow()	B-API `	O .	O 
+PCA	B-API (	O X	O )	O is	O not	O the	O same	O thing	O as	O PCA	B-API (	O X.T	O )	O .T	B-API 
+I	O should	O have	O used	O OffsetImage	B-API and	O AnnotationBbox	B-API .	O 
+Using	O GridSpec	B-API 
+Try	O removing	O that	O argument	O from	O your	O call	O to	O `	O streamplot	B-API `	O .	O 
+Try	O ``	O ax.text	B-API (	O 0	O ,	O 0	O ,	O '	O whatever	O ')``	O .	O 
+matplotlib	O tripcolor	B-API -	O removing	O edges	O 
+`	O ax.xaxis.get_children()	O [	O 1	O ]	O .set_size	B-API (	O 15	O )`	O 
+I	O have	O tried	O lots	O of	O different	O combinations	O of	O the	O ax.plot()	B-API part	O ,	O but	O if	O I	O change	O it	O to	O :	O #CODE	O 
+but	O i	O want	O to	O keep	O the	O ytick	B-API marks	O only	O on	O the	O left	O hand	O side	O .	O thank	O you	O .	O 
+fig	O is	O defined	O as	O :	O `	O fig	O =	O plt.figure()	B-API `	O 
+We	O used	O the	O same	O method	O ,	O but	O I	O somehow	O missed	O `	O set_markeredgewidth	B-API `	O .	O 
+--->	O 29	O import	O matplotlib.colorbar	B-API 
+ax.plot	B-API (	O r.date	O ,	O r.close	O )	O 
+plt.plot()	B-API 
+The	O `	O .format	B-API `	O form	O is	O the	O preferred	O way	O to	O do	O string	O formatting	O now	O as	O opposed	O to	O the	O `	O %	O `	O operator	O .	O 
+`	O GridSpec	B-API `	O works	O for	O me	O (	O `	O matplotlib	O `	O v1.5.0	O in	O case	O it	O matters	O ):	O #CODE	O 
+A	O search	O of	O the	O `	O matplotlib.pyplot	B-API `	O API	O documentation	O does	O not	O reveal	O anything	O ,	O so	O I'm	O afraid	O you'll	O have	O to	O live	O with	O using	O `	O matplotlib.patches.Ellipse	B-API `	O 
+for	O why	O `	O LinearSegmentedColormap	B-API `	O shows	O strange	O color	O ,	O I	O think	O this	O link	O would	O be	O helpful	O .	O 
+I	O did	O so	O both	O in	O the	O Windows	O shell	O and	O emacs	O shell	O and	O the	O same	O PYTHONPATH	O is	O used	O .	O doing	O the	O rcParams	B-API both	O return	O TkAgg	O .	O 
+However	O ,	O the	O savefig()	B-API output	O is	O too	O zoomed	O out	O ,	O too	O general	O .	O 
+plt.imshow	B-API (	O Xt	O [	O 0	O ,	O :]	O .reshape	B-API (	O 105,105	O )	O .T	B-API ,	O interpolation=	O '	O nearest	O '	O ,	O cmap=	O cm.Greys_r	O )	O and	O it	O gives	O me	O the	O correct	O flipped	O output	O .	O 
+See	O [	O `	O matplotlib.pyplot.contourf	B-API `]	O (	O #URL	O )	O for	O example	O .	O 
+Why	O pyplot	B-API (	O matplotlib	O )	O is	O joining	O points	O randomly	O ?	O 
+x	O =	O np.array	B-API ([	O 1	O ,	O 3	O ,	O 4	O ])	O ,	O ([	O 1	O ,	O 2	O ])	O 
+`	O np.arange	B-API `	O doc	O 
+plt.colorbar	B-API (	O cs	O )	O 
+`	O tick_params	B-API `	O should	O do	O it	O .	O 
+I	O have	O experiemented	O with	O turning	O interactivity	O on	O and	O off	O via	O `	O plt.ioff()	B-API `	O ,	O but	O to	O no	O avail	O .	O 
+don't	O do	O `	O plt.xticks	B-API ...	O 
+thx	O !	O but	O in	O the	O end	O this	O worked	O :	O `	O ax	O [	O 1	O ]	O .bar	B-API (	O bins	O [:	O -1	O ]	O ,	O 1	O .	O *hist	O /	O N	O ,	O np.diff	B-API (	O bins	O )	O ,	O log=True	O )`	O 
+For	O example	O `	O griddata	B-API `	O ,	O `	O Rbf	O `	O ,	O ...	O 
+It	O sounds	O like	O you	O would	O rather	O have	O an	O `	O axhspan	B-API `	O or	O `	O axvspan	B-API `	O .	O 
+matplotlib	O :	O plt.isinteractive()	B-API returns	O 0	O instead	O of	O True	O or	O False	O after	O plt.ion()	B-API is	O called	O ,	O when	O the	O script	O is	O being	O run	O in	O a	O terminal	O ?	O 
+matplotlib	O FuncAnimation	B-API input	O 
+@USER	O Do	O I	O need	O to	O pass	O anything	O additional	O to	O `	O ColorbarBase()	B-API `	O ?	O 
+In	O some	O other	O code	O ,	O I	O used	O the	O OpenCV	O `	O SaveImage	O `	O on	O a	O single	O frame	O to	O provide	O a	O reference	O for	O what	O I	O would	O expect	O from	O `	O imshow	B-API `	O .	O 
+AxesSubplot	O has	O no	O attribute	O hist2d	B-API -	O Matplotlib	O 
+fig	O =	O plt.figure()	B-API 
+customize	O ticks	O for	O AxesImage	B-API ?	O 
+In	O addition	O ,	O "	O changing	O plt.figure	B-API (	O i	O )"	O is	O not	O correct	O .	O 
+I	O tried	O it	O out	O .	O linecollection	B-API does	O not	O appear	O to	O work	O in	O 3D	O .	O 
+You	O can	O verify	O it	O by	O calling	O `	O plt.xlim()	B-API `	O both	O before	O and	O after	O the	O `	O pandas.plot()	O `	O call	O .	O 
+Did	O you	O try	O calling	O `	O plt.show()	B-API `	O ?	O 
+Edit	O :	O My	O original	O answer	O used	O `	O ax.scatter	B-API `	O .	O 
+The	O helper	O functions	O date2num()	B-API ,	O num2date()	B-API and	O drange()	B-API are	O used	O to	O facilitate	O easy	O conversion	O to	O and	O from	O datetime	O and	O numeric	O ranges	O .	O 
+Here's	O an	O example	O of	O how	O you	O can	O display	O multiple	O plots	O side-by-side	O below	O a	O larger	O one	O using	O Gridspec	B-API :	O #CODE	O 
+I	O only	O just	O discovered	O the	O awesome	O that	O is	O `	O matplotlib.mlab.psd()	B-API `	O ,	O but	O I	O am	O having	O one	O issue	O ,	O that	O is	O :	O how	O can	O I	O change	O the	O frequency	O range	O used	O by	O the	O method	O ?	O 
+Python	O Matlplotlib	O errorbar	B-API :	O some	O errors	O disappear	O 
+@USER	O It	O says	O :	O font_manager	B-API attribute	O not	O found	O o_O	O .	O 
+Documentation	O of	O legacy	O `	O subplot()	B-API `	O is	O [	O here	O ]	O (	O #URL	O )	O and	O `	O subplots()	B-API `	O is	O [	O here	O ]	O (	O #URL	O )	O .	O 
+I	O am	O not	O completely	O sure	O if	O this	O is	O the	O kind	O of	O thing	O you're	O looking	O for	O ,	O but	O `	O legend()	B-API `	O inside	O `	O matplotlib.pyplot	B-API `	O may	O be	O able	O to	O help	O you	O out	O .	O 
+Is	O the	O PCA	B-API stuff	O really	O relevant	O ?	O 
+Seaborns	O clustermap	O doesn't	O work	O with	O plt.tight_layout()	B-API .	O 
+fig	O =	O plt.figure	B-API (	O **figprops	O )	O .	O 
+From	O your	O remark	O that	O `	O datetime	O (	O 2009	O ,	O 10	O ,	O 7	O ,	O 0	O )	O .strftime	B-API (	O '	O %Hz%d%b	O ')`	O gave	O the	O right	O string	O I	O would've	O thought	O it	O worked	O .	O 
+yerr	O =	O np.array	B-API ([	O ])	O 
+ax	O =	O fig.add_subplot	B-API (	O 111	O );	O 
+plt.subplots	B-API :	O 
+(	O It's	O not	O the	O edgecolor	O option	O in	O pcolormesh	B-API )	O #CODE	O 
+`	O plt.xlabel	B-API (	O u'Wavelength	O (	O \u03bc	O m	O )')`	O 
+You	O may	O see	O that	O how	O `	O .ix	B-API `	O was	O used	O for	O selecting	O an	O interval	O .	O 
+I	O am	O running	O the	O tutorial	O for	O pylearn2	O and	O I'm	O getting	O some	O errors	O when	O it	O imports	O `	O matplotlib.pyplot	B-API `	O .	O 
+then	O a	O call	O to	O `	O fig.get_size_inches()	B-API `	O gives	O `	O [	O 6	O ,	O 7.475	O ]`	O .	O 
+I	O am	O experiencing	O the	O same	O problem	O as	O described	O in	O import	O matplotlib.pyplot	B-API hangs	O after	O updating	O my	O matplotlib	O version	O `	O import	O matplotlib.pyplot	B-API as	O plt	O `	O hangs	O while	O executing	O `	O fc-list	O `	O .	O 
+Using	O `	O pcolor	B-API `	O from	O matplotlib	O I	O am	O unable	O to	O do	O it	O because	O my	O pc	O goes	O easily	O out	O of	O memory	O (	O more	O than	O 8G	O )	O ..	O 
++	O "	O plt.plot	B-API ([	O "	O +	O d.x1	O +	O "	O ,	O "	O +	O d.x2	O +	O "]	O ,	O [	O "	O +	O d.y1	O +	O "	O ,	O "	O +	O d.y2	O +	O "]	O ,	O '	O k-	O ')	O \n	O "	O 
+I	O am	O trying	O to	O import	O Pylab	O using	O the	O `	O import	O matplotlib.pyplot	B-API as	O plt	O `	O .	O 
+The	O plt.subplots_adjust	B-API method	O :	O #CODE	O 
+for	O i	O ,	O j	O in	O np.where	B-API (	O significant	O ):	O print	O i	O ,	O j	O 
+ax	O =	O fig.add_subplot	B-API (	O 111	O ,	O projection=	O '	O 3d	O ')	O 
+matplotlib.pyplot	B-API does	O savefig()	B-API but	O not	O show()	B-API in	O python3	O but	O works	O in	O 2.7	O 
+In	O this	O case	O ,	O pcolor	B-API and	O pcolormesh	B-API will	O produce	O the	O same	O result	O .	O 
+From	O the	O documentation	O of	O `	O pyplot.errorbar()	B-API `	O :	O 
+Tkinter	O and	O pyplot	B-API running	O out	O of	O memory	O 
+You've	O already	O created	O `	O ax	O `	O with	O `	O plt.subplots	B-API `	O so	O don't	O you	O just	O need	O to	O pass	O `	O ax=ax	O `	O to	O `	O merged2.fcast.plot	O `	O instead	O of	O setting	O `	O ax=	O ...	O 
+You	O also	O should	O not	O import	O pylab	O ,	O you	O should	O do	O `	O import	O matplotlib.pyplot	B-API as	O plt	O `	O 
+Alright	O I	O got	O it	O to	O work	O by	O using	O plt.minorticks_on()	B-API and	O changing	O the	O range	O of	O x	O to	O x	O =	O np.arange	B-API (	O 0	O ,	O 361	O ,	O 50	O ,	O dtype	B-API =	O int	O )	O ....	O 
+You	O can	O control	O the	O ratio	O of	O the	O height	O /	O width	O with	O `	O ax.set_aspect	B-API (	O number	O )`	O .	O 
+What	O about	O plt.title	B-API ?	O 
+Is	O there	O a	O way	O to	O darken	O or	O make	O smoother	O the	O HSV	B-API colours	O so	O they	O look	O more	O like	O this	O 
+plt.plot	B-API (	O arr	O [	O '	O lapse_time	O ']	O ,	O arr	O [	O '	O contact_angle	O '])	O 
+We	O are	O looking	O for	O some	O `	O .line	B-API `	O objects	O and	O there	O are	O two	O .	O 
+My	O `	O rcParams	B-API `	O are	O not	O read	O .	O 
+Now	O ,	O it	O says	O `	O get_data	B-API `	O is	O not	O defined	O ...	O after	O I	O move	O `	O my_plot	O `	O before	O the	O loop	O 
+Xaxis	B-API interval	O y1	O (	O y2	O )	O ax2	O :	O (	O -	O 100000.0	O ,	O 800000.0	O )	O (	O wrong	O )	O 
+Then	O define	O a	O method	O `	O show()	B-API `	O that	O calls	O `	O plt.show()	B-API `	O .	O 
+`	O plt.setp	B-API (	O plt.gca()	B-API ,	O '	O yticklabels	O '	O ,	O ylabels	O )`	O 
+matplotlib.get_backend()	B-API MacOSX	O 
+#	O matplotlib.use	B-API (	O '	O tkagg	O ')	O ;	O 
+From	O the	O `	O savefig()	B-API `	O docs	O ,	O #CODE	O 
+You	O might	O also	O want	O to	O look	O into	O [	O `	O numpy.vectorize	B-API `]	O (	O #URL	O )	O .	O 
+'	O and	O '	O plt.figure()	B-API ;	O for	O result	O in	O results	O :	O plt.clf()	B-API ...	O 
+Python	O ,	O matplotlib	O pyplot	B-API show()	B-API not	O blocking	O 
+According	O to	O the	O docs	O `	O numpy.loadtxt	B-API `	O is	O 
+What	O is	O ravel()	B-API ?	O 
+`	O plot()	B-API `	O in	O `	O pandas	O `	O are	O build	O on	O `	O matplotlib	O `	O .	O 
+`	O plt.colorbar()	B-API `	O ?	O 
+from	O matplotlib.ticker	B-API import	O LinearLocator	B-API ,	O FormatStrFormatter	B-API 
+Is	O matplotlib.pyplot.hist()	B-API what	O you	O are	O looking	O for	O ?	O 
+File	O "	O /	O usr	O /	O lib	O /	O python2.7	O /	O dist-packages	O /	O pandas	O /	O core	O /	O generic.py	O "	O ,	O line	O 2018	O ,	O in	O astype	B-API 
+Perhaps	O you	O should	O be	O calling	O `	O axvline	B-API `	O on	O `	O ax2	O `	O instead	O of	O calling	O the	O `	O pyplot	B-API `	O method	O ?	O 
+(	O `	O np.all	B-API (	O np.diff	B-API (	O lats	O ,	O axis=0	O )	O >	O 0	O ))`	O ,	O similar	O fro	O `	O lons	O `)	O 
+The	O problem	O is	O '	O cause	O my	O np.mgrid	B-API should	O vary	O from	O -1	O to	O 1	O and	O have	O the	O self.width	O and	O self.height	O .	O 
+awesome	O .	O and	O thanks	O for	O the	O np.transpose	B-API tip	O ,	O too	O .	O 
+And	O using	O `	O set_bad	B-API `	O ,	O `	O set_under	B-API `	O and	O `	O set_over	B-API `	O is	O not	O a	O very	O good	O option	O as	O I	O would	O like	O to	O have	O a	O possibility	O to	O mark	O different	O pixels	O with	O different	O colours	O ,	O and	O this	O limits	O their	O number	O to	O 3	O .	O 
+@USER	O numpy's	O `	O memmap	B-API `	O will	O probably	O not	O be	O useful	O for	O you	O .	O 
+How	O about	O using	O `	O interpolate()	B-API `	O :	O #CODE	O 
+cb.ax.set_major_formatter	O (	O ticker.FuncFormatter	B-API (	O myfmt	O ))	O 
+special	O method	O `	O __call__()	B-API `	O is	O a	O good	O approach	O for	O such	O 
+`	O plt.tight_layout()	B-API `	O might	O do	O it	O .	O 
+Unfortunately	O ,	O I	O don't	O think	O you	O can	O simply	O do	O np.minimum	B-API (	O array1	O ,	O array2	O ,	O array3	O )	O like	O to	O have	O above	O ,	O so	O I	O think	O you	O need	O to	O nest	O the	O np.minimum	B-API calls	O .	O 
+Using	O `	O set_offsets	B-API `	O doesn't	O seem	O to	O behave	O as	O I	O expect	O it	O to	O .	O 
+Does	O the	O import	O of	O Axes3D	O do	O something	O behind	O the	O scenes	O to	O alter	O the	O import	O of	O pyplot	B-API ?	O 
+`	O get_color()	B-API `	O just	O returns	O the	O color	O attribute	O from	O a	O line	O .	O 
+plt.tight_layout()	B-API `	O 
+(	O Now	O I	O see	O :	O `	O linspace	B-API `	O is	O even	O mentioned	O in	O `	O arange	B-API `'	O s	O docstring	O ...	O )	O 
+By	O default	O `	O animation.MovieWriter	B-API `	O uses	O a	O `	O subprocess.PIPE	O `	O to	O feed	O the	O frames	O to	O the	O writer	O .	O 
+With	O your	O `	O matplotlibrc	O `	O file	O ,	O the	O variables	O `	O mp.rcParams	O [	O '	O lines.linestyle	O ']`	O and	O `	O mp.rcParams	O [	O '	O axes.grid	B-API ']`	O are	O correctly	O specified	O and	O this	O works	O as	O expected	O ...	O 
+pyplot	B-API interface	O 
+(	O and	O `	O set_yticklabels	B-API `	O for	O the	O y-axis	O )	O 
+but	O `	O from	O matplotlib.path	B-API import	O Path	B-API `	O throws	O #CODE	O 
+The	O Path	B-API object	O does	O not	O store	O the	O points	O along	O a	O Bezier	O curve	O ,	O just	O the	O minimum	O parameters	O it	O needs	O .	O 
+Users	O of	O Path	B-API objects	O should	O not	O access	O the	O vertices	O and	O codes	O arrays	O 
+The	O trick	O is	O to	O use	O Path	B-API and	O PathPatch	B-API .	O 
+This	O allows	O you	O to	O get	O the	O Matplotlib	O Path	B-API vertices	O and	O codes	O in	O the	O projection	O coordinates	O which	O you	O can	O then	O convert	O into	O a	O new	O Path	B-API .	O 
+I	O was	O playing	O with	O PathCollection	B-API (	O my	O dyslexia	O is	O killing	O me	O switching	O between	O Path	B-API and	O Patch	O )	O ,	O and	O if	O I	O can	O get	O a	O unit	O circle	O drawn	O and	O I	O can	O apply	O an	O affine	O transformation	O to	O it	O ,	O then	O I	O think	O it	O should	O work	O ,	O as	O it	O doesn't	O seem	O to	O inherently	O fill	O the	O space	O .	O 
+Thus	O the	O `	O Spine	B-API `	O objects	O are	O in	O question	O 
+You	O can	O use	O the	O `	O set_position()	B-API `	O method	O of	O the	O `	O Spine	B-API `	O class	O :	O #CODE	O 
+You	O mentioned	O the	O use	O of	O `	O Locator	B-API `	O and	O `	O Formatter	B-API `	O objects	O in	O your	O comment	O .	O 
+You	O need	O to	O call	O remove	O on	O the	O instance	O of	O the	O `	O Annotation	B-API `	O object	O .	O 
+Using	O Annotation	B-API Instead	O of	O Ticklabels	O 
+What	O is	O the	O difference	O between	O a	O Text	B-API instance	O and	O string	O in	O python	O ?	O 
+I	O believe	O the	O anti-aliasing	O of	O Text	B-API objects	O is	O up	O to	O the	O font	O engine	O being	O used	O .	O 
+What	O you	O should	O do	O is	O save	O a	O reference	O to	O the	O first	O `	O Text	B-API `	O object	O and	O update	O its	O contents	O by	O calling	O its	O `	O set_text()	B-API `	O method	O .	O 
+There	O is	O a	O references	O to	O the	O Text	B-API object	O returned	O by	O the	O original	O setting	O of	O suptitle	B-API in	O figure.texts	O .	O 
+I'm	O having	O a	O problem	O with	O the	O Text	B-API object	O that	O matplotlib	O use	O to	O represent	O the	O ticklabels	O .	O 
+I	O think	O you	O need	O to	O displace	O the	O `	O Text	B-API `	O object	O ,	O using	O the	O `	O set_position	B-API ((	O x	O ,	O y	O ))`	O method	O .	O 
+This	O includes	O `	O Text	B-API `	O objects	O ,	O `	O Line2D	B-API `	O objects	O ,	O `	O collection	O `	O objects	O ,	O `	O Patch	O `	O objects	O ...	O 
+Text	B-API object	O in	O matplotlib	O doesnt	O respond	O to	O zooming	O properly	O 
+After	O drawing	O a	O matplotlib	O Text	B-API instance	O and	O then	O interactively	O panning	O ,	O the	O resulting	O drawn	O text	O is	O clipped	O to	O the	O data	O window	O but	O not	O the	O surrounding	O bounding	O box	O .	O 
+Something	O like	O `	O Text	B-API (	O 2	O ,	O 0	O ,	O u'Text	O (	O 2	O ,	O 0	O ,	O u	O "	O Text	B-API (	O 0.4	O ,	O u\	O '	O 0.4	O \	O ')")')`	O .	O 
+`	O plt.legend	B-API `	O returns	O a	O `	O Legend	B-API `	O object	O with	O methods	O that	O allow	O you	O to	O modify	O the	O appearance	O of	O the	O legend	O .	O 
+So	O first	O we'll	O save	O the	O `	O Legend	B-API `	O object	O :	O #CODE	O 
+In	O practice	O I	O seem	O to	O end	O up	O mixing	O them	O both	O myself	O in	O SW	O ;	O it's	O largely	O a	O matter	O of	O taste	O whether	O you	O go	O through	O the	O pyplot	B-API API	O or	O access	O the	O objects	O .	O pyplot	B-API is	O certainly	O very	O convenient	O although	O as	O you	O want	O to	O do	O more	O complex	O /	O exotic	O things	O you'll	O find	O what	O you	O can	O do	O with	O pyplot	B-API alone	O limited	O and	O you'll	O need	O to	O get	O to	O know	O at	O least	O the	O full	O API's	O Axes	B-API ,	O Figure	B-API ,	O Legend	B-API and	O Path	B-API objects	O better	O .	O 
+There	O was	O a	O refactor	O of	O the	O `	O Legend	B-API `	O class	O awhile	O back	O .	O 
+call	O `	O Legend.get_texts()	B-API `	O will	O get	O a	O list	O of	O Text	B-API object	O in	O the	O legend	B-API object	O :	O #CODE	O 
+Some	O parameters	O could	O easily	O be	O read	O from	O the	O `	O Legend	B-API `	O object	O ,	O others	O (	O like	O `	O title	O `	O ,	O `	O fancybox	O `)	O required	O some	O '	O artistics	O '	O .	O 
+42	O from	O matplotlib.legend	B-API import	O Legend	B-API 
+How	O do	O I	O choose	O the	O optimum	O width	O for	O a	O matplotlib	O Button	B-API ?	O 
+I	O removed	O `	O color=axcolor	O `	O from	O the	O `	O Button	B-API `	O call	O ;	O and	O I	O added	O a	O `	O plt.show()	B-API `	O before	O the	O event	O connect	O ,	O otherwise	O a	O figure	O window	O didn't	O appear	O for	O me	O (	O neither	O through	O `	O ipython	O `	O ,	O nor	O with	O `	O python	O `)	O .	O 
+button	O =	O Button	B-API (	O ax=reset_axis	O ,	O label=	O '	O Reset	O '	O ,	O color=	O '	O lightblue	O '	O ,	O hovercolor=	O '	O 0.975	O ')	O 
+`	O tbar.add_button	O (	O a	O Button	B-API object	O );	O `	O 
+For	O your	O buttons	O to	O work	O ,	O you	O need	O to	O keep	O a	O reference	O to	O the	O `	O Button	B-API `	O object	O around	O .	O 
+I	O know	O how	O to	O add	O and	O work	O with	O single	O cursor	O `	O self.cursor	O =	O Cursor	B-API (	O self.static_canvas.Dataplot	O ,	O useblit=True	O ,	O color=	O '	O red	O '	O ,	O linewidth=2	O )`	O ,	O but	O what	O I	O should	O do	O to	O create	O to	O cursors	O ?	O 
+I	O think	O tillsten	O is	O right	O --	O study	O how	O the	O [	O `	O Cursor	B-API `	O class	O ]	O (	O #URL	O )	O does	O it	O .	O 
+I've	O checked	O briefly	O ,	O but	O I	O don't	O know	O how	O to	O modify	O the	O properties	O of	O an	O `	O Arc	B-API `	O instance	O ,	O although	O I'm	O sure	O it's	O possible	O .	O 
+You	O could	O also	O try	O passing	O a	O `	O Arrow	B-API `	O instance	O as	O marker	O ,	O but	O I'm	O not	O sure	O whether	O that	O works	O .	O 
+Currently	O ,	O I	O don't	O think	O it	O possible	O as	O the	O `	O Arrow	B-API `	O class	O only	O supports	O `'	O solid	O '	O |	O '	O dashed	O '	O |	O '	O dashdot	O '	O |	O '	O dotted	O '`	O four	O different	O linestyles	O .	O 
+The	O Node	B-API class	O has	O the	O coordinates	O stored	O as	O members	O (	O x	O and	O y	O )	O ,	O as	O well	O as	O index	O .	O 
+You	O can	O scale	O your	O z	O values	O to	O fit	O this	O range	O with	O Normalize	B-API .	O 
+You	O should	O mention	O the	O `	O Normalize	B-API `	O methods	O here	O as	O well	O .	O 
+Matplotlib	O provides	O the	O class	O `	O Normalize	B-API `	O for	O that	O :	O #CODE	O 
+Create	O a	O new	O instance	O of	O `	O Normalize	B-API `	O for	O each	O image	O you	O want	O to	O process	O .	O 
+And	O then	O you	O can	O also	O replicate	O the	O functionality	O of	O `	O Normalize	B-API `	O (	O since	O you	O seem	O to	O not	O like	O it	O ):	O #CODE	O 
+Use	O these	O to	O create	O a	O `	O Normalize	B-API `	O instance	O (	O other	O normalisation	O classes	O are	O available	O ,	O e.g.	O log	O scale	O )	O .	O 
+The	O documentation	O of	O Normalize	B-API might	O be	O a	O bit	O deceiving	O here	O :	O `	O process_value	O `	O is	O a	O function	O which	O is	O only	O used	O for	O preprocessing	O (	O and	O static	O )	O .	O 
+I	O have	O several	O questions	O regarding	O the	O Normalize	B-API class	O in	O Matplotlib	O .	O 
+with	O your	O own	O `	O Normalize	B-API `	O function	O .	O 
+This	O might	O be	O why	O they've	O avoided	O implementing	O it	O as	O part	O of	O Normalize	B-API .	O 
+matplotlib	O :	O can	O I	O create	O AxesSubplot	O objects	O ,	O then	O add	O them	O to	O a	O Figure	B-API instance	O ?	O 
+Also	O do	O you	O use	O Figure	B-API from	O the	O local	O matplotlib	O installation	O or	O not	O ?	O 
+Additionally	O ,	O there	O are	O functions	O from	O the	O pyplot	B-API interface	O and	O there	O are	O methods	O on	O the	O `	O Figure	B-API `	O class	O .	O 
+I'll	O assume	O in	O the	O following	O that	O `	O fig	O `	O is	O an	O instance	O of	O a	O `	O Figure	B-API `	O :	O 
+Both	O the	O Figure	B-API and	O the	O Axes	B-API class	O have	O a	O `	O clear()	O `	O method	O .	O 
+I	O had	O this	O same	O problem	O ,	O and	O it	O was	O caused	O by	O calling	O `	O show()	O `	O on	O the	O Figure	B-API object	O instead	O of	O the	O pyplot	B-API object	O .	O 
+It	O got	O wrapped	O up	O in	O a	O subclass	O of	O Figure	B-API ,	O which	O also	O got	O level-of-detail	O functionality	O and	O context	O menus	O .	O 
+I	O have	O an	O external	O function	O which	O returns	O a	O Figure	B-API object	O ,	O and	O in	O this	O situation	O ,	O each	O Figure	B-API object	O is	O composed	O of	O exactly	O one	O Axes	B-API object	O .	O 
+While	O a	O search	O did	O lead	O me	O to	O see	O that	O pyplot.figure()	B-API is	O the	O development	O team's	O recommended	O instantiation	O technique	O ,	O it	O doesn't	O change	O the	O question	O :	O is	O there	O any	O way	O to	O do	O Axes	B-API /	O Figure	B-API copy	O construction	O and	O Figure	B-API construction	O via	O composition	O of	O copied	O Axes	B-API ?	O 
+A	O reference	O to	O it	O isn't	O stored	O in	O the	O `	O Figure	B-API `	O object	O ,	O but	O is	O stored	O in	O the	O `	O Canvas	O `	O object	O so	O you	O can	O destroy	O a	O window	O via	O #CODE	O 
+Removing	O the	O `	O frameon=False	O `	O option	O from	O `	O f	O =	O Figure	B-API (	O figsize	O =(	O 12	O ,	O 5	O )	O ,	O dpi=100	O ,	O frameon=False	O )`	O solved	O the	O issue	O .	O 
+I	O used	O the	O Bar	B-API class	O to	O plot	O length	O of	O videos	O vs	O views	O which	O are	O the	O x	O and	O y	O values	O of	O the	O tuples	O .	O 
+Animation	B-API will	O not	O work	O on	O inplace	O (	O or	O inline	O ?	O )	O on	O notebook	O .	O 
+By	O artifacts	O ,	O I	O now	O understand	O to	O mean	O you	O are	O creating	O a	O second	O `	O Animation	B-API `	O object	O and	O what	O you	O get	O is	O both	O of	O them	O running	O in	O parallel	O (	O which	O I	O am	O not	O sure	O what	O I	O expect	O to	O happen	O there	O )	O .	O 
+by	O `	O ax	O `	O I	O mean	O the	O current	O `	O Axis	B-API `	O object	O ,	O which	O you	O were	O getting	O at	O via	O `	O gca	B-API `	O .	O 
+Your	O legend	B-API command	O is	O using	O the	O markers	O ,	O not	O the	O lines	O as	O inputs	O by	O using	O `	O plot	O [	O 0	O ]`	O .	O 
+`	O Axes	B-API `	O objects	O know	O about	O things	O like	O tick	O location	O and	O labels	O and	O the	O display	O range	O (	O which	O it	O does	O by	O knowing	O about	O `	O Axis	B-API `	O object	O ,	O but	O that	O is	O getting	O even	O more	O into	O the	O weeds	O )	O .	O 
+Use	O Axis	B-API method	O `	O set_xscale	B-API `	O or	O `	O set_yscale	B-API `	O .	O 
+`	O ax.set_xticks()	B-API `	O is	O a	O method	O of	O the	O `	O Axes	B-API `	O object	O ,	O whilst	O `	O matplotlib.ticker.FixedLocator	B-API `	O is	O an	O object	O which	O is	O used	O with	O the	O `	O Axis	B-API `	O object	O (	O `	O Axes	B-API `	O is	O basically	O the	O whole	O graph	O ,	O whilst	O `	O Axis	B-API `	O is	O just	O one	O of	O the	O (	O two	O )	O axis	O (	O x	O or	O y	O )	O .	O 
+This	O is	O not	O particularly	O well	O documented	O ,	O but	O `	O Polygon	B-API `	O objects	O have	O a	O pair	O of	O methods	O `	O get_xy	B-API `	O and	O `	O set_xy	B-API `	O .	O 
+In	O particular	O ,	O if	O /	O when	O there	O are	O so	O many	O circles	O for	O the	O figure	O to	O become	O connected	O ,	O the	O `	O for	O polygon	O in	O polygons	O :	O `	O fails	O with	O a	O `	O TypeError	O :	O '	O Polygon	B-API '	O object	O is	O not	O iterable	O `	O .	O 
+Just	O use	O the	O `	O Polygon	B-API `	O or	O `	O Rectangle	B-API `	O classes	O :	O #CODE	O 
+As	O you	O can	O see	O ,	O the	O edge	O is	O center-positioned	O along	O the	O border	O of	O the	O domain	O of	O the	O Rectangle	B-API object	O ,	O and	O so	O bleeds	O into	O this	O domain	O .	O 
+You	O can	O do	O this	O by	O overplotting	O a	O Rectangle	B-API patch	O on	O the	O cell	O that	O you	O would	O want	O to	O highlight	O .	O 
+Currently	O I	O use	O the	O `	O add_patch	B-API (	O Rectangle	B-API (	O ...	O ))`	O ,	O but	O it	O does	O not	O fit	O really	O well	O .	O 
+Unfortunately	O it	O seems	O that	O the	O '	O Rectangle	B-API '	O object	O has	O no	O attribute	O '	O set_bottom	O '	O .	O 
+You	O can	O acces	O ALL	O the	O properties	O of	O a	O `	O Tick	B-API `	O object	O using	O this	O approach	O :	O #CODE	O 
+Fortunately	O you	O can	O update	O figures	O you've	O moved	O to	O where	O you	O want	O them	O pretty	O easily	O ,	O by	O using	O the	O object	O interface	O specifically	O ,	O and	O updating	O the	O Axes	B-API object	O without	O creating	O a	O new	O figure	O .	O 
+(	O You	O can	O also	O always	O find	O this	O data	O inside	O the	O `	O Axes	B-API `	O object	O if	O you	O know	O where	O to	O look	O .	O )	O 
+By	O deferring	O the	O expense	O of	O drawing	O you	O can	O greatly	O improve	O the	O performance	O of	O functions	O that	O make	O many	O calls	O to	O `	O Figure	B-API `	O and	O `	O Axes	B-API `	O methods	O .	O 
+`	O Figure.add_subplot()	B-API `	O returns	O an	O `	O Axes	B-API `	O instance	O ,	O and	O `	O pyplot.subplots()	B-API `	O returns	O an	O `	O Axis	B-API `	O object	O as	O second	O output	O parameter	O .	O 
+As	O a	O side	O note	O ,	O it	O is	O better	O to	O pass	O `	O Axes	B-API `	O objects	O into	O your	O function	O than	O create	O them	O (	O implicitly	O )	O internally	O .	O 
+Here	O ,	O what	O you	O have	O done	O is	O capture	O the	O `	O Axes	B-API `	O instance	O that	O is	O returned	O from	O `	O add_subplot()	B-API `	O .	O 
+If	O I	O create	O an	O `	O Axes	B-API `	O object	O in	O `	O matplotlib	O `	O and	O mutate	O it	O (	O i.e.	O by	O plotting	O some	O data	O )	O and	O then	O I	O call	O a	O function	O without	O passing	O my	O `	O Axes	B-API `	O object	O to	O that	O function	O then	O that	O function	O can	O still	O mutate	O my	O `	O Axes	B-API `	O .	O 
+Pass	O multiple	O matplotlib	O Axes	B-API objects	O from	O generator	O function	O and	O display	O them	O 
+The	O `	O transform	B-API `	O in	O this	O case	O is	O a	O `	O BboxTransformTo	O `	O object	O ,	O which	O :	O 
+You	O can	O use	O the	O `	O transform	B-API `	O keyword	O :	O #CODE	O 
+But	O when	O I	O checked	O the	O source	O code	O of	O draw_networkx_nodes	O draw_networkx	O ,	O I	O realized	O that	O it	O is	O not	O a	O straight	O forward	O task	O as	O the	O draw	B-API function	O stores	O the	O positions	O (	O nodes	O and	O edges	O )	O in	O a	O numpy	O array	O ,	O send	O it	O to	O the	O ax.scatter	B-API function	O of	O matplotlib	O (	O sourcecode	O )	O which	O is	O a	O bit	O hard	O to	O manipulate	O without	O messing	O something	O up	O .	O 
+This	O simply	O calls	O the	O draw	B-API method	O of	O the	O figure	O periodically	O .	O 
+Then	O I	O just	O added	O a	O signal	O to	O the	O custom	O version	O and	O overrode	O the	O draw	B-API method	O .	O 
+EDIT	O :	O I'm	O super	O blind	O ,	O sorry	O for	O that	O ,	O you're	O calling	O the	O draw	B-API method	O ,	O however	O it	O is	O a	O good	O idea	O to	O add	O *	O args	O and	O **	O kwargs	O to	O any	O overriden	O methods	O ..	O try	O that	O ,	O and	O perhaps	O call	O FancyBboxPatch.draw	O at	O the	O end	O of	O overriden	O method	O 
+I'm	O also	O panning	O and	O zooming	O into	O this	O figure	O ,	O and	O have	O been	O using	O the	O draw	B-API method	O to	O show	O the	O new	O perspectives	O from	O zooming	O in	O (	O using	O set_xlim	B-API and	O set_ylim	B-API )	O and	O from	O panning	O (	O drag_pan	B-API and	O start_pan	B-API )	O .	O 
+I	O would	O use	O `	O ax.autoscale	B-API (	O enable=False	O )`	O before	O your	O call	O to	O `	O scatter	B-API `	O .	O 
+You	O can	O perhaps	O loop	O into	O your	O `	O AxesSubplot	O `	O objects	O and	O call	O `	O autoscale	B-API `	O passing	O the	O `	O axis	O `	O parameter	O :	O #CODE	O 
+@USER	O -	O If	O you'd	O like	O to	O rescale	O the	O axes	B-API ,	O call	O `	O ax.autoscale()	B-API `	O every	O time	O you	O remove	O a	O point	O .	O 
+Python	O :	O Add	O x-y	O margins	B-API automatically	O with	O autoscale	B-API (	O pyplot	B-API )	O 
+Ahh	O ,	O it's	O the	O call	O to	O `	O autoscale	B-API `	O that	O I'm	O missing	O .	O 
+The	O trick	O is	O at	O the	O end	O ,	O in	O the	O custom	O refresh	B-API method	O !	O 
+For	O what	O you're	O wanting	O to	O do	O ,	O you'd	O be	O far	O better	O off	O using	O annotate	B-API .	O 
+It's	O quite	O simple	O to	O do	O manually	O with	O `	O annotate	B-API `	O .	O 
+If	O you're	O wanting	O to	O adjust	O vertical	O alignment	O ,	O horizontal	O alignment	O ,	O etc	O ,	O just	O add	O those	O as	O arguments	O to	O `	O annotate	B-API `	O (	O e.g.	O `	O horizontalalignment=	O '	O right	O '`	O or	O equivalently	O `	O ha=	O '	O right	O '`)	O 
+You	O can	O use	O the	O annotate	B-API command	O to	O place	O text	O annotations	O at	O any	O x	O and	O y	O values	O you	O want	O .	O 
++1	O Just	O as	O a	O side	O note	O ,	O annotate	B-API has	O "	O offseting	O the	O annotations	O a	O little	O "	O built-in	O .	O 
+While	O there's	O nothing	O wrong	O with	O Ofri's	O answer	O ,	O `	O annotate	B-API `	O is	O intended	O especially	O for	O this	O purpose	O :	O #CODE	O 
+Just	O use	O `	O annotate	B-API `	O and	O specify	O axis	O coordinates	O .	O 
+It	O is	O also	O possible	O to	O make	O an	O arrow	O with	O text	O ,	O using	O the	O annotate	B-API method	O .	O 
+The	O closest	O thing	O I	O have	O been	O able	O to	O find	O while	O searching	O here	O is	O the	O annotate	B-API command	O ,	O but	O that	O appears	O to	O create	O a	O fixed	O label	O on	O the	O plot	O .	O 
+`	O plt.annotate	B-API (	O '	O Something	O '	O ,	O (	O 0	O ,	O 0	O )	O ,	O (	O 0	O ,	O -20	O )	O ,	O xycoords=	O '	O axes	B-API fraction	O '	O ,	O textcoords=	O '	O offset	O points	O '	O ,	O va=	O '	O top	O ')`	O 
+@USER	O I'm	O not	O sure	O why	O we	O have	O to	O explicitly	O call	O `	O draw	B-API `	O .	O 
+The	O `	O boxplot	B-API `	O function	O only	O plots	O quartiles	O (	O 0	O ,	O 25	O ,	O 50	O ,	O 75	O ,	O 100	O )	O .	O 
+Is	O there	O any	O way	O I	O can	O extract	O these	O values	O for	O use	O in	O my	O downstream	O code	O from	O the	O boxplot	B-API object	O ?	O 
+I	O am	O plotting	O a	O non-normal	O distribution	O using	O boxplot	B-API and	O interested	O in	O finding	O out	O about	O outliers	O using	O boxplot	B-API function	O of	O matplotlib	O .	O 
+You	O should	O use	O the	O `	O hist	B-API `	O function	O .	O 
+An	O similar	O example	O of	O such	O plot	O is	O "	O hist	B-API (	O x	O ,	O orientation=	O '	O horizontal	O ')"	O .	O 
+I	O need	O to	O use	O the	O `	O hist	B-API `	O function	O ,	O I	O have	O looked	O elsewhere	O on	O this	O site	O but	O I	O haven't	O found	O anything	O .	O 
+I	O tried	O doing	O hist	B-API (	O x	O /	O x.sum()	O )	O but	O that	O reduce	O the	O values	O of	O the	O numbers	O in	O the	O x	O axis	O and	O does	O not	O change	O their	O frequency	O ,	O so	O the	O y-axis	O is	O unchanged	O 
+How	O can	O I	O prevent	O the	O labels	O of	O `	O xticks	B-API `	O from	O overlapping	O with	O the	O labels	O of	O `	O yticks	B-API `	O when	O using	O `	O hist	B-API `	O (	O or	O other	O plotting	O commands	O )	O in	O matplotlib	O ?	O 
+An	O easy	O way	O to	O do	O this	O is	O to	O add	O `	O 0j	O `	O to	O the	O argument	O of	O the	O `	O sqrt	B-API `	O ,	O like	O this	O ,	O `	O sqrt	B-API (	O 1+0j-	O (	O 1	O /	O x	O )	O **2	O )`	O .	O 
+You	O need	O to	O set	O the	O new	O coordinates	O of	O the	O datapoints	O in	O the	O internal	O `	O _ofsets3d	O `	O variable	O of	O the	O `	O Line3DCollection	O `	O object	O returned	O by	O the	O `	O scatter	B-API `	O function	O .	O 
+You	O can	O use	O `	O scatter	B-API `	O for	O this	O ,	O but	O that	O requires	O having	O numerical	O values	O for	O your	O `	O key1	O `	O ,	O and	O you	O won't	O have	O a	O legend	B-API ,	O as	O you	O noticed	O .	O 
+The	O `	O scatter	B-API `	O and	O `	O hist	B-API `	O commands	O really	O expect	O `	O x	O `	O and	O `	O y	O `	O to	O be	O 1D	O arrays	O .	O 
+I'm	O wondering	O if	O it	O is	O possible	O to	O have	O individual	O alpha	O values	O for	O each	O point	O to	O be	O plotted	O using	O the	O scatter	B-API function	O of	O Matplotlib	O .	O 
+The	O problem	O happens	O when	O I	O call	O the	O scatter	B-API function	O .	O 
+Normalize	O histogram2d	B-API by	O bin	O area	O 
+gcf()	B-API means	O Get	O Current	O Figure	O 
+However	O ,	O the	O sample	O consists	O of	O distinct	O solutions	O which	O form	O lines	O in	O the	O parameter	O space	O such	O that	O putting	O everything	O into	O a	O matrix	O and	O using	O `	O imshow	B-API `	O is	O not	O desirable	O because	O of	O the	O pixelation	O artefacts	O (	O Figure	O 1	O )	O .	O 
+You	O already	O have	O one	O such	O converter	O in	O your	O `	O np.loadtxt	B-API `	O method	O call	O .	O 
+Matplotlib.pyplot	B-API Bar	O Plot	O Grouping	O Subplots	O 
+Basic	O Animation	O with	O matplotlib's	O pyplot	B-API 
+Also	O ,	O when	O specifying	O where	O you	O want	O the	O subplot	O to	O be	O placed	O (	O the	O third	O input	O to	O `	O Figure.add_subplot()	B-API `)	O ,	O you	O do	O not	O want	O to	O use	O `	O y+1	O `	O because	O that	O would	O start	O at	O `	O 1	O `	O and	O end	O at	O `	O 6	O `	O which	O would	O go	O out	O of	O the	O available	O range	O of	O 0-5	O .	O 
+While	O it	O might	O be	O possible	O to	O hack	O `	O JointGrid	O `	O to	O get	O this	O to	O work	O ,	O I	O suspect	O it	O will	O very	O likely	O be	O easier	O to	O just	O use	O `	O kdeplot	O `	O on	O one	O Axes	O ,	O using	O `	O twinx	B-API `	O and	O `	O twiny	B-API to	O place	O and	O scale	O the	O marginal	O plots	O properly	O .	O 
+A	O workaround	O might	O be	O to	O log10	B-API transform	O the	O data	O before	O plotting	O ,	O but	O the	O approaches	O I	O have	O tried	O ,	O #CODE	O 
+But	O in	O my	O particular	O case	O I	O have	O to	O draw	O Line2D	B-API instances	O using	O Points	O coordinates	O on	O top	O of	O the	O regular	O plots	O that	O are	O all	O using	O Data	O coordinates	O .	O 
+I'm	O using	O imshow()	B-API to	O draw	O a	O 2D	O numpy	O array	O ,	O so	O for	O example	O :	O #CODE	O 
+You	O can	O annotate	O a	O specific	O point	O in	O the	O image	O using	O `	O plt.text	B-API (	O x	O ,	O y	O ,	O str	O )`	O .	O 
+For	O me	O the	O simplest	O way	O is	O plotting	O directly	O the	O masks	O with	O imshow	B-API ,	O passing	O different	O colormaps	O .	O 
+I'm	O doing	O a	O hist	O plot	O and	O I	O want	O some	O numbers	O shown	O in	O the	O plot	O ,	O so	O I	O put	O in	O a	O text	O box	O using	O mathtext	B-API for	O the	O text	O ,	O but	O I	O doesn't	O work	O and	O I	O can't	O see	O why	O .	O 
+avoiding	O the	O local	O cache	O when	O fetching	O yahoo	O finance	O data	O from	O matplotlib.finance	B-API in	O python	O 
+If	O you	O are	O trying	O to	O create	O an	O animation	O ,	O look	O in	O to	O the	O `	O animation	B-API `	O module	O of	O matplotlib	O ,	O it	O takes	O care	O of	O a	O lot	O of	O the	O details	O for	O you	O .	O 
+Apparently	O ,	O the	O "	O Animation	B-API "	O class	O of	O Matplotlib	O runs	O the	O animation	O in	O a	O separate	O thread	O .	O 
+It	O simply	O don't	O use	O the	O Animation	B-API class	O and	O builds	O its	O own	O animation	O from	O crash	O .	O 
+I	O think	O `	O axis	O ([	O xo	O ,	O x1	O ,	O y0	O ,	O y1	O ])`	O is	O in	O terms	O of	O proportion	O of	O the	O Figure	B-API ,	O not	O the	O data	O transform	O .	O 
+I	O used	O the	O scatter	B-API function	O and	O plotted	O the	O points	O ,	O but	O the	O surface	O function	O is	O not	O working	O (	O the	O window	O is	O empty	O )	O .	O 
+The	O solution	O I	O found	O for	O this	O involves	O using	O Normalize	B-API to	O make	O a	O normalised	O colour	O list	O based	O on	O the	O relevant	O data	O ,	O mapping	O it	O to	O a	O ScalarMappable	B-API ,	O and	O using	O that	O to	O set	O the	O face	O colour	O and	O c	O limits	O on	O each	O frame	O of	O the	O animation	O .	O 
+But	O because	O all	O of	O the	O functionality	O relies	O on	O the	O hook	O ,	O when	O the	O canvas	O is	O finally	O shown	O I	O presume	O Python's	O garbage	O collection	O has	O removed	O the	O Animation	B-API instance	O ---	O since	O it	O was	O never	O assigned	O to	O a	O variable	O ---	O and	O therefore	O the	O animation	O can	O never	O be	O started	O .	O 
+Notice	O `	O xytext	O =	O (	O 0	O ,	O 0	O )`	O means	O no	O offset	O ,	O and	O omitting	O `	O arrowprops	O `	O causes	O `	O plt.annotate	B-API `	O to	O not	O draw	O an	O arrow	O .	O 
+OLS	O solution	O using	O pinv	B-API /	O svd	B-API #CODE	O 
+@USER	O Well	O in	O this	O case	O ,	O `	O searchsorted	B-API `	O is	O basically	O looking	O for	O places	O or	O indices	O where	O elements	O from	O `	O message	O `	O exists	O in	O the	O keys	O of	O `	O codes	O `	O .	O 
+@USER	O --	O I	O had	O a	O hard	O time	O remembering	O how	O `	O translate	B-API `	O and	O `	O maketrans	B-API `	O work	O for	O quite	O a	O while	O too	O ,	O but	O I've	O gotten	O used	O to	O it	O .	O 
+Edit	O :	O if	O you're	O using	O a	O version	O of	O numpy	O >	O =	O 1.8.0	O ,	O then	O `	O np.linalg.eigvals	B-API `	O operates	O over	O the	O last	O two	O dimensions	O of	O whatever	O array	O you	O hand	O it	O ,	O so	O if	O you	O reshape	O your	O input	O to	O an	O `	O (	O n_subarrays	O ,	O nrows	O ,	O ncols	O )`	O array	O you'll	O only	O have	O to	O call	O `	O eigvals	B-API `	O once	O :	O #CODE	O 
+`	O reshape	B-API `	O returns	O a	O view	O of	O the	O original	O array	O ,	O not	O a	O copy	O ,	O so	O the	O conversion	O to	O 3D	O only	O requires	O altering	O the	O `	O shape	O `	O and	O `	O strides	O `	O attributes	O of	O the	O array	O ,	O without	O having	O to	O copy	O any	O of	O the	O actual	O data	O .	O 
+Calling	O `	O reshape	B-API `	O returns	O a	O view	O ,	O so	O it	O doesn't	O incur	O any	O big	O copying	O costs	O or	O anything	O like	O that	O .	O 
+I	O also	O understand	O that	O sum	B-API (	O A	O ,	O axis=1	O )	O will	O sum	O each	O row	O .	O 
+But	O ,	O `	O resize	B-API `	O looks	O like	O it	O just	O might	O be	O the	O thing	O I'm	O looking	O for	O ...	O 
+`	O rfft	B-API `	O ,	O apart	O from	O repeated	O terms	O excluded	O ,	O and	O an	O almost	O 2x	O speed-up	O ,	O returns	O the	O exact	O same	O you	O would	O get	O from	O `	O fft	B-API `	O .	O 
+Plus	O ,	O if	O I	O have	O 4	O dimensions	O ,	O I	O thought	O I	O should	O have	O 4	O eigenvalues	O and	O not	O 150	O like	O the	O eig	B-API gives	O me	O .	O 
+If	O I	O run	O your	O code	O to	O generate	O `	O d	O `	O and	O `	O dx	O `	O with	O `	O eig	B-API `	O I	O get	O the	O following	O :	O #CODE	O 
+D	O [	O I+1	O ,	O J+1	O ]	O =	O map	B-API (	O norm	O ,	O x	O [	O I	O ]	O -y	O [	O J	O ])	O +	O np.minimum	B-API (	O np.minimum	B-API (	O D	O [	O I	O ,	O J	O ]	O ,	O D	O [	O I	O ,	O J+1	O ])	O ,	O D	O [	O I+1	O ,	O J	O ])	O ?	O 
+`	O dot	B-API `	O just	O has	O tighter	O code	O for	O a	O specific	O combination	O of	O dimensions	O .	O 
+numpy	O sum	B-API does	O not	O agree	O 
+Here	O the	O `	O outer	B-API `	O method	O of	O the	O `	O multiply	B-API `	O ufunc	O is	O used	O to	O create	O the	O new	O 20x20	O array	O .	O 
+You	O probably	O could	O get	O `	O append	B-API `	O to	O work	O ,	O but	O it	O just	O does	O a	O step	O by	O step	O concatenate	O ,	O which	O is	O slower	O .	O 
+I	O see	O how	O the	O symmetry	O of	O the	O trace	O lets	O you	O replace	O the	O final	O `	O dot	B-API `	O .	O 
+The	O trick	O is	O that	O this	O convolve	B-API function	O can	O be	O used	O in-place	O so	O the	O double	O for	O loop	O :	O #CODE	O 
+But	O this	O reshape	B-API should	O produce	O a	O `	O (	O n	O ,	O 1	O ,	O 1	O )`	O array	O ,	O not	O your	O `	O (	O 1	O ,	O 1	O ,	O 1	O ,...	O )`	O array	O .	O 
+If	O so	O then	O `	O np.array	B-API (	O a	O )`	O is	O a	O 2d	O array	O ,	O and	O you	O can	O sum	O over	O `	O axis=1	O `	O .	O 
+The	O easiest	O approach	O is	O to	O reshape	O to	O data	O to	O a	O long	O format	O using	O `	O .stack	B-API `	O ,	O which	O can	O be	O be	O passed	O straight	O into	O rolling	O mean	O .	O 
+To	O get	O the	O diagonal	O elements	O you	O can	O get	O their	O indices	O with	O `	O np.triu_indices	B-API `	O (	O or	O ,	O for	O the	O lower	O triangle	O ,	O `	O np.tril_indices	B-API `)	O and	O then	O index	O by	O them	O .	O 
+What	O does	O work	O ,	O however	O is	O nesting	O append	B-API and	O concatenate	B-API #CODE	O 
+As	O he	O points	O out	O ,	O the	O `	O [	O 0	O ]	O [	O 1	O ]`	O element	O is	O what	O you'd	O want	O for	O `	O cov	B-API (	O a	O ,	O b	O )`	O .	O 
+@USER	O -	O good	O point	O .	O anyway	O ,	O `	O diff	B-API `	O works	O on	O python	O lists	O too	O .	O 
+In	O the	O end	O it	O is	O usually	O not	O too	O complicated	O ,	O especially	O if	O you	O use	O [	O `	O mgrid	B-API `]	O (	O #URL	O )	O or	O similar	O to	O get	O the	O indices	O .	O 
+Something	O like	O `	O eigvals	O ,	O eigvecs	O =	O la.eigh	O (	O mat	B-API )`	O `	O principal	O =	O eigvecs	O [:	O ,	O eigvals.argmax()	O ]`	O `	O if	O (	O principal	O >	O =	O 0	O )	O .all()	O or	O (	O pricipal	O <=	O 0	O )	O .all()	O :	O print	O '	O all	O the	O same	O '`	O ?	O 
+Do	O you	O mean	O `	O indices	O =	O np.where	B-API (	O a	O ==	O a.max()	O )`	O in	O line	O 3	O ?	O 
+`	O append	B-API `	O adds	O them	O to	O the	O end	O of	O the	O list	O ,	O which	O is	O exactly	O what	O you	O want	O .	O 
+I	O got	O your	O point	O and	O I	O find	O it	O more	O logical	O ,	O but	O when	O trying	O the	O code	O you've	O suggested	O to	O get	O rid	O of	O the	O second	O error	O I	O got	O another	O error	O :	O `	O AttributeError	O :	O flatten	B-API `	O 
+`	O dot	B-API `	O does	O many	O things	O under	O the	O hood	O ,	O it	O is	O apparent	O that	O `	O np.dot	B-API (	O A	O ,	O x	O )`	O is	O not	O calling	O BLAS	O and	O is	O somehow	O defaulting	O over	O to	O numpy's	O internal	O GEMM	O routine	O .	O 
+I	O want	O to	O read	O a	O mat	O file	O back	O in	O python	O but	O I	O have	O trouble	O going	O back	O to	O a	O graph	O ,	O because	O the	O mat	O file	O gives	O a	O numpy.ndarray	B-API type	O file	O and	O I	O need	O a	O sparse	O matrix	O to	O reconstruct	O my	O graph	O .	O 
+To	O find	O the	O most	O frequent	O value	O of	O a	O flat	O array	O ,	O use	O `	O unique	B-API `	O ,	O `	O bincount	B-API `	O and	O `	O argmax	B-API `	O :	O #CODE	O 
+Well	O ,	O a	O few	O more	O ,	O anyway	O :	O `	O cos	B-API `	O ,	O `	O pi	B-API `	O ,	O `	O diag	B-API `	O 
+But	O sum	B-API function	O from	O numpy	O doesn't	O suport	O "	O 1:3	O "	O 
+(	O the	O `	O np.nonzero	B-API `	O should	O return	O a	O tuple	O with	O one	O element	O ,	O an	O array	O of	O indices	O )	O .	O 
+Note	O that	O where	O possible	O ,	O `	O reshape	B-API `	O will	O give	O you	O a	O view	O of	O the	O array	O .	O 
+I	O frequently	O use	O the	O numpy.where	B-API function	O to	O gather	O a	O tuple	O of	O indices	O of	O a	O matrix	O having	O some	O property	O .	O 
+`	O p2	O =	O einsum	B-API (	O '	O nk	O ,	O nk	O ->	O n	O '	O ,	O p1	O ,	O delta	O )`	O is	O the	O pairwise	O dot	O product	O of	O the	O rows	O of	O `	O p1	O `	O and	O `	O delta	O `	O .	O 
+I	O did	O the	O reshape	B-API ,	O just	O so	O that	O both	O arrays	O are	O same	O shape	O ,	O but	O I	O do	O not	O think	O you	O really	O need	O the	O reshaping	O ,	O with	O the	O list	O comprehension	O the	O shape	O of	O array	O you	O get	O is	O `	O (	O length	O of	O string	O ,	O )`	O 
+Slicing	O arrays	O with	O meshgrid	B-API /	O array	O indices	O in	O Numpy	O 
+(	O An	O nonzero	O exit	O status	O usually	O indicates	O an	O error	O on	O Unix	O style	O systems	O .	O A	O couple	O programs	O are	O different	O ,	O e.g.	O ,	O `	O diff	B-API `	O .	O )	O Try	O examining	O the	O `	O stderr	O `	O produced	O by	O the	O subprocess	O to	O see	O what	O error	O messages	O are	O printed	O there	O .	O 
+The	O histogram	O way	O is	O not	O the	O fastest	O ,	O and	O can't	O tell	O the	O difference	O between	O an	O arbitrarily	O small	O separation	O of	O points	O and	O `	O 2	O *	O sqrt	B-API (	O 2	O )	O *	O b	O `	O (	O where	O `	O b	O `	O is	O bin	O width	O )	O .	O 
+}	O for	O n=1	O ,	O 2	O ,	O 3	O ,	O 4	O ,	O 5	O ,	O 6	O (	O using	O Sum	B-API (	O c_n	O exp	B-API (	O i	O 2	O pi	O n	O x	O )	O )	O as	O Fourier	O series	O )	O .	O 
+Oh	O ,	O that's	O interesting	O you	O can	O do	O it	O with	O stack	B-API .	O 
+In	O this	O case	O ,	O using	O numpy	O outer	B-API operations	O allow	O you	O to	O compute	O the	O multiplications	O and	O sums	O at	O the	O `	O C	O `	O loop	O speed	O .	O 
+The	O most	O efficient	O way	O is	O likely	O to	O use	O '	O np.empty()	B-API '	O to	O allocate	O the	O space	O /	O memory	O for	O your	O end	O dataset	O and	O then	O load	O data	O &	O broadcast	O within	O that	O using	O slice	O indexing	O .	O 
+If	O reps	O has	O length	O d	O ,	O the	O result	O will	O have	O dimension	O of	O max	B-API (	O d	O ,	O A.ndim	O )	O .	O 
+Now	O ,	O for	O mean	O calculations	O ,	O those	O numeric	O IDs	O could	O be	O used	O as	O `"	O weights	O "`	O for	O binning	O with	O `	O np.bincount	B-API `	O ,	O giving	O us	O the	O sum	O of	O data	O elements	O corresponding	O to	O each	O `	O ID	O `	O .	O 
+the	O output	O I	O need	O :	O `	O S	O =	O [	O 2	O ,	O 5	O ,	O 8	O ,	O 11	O ,	O 14	O ]`	O I	O thought	O something	O like	O :	O `	O S1	O =	O np.array	B-API (	O L	O [:	O ]	O [	O 1	O ,	O 0	O ])`	O should	O work	O but	O whatever	O I	O try	O I	O have	O the	O error	O like	O :	O `	O TypeError	O :	O list	O indices	O must	O be	O integers	O ,	O not	O tuple	O `	O .	O 
+I	O need	O it	O because	O in	O the	O next	O part	O I	O will	O sum	O up	O this	O large	O np.array	B-API with	O some	O delta_array	O that	O has	O the	O same	O shape	O .	O 
+Used	O reshape	B-API to	O make	O rows	O into	O columns	O .	O 
+`	O numpy.unique	B-API `	O with	O `	O return_index=True	O `	O will	O give	O you	O a	O list	O of	O indices	O to	O take	O from	O .	O 
+I	O forgot	O exactly	O why	O ,	O but	O there	O is	O a	O good	O reason	O why	O you	O calculate	O it	O as	O the	O ratio	O between	O these	O two	O averages	O ,	O instead	O of	O directly	O averaging	O `	O fft	B-API (	O y	O )	O /	O fft	B-API (	O x	O )`	O .	O 
+Do	O you	O really	O want	O this	O '	O roll	B-API '	O ?	O 
+By	O adding	O a	O nonzero	O number	O at	O the	O end	O of	O the	O array	O ,	O you	O can	O still	O use	O np.nonzero	B-API to	O get	O your	O desired	O outcome	O .	O 
+absolute	B-API (	O a	O -	O b	O )	O =	O (	O atol	O +	O rtol	O *	O absolute	B-API (	O b	O ))	O 
+Creating	O a	O class	O deriving	O from	O `	O ndarray	B-API `	O and	O overriding	O indexing	O such	O that	O the	O absolute	O indices	O are	O used	O .	O 
+Use	O `	O reshape	B-API `	O :	O #CODE	O 
+You	O can	O use	O `	O argmin	B-API `	O to	O find	O the	O False	O values	O ,	O and	O this	O will	O be	O faster	O and	O take	O less	O memory	O than	O using	O nonzero	B-API ,	O but	O this	O is	O linear	O in	O the	O length	O of	O `	O a	O `	O .	O 
+Maybe	O `	O flatten()	B-API `	O the	O original	O array	O ,	O then	O use	O/ your	O 1D	O solution	O ,	O finally	O calculate	O the	O real	O nD	O indices	O using	O the	O original	O shape	O ?	O 
+Note	O that	O the	O diagonal	O is	O always	O zero	O since	O `	O mahalanobis	B-API (	O x	O ,	O x	O )`	O equals	O zero	O for	O 
+possible	O duplicate	O of	O [	O NumPy	O min	B-API /	O max	B-API in-place	O assignment	O ]	O (	O #URL	O )	O 
+The	O append	B-API method	O for	O a	O numpy	O array	O returns	O a	O copy	O of	O the	O array	O with	O new	O items	O added	O to	O the	O end	O .	O 
+I	O want	O to	O get	O the	O norm	B-API of	O this	O array	O using	O numpy	O .	O 
+Currently	O I	O am	O looping	O through	O the	O arrays	O and	O using	O numpy.dstack	B-API to	O stack	O the	O 1000	O arrays	O into	O a	O rather	O large	O 3d	O array	O ...	O and	O then	O will	O calculate	O the	O mean	O across	O the	O 3rd	O (	O ?	O )	O dimension	O .	O 
+The	O call	O to	O `	O np.sqrt	B-API `	O ,	O which	O is	O a	O Python	O function	O call	O ,	O is	O killing	O your	O performance	O You	O are	O computing	O the	O square	O root	O of	O scalar	O floating	O point	O value	O ,	O so	O you	O should	O use	O the	O `	O sqrt	B-API `	O function	O from	O the	O C	O math	O library	O .	O 
+This	O would	O call	O the	O function	O `	O np.loadtxt	B-API `	O which	O would	O load	O the	O file	O `	O GPBUSD1d.txt	O '`	O and	O transpose	O (	O "	O unpack	O ")	O it	O .	O 
+You	O can't	O change	O the	O typing	O of	O the	O array	O in-place	O (	O unless	O I'm	O grossly	O mistaken	O )	O ,	O but	O you	O can	O floor	B-API .	O 
+You	O can't	O use	O the	O numpy	O reshape	B-API for	O a	O simple	O reason	O :	O you	O have	O data	O duplicity	O in	O your	O original	O array	O (	O time	O and	O positions	O )	O and	O not	O in	O the	O result	O you	O want	O .	O 
+In	O the	O particular	O case	O of	O your	O example	O ,	O where	O your	O unique	O values	O are	O sequential	O integers	O ,	O you	O can	O use	O `	O find_objects	B-API `	O directly	O .	O 
+axis=1	O refers	O to	O working	O on	O rows	O in	O this	O 2d	O case	O (	O axis=0	O ,	O in	O contrast	O ,	O would	O be	O getting	O you	O the	O max	B-API in	O each	O column	O )	O 
+There	O are	O many	O other	O `	O ufunc	B-API `	O ,	O and	O other	O iteration	O modes	O -	O `	O accumulate	B-API `	O ,	O `	O reduceat	B-API `	O .	O 
+@USER	O In	O the	O example	O above	O ,	O I	O get	O the	O following	O error	O :	O Non-broadcastable	O operand	O with	O shape	O (	O 100	O )	O doesn't	O match	O the	O broadcast	B-API shape	O (	O 100,100	O )	O 
+To	O compute	O the	O number	O of	O unique	O elements	O in	O a	O numpy	O array	O ,	O you	O can	O use	O `	O unique	B-API (	O x	O )	O .size	O `	O or	O `	O len	B-API (	O unique	B-API (	O x	O ))`	O (	O see	O `	O numpy.unique	B-API `	O )	O .	O 
+Second	O ,	O you	O are	O doing	O transpose	B-API the	O hard	O way	O .	O 
+Where	O does	O log	B-API (	O b	O ,	O 2	O )	O come	O from	O ?	O 
+I	O tried	O using	O the	O scipy.stat	B-API module	O by	O creating	O my	O numbers	O with	O `	O np.random.normal	B-API `	O ,	O since	O it	O only	O takes	O data	O and	O not	O stat	O values	O like	O mean	O and	O std	O dev	O (	O is	O there	O any	O way	O to	O use	O these	O values	O directly	O )	O .	O 
+The	O asymptotic	O complexity	O of	O both	O of	O the	O `	O matrix_rank	B-API `	O and	O `	O det	B-API `	O calls	O are	O therefore	O O	O (	O n^3	O )	O ,	O the	O complexity	O of	O LU	O decomposition	O .	O 
+I	O think	O the	O np.std()	B-API is	O just	O universal	O std	B-API .	O 
+I	O see	O no	O reason	O why	O `	O numpy	O `	O would	O need	O to	O make	O a	O copy	O for	O an	O operation	O like	O this	O ,	O as	O long	O as	O it	O does	O the	O necessary	O checks	O for	O overlaps	O (	O though	O of	O course	O as	O others	O have	O noted	O ,	O `	O resize	B-API `	O may	O itself	O have	O to	O allocate	O a	O new	O block	O of	O memory	O )	O .	O 
+Maybe	O `	O floor	B-API (	O arange	B-API (	O 0	O ,	O 10	O ,	O 0.1	O ))`	O ?	O 
+`	O view	B-API `	O is	O basically	O taking	O your	O two	O coordinates	O as	O a	O single	O variable	O that	O can	O be	O used	O to	O find	O the	O unique	O coordinates	O .	O 
+Use	O `	O multiprocessing.Process	B-API (	O target	O =	O somefunc	O ,	O args	O =	O (	O sa	O ,	O )`	O (	O and	O `	O start	O `	O ,	O maybe	O `	O join	B-API `)	O to	O call	O `	O somefunc	O `	O in	O a	O separate	O process	O ,	O passing	O the	O shared	O array	O .	O 
+Take	O a	O look	O a	O the	O concatenate	B-API function	O .	O 
+@USER	O `	O swapaxes	B-API `	O seemed	O to	O be	O indistinguishable	O from	O `	O transpose	B-API (	O 0	O ,	O 2	O ,	O 1	O )`	O .	O 
+Do	O gradient	B-API actually	O compute	O really	O a	O gradient	O ?	O 
+I	O would	O suggest	O to	O first	O program	O it	O with	O `	O np.nditer	B-API `	O and	O then	O translate	O it	O into	O C	O .	O 
+As	O you	O can	O see	O ,	O using	O the	O join	B-API function	O on	O the	O list	O (	O `	O binary_list	O `)	O works	O properly	O ,	O but	O on	O the	O equivalent	O numpy	O array	O (	O `	O binary_split_array	O `)	O it	O doesn't	O :	O we	O can	O see	O the	O string	O returned	O is	O only	O 72	O characters	O long	O instead	O of	O 80	O .	O 
+@USER	O .B	O .	O the	O above	O question	O is	O significantly	O different	O from	O mine	O ;	O it	O asks	O for	O both	O min	B-API and	O max	B-API ,	O and	O it	O is	O for	O 2D	O matrix	O 
+Pandas	O append	B-API filtered	O row	O to	O another	O DataFrame	O 
+That	O concatenate	B-API action	O should	O be	O pretty	O fast	O .	O 
+You	O can	O override	O this	O behavior	O by	O using	O the	O arguments	O `	O vmin	O `	O and	O `	O vmax	O `	O (	O or	O `	O norm	O `)	O of	O `	O imshow	B-API `	O .	O 
+@USER	O ,	O `	O cs	O `	O is	O sorted	O and	O `	O searchsorted()	B-API `	O exploits	O that	O to	O do	O a	O binary	O search	O -	O only	O `	O O	O (	O log	B-API (	O len	B-API (	O weights	O )))`	O comparisons	O are	O needed	O .	O 
+Think	O `	O flatten	B-API `	O without	O the	O copy	O .	O 
+Also	O ,	O the	O algo	O has	O a	O lot	O of	O matrices	O manipulation	O (	O fft	B-API ,	O filters	O ,	O etc	O .	O )	O ,	O so	O using	O numpy	O /	O scipy	O should	O result	O in	O faster	O run	O time	O .	O 
+If	O True	O ,	O uses	O the	O old	O behavior	O from	O Numeric	O ,	O (	O correlate	B-API (	O a	O ,	O v	O )	O ==	O correlate	B-API (	O v	O ,	O a	O )	O ,	O and	O the	O conjugate	O is	O not	O taken	O for	O complex	O arrays	O )	O .	O 
+In	O your	O example	O ,	O the	O square	O root	O is	O calculated	O by	O evaluating	O the	O the	O module	O and	O the	O argument	O of	O your	O complex	O number	O (	O essentially	O via	O the	O log	B-API function	O ,	O which	O returns	O log	B-API (	O module	O )	O +	O i	O phase	O )	O .	O 
+I	O am	O trying	O to	O run	O hstack	B-API to	O join	O a	O column	O of	O integer	O values	O to	O a	O list	O of	O columns	O created	O by	O a	O TF-IDF	O (	O so	O I	O can	O eventually	O use	O all	O of	O these	O columns	O /	O features	O in	O a	O classifier	O )	O .	O 
+How	O to	O pass	O these	O `	O norm	O `	O and	O `	O cmap	O `	O parameters	O in	O matplotlib	O to	O `	O plt.show	B-API `	O or	O `	O imshow()	B-API `	O ?	O 
+You	O can	O use	O the	O append	B-API function	O as	O he	O has	O defined	O .	O 
+I	O have	O a	O question	O regarding	O to	O the	O `	O fft	B-API `	O and	O `	O ifft	B-API `	O functions	O .	O 
+So	O for	O now	O ,	O I	O just	O changed	O the	O max	B-API (	O z	O )	O to	O a	O number	O that	O I	O know	O is	O the	O max	B-API (	O 1567	O )	O .	O 
+The	O `	O add	B-API `	O operation	O does	O not	O do	O the	O same	O thing	O as	O `	O join	B-API `	O .	O 
+`	O fromiter	B-API `	O wants	O a	O 1d	O input	O ,	O e.g.	O `	O [	O 1	O ,	O 2	O ,	O 3	O ]`	O (	O or	O the	O generator	O equivalent	O )	O .	O 
+read	O more	O :	O take()	B-API 
+For	O this	O I'm	O using	O an	O instance	O of	O the	O `	O numpy	O `	O class	O `	O RandomState	B-API `	O .	O 
+You	O can	O write	O a	O thinly	O wrapped	O subclass	O to	O `	O np.ndarray	B-API `	O .	O 
+Using	O `	O ndarray.reshape	B-API `	O #CODE	O 
+E.g.	O this	O works	O in	O the	O interpreter	O :	O `	O >>>	O a	O =	O np.arange	B-API (	O 10	O ,	O dtype=float	O )	O .resize	B-API (	O 1	O ,	O 5	O )`	O ,	O because	O the	O interpreter	O doesn't	O "	O see	O "	O the	O intermediate	O value	O .	O 
+I	O attempted	O your	O suggestion	O but	O got	O stuck	O trying	O to	O iterate	O through	O the	O existing	O dtype	B-API .	O 
+`	O numpy.setdiff1d	B-API (	O a	O ,	O a	O [	O sel_id	O ])`	O should	O do	O the	O trick	O .	O 
+Instead	O of	O disabling	O the	O behavior	O you	O could	O try	O using	O np.select	B-API :	O 
++1	O I	O liked	O you	O approach	O ,	O but	O how	O to	O make	O `	O np.copyto()	B-API `	O work	O with	O a	O memoryvew	O ?	O 
+Just	O import	O Decimal	O and	O for	O the	O printing	O just	O write	O print	O Decimal	O (	O ndarray	B-API [	O i	O ])	O .	O 
+Or	O ,	O for	O that	O matter	O ,	O numpy.genfromtxt	B-API .	O 
+glad	O to	O hear	O it	O -	O I	O only	O recently	O found	O out	O about	O `	O np.einsum	B-API `	O myself	O ,	O and	O it	O has	O rocked	O my	O world	O ever	O since	O 
+The	O `	O dtype	B-API `	O could	O be	O deduced	O from	O one	O (	O or	O more	O )	O of	O the	O dictionary	O items	O :	O #CODE	O 
+I	O didn't	O realize	O `	O array_split	B-API `	O existed	O !	O 
+However	O ,	O in	O that	O case	O ,	O you	O could	O just	O do	O :	O (	O `	O searchsorted	B-API `	O uses	O bisection	O )	O #CODE	O 
+Btw	O .	O you	O can	O also	O implicitly	O force	O the	O `	O dtype	B-API `	O to	O be	O `	O float	O `	O when	O using	O dots	O :	O #CODE	O 
+dtypes	B-API .	O 
+I	O would	O prefer	O using	O the	O xor	O ufunc	O I	O think	O ,	O which	O is	O `	O bitwise_xor	B-API `	O (	O or	O `	O logical_xor	B-API `)	O :	O #CODE	O 
+This	O is	O the	O root	O of	O why	O your	O `	O fromarrays	B-API `	O works	O ,	O but	O not	O the	O `	O append_fields	O `	O .	O 
+The	O dtype	B-API should	O be	O big	O endian	O .	O 
+parameterArray	O +=	O line.split()	O \nline	O =	O self.inputBuffer.next()	O \	O nnp.parameterArray	O =	O np.array	B-API (	O parameterArray	O )	O 
+As	O JoshAdel	O points	O out	O ,	O `	O vectorize	B-API `	O wraps	O `	O frompyfunc	B-API `	O .	O 
+Sorry	O ,	O the	O line	O was	O output	O [	O i	O ,	O j	O ]	O =	O np.sum	B-API (	O ssd_difference	O [	O #URL	O (	O )	O )	O 
+(	O or	O `	O np.array	B-API ([[	O 1	O ]	O ,	O [	O 2	O ]	O ,	O [	O 3	O ]	O ,	O [	O 4	O ]])	O .shape	B-API `)	O 
+Thank	O you	O for	O the	O great	O tipp	O with	O `	O plt.hist	B-API (	O img.ravel()	O )`	O !	O 
+The	O `	O recarray	B-API `	O class	O accepts	O an	O aligned	O parameter	O ,	O but	O looks	O to	O lose	O it	O in	O `	O format_parser	B-API `	O .	O 
+In	O case	O someone	O comes	O past	O this	O ,	O numpy	O (	O as	O of	O 1.8	O I	O think	O )	O support	O higher	O that	O 2D	O generation	O of	O position	O grids	O with	O meshgrid	B-API .	O 
+`	O numpy.random.choice	B-API `	O is	O not	O implemented	O in	O Python	O but	O in	O a	O `	O .pyx	O `	O file	O which	O needs	O to	O be	O compiled	O to	O C	O using	O Cython	O .	O 
+A	O plain	O `	O .copy	B-API `	O did	O work	O for	O me	O .	O 
+`	O A	O [	O np.ix_	B-API (	O x	O ,	O y	O )]`	O 
+einsum	B-API :	O 5.2	O s	O 
+10**423	O exceeds	O the	O largest	O int	O representable	O as	O an	O integer	O (	O or	O float	O )	O NumPy	O dtype	B-API ,	O so	O there	O is	O no	O point	O in	O using	O NumPy	O here	O :	O `	O np.iinfo	B-API (	O '	O int64	O ')	O .max	B-API <	O 10**423	O `	O .	O 
+Probably	O ,	O better	O performance	O is	O by	O using	O `	O numpy.fromiter	B-API `	O :	O #CODE	O 
+Why	O are	O the	O polyfit	B-API constants	O from	O the	O third	O case	O listed	O as	O NAN	O ?	O 
+Try	O `	O numpy.array_split	B-API `	O .	O 
+Using	O np.repeat	B-API on	O sub-arrays	O 
+shows	O that	O '	O region	O '	O has	O an	O `	O object	O `	O dtype	B-API :	O #CODE	O 
+What	O I	O am	O looking	O for	O is	O something	O along	O the	O original	O functionality	O of	O `	O np.unique	B-API `	O #CODE	O 
+In	O my	O opinion	O ,	O np.matrix	B-API should	O override	O for	O addition	O and	O subtraction	O as	O well	O .	O 
+or	O `	O np.vstack	B-API `	O ,	O `	O np.dstack	B-API `	O `	O np.r_	B-API `	O ,	O `	O np.c_	B-API `	O ,	O `	O np.concatenate	B-API `	O depending	O on	O the	O desired	O shapes	O .	O 
+TypeError	O when	O using	O SymPy	O matrices	O for	O numpy.linalg.eig	B-API 
+Doing	O `	O a.astype	O (	O float	O )`	O actually	O creates	O a	O *	O new	O *	O ndarray	B-API which	O is	O of	O type	O `	O float	O `	O .	O 
+Trying	O to	O vectorize	B-API the	O code	O also	O resulted	O in	O very	O poor	O performance	O ,	O 
+Also	O look	O into	O the	O genfromtxt	B-API and	O loadtxt	B-API family	O of	O Numpy	O functions	O .	O 
+`	O coll	O [	O 1	O ]	O .set_color	B-API (	O "	O r	O ")	O #	O this	O does	O not	O work	O ,	O coll	O not	O indexable	O this	O way	O `	O 
+The	O `	O testing.assert_equal	B-API `	O approach	O is	O almost	O good	O ,	O except	O that	O it	O presumably	O fails	O if	O `	O __debug__	O `	O is	O False	O !	O 
+I've	O just	O checked	O and	O found	O out	O that	O my	O implementation	O is	O about	O 2.x	O times	O *	O faster	O *	O than	O using	O `	O numpy.convolve	B-API `	O .	O 
+Not	O as	O concise	O as	O I	O wanted	O (	O I	O was	O experimenting	O with	O `	O mask_indices	B-API `	O )	O ,	O but	O this	O will	O also	O do	O the	O work	O :	O #CODE	O 
+The	O documentation	O of	O `	O numpy.nonzero()	B-API `	O describes	O how	O its	O result	O must	O be	O interpreted	O .	O 
+scikits-learn	O pca	B-API dimension	O reduction	O issue	O 
+`	O np.mean	B-API `	O can	O also	O preserve	O dimensions	O if	O needed	O .	O 
+Are	O there	O alternatives	O to	O do	O the	O sorts	O of	O things	O `	O einsum	B-API `	O can	O do	O with	O sparse	O matrices	O ?	O 
+Your	O immediate	O problem	O is	O `	O numpy.putmask	B-API `	O .	O 
+why	O not	O `	O np.array	B-API ([	O o.value1	O for	O o	O in	O objects	O ])`	O ?	O 
+In	O a	O comment	O to	O `	O @USER	O `	O s	O answer	O I	O suggested	O `	O np.delete	B-API `	O .	O 
+I	O have	O a	O `	O numpy.ndarray	B-API `	O .	O 
+I	O believe	O it	O comes	O down	O to	O the	O fact	O that	O Python	O calls	O a	O `	O __getitem__	B-API `	O on	O your	O objects	O and	O treats	O the	O entire	O block	O of	O code	O of	O `	O for	O `	O loop	O as	O an	O inline	O statement	O .	O 
+In	O the	O Notes	O section	O to	O column_stack	B-API ,	O it	O points	O out	O this	O :	O 
+`	O logical_or	B-API (	O a	O ,	O logical_or	B-API (	O b	O ,	O c	O ))`	O 
+How	O about	O reading	O them	O in	O correctly	O as	O numpy.datetime64	O objects	O using	O numpy.loadtxt	B-API (	O they	O are	O coming	O from	O a	O csv	O file	O )	O ?	O 
+Also	O -	O I	O see	O that	O np.getfromtxt()	O has	O a	O '	O dtype	B-API '	O option	O which	O allows	O the	O user	O to	O specify	O the	O datatype	O of	O each	O column	O .	O 
+No	O worries	O ,	O the	O dtype	B-API is	O inferred	O as	O `	O int64	O `	O unless	O you	O pass	O it	O explicitly	O 
+whats	O the	O result	O of	O `	O print	O a	O `	O after	O `	O a	O =	O np.loadtxt	B-API `	O 
+Keep	O in	O mind	O that	O `	O np.cov	B-API `	O is	O basically	O doing	O `	O data.dot	O (	O data.T	O )`	O .	O 
+If	O you	O want	O to	O vectorize	B-API operations	O ,	O you	O need	O to	O think	O in	O terms	O of	O these	O higher	O dimensional	O arrays	O .	O 
+Does	O `	O s2	O =	O pd.Series	B-API (	O s	O ,	O dtype	B-API =o	O bject	O )`	O work	O ?	O 
+`	O PyArray_DATA	B-API `	O is	O defined	O in	O 
+`	O a	O [:	O ,	O :	O ,	O 5	O ]	O .shape	B-API =	O (	O 10	O ,	O 10	O ,	O 1	O )`	O 
+Can	O you	O print	O `	O datas	O [	O 0	O ]	O .shape	B-API `	O ?	O 
+actually	O used	O is	O this	O line	O within	O the	O definition	O for	O `	O np.array_repr	B-API `	O 
+That's	O why	O `	O dstack	B-API `	O behaves	O the	O way	O it	O does	O .	O 
+>>>	O x	O =	O np.asanyarray	B-API (	O [	O ]	O ,	O dtype=	O '	O float64	O ')	O 
+This	O doesn't	O work	O for	O floating	O point	O types	O (	O it	O will	O not	O consider	O +	O 0.0	O and	O -	O 0.0	O the	O same	O value	O )	O ,	O and	O `	O np.intersect1d	B-API `	O uses	O sorting	O ,	O so	O it	O is	O has	O linearithmic	O ,	O not	O linear	O ,	O performance	O .	O 
+But	O off	O course	O ,	O isreal	B-API would	O be	O more	O readable	O :-)	O 
+mshgrd	O =	O ax.pcolormesh	B-API (	O X	O ,	O Y	O ,	O Z	O )	O 
+Otherwise	O ,	O the	O performance	O advantages	O of	O using	O numpy	O are	O quickly	O nullified	O ,	O regardless	O of	O how	O you	O implement	O your	O ringbuffer	B-API .	O 
+The	O answer	O is	O numpy.clip	B-API #CODE	O 
+Can	O you	O please	O go	O into	O more	O depth	O about	O nesting	O a	O recarray	B-API in	O another	O by	O using	O the	O np.object	O method	O ?	O 
+Why	O do	O you	O need	O `	O vectorize	B-API `	O for	O that	O ?	O 
+I	O did	O try	O gc.colletc()	O without	O success	O but	O adding	O a	O clf()	B-API inside	O the	O loop	O does	O the	O trick	O !	O 
+not	O a	O bad	O solution	O ;	O though	O I	O am	O somewhat	O wary	O of	O the	O performance	O of	O random.shuffle	B-API .	O 
+date2num	B-API ,	O ValueError	O :	O ordinal	O must	O be	O >	O =	O 1	O 
+And	O you	O could	O override	O `	O __mul__	B-API `	O ,	O `	O __add__	B-API `	O ,	O `	O __sub__	B-API `	O accordingly	O ,	O but	O I	O don't	O know	O exactly	O how	O numpy-like	O you	O actually	O *	O need	O *	O this	O to	O be	O ,	O so	O I	O can't	O say	O for	O sure	O .	O 
+`	O np.array	B-API =	O partial	O (	O np.array	B-API ,	O dtype=	O np.float32	O )`	O with	O `	O partial	O `	O from	O the	O `	O functools	O `	O module	O .	O 
+A	O solution	O that	O worked	O uses	O griddata	B-API .	O 
+Numpy	O 1.7.0	O assert_array_almost_equal	B-API documentation	O 
+You	O can	O read	O matlab	O (	O .mat	B-API )	O files	O in	O Python	O ,	O try	O this	O :	O #CODE	O 
+Thanks	O for	O the	O idea	O of	O genfromtxt()	B-API .	O 
+If	O you	O are	O using	O numpy	O ,	O for	O multidimensional	O lists	O `	O numpy.repeat	B-API `	O is	O your	O best	O bet	O .	O 
+If	O the	O following	O equation	O is	O element-wise	O True	O ,	O then	O allclose	B-API returns	O `	O True	O `	O :	O #CODE	O 
+`	O np.vstack	B-API `	O just	O vertically	O stacks	O the	O arrays	O you	O pass	O to	O it	O ,	O and	O so	O something	O else	O in	O your	O code	O may	O be	O cutting	O off	O the	O rest	O of	O the	O results	O inadvertently	O .	O 
+If	O you	O move	O the	O line	O `	O np_verticies=	O np.array	B-API (	O verticies	O )`	O outside	O of	O `	O Fnumpy	O `	O and	O the	O timed	O section	O your	O results	O will	O be	O very	O different	O :	O #CODE	O 
+`	O fromiter	B-API `'	O s	O example	O is	O essentially	O this	O :	O `	O np.fromiter	B-API ((	O x*x	O for	O x	O in	O range	O (	O 5	O ))	O ,	O int	O )`	O .	O 
+In	O Python	O ,	O I	O have	O a	O numpy.array	B-API of	O integers	O `	O [	O 2	O ,	O 4	O ,	O 7	O ,	O 8	O ,	O 9	O ,	O 10	O ,	O 15	O ,	O 10	O 8]	O `	O .	O 
+I	O will	O go	O with	O newaxis	B-API then	O .	O 
+pcolormesh	B-API returns	O a	O QuadMesh	B-API .	O 
+And	O when	O I	O call	O each	O of	O the	O instructions	O inside	O f()	B-API individually	O it	O gives	O me	O an	O other	O result	O (	O which	O is	O correct	O ):	O #CODE	O 
+Here's	O one	O vectorized	O approach	O based	O on	O `	O np.einsum	B-API `	O -	O #CODE	O 
+What's	O the	O `	O dtype	B-API `	O of	O these	O arrays	O ?	O 
+try	O adding	O a	O `	O show()	B-API `	O in	O the	O end	O 
+`	O pandas.DataFrame	B-API `	O 
+You	O can	O define	O your	O own	O types	O by	O creating	O a	O class	O and	O writing	O a	O `	O __add__	B-API `	O or	O `	O __sub__	B-API `	O method	O .	O 
+On	O the	O other	O hand	O ,	O if	O I	O did	O with	O `	O genfromtxt	B-API `	O ,	O the	O third	O column	O is	O problem	O because	O it	O includes	O comma	O inside	O double-quota	O .	O 
+Apparently	O ,	O if	O there	O is	O no	O '	O missing_value	O '	O attribute	O Netcdf4	O defaults	O to	O a	O missing	O value	O appropriate	O for	O the	O dtype	B-API .	O 
+do	O be	O aware	O that	O if	O you	O have	O NaNs	O ,	O there	O is	O an	O equivalent	O np.nanstd	B-API with	O the	O similar	O ddof	O options	O 
+[	O True	O ,	O True	O ]]	O ,	O dtype	B-API =b	O ool	O )`	O 
+@USER	O true	O ,	O although	O `	O np.array	B-API ([	O x	O for	O bb	O in	O b	O for	O x	O in	O bb	O ])`	O will	O do	O the	O job	O .	O 
+return	O matrix_power	B-API (	O self	O ,	O other	O )	O 
+vector	O =	O numpy.array	B-API (	O vector	O );	O 
+If	O so	O then	O you	O should	O have	O no	O problem	O fitting	O the	O `	O numpy.fft.rfftfreq	B-API `	O method	O into	O your	O own	O code	O .	O 
+This	O fails	O :	O `	O einsum	B-API (	O '	O i	O ...,	O i	O ...	O 
+Python	O &	O Numpy	O -	O create	O dynamic	O ,	O arbitrary	O subsets	O of	O ndarray	B-API 
+For	O example	O ,	O I	O have	O a	O `	O ndarray	B-API `	O that	O is	O :	O #CODE	O 
+I	O went	O with	O the	O np.memmap	B-API because	O the	O performance	O is	O similar	O to	O hdf5	O and	O I	O already	O have	O numpy	O in	O production	O .	O 
+its	O np.log	B-API not	O m.log	O 
+what	O happens	O if	O you	O [	O `	O Py_INCREF	O (	O self	O )`]	O (	O #URL	O )	O after	O `	O .base	B-API `	O assignment	O ?	O 
+File	O "	O /	O usr	O /	O lib64	O /	O python2.6	O /	O site-packages	O /	O numpy	O /	O core	O /	O fromnumeric.py	O "	O ,	O line	O 806	O ,	O in	O searchsorted	B-API 
+why	O isn't	O the	O `	O ndarray	B-API `	O constructor	O mentioned	O here	O ?	O 
+>>>	O z	O =	O numpy.array	B-API ([	O 1	O ,	O 2	O ]	O 
+Is	O there	O an	O equivelent	O to	O `	O fseek	O `	O when	O using	O `	O fromfile	B-API `	O to	O skip	O the	O beginning	O of	O the	O file	O ?	O 
+The	O linear	O algebra	O functions	O are	O generally	O grouped	O in	O `	O numpy.linalg	B-API `	O .	O 
+np.mean	B-API :	O #CODE	O 
+As	O others	O have	O said	O ,	O 32-bit	O versions	O of	O numpy	O still	O support	O 64-bit	O dtypes	B-API .	O 
+`	O vstack	B-API `	O is	O coercing	O the	O type	O of	O `	O d	O `	O to	O the	O type	O of	O `	O e	O `	O .	O 
+`	O df.plot	B-API `	O returns	O an	O AxesSubplot	O ,	O which	O has	O a	O `	O axvspan	B-API `	O method	O .	O 
+With	O the	O variables	O defined	O above	O ,	O `	O np.searchsorted	B-API (	O lat	O ,	O x	O )`	O is	O 16x	O faster	O than	O the	O equivalent	O call	O `	O np.nanargmin	B-API ((	O lat-x	O )	O **2	O )`	O on	O my	O computer	O .	O 
+Pypy	O with	O iterators	O is	O still	O solving	O this	O about	O 3x	O faster	O than	O CPython	O +	O Numpy	O ,	O even	O when	O using	O `	O np.searchsorted	B-API `	O (	O see	O my	O solution	O )	O .	O 
+and	O `	O hstack	B-API ((	O a	O ,	O z	O ))`	O ?	O 
+Have	O you	O tried	O passing	O `	O interpolation=	O '	O nearest	O '`	O to	O `	O imshow	B-API `	O ?	O 
+`	O cumsum	B-API `	O might	O not	O be	O the	O best	O example	O .	O 
+I	O think	O you're	O after	O `	O plt.axis	B-API ([	O xmin	O ,	O xmax	O ,	O ymin	O ,	O ymax	O ])`	O :	O #CODE	O 
+Is	O `	O (	O dry	O ,	O unrch	O )	O =	O ((	O G	O ==	O 3	O )	O .sum()	B-API ,	O (	O G	O ==	O 1	O )	O .sum()	B-API )`	O more	O vectorized	O ?	O 
+Then	O ,	O `	O np.array	B-API (	O np.matrix	B-API (	O s.strip	O (	O '	O [	O ]')))`	O will	O do	O the	O same	O magic	O .	O 
+I'm	O trying	O to	O vectorize	B-API Z	O ,	O but	O I'm	O finding	O it	O rather	O difficult	O for	O a	O triple	O for	O loop	O .	O 
+How	O would	O that	O be	O done	O using	O np.dot	B-API ?	O 
+I	O was	O surprised	O how	O descending	O sorting	O of	O np.array	B-API seem	O so	O un-pythonic	O .	O 
+`	O numpy.genfromtxt	B-API `	O accepts	O generators	O ,	O so	O you	O can	O chain	O `	O genfromtext	O `	O and	O `	O ifilter	O `	O :	O #CODE	O 
+I	O also	O tried	O `	O df.query()	B-API `	O ,	O but	O no	O much	O improvement	O .	O 
+According	O to	O the	O documentation	O (	O e.g.	O ,	O here	O )	O ,	O `	O PyArray_SimpleNew	B-API `	O has	O a	O return	O of	O type	O `	O PyObject	O *	O `	O and	O thus	O the	O above	O should	O be	O perfectly	O fine	O .	O 
+Edit	O :	O `	O np.where	B-API `	O is	O optional	O ,	O thanks	O @USER	O .	O 
+or	O with	O `	O numpy.concatenate	B-API `	O ?	O 
+@USER	O you	O can	O do	O it	O ,	O it's	O easy	O with	O `	O np.histogram	B-API `	O .	O 
+`	O numpy.base_repr	B-API `	O uses	O this	O ,	O but	O only	O operates	O on	O scalars	O .	O 
+Python	O apply_along_axis	B-API of	O multiple	O arrays	O 
+`	O numpy.average()	B-API `	O has	O a	O weights	O option	O ,	O but	O `	O numpy.std()	B-API `	O does	O not	O .	O 
+I	O wanted	O to	O write	O `	O M.det()	O `	O instead	O of	O `	O numpy.linalg.det	B-API (	O M	O )`	O ,	O 
+I	O was	O working	O with	O something	O like	O ```	O s	O =	O pd.DataFrame	B-API ([	O '	O 1	O '	O ,	O '	O na	O '	O ,	O '	O 3	O '	O ,	O '	O 4	O '])	O .	O 
+tested	O it	O a	O bit	O myself	O :	O sympy.sin	O is	O much	O slower	O than	O numpy.sin	B-API 
+I	O was	O thinking	O of	O something	O like	O `	O frombuffer	B-API `	O .	O 
+Tables	O have	O an	O append	B-API method	O that	O can	O easily	O add	O additional	O rows	O .	O 
+@USER	O ,	O I	O tested	O the	O append	B-API method	O of	O array	O by	O measure	O the	O time	O it	O cost	O ,	O since	O resize	B-API the	O array	O will	O use	O more	O time	O .	O 
+I	O think	O you	O need	O to	O use	O append	B-API function	O to	O append	B-API new	O array	O with	O previous	O array	O ,	O asarray	B-API function	O converts	O input	O to	O array	O .	O 
+I	O would	O store	O all	O your	O data	O in	O a	O python	O list	O and	O use	O the	O append	B-API function	O to	O add	O new	O measurement	O .	O 
+The	O Series	O must	O also	O have	O a	O `	O name	O `	O to	O be	O used	O with	O `	O join	B-API `	O ,	O which	O gets	O pulled	O in	O as	O a	O new	O field	O called	O `	O name	O `	O .	O 
+NumPy	O by	O itself	O is	O a	O fairly	O low-level	O tool	O ,	O and	O will	O be	O very	O much	O similar	O to	O using	O MATLAB	O .	O pandas	O on	O the	O other	O hand	O provides	O rich	O time	O series	O functionality	O ,	O data	O alignment	O ,	O NA-friendly	O statistics	O ,	O groupby	B-API ,	O merge	O and	O join	B-API methods	O ,	O and	O lots	O of	O other	O conveniences	O .	O 
+already	O have	O all	O header	O names	O listed	O then	O you	O can	O use	O "	O join	B-API "	O and	O 
+Because	O these	O are	O irregular	O operations	O ,	O I	O can't	O use	O merge	B-API /	O join	B-API .	O 
+It	O should	O be	O a	O bit	O quicker	O just	O by	O not	O using	O so	O many	O intermediary	O bitstrings	O -	O it's	O all	O done	O in	O the	O join	B-API method	O .	O 
+How	O can	O i	O use	O the	O unique	B-API (	O a	O ,	O rows	O )	O from	O MATLab	O at	O python	O ?	O 
+If	O you	O convert	O your	O 2D	O coordinates	O into	O `	O target_map	O `	O into	O flat	O indices	O into	O it	O using	O `	O np.ravel_multi_index	B-API `	O ,	O you	O can	O use	O `	O np.unique	B-API `	O and	O `	O np.bincount	B-API `	O to	O speed	O things	O up	O quite	O a	O bit	O :	O #CODE	O 
+To	O get	O the	O unobserved	O values	O filled	O ,	O we'll	O use	O the	O `	O unstack	B-API `	O and	O `	O stack	B-API `	O methods	O .	O 
+The	O actual	O RMS	O would	O be	O `	O norm	B-API (	O x	O )	O /	O sqrt	B-API (	O x.size	O )`	O ,	O but	O for	O minimization	O the	O constant	O multiplier	O doesn't	O make	O any	O difference	O .	O 
+(	O 2	O )	O Collect	O the	O parts	O of	O the	O SQL	O command	O in	O a	O list	O and	O do	O a	O `	O str.join	B-API `	O in	O the	O end	O ,	O to	O avoid	O allocating	O an	O increasingly	O long	O string	O each	O time	O (	O you	O can't	O really	O append	O to	O a	O string	O in	O Python	O as	O they	O are	O immutable	O )	O .	O 
+In	O order	O to	O make	O sure	O it	O is	O still	O multiprocessor	O safe	O ,	O I	O believe	O you	O will	O have	O to	O use	O the	O `	O acquire	B-API `	O and	O `	O release	B-API `	O methods	O that	O exist	O on	O the	O `	O Array	O `	O object	O ,	O `	O a	O `	O ,	O and	O its	O built	O in	O lock	O to	O make	O sure	O its	O all	O safely	O accessed	O (	O though	O I'm	O not	O an	O expert	O on	O the	O multiprocessor	O module	O )	O .	O
