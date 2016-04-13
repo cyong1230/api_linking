@@ -45,3 +45,10 @@ Temporary Items
 # Python Binaries
 *.pyc
 pandas/tutorial
+
+# Django static results
+django_back/static/demo.conll
+django_back/static/demo.data
+django_back/static/demo.tk
+django_back/static/demo.txt
+django_back/static/result.txt
