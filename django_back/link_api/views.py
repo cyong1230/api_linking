@@ -1,32 +1,31 @@
-from django.shortcuts import render
+from collections import OrderedDict
+from django.conf import settings
 from django.http import Http404
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from collections import OrderedDict
-from link_api.models import Record
-import urlparse
-import urllib
-import subprocess
-import re
-import json
-import os
-import sys
-from django.conf import settings
-import twokenize
-import texttoconll
-import featureextractor
-import nltk
-import string
-from multiprocessing import Pool
-import string
-import collections
-
 from gensim import corpora, models, similarities
-from sklearn.feature_extraction.text import TfidfVectorizer
+from link_api.models import Record
+from lxml import etree
+from multiprocessing import Pool
 from nltk.stem.porter import PorterStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
-from lxml import etree
+from sklearn.feature_extraction.text import TfidfVectorizer
+import collections
+import featureextractor
+import json
+import nltk
+import os
+import re
 import requests
+import string
+import string
+import subprocess
+import sys
+import texttoconll
+import twokenize
+import urllib
+import urlparse
 
 token_list = {}
 
@@ -217,7 +216,7 @@ def link_entity(request):
 				# tdidf_result = index[tfidf[corpus[0]]]
 
 				# sklearn
-				tfidf = TfidfVectorizer(tokenizer=tokenize, stop_words='english')
+				tfidf = TfidfVectorizer(tokenizer=tokenize, stop_words='english', ngram_range=(1, 1))
 				tfs = tfidf.fit_transform(token_list_sorted)
 				tdidf_result = (tfs * tfs.T).A[0]
 
@@ -243,13 +242,12 @@ def link_entity(request):
 						mark[2] = True;
 
 					# class
+					result['distance'] = -1
 					for valid_class in class_list:
 						# if Levenshtein.ratio(valid_class, record.api_class) > 0.9:
 						if valid_class[0] in record.api_class:
 							mark[3] = True
 							result['distance'] = abs(int(key) - valid_class[1])
-						else:
-							result['distance'] = -1
 
 					result['mark'] = mark
 					result['score'] = sum(b<<i for i, b in enumerate(mark))
@@ -259,10 +257,17 @@ def link_entity(request):
 					result['type'] = record.api_type
 					result['tfidf'] = str(tdidf_result[idx+1])
 					result_sublist.append(result)
-				minDistanceResult = min((x for x in result_sublist if x['distance'] >= 0), key=lambda x:x['distance'])
-				for key, result in enumerate(result_sublist):
-					if(result['url'] == minDistanceResult['url']):
-						result['score'] = result['score'] + 1
+
+					minDistanceResult = []
+					try:
+						minDistanceResult = min((x for x in result_sublist if x['distance'] >= 0), key=lambda x:x['distance'])
+					except (ValueError, TypeError):
+						pass
+
+					if minDistanceResult:
+						for key, result in enumerate(result_sublist):
+							if(result['url'] == minDistanceResult['url']):
+								result['score'] = result['score'] + 1
 				result_list.append(result_sublist)
 
 	# print result_list
