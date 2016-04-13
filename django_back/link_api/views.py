@@ -1,32 +1,31 @@
-from django.shortcuts import render
+from collections import OrderedDict
+from django.conf import settings
 from django.http import Http404
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from collections import OrderedDict
-from link_api.models import Record
-import urlparse
-import urllib
-import subprocess
-import re
-import json
-import os
-import sys
-from django.conf import settings
-import twokenize
-import texttoconll
-import featureextractor
-import nltk
-import string
-from multiprocessing import Pool
-import string
-import collections
-
 from gensim import corpora, models, similarities
-from sklearn.feature_extraction.text import TfidfVectorizer
+from link_api.models import Record
+from lxml import etree
+from multiprocessing import Pool
 from nltk.stem.porter import PorterStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
-from lxml import etree
+from sklearn.feature_extraction.text import TfidfVectorizer
+import collections
+import featureextractor
+import json
+import nltk
+import os
+import re
 import requests
+import string
+import string
+import subprocess
+import sys
+import texttoconll
+import twokenize
+import urllib
+import urlparse
 
 token_list = {}
 
@@ -88,11 +87,12 @@ def extract_entity(request):
 	featureextractor.main(os.path.join(settings.STATIC_ROOT, 'demo.conll'), os.path.join(settings.STATIC_ROOT, 'demo.data'))
 	p = subprocess.Popen(['crf_test', '-m', os.path.join(settings.STATIC_ROOT, 'CRFmodel0'), os.path.join(settings.STATIC_ROOT, 'demo.data')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	out, err = p.communicate()
-	with open(os.path.join(settings.STATIC_ROOT, 'result.txt'), 'w') as demo_file:
-		demo_file.write(out)
 	arr = out.splitlines()
-	# output = OrderedDict()
 	output = []
+	
+	# write the output to result.txt
+	# with open(os.path.join(settings.STATIC_ROOT, 'result.txt'), 'w') as demo_file:
+	# 	demo_file.write(out)
 
 	for idx, line in enumerate(arr):
 		if not line.endswith("O") and line:
@@ -108,7 +108,6 @@ def extract_entity(request):
 def link_entity(request):
 	print 'Begin POST'
 	body_unicode = request.body.decode('utf-8')
-	# data = json.loads(body_unicode, object_pairs_hook=OrderedDict)
 	data = json.loads(body_unicode, object_pairs_hook=OrderedDict)
 	data_entity = data["entityList"]
 	data_entity_index = data["entityIndex"]
