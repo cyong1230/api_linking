@@ -95,8 +95,8 @@ def extract_entity(request):
 	# 	demo_file.write(out)
 
 	for idx, line in enumerate(arr):
-		if not line.endswith("O") and line:
-		# if line.endswith("B-API"):
+		# if not line.endswith("O") and line:
+		if line.endswith("B-API"):
 			# remove remaining part after a tab (only entity name)
 			temp = re.sub('\t(.+)', ' ', line).strip()
 			if (re.search('[a-zA-Z]+', temp)):
@@ -111,6 +111,9 @@ def link_entity(request):
 	data = json.loads(body_unicode, object_pairs_hook=OrderedDict)
 	data_entity = data["entityList"]
 	data_entity_index = data["entityIndex"]
+	class_parsed = data["class"]
+	class_parsed_index = data["classIndex"]
+	class_parsed_list = zip(class_parsed, class_parsed_index)
 	question_title = re.findall(r"[\w']+", data["title"].lower())
 	tag_list = [x.lower() for x in data["tags"]]
 	href_list = [x.lower() for x in data["hrefs"]]
@@ -169,6 +172,7 @@ def link_entity(request):
 				maxScoreResult = max(result_sublist, key=lambda x:x['score'])
 				if maxScoreResult['type'] == 'class':
 					class_list.append((maxScoreResult['name'], data_entity_index[int(key)]))
+	class_list = class_list + class_parsed_list
 	print class_list
 
 	for key in data_entity:
