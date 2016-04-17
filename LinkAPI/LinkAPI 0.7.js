@@ -30,7 +30,8 @@ function identifyAPI() {
 
     // extract discussion text, question title and code snippets
     [].forEach.call(
-        document.querySelectorAll('.post-text p, #question-header .question-hyperlink, .prettyprinted code'),
+        document.querySelectorAll('.post-text p, #question-header .question-hyperlink, .prettyprinted code'), //include code snippet
+        // document.querySelectorAll('.post-text p, #question-header .question-hyperlink'), //exclude code snippet
         function(el) {
             fullText = fullText.concat(' ').concat(el.textContent);
             myNodes.push(el);
@@ -274,9 +275,9 @@ function UpdateTooltip(response) {
             });
             contentStr = "<!DOCTYPE html><html><head><style type='text/css'>";
             contentStr += ".myTable {width:100%;word-wrap:break-word;word-break:break-all;border-spacing:0;border-collapse:collapse;font-size:12px;} .myTable th, .myTable td {border: 1px solid black;text-align:center;} .table-scroll {max-width:820px;max-height:250px;overflow-y:scroll;overflow-x:hidden;}</style></head><body>";
-            contentStr += "<div class='table-scroll'><table class='myTable'><colgroup><col width='35'><col width='200'><col width='50'><col width='60'><col width='30'><col width='30'><col width='30'><col width='40'><col width='40'></colgroup><tr><th>Rank</th><th>Reference Link</th><th>Type</th><th>Library</th><th>URL</th><th>Tag</th><th>Title</th><th>Class</th><th>tf-idf</th></tr>";
+            contentStr += "<div class='table-scroll'><table class='myTable'><colgroup><col width='35'><col width='200'><col width='50'><col width='60'><col width='30'><col width='50'><col width='40'><col width='30'><col width='40'><col width='40'></colgroup><tr><th>Rank</th><th>Reference Link</th><th>Type</th><th>Library</th><th>URL</th><th>Match</th><th>Tag</th><th>Title</th><th>Class</th><th>tf-idf</th></tr>";
             for (var j = 0; j < linkJSON[i].length; j++) {
-                contentStr += "<tr><td>" + (j + 1) + "</td><td><a href='" + linkJSON[i][j].url + "' target='_blank'>" + ((linkJSON[i][j].api_class) ? linkJSON[i][j].api_class : "") + '.' + linkJSON[i][j].name + "</a></td><td>" + linkJSON[i][j].type + "</td><td>" + linkJSON[i][j].lib + "</td><td>" + ((linkJSON[i][j].mark[0]) ? "&#10004;" : "")  + "</td><td>" + ((linkJSON[i][j].mark[1]) ? "&#10004;" : "") + "</td><td>" + ((linkJSON[i][j].mark[2]) ? "&#10004;" : "") + "</td><td>" + ((linkJSON[i][j].mark[3]) ? "&#10004;" : "") + "</td><td>" + Math.round(linkJSON[i][j].tfidf * 1000) / 1000 + "</td>";
+                contentStr += "<tr><td>" + (j + 1) + "</td><td><a href='" + linkJSON[i][j].url + "' target='_blank'>" + ((linkJSON[i][j].api_class) ? linkJSON[i][j].api_class : "") + '.' + linkJSON[i][j].name + "</a></td><td>" + linkJSON[i][j].type + "</td><td>" + linkJSON[i][j].lib + "</td><td>" + ((linkJSON[i][j].mark[0]) ? "&#10004;" : "")  + "</td><td>" + ((linkJSON[i][j].mark[1]) ? "&#10004;" : "") + "</td><td>" + ((linkJSON[i][j].mark[2]) ? "&#10004;" : "") + "</td><td>" + ((linkJSON[i][j].mark[3]) ? "&#10004;" : "") + "</td><td>" + ((linkJSON[i][j].mark[4]) ? "&#10004;" : "") + "</td><td>" + Math.round(linkJSON[i][j].tfidf * 1000) / 1000 + "</td>";
             }
             contentStr += "</table><div></body></html>";
             LinkMap[i] = contentStr;
