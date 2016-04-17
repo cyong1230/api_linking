@@ -19,7 +19,6 @@ import os
 import re
 import requests
 import string
-import string
 import subprocess
 import sys
 import texttoconll
