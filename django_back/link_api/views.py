@@ -253,6 +253,7 @@ def link_entity(request):
 							result['distance'] = abs(int(key) - valid_class[1])
 
 					result['mark'] = mark
+					result['api_class'] = record.api_class
 					result['score'] = sum(b<<i for i, b in enumerate(mark))
 					result['name'] = value
 					result['url'] = record.url
