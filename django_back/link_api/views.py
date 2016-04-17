@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from gensim import corpora, models, similarities
-from link_api.models import Record
+from link_api.models import Record, WebCache
 from lxml import etree
 from multiprocessing import Pool
 from nltk.stem.porter import PorterStemmer
@@ -62,22 +62,29 @@ def extract_txt(url,idx):
 		# lowers = text.lower()
 		all_text.append(text)
 
-	return (idx+1, ' '.join(all_text))
+	return (idx+1, ' '.join(all_text), url)
+
+def log_result(result):
+	token_list[result[0]] = result[1]
+	o = WebCache.objects.update_or_create(url=result[2], content=result[1])
 
 def crawl(links, token_list):
 	p = Pool()
 	for idx, record in enumerate(links):
-		p.apply_async(extract_txt, args=(record,idx), callback = log_result)			
+		try:
+			web_entry = WebCache.objects.get(url=record)
+		except WebCache.DoesNotExist:
+			p.apply_async(extract_txt, args=(record,idx), callback = log_result)
+			continue
+		else:
+			token_list[idx+1] = web_entry.content
+
 	p.close()
 	p.join()
-	return token_list
-
-def log_result(result):
-	token_list[result[0]] = result[1]
 
 @csrf_exempt
 def extract_entity(request):
-	print 'Begin POST'
+	print 'Begin Entity Recognition'
 	full_text = request.body
 	with open(os.path.join(settings.STATIC_ROOT, 'demo.txt'), 'w') as demo_file:
 		demo_file.write(full_text)
@@ -105,7 +112,7 @@ def extract_entity(request):
 
 @csrf_exempt
 def link_entity(request):
-	print 'Begin POST'
+	print 'Begin Entity Linking'
 	body_unicode = request.body.decode('utf-8')
 	data = json.loads(body_unicode, object_pairs_hook=OrderedDict)
 	data_entity = data["entityList"]
@@ -172,7 +179,7 @@ def link_entity(request):
 				if maxScoreResult['type'] == 'class':
 					class_list.append((maxScoreResult['name'], data_entity_index[int(key)]))
 	class_list = class_list + class_parsed_list
-	print class_list
+	# print class_list
 
 	for key in data_entity:
 		value = data_entity[key]
@@ -193,7 +200,7 @@ def link_entity(request):
 				result[0]['lib'] = record.lib
 				result_list.append(result)
 			else:
-				result_sublist = [];
+				result_sublist = []
 
 				####### tf-idf ##########
 				links = []
@@ -204,7 +211,7 @@ def link_entity(request):
 				token_list.clear()
 				token_list_sorted = []
 
-				token_list[0] = full_text;
+				token_list[0] = full_text
 				crawl(links, token_list)
 				token_od = collections.OrderedDict(sorted(token_list.items()))
 

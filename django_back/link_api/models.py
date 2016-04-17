@@ -9,6 +9,14 @@ class Record(models.Model):
 	lib = models.CharField(max_length=200)
 	api_type = models.CharField(max_length=200, default='')
 	api_class = models.CharField(max_length=200, default='')
-	
+
 	def __str__(self):
 		return self.name
+
+class WebCache(models.Model):
+	id = models.AutoField(primary_key=True)
+	url = models.URLField()
+	content = models.TextField()
+
+	def __str__(self):
+		return self.url
