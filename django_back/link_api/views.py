@@ -125,10 +125,12 @@ def link_entity(request):
 	href_list = [x.lower() for x in data["hrefs"]]
 	encode_texts = data["texts"].encode('ascii', errors='xmlcharrefreplace')
 	full_text = encode_texts.translate(None, string.punctuation)
+	variations = {'np.':'numpy.', 'mpl.':'matplotlib.', 'pd.':'pandas.', 'fig.':'figure.', 'plt.':'pyplot.', 'bxp.':'boxplot.'}
 
 	href_info = [];
 	result_list = [];
 	class_list = [];
+	qualified_entity_list = [];
 	
 	for href in href_list:
 		temp = {}
@@ -140,6 +142,8 @@ def link_entity(request):
 	for key in data_entity:
 		value = data_entity[key]
 		try:
+			for k, v in variations.iteritems():
+				value = re.sub(k, v, value)
 			record_list = Record.objects.filter(name=value)
 		except Record.DoesNotExist:
 			continue
@@ -148,6 +152,7 @@ def link_entity(request):
 				continue
 			elif record_list.count() == 1:
 				record = record_list[0]
+				qualified_entity_list.append(value)
 				if record.api_type == "class":
 					class_list.append((value, data_entity_index[int(key)]))
 			else:
@@ -180,10 +185,14 @@ def link_entity(request):
 					class_list.append((maxScoreResult['name'], data_entity_index[int(key)]))
 	class_list = class_list + class_parsed_list
 	# print class_list
+	qualified_entity_list = set(qualified_entity_list)
+	# print qualified_entity_list
 
 	for key in data_entity:
 		value = data_entity[key]
 		try:
+			for k, v in variations.iteritems():
+				value = re.sub(k, v, value)
 			record_list = Record.objects.filter(name=value)
 		except Record.DoesNotExist:
 			continue
@@ -261,7 +270,14 @@ def link_entity(request):
 
 					result['mark'] = mark
 					result['api_class'] = record.api_class
+
 					result['score'] = sum(b<<i for i, b in enumerate(mark))
+					# qualified name match (score + 1)
+					full_name = record.api_class + '.' + record.name
+					for e in qualified_entity_list:
+						if (full_name in e):
+							result['score'] = result['score'] + 1
+
 					result['name'] = value
 					result['url'] = record.url
 					result['lib'] = record.lib
