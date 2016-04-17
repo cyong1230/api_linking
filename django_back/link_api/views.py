@@ -78,7 +78,6 @@ def crawl(links, token_list):
 			continue
 		else:
 			token_list[idx+1] = web_entry.content
-
 	p.close()
 	p.join()
 
