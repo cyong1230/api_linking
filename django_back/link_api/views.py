@@ -78,7 +78,6 @@ def crawl(links, token_list):
 			continue
 		else:
 			token_list[idx+1] = web_entry.content
-
 	p.close()
 	p.join()
 
@@ -125,7 +124,6 @@ def link_entity(request):
 	href_list = [x.lower() for x in data["hrefs"]]
 	encode_texts = data["texts"].encode('ascii', errors='xmlcharrefreplace')
 	full_text = encode_texts.translate(None, string.punctuation)
-
 	href_info = [];
 	result_list = [];
 	class_list = [];
