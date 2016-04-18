@@ -124,7 +124,13 @@ def link_entity(request):
 	href_list = [x.lower() for x in data["hrefs"]]
 	encode_texts = data["texts"].encode('ascii', errors='xmlcharrefreplace')
 	full_text = encode_texts.translate(None, string.punctuation)
+
 	variations = {'np.':'numpy.', 'mpl.':'matplotlib.', 'pd.':'pandas.', 'fig.':'figure.', 'plt.':'pyplot.', 'bxp.':'boxplot.', 'df.':'dataframe.'}
+	import_variations = {}
+	m = re.findall(r'import (\S+) as (\S+)', encode_texts)
+	if (m):
+		import_variations = dict((y+'.', x+'.') for x, y in m)
+	variations.update(import_variations)
 
 	href_info = [];
 	result_list = [];
