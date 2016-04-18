@@ -11,6 +11,7 @@ from multiprocessing import Pool
 from nltk.stem.porter import PorterStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
+from django.utils import timezone
 import collections
 import featureextractor
 import json
@@ -77,7 +78,11 @@ def crawl(links, token_list):
 			p.apply_async(extract_txt, args=(record,idx), callback = log_result)
 			continue
 		else:
-			token_list[idx+1] = web_entry.content
+			if (abs(timezone.now() - web_entry.access_time).days > 30):
+				p.apply_async(extract_txt, args=(record,idx), callback = log_result)
+				continue
+			else:
+				token_list[idx+1] = web_entry.content
 	p.close()
 	p.join()
 
