@@ -240,7 +240,7 @@ def link_entity(request):
 
 				######### url, tag, title ############
 				for idx, record in enumerate(record_list):
-					mark = [False] * 4
+					mark = [False] * 5
 					result = {};
 
 					# url
@@ -251,32 +251,31 @@ def link_entity(request):
 						if(link['domain'] == r.netloc and link['file'] == r.path.rsplit('/', 1)[-1]):
 							mark[0] = True;
 
+					# qualified name match
+					full_name = record.api_class + '.' + record.name
+					for e in qualified_entity_list:
+						if (full_name in e):
+							mark[1] = True;
+
 					# tag
 					if record.lib in tag_list:
-						mark[1] = True;
+						mark[2] = True;
 					
 					# title
 					if record.lib in question_title:
-						mark[2] = True;
+						mark[3] = True;
 
 					# class
 					result['distance'] = -1
 					for valid_class in class_list:
 						# if Levenshtein.ratio(valid_class, record.api_class) > 0.9:
 						if valid_class[0] in record.api_class:
-							mark[3] = True
+							mark[4] = True
 							result['distance'] = abs(int(key) - valid_class[1])
 
 					result['mark'] = mark
 					result['api_class'] = record.api_class
-
 					result['score'] = sum(b<<i for i, b in enumerate(mark))
-					# qualified name match (score + 1)
-					full_name = record.api_class + '.' + record.name
-					for e in qualified_entity_list:
-						if (full_name in e):
-							result['score'] = result['score'] + 1
-
 					result['name'] = value
 					result['url'] = record.url
 					result['lib'] = record.lib
